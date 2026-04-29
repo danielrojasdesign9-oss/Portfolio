@@ -1,0 +1,162 @@
+[
+  {
+    "Slug": "figma",
+    "Title": "Figma",
+    "Description": "Design Tool",
+    "Image": {
+      "url": "https://framerusercontent.com/images/SvTAZZonMqViqF7fP6GK7CWmL84.png",
+      "alt": "Figma logo"
+    },
+    "Link": "https://www.figma.com/"
+  },
+  {
+    "Slug": "pendo",
+    "Title": "Pendo",
+    "Description": "Insights analysis ",
+    "Image": {
+      "url": "https://framerusercontent.com/images/4xsu9uPuG3zCM8iFgi6VY84y96U.jpeg",
+      "alt": "Pendo logo"
+    },
+    "Link": "https://www.pendo.io"
+  },
+  {
+    "Slug": "smartlook",
+    "Title": "Smartlook",
+    "Description": "Insight analysis",
+    "Image": {
+      "url": "https://framerusercontent.com/images/B5amDUQ7nykidg6Bjeq07WJXR1Y.png",
+      "alt": "perplexity logo"
+    },
+    "Link": "https://www.smartlook.com"
+  },
+  {
+    "Slug": "hotjar",
+    "Title": "Hotjar",
+    "Description": "Insights analysis",
+    "Image": {
+      "url": "https://framerusercontent.com/images/6ASDIiqplYHVcncc6o1G3skdcQ.png",
+      "alt": "Hotjar logo"
+    },
+    "Link": "https://www.hotjar.com"
+  },
+  {
+    "Slug": "protopie",
+    "Title": "Protopie",
+    "Description": "Interactive prototypes ",
+    "Image": {
+      "url": "https://framerusercontent.com/images/Ij4FZNvFrQ9MeNZxiB5zADzE0.png",
+      "alt": "Protopie logo"
+    },
+    "Link": "https://www.protopie.io"
+  },
+  {
+    "Slug": "maze",
+    "Title": "Maze",
+    "Description": "Insights analysis ",
+    "Image": {
+      "url": "https://framerusercontent.com/images/hfyk4IFVxBGhFkei4qzvbmRJc.png",
+      "alt": "Maze logo"
+    },
+    "Link": "https://maze.co"
+  },
+  {
+    "Slug": "jira",
+    "Title": "Jira",
+    "Description": "Objectives scope",
+    "Image": {
+      "url": "https://framerusercontent.com/images/OP7KlnDb15SZv2FeEUL9HCHvPVs.png",
+      "alt": "Jira logo"
+    },
+    "Link": "https://jira.atlassian.com"
+  },
+  {
+    "Slug": "relume",
+    "Title": "Relume",
+    "Description": "AI website builder",
+    "Image": {
+      "url": "https://framerusercontent.com/images/l5QcpoKXHGYeDttPfnRSkXy7mE.png",
+      "alt": "Relume logo"
+    },
+    "Link": "https://www.relume.io"
+  },
+  {
+    "Slug": "spline",
+    "Title": "Spline",
+    "Description": "3d Tool",
+    "Image": {
+      "url": "https://framerusercontent.com/images/9xgceGIgl4wb5QIOynKxeU7Egs.jpg",
+      "alt": "Spline logo"
+    },
+    "Link": "https://spline.design"
+  },
+  {
+    "Slug": "slack",
+    "Title": "Slack",
+    "Description": "Communication",
+    "Image": {
+      "url": "https://framerusercontent.com/images/cO9PeARVyTM5BqYf7BuIhDgbiM.png",
+      "alt": "Slack logo"
+    },
+    "Link": "https://slack.com/intl/es-co/"
+  },
+  {
+    "Slug": "teams",
+    "Title": "Teams",
+    "Description": "Communication",
+    "Image": {
+      "url": "https://framerusercontent.com/images/8B4rAKns60w681DDDrgHQw8j4.png",
+      "alt": "Teams logo"
+    },
+    "Link": "https://www.microsoft.com/es-co/microsoft-teams/log-in"
+  },
+  {
+    "Slug": "zeroheight",
+    "Title": "Zeroheight",
+    "Description": "Design System",
+    "Image": {
+      "url": "https://framerusercontent.com/images/2wdQtKSCV1Slb7CfOYyRcRClN4A.png",
+      "alt": "fireflies logo"
+    },
+    "Link": "https://zeroheight.com"
+  },
+  {
+    "Slug": "chatgpt",
+    "Title": "ChatGPT",
+    "Description": "AI Assistant",
+    "Image": {
+      "url": "https://framerusercontent.com/images/MViiiLyIvL8tvy7d1XtOsM32o.png",
+      "alt": "ChatGPT Logo"
+    },
+    "Link": "https://chat.openai.com/"
+  },
+  {
+    "Slug": "framer",
+    "Title": "Framer",
+    "Description": "Website Builder",
+    "Image": {
+      "url": "https://framerusercontent.com/images/ay9QMj9AVG8gxBjilndTmDdmeQ.png",
+      "alt": "framer logo"
+    },
+    "Link": "https://framer.com?via=mejed_k"
+  },
+  {
+    "Slug": "softr",
+    "Title": "Softr",
+    "Description": "AI website builder",
+    "Image": {
+      "url": "https://framerusercontent.com/images/enaBRYlb4GDZzG2TS64D2d1Ah5A.png",
+      "alt": "Softr logo"
+    },
+    "Link": "https://www.softr.io"
+  },
+  {
+    "Slug": "notion",
+    "Title": "Notion",
+    "Description": "Productivity Tool",
+    "Image": {
+      "url": "https://framerusercontent.com/images/iP5FTKjb84EsPLiEwbrAY7NEy44.png",
+      "alt": "Notion logo"
+    },
+    "Link": "https://www.notion.so/"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "Slug": "igo",
+    "Image": {
+      "url": "https://framerusercontent.com/images/ui1TPvnH1poovCId4LS0fJGMY4.png"
+    },
+    "Company Name": "IGO",
+    "Company description": "Deliveries, Transportation, Chatbots.",
+    "Date": "Dec 2023 - PRESENT ",
+    "Position": "Co founder - CPO",
+    "Posit description": "Food Ordering & Delivery Exploration\n\n▫ Researched and tested emerging food delivery products in medium and small Colombian cities.\n▫ Analyzed market needs to evaluate innovative solutions for improved service efficiency.\n\nUsability Testing & Product Optimization\n\n▫ Conducted hands-on testing to assess usability and customer satisfaction.\n▫ Gathered insights to refine and optimize product performance.\n\nStrategic Market Positioning\n\n▫ Developed a cohesive strategy to address user needs effectively.\n▫ Helped position the product competitively in the food delivery market.",
+    "Actions": "<p><strong>Food Ordering &amp; Delivery – Product Strategy &amp; Testing</strong></p><ul><li data-preset-tag=\"p\"><p>Conducted field research with over 15 small business owners across four emerging Colombian cities to identify barriers in ordering, product management, and delivery workflows.</p></li><li data-preset-tag=\"p\"><p>Ran three rounds of usability testing (6 participants), improving task success rates by 36% and reducing onboarding time by 15%, measured through session recordings and feedback forms.</p></li><li data-preset-tag=\"p\"><p>Implemented behavior tracking using tools like Hotjar to analyze user interactions and optimize website flows based on real user behavior.</p></li><li data-preset-tag=\"p\"><p>Developed a positioning strategy based on competitive analysis and audience segmentation, enhancing our value proposition through differentiated service delivery.</p></li></ul>",
+    "Link": "https://igocolombia.co"
+  },
+  {
+    "Slug": "sovos",
+    "Image": {
+      "url": "https://framerusercontent.com/images/5JtEmuHS65H9GSjDPOVUzXHSeE.png"
+    },
+    "Company Name": "Sovos",
+    "Company description": "Compliance, Trust Services.",
+    "Date": "Feb 2024 - Aug 2025",
+    "Position": "UX Designer",
+    "Posit description": "Tax Information Reporting & E-commerce Solutions · USA Team:\n\nOptimized Tax Reporting and E-commerce Efficiency\n\n▫ Led product iterations to enhance tax reporting and e-commerce solutions, reducing rework through effective problem analysis.\n▫ Ensured consistency by aligning designs with internal style guides and introducing innovative design patterns.\n▫ Spearheaded the digitization process for tax form uploads, streamlining user experience.\n\nTrusted Services Development · LATAM Team:\n\nEnhanced Identity Validation and Digital Signature Solutions\n\n▫ Led product development focused on identity validation and advanced electronic signature, setting clear priorities and coordinating cross-functional teams.\n▫ Managed tasks and synchronized efforts between development, product, and design teams for cohesive execution.\n▫ Adapted solutions to meet diverse user needs across Latin American markets, ensuring cultural and regulatory relevance.",
+    "Actions": "<p><strong>Tax Information Reporting &amp; E-commerce Solutions · USA Team:</strong></p><ul><li data-preset-tag=\"p\"><p>Designed and implemented new features that empowered users with greater autonomy in tasks such as file management, uploading, and visualization, significantly reducing their reliance on technical support.</p></li><li data-preset-tag=\"p\"><p>Reduced support tickets by 68% by redesigning high-friction features, prioritizing user pain points identified through feedback sessions and behavioral analysis.</p></li><li data-preset-tag=\"p\"><p>Modernized legacy products by integrating and standardizing components from the design system, improving visual consistency and decreasing development time for new features.</p></li><li data-preset-tag=\"p\"><p>Facilitated cross-functional alignment between product, engineering, marketing, and sales teams using empathy maps and the Jobs to Be Done (JTBD) framework to prioritize high-impact deliverables and ensure a shared product vision.</p></li><li data-preset-tag=\"p\"><p>Monitored the performance of each release using Pendo, evaluating whether user flows, CTAs, and information hierarchy met expectations. Insights were guided by metrics such as click-through rates, task completion time, and navigation paths, enabling informed iterations.</p></li></ul><p><strong>Trusted Services Development – LATAM Team</strong></p><ul><li data-preset-tag=\"p\"><p>Coordinated the development of identity verification and advanced electronic signature products, enabling banks and telecom providers across LATAM to perform legally compliant e-signatures in accordance with each country’s regulations.</p></li><li data-preset-tag=\"p\"><p>Led biweekly coordination sessions between design, development, and product teams, fostering transparent communication, UX maturity, and delivery efficiency — positively impacting (+20%) sprint performance and velocity in Jira.</p></li></ul>",
+    "Link": "https://sovos.com/es/"
+  },
+  {
+    "Slug": "utap",
+    "Image": {
+      "url": "https://framerusercontent.com/images/DwhzW74bv65tEhsGQw6W9JwgzA.png"
+    },
+    "Company Name": "UTAP",
+    "Company description": "Education.",
+    "Date": "Jan 2022 - Feb 2025",
+    "Position": "Lecturer",
+    "Posit description": "Course Planning & Instruction\n\n▫ Designed and taught New Sources of Information, Campaign Workshop, and UX Design courses.\n▫ Guided students in applying design methodologies and best practices.\n\nHands-on Learning & Research\n\n▫ Introduced tools for user research, usability testing, and prototyping.\n▫ Facilitated real-world testing to reinforce learning through practice.",
+    "Actions": "<p><strong>UX Education and Design Methodology</strong></p><ul><li data-preset-tag=\"p\"><p>Taught two university-level courses (Campaign Workshop and New Sources of Information), introducing research tools, usability testing, and prototyping techniques with a human-centered design approach.</p></li></ul><ul><li data-preset-tag=\"p\"><p>Designed and taught the UX Design course, supervising 9–16 students per semester through final projects involving real user testing and the integration of agile methodologies into academic workflows</p></li></ul>",
+    "Link": "https://utap.edu.co/sitio/"
+  },
+  {
+    "Slug": "jikkosoft",
+    "Image": {
+      "url": "https://framerusercontent.com/images/1vkrffHADoKhflj9Xbw4JYOv2w.png"
+    },
+    "Company Name": "Jikkosoft",
+    "Company description": "Tax reporting.",
+    "Date": "Jul 2022 - Jan 2024",
+    "Position": "UX Designer",
+    "Posit description": "Niche Research & Module Development\n\n▫ Researched user needs to design targeted product modules.\n▫ Ensured alignment with user expectations through usability testing.\n\nUsability Testing & Platform Consistency\n\n▫ Designed and executed usability tests to validate product effectiveness.\n▫ Conducted consistency reviews to maintain a seamless user experience.\n\nStrategic Communication & Investor Presentation\n\n▫ Established effective collaboration with development teams.\n▫ Prepared a business investor deck to present strategy and key findings.",
+    "Actions": "<p><strong>Modular Product Design &amp; Investor Communication</strong></p><ul><li data-preset-tag=\"p\"><p>Designed five product modules tailored to the specific needs of users from the Valle government, aiming to reduce the learning curve during the first month of use, as initially validated through perception testing. Further tracking was limited due to restricted access to end-users and tight information controls by government staff.</p></li><li data-preset-tag=\"p\"><p>Conducted usability audits that identified 12 critical issues; proposed solutions based on an impact–cost scale, though implementation was postponed for future iterations.</p></li><li data-preset-tag=\"p\"><p>Prepared investor presentations featuring key metrics (activation, retention, growth), supporting the successful acquisition of initial funding.</p></li></ul><p><br></p>",
+    "Link": "https://jikkosoft.com/en/"
+  },
+  {
+    "Slug": "a-creative-works",
+    "Image": {
+      "url": "https://framerusercontent.com/images/YPpJSYy0dpOvyt0XifFVtJp7g.png"
+    },
+    "Company Name": "ACW",
+    "Company description": "Outsourcing web design.",
+    "Date": "May 2021 - Jan 2022",
+    "Position": " UI Designer",
+    "Posit description": "Client Collaboration & Task Execution\n\n▫ Use and creation of templates to iterate with the customer the best solution for the visualization of their product on the market. ▫ Designed and developed websites using Elementor in WordPress.",
+    "Actions": "<p><strong>User-Focused Web Design</strong></p><ul><li data-preset-tag=\"p\"><p>Optimized website development and delivery times using Elementor-Wordpress, reducing average timelines from 4 to 3 weeks by organizing reusable templates and minimizing rework through co-created, client-defined goals tracked in Notion and supported by feedback reports.</p></li><li data-preset-tag=\"p\"><p>Achieved a 78% client satisfaction rate, reflected in post-project surveys and a steady flow of repeat work requests.</p></li></ul>",
+    "Link": "https://acreative.work"
+  },
+  {
+    "Slug": "dklab-marketing",
+    "Image": {
+      "url": "https://framerusercontent.com/images/1Z2V5ORCcUZKxzYCEq3noHjqlE.jpeg"
+    },
+    "Company Name": "dklab Marketing",
+    "Company description": "Advertising Services",
+    "Date": "Nov 2020 - Jan 2021",
+    "Position": "Graphic Design Artist",
+    "Posit description": "Creation of visual environments\n\n▫ Creation of logos and brand identities for the promotion of products and services in social networks.\n\n▫ Development of editorial proposals, pieces for networks and strategies that meet the needs of each client.",
+    "Actions": "<p><strong>Visual Design &amp; Brand Identity Creation</strong></p><ul><li data-preset-tag=\"p\"><p>Created visual environments through the development of logos and brand identities to promote products and services on social media.</p></li><li data-preset-tag=\"p\"><p>Designed editorial concepts, social media assets, and tailored visual strategies to effectively meet each client’s communication and marketing needs.</p></li></ul>",
+    "Link": "https://dklabmarketing.com"
+  }
+]

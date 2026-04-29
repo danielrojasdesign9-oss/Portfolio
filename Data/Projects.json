@@ -1,0 +1,200 @@
+[
+  {
+    "Slug": "paycool",
+    "Title": "Paycool",
+    "Public": true,
+    "Next Project": "silin",
+    "Previous Project": "tir",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/TJeRMYjMTFXEppFy7LI8JJL6g.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/kqk6EZyGDVemBN8MngYvcSHBQY.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/ALuazS57cU38hNc0BKzbSSk2ro.png"
+    },
+    "Logo inv": null,
+    "Year": "2020",
+    "Client": "Bancoomeva",
+    "Category": "Banking - Gamification",
+    "Location": "Cali - COL",
+    "Intro Text": "Can millennials be included in the tedious banking process?",
+    "My rol": "UX Researcher, UI designer",
+    "My goal": "Conducted surveys and interviews with university students in Cali to identify the main motivations behind how young people manage their money. Analyzed the primary barriers they face when using banking services and developed a gamification-based solution to bridge this gap, providing greater freedom and autonomy in financial management for young people.",
+    "File": "",
+    "Link": "/work/paycool"
+  },
+  {
+    "Slug": "silin",
+    "Title": "Silin",
+    "Public": true,
+    "Next Project": "innu",
+    "Previous Project": "paycool",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/ciTPl8Yx2Z6oXBOljveOa3G98o.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/ahVYlOGVmRQtilp8rIMzHACkLwg.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/5uzhYErPGhYkruMX5aULeK2BL8.png"
+    },
+    "Logo inv": {
+      "url": "https://framerusercontent.com/images/fyjmscu3YutofyBSNscMjCHyQY.png"
+    },
+    "Year": "2023",
+    "Client": "Colombian Government",
+    "Category": "Tax management",
+    "Location": "Cali - COL",
+    "Intro Text": "A specialized web solution that, through automation, optimizes the relationship between taxpayers and the State. ",
+    "My rol": "UI Designer, Customer Experience, Product Strategist.",
+    "My goal": "Developed a product roadmap across all phases, accurately estimated effort requirements, and designed comprehensive modules for tax reporting management. Delivered high-quality design assets and documentation for the development team, ensuring seamless implementation through ongoing oversight and guidance.",
+    "File": "",
+    "Link": "/work/silin"
+  },
+  {
+    "Slug": "innu",
+    "Title": "Innu",
+    "Public": true,
+    "Next Project": "linklight",
+    "Previous Project": "silin",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/S0peVT2AHXA4aFnhXp4FUXKNt0I.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/89msw3d3jOagfJdvkXm4q7353Y.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/DclO4gaUrzgPX3CVDrZqfa5Zu8.png"
+    },
+    "Logo inv": null,
+    "Year": "2021",
+    "Client": "Innlab ICESI",
+    "Category": "Innovation culture management",
+    "Location": "Cali - COL",
+    "Intro Text": "Effective platform for the collection, analysis and visualization of progress in the innovation culture of organizations.",
+    "My rol": "Researcher, UI/UX designer.",
+    "My goal": "Explored the differences between organizational and innovation culture. Tested with innovation managers to identify their needs in measuring and promoting innovation culture. Used insights to define design determinants, shaping user flows and interfaces. Iterated the measurement service with users and experts, refining both the mechanism and the digital tool for effectiveness and usability.",
+    "File": "",
+    "Link": "/work/innu"
+  },
+  {
+    "Slug": "linklight",
+    "Title": "Linklight",
+    "Public": true,
+    "Next Project": "igochatbot",
+    "Previous Project": "innu",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/eBSSoRq5b8BG0msU4Gg2jrDTJXI.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/WYJkJsEFfMfmNckHHNyUwIKA.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/rvuDEA94bqXE543Bib6676voI5Y.png"
+    },
+    "Logo inv": null,
+    "Year": "2022",
+    "Client": "Case study",
+    "Category": "Assertive Communication.",
+    "Location": "Cali - COL",
+    "Intro Text": "A short distance call between parents and children: \"Technoferencing\", the Smartphone as a detrimental agent for the quality of relationships between parents and young people.",
+    "My rol": "UI Designer, UX Research.",
+    "My goal": "To know the phenomenon of nomophobia, how it interferes with the relationship in Cali households and a possible solution focused on providing information to specialists in psycho-social welfare.",
+    "File": "",
+    "Link": "/work/linklight"
+  },
+  {
+    "Slug": "igochatbot",
+    "Title": "Igo Chatbot",
+    "Public": false,
+    "Next Project": "e-signer",
+    "Previous Project": "linklight",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/NJ50FuaFzirxnE0cJ2tRlZBKSXQ.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/SmLMr9dGH3KGax9nehzNKcIbjtI.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/efWwSL5Zar1B5C9iE7QHDEvno.png"
+    },
+    "Logo inv": null,
+    "Year": "2025",
+    "Client": "Emerging cities, small and medium-sized businesses",
+    "Category": "Home delivery",
+    "Location": "Cali - COL",
+    "Intro Text": "How can we unlock LATAM's potential in its emerging markets?",
+    "My rol": "Product head",
+    "My goal": "Boost emerging markets in Latin America through conversational systems that optimize the connection between transportation and food, facilitating interactions between users and customers.",
+    "File": "",
+    "Link": "/work/igo"
+  },
+  {
+    "Slug": "e-signer",
+    "Title": "E-Signer ",
+    "Public": true,
+    "Next Project": "tir",
+    "Previous Project": "linklight",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/tZ6rlT7beXJPOgoRwHCHKb8Z8.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/1fc0CbQvdDadhnzss7fYdPlwPFY.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/oqMmN4z9DjiUCCmd5RX5RmKbs.png"
+    },
+    "Logo inv": null,
+    "Year": "2024",
+    "Client": "LATAM banks and telecommunication companies",
+    "Category": "Advanced electronic signature.",
+    "Location": "LATAM",
+    "Intro Text": "What are the steps that must be taken into account to go from analog to digital in an advanced electronic signature and what does it all imply?",
+    "My rol": "Product designer.",
+    "My goal": "I led the creation of a unified workflow for document viewing, electronic signature certificate validation, and identity validation in accordance with each country's regulatory considerations, as well as creating an identity library for internal and external products.",
+    "File": "",
+    "Link": "/work/e-signer"
+  },
+  {
+    "Slug": "tir",
+    "Title": "TIR ",
+    "Public": true,
+    "Next Project": "paycool",
+    "Previous Project": "e-signer",
+    "Preview Image": {
+      "url": "https://framerusercontent.com/images/E4VxVZFL96Vf6f2iPTF997nCqc.png",
+      "alt": "Preview Image"
+    },
+    "Main Image": {
+      "url": "https://framerusercontent.com/images/XMzqsQegDRlUAji8tFAEIJByRI.png",
+      "alt": "Main Image"
+    },
+    "Logo": {
+      "url": "https://framerusercontent.com/images/Ej7819nbanN49lw8q7BMYydZFxM.png"
+    },
+    "Logo inv": null,
+    "Year": "2025",
+    "Client": "Sovos internal products",
+    "Category": "Tax information reporting",
+    "Location": "USA",
+    "Intro Text": "Updates and new features",
+    "My rol": "Product designer.",
+    "My goal": "Resolve, update, and propose improvements based on customer service tickets in the tax information ecosystem in order to optimise the user experience. Next, we will analyse the changes implemented to improve the service and achieve a more accurate adaptation to the market.",
+    "File": "",
+    "Link": "/work/tir"
+  }
+]
