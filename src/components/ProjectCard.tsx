@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProjectCardProps {
   title: string;
@@ -10,34 +10,42 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, category, slug, imageUrl }: ProjectCardProps) {
   return (
-    <Link href={`/work/${slug}`} className="group block w-full">
-      <article className="flex flex-col gap-4">
-        {/* Image Container with aspect ratio matching Framer minimalist style */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-xl">
+    <Link href={`/work/${slug}`} className="group block">
+      <div className="relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md transition-all duration-500 ease-out hover:bg-white/10 hover:border-white/20 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:-translate-y-1">
+        
+        {/* Imagen Wrapper */}
+        <div className="relative aspect-[4/3] w-full overflow-hidden">
           {imageUrl ? (
             <Image
               src={imageUrl}
               alt={title}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-gray-400">
-              No Image
+            <div className="w-full h-full bg-gradient-to-br from-white/5 to-white/10 flex items-center justify-center">
+              <span className="text-white/20 text-sm font-medium">No image</span>
             </div>
           )}
+          
+          {/* Overlay de Gradiente Cristalino (Se muestra al hacer hover) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
-        
-        {/* Content */}
-        <div className="flex flex-col gap-1">
-          <h3 className="text-xl font-medium tracking-tight text-gray-900 dark:text-gray-100 transition-colors group-hover:text-black/70 dark:group-hover:text-white/70">
-            {title}
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+
+        {/* Contenido (Textos) */}
+        <div className="relative p-6 flex flex-col gap-2 z-10">
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
             {category}
           </p>
+          <h3 className="text-2xl font-medium text-white tracking-tight flex items-center justify-between">
+            {title}
+            <span className="opacity-0 -translate-x-4 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-x-0">
+              &rarr;
+            </span>
+          </h3>
         </div>
-      </article>
+      </div>
     </Link>
   );
 }
