@@ -11,7 +11,7 @@ export const projectsQuery = groq`
   }
 `
 
-// Obtener un solo proyecto detallado por slug
+// Obtener un solo proyecto detallado por slug, incluyendo navegación
 export const projectBySlugQuery = groq`
   *[_type == "project" && slug.current == $slug][0] {
     title,
@@ -24,6 +24,14 @@ export const projectBySlugQuery = groq`
     location,
     content,
     "mainImageUrl": mainImage.asset->url,
-    "previewImageUrl": previewImage.asset->url
+    "previewImageUrl": previewImage.asset->url,
+    "next": *[_type == "project" && public == true && ^.year <= year && _id != ^._id] | order(year asc)[0] {
+      "slug": slug.current,
+      title
+    },
+    "prev": *[_type == "project" && public == true && ^.year >= year && _id != ^._id] | order(year desc)[0] {
+      "slug": slug.current,
+      title
+    }
   }
 `
