@@ -35,3 +35,16 @@ export const projectBySlugQuery = groq`
     }
   }
 `
+
+// Obtener el perfil personal
+export const profileQuery = groq`
+  *[_type == "profile"][0] {
+    fullName,
+    role,
+    tagline,
+    bio,
+    skills,
+    "resumeUrl": resumeUrl.asset->url
+  }
+`
+
