@@ -44,7 +44,9 @@ export const profileQuery = groq`
     tagline,
     bio,
     skills,
-    "resumeUrl": resumeUrl.asset->url
+    "resumeUrl": resumeUrl.asset->url,
+    "profileImageUrl": profileImage.asset->url
   }
 `
+
 

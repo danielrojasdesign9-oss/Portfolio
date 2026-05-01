@@ -24,5 +24,12 @@ export const profileType = defineType({
       }] 
     }),
     defineField({ name: 'resumeUrl', type: 'file', title: 'CV para Descargar (PDF)' }),
+    defineField({ 
+      name: 'profileImage', 
+      type: 'image', 
+      title: 'Foto de Perfil',
+      options: { hotspot: true }
+    }),
   ]
 })
+
