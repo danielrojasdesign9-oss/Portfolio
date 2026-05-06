@@ -10,14 +10,14 @@ export const projectType = defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localeString',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      options: { source: 'title' },
+      options: { source: 'title.en' },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -39,7 +39,7 @@ export const projectType = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'location',
@@ -49,24 +49,23 @@ export const projectType = defineType({
     defineField({
       name: 'introText',
       title: 'Intro Text (Resumen corto)',
-      type: 'text',
+      type: 'localeText',
     }),
     defineField({
       name: 'myRole',
       title: 'My Role',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'myGoal',
       title: 'My Goal',
-      type: 'text',
+      type: 'localeText',
     }),
     defineField({
       name: 'content',
       title: 'Project Core / Case Study (Detalle completo)',
       description: 'Aquí puedes explayarte sobre el proceso, retos, descubrimientos y resultados del proyecto.',
-      type: 'array',
-      of: [{ type: 'block' }, { type: 'image' }]
+      type: 'localeContent',
     }),
     defineField({
       name: 'previewImage',

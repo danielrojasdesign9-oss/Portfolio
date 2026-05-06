@@ -7,10 +7,22 @@ export const profileType = defineType({
   type: 'document',
   icon: UserIcon,
   fields: [
-    defineField({ name: 'fullName', type: 'string', title: 'Nombre Completo' }),
-    defineField({ name: 'role', type: 'string', title: 'Rol Actual' }),
-    defineField({ name: 'tagline', type: 'text', title: 'Propuesta de Valor (Hero)' }),
-    defineField({ name: 'bio', type: 'array', title: 'Biografía Principal', of: [{ type: 'block' }] }),
+    defineField({
+      name: 'fullName',
+      type: 'string',
+    }),
+    defineField({
+      name: 'role',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'tagline',
+      type: 'localeText',
+    }),
+    defineField({
+      name: 'bio',
+      type: 'localeContent',
+    }),
     defineField({ 
       name: 'skills', 
       type: 'array', 

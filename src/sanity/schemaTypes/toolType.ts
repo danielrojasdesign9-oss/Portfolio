@@ -9,7 +9,7 @@ export const toolType = defineType({
   fields: [
     defineField({ name: 'title', type: 'string', title: 'Nombre de la Herramienta' }),
     defineField({ name: 'slug', type: 'slug', title: 'Slug', options: { source: 'title' } }),
-    defineField({ name: 'description', type: 'string', title: 'Descripción Corta' }),
+    defineField({ name: 'description', type: 'localeString', title: 'Descripción Corta' }),
     defineField({ name: 'link', type: 'url', title: 'Enlace' }),
     defineField({ name: 'image', type: 'image', title: 'Logo de la Herramienta', options: { hotspot: true } }),
   ]
