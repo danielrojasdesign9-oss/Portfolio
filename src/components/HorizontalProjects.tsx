@@ -19,79 +19,78 @@ export default function HorizontalProjects({ projects, locale }: HorizontalProje
   });
 
   // Transformación para el movimiento horizontal
-  // Multiplicamos por la cantidad de proyectos para determinar el recorrido
+  // Ajustamos el rango para que cada proyecto tenga su "momento" central
   const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(projects.length - 1) * 100}%`]);
 
   return (
-    <section ref={targetRef} className="relative h-[400vh] bg-[#0a0a0a]">
+    <section ref={targetRef} className="relative h-[600vh] bg-[#f8f9fa]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Scroll Indicator Hint */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">Scroll to Explore</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-white/40 to-transparent" />
+        {/* Nombre de Fondo Persistente */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <motion.h2 
+            style={{ 
+              x: useTransform(scrollYProgress, [0, 1], [200, -200]),
+              opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 0.03, 0.03, 0])
+            }}
+            className="text-[35vw] font-black uppercase tracking-tighter text-slate-900 whitespace-nowrap leading-none select-none"
+          >
+            Daniel Rojas
+          </motion.h2>
         </div>
 
-        <motion.div style={{ x }} className="flex gap-0">
-          {projects.map((project, i) => (
-            <div 
-              key={project._id} 
-              className="relative w-screen h-screen flex-shrink-0 flex items-center justify-center px-6 md:px-24"
-            >
-              {/* Título de Fondo Gigante (Editorial Style) */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-                <motion.h2 
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 0.1, scale: 1 }}
-                  className="text-[25vw] font-black uppercase tracking-tighter text-white whitespace-nowrap leading-none"
-                >
-                  {getLocaleText(project.title, locale)}
-                </motion.h2>
-              </div>
-
-              {/* Tarjeta del Proyecto */}
-              <motion.div 
-                initial={{ y: 100, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative z-10 w-full max-w-5xl aspect-video md:aspect-[21/9] rounded-[40px] overflow-hidden group shadow-2xl border border-white/10"
+        <motion.div style={{ x }} className="flex gap-0 h-full items-center">
+          {projects.map((project, i) => {
+            // Calculamos puntos de control seguros para la animación
+            const center = i / projects.length;
+            const step = 1 / projects.length;
+            const start = Math.max(0, center - step / 2);
+            const end = Math.min(1, center + step / 2);
+            
+            return (
+              <div 
+                key={project._id} 
+                className="relative w-screen h-full flex-shrink-0 flex items-center justify-center px-12"
               >
-                <Image 
-                  src={project.imageUrl} 
-                  alt={getLocaleText(project.title, locale)} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                
-                {/* Overlay de información */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-12">
-                  <div className="flex justify-between items-end">
-                    <div className="space-y-2">
-                      <p className="text-indigo-400 font-bold uppercase tracking-widest text-sm">
-                        {getLocaleText(project.category, locale)}
-                      </p>
-                      <h3 className="text-4xl md:text-6xl font-bold text-white">
-                        {getLocaleText(project.title, locale)}
-                      </h3>
-                    </div>
+                {/* Carta Pequeña y Elegante */}
+                <motion.div 
+                  style={{
+                    scale: useTransform(scrollYProgress, [start, center, end], [0.9, 1, 0.9]),
+                    opacity: useTransform(scrollYProgress, [start, center, end], [0.6, 1, 0.6])
+                  }}
+                  className="relative z-10 w-full max-w-2xl aspect-[4/5] md:aspect-[3/4] rounded-[32px] overflow-hidden group shadow-[0_30px_60px_rgba(0,0,0,0.08)] border-4 border-white bg-white"
+                >
+                  <Image 
+                    src={project.imageUrl} 
+                    alt={getLocaleText(project.title, locale)} 
+                    fill 
+                    className="object-cover"
+                  />
+                  
+                  {/* Info Overlay minimalista */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 md:p-12">
+                    <p className="text-indigo-400 font-bold uppercase tracking-[0.2em] text-[10px] mb-2">
+                      {getLocaleText(project.category, locale)}
+                    </p>
+                    <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tighter mb-6">
+                      {getLocaleText(project.title, locale)}
+                    </h3>
                     <Link 
                       href={`/work/${project.slug}?lang=${locale}`}
-                      className="w-20 h-20 rounded-full bg-white flex items-center justify-center text-black hover:scale-110 transition-transform"
+                      className="inline-flex items-center gap-2 text-white font-bold text-sm hover:text-indigo-400 transition-colors"
                     >
-                      <ArrowUpRight className="w-8 h-8" />
+                      View Case Study <ArrowUpRight className="w-4 h-4" />
                     </Link>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
 
-              {/* Indicador de número */}
-              <div className="absolute bottom-12 left-12 md:left-24">
-                <span className="text-white/20 text-8xl md:text-[12rem] font-black leading-none">
-                  0{i + 1}
-                </span>
+                {/* Número de proyecto discreto */}
+                <div className="absolute bottom-12 right-12 md:right-24 font-black text-slate-200 text-6xl">
+                  {i + 1}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
 

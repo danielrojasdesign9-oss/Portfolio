@@ -16,91 +16,82 @@ export default function AboutSection({ profile, locale }: AboutSectionProps) {
   const bio = getLocaleContent(profile.bio, locale);
 
   return (
-    <section id="about" className="max-w-7xl mx-auto px-6 py-32 md:px-12 lg:px-24">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+    <section id="about" className="max-w-7xl mx-auto px-6 py-32 md:px-12 lg:px-24 bg-white rounded-[64px] my-32 shadow-[0_40px_100px_rgba(0,0,0,0.03)] border border-slate-100">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
         
-        {/* Foto de Perfil */}
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="lg:col-span-5 relative"
-        >
-          <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-100 dark:bg-white/5 border border-border group">
+        {/* Foto de Perfil & CV */}
+        <div className="lg:col-span-5 space-y-12">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-50 border border-slate-100 group"
+          >
             {profile.profileImageUrl ? (
               <Image 
                 src={profile.profileImageUrl} 
                 alt={profile.fullName} 
                 fill 
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-slate-400">
-                Añade tu foto en Sanity
+              <div className="w-full h-full flex items-center justify-center text-slate-300 font-medium italic">
+                Upload your photo in Sanity
               </div>
             )}
-          </div>
-          {/* Decoración flotante */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl -z-10" />
-        </motion.div>
+          </motion.div>
 
-        {/* Información y Bio */}
-        <motion.div 
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="lg:col-span-7 flex flex-col gap-10"
-        >
-          <div className="space-y-4">
-            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-indigo-500">
-              {locale === "es" ? "Sobre Mí" : locale === "jp" ? "私について" : "About Me"}
-            </h3>
-            <h2 className="text-5xl font-semibold tracking-tight">
-              {locale === "es" ? "Diseño con propósito" : locale === "jp" ? "目的と心を持って" : "I design with"} <br /> {locale === "es" ? "y corazón." : locale === "jp" ? "設計します。" : "purpose and heart."}
-            </h2>
-          </div>
-
-          <div className="prose prose-xl dark:prose-invert prose-p:text-slate-500 dark:prose-p:text-white/60 prose-p:leading-relaxed font-light">
-            <PortableText value={bio} />
-          </div>
-
-          {/* Resume Download Button */}
           {profile.resumeUrl && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              className="p-8 rounded-[32px] bg-indigo-600 text-white space-y-4 shadow-xl shadow-indigo-200"
             >
+              <h4 className="text-xl font-bold">Curriculum Vitae</h4>
+              <p className="text-white/80 text-sm leading-relaxed">
+                {locale === "es" ? "Descarga mi perfil profesional completo para conocer más sobre mi trayectoria." : "Download my professional profile to learn more about my background."}
+              </p>
               <a 
                 href={`${profile.resumeUrl}?dl=`} 
                 target="_blank"
-                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-indigo-50 dark:bg-white/5 border border-indigo-100 dark:border-white/10 text-indigo-600 dark:text-indigo-300 font-bold hover:bg-indigo-100 dark:hover:bg-white/10 transition-all group w-fit"
+                className="inline-flex items-center gap-3 w-full justify-center py-4 bg-white text-indigo-600 rounded-2xl font-bold hover:bg-indigo-50 transition-colors"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                {locale === "es" ? "Descargar CV (PDF)" : locale === "jp" ? "履歴書をダウンロード (PDF)" : "Download Resume (PDF)"}
+                Download PDF
               </a>
             </motion.div>
           )}
+        </div>
 
-          {/* Skills Grid - Untitled UI Style */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
+        {/* Biografía & Skills */}
+        <div className="lg:col-span-7 space-y-16">
+          <div className="space-y-6">
+            <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-indigo-500">About Me</h3>
+            <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-slate-900">
+              Daniel <br /> Rojas<span className="text-indigo-500">.</span>
+            </h2>
+          </div>
+
+          <div className="prose prose-2xl dark:prose-invert prose-p:text-slate-600 prose-p:leading-relaxed font-light">
+            <PortableText value={bio} />
+          </div>
+
+          {/* Experience/Skills Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {profile.skills?.map((skill: any, i: number) => (
-              <div key={i} className="space-y-4 p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
+              <div key={i} className="space-y-4 border-t border-slate-100 pt-8">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-indigo-500">{skill.category}</h4>
                 <div className="flex flex-wrap gap-2">
                   {skill.items?.map((item: string, j: number) => (
-                    <span key={j} className="px-3 py-1 rounded-lg bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 text-sm text-slate-600 dark:text-white/60">
-                      {item}
+                    <span key={j} className="text-lg text-slate-600 font-medium">
+                      {item}{j < skill.items.length - 1 ? "," : ""}
                     </span>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

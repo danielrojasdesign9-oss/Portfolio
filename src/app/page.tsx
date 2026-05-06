@@ -31,7 +31,7 @@ export default async function Home({
     }));
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white selection:bg-indigo-500 selection:text-white">
+    <main className="min-h-screen bg-[#f8f9fa] text-slate-900 selection:bg-indigo-500 selection:text-white">
       <Navbar />
 
       {/* Hero / Horizontal Projects Section */}
