@@ -20,6 +20,16 @@ export const experienceType = defineType({
       options: { hotspot: true },
     }),
     defineField({
+      name: 'year',
+      title: 'Año / Periodo',
+      type: 'string',
+    }),
+    defineField({
+      name: 'role',
+      title: 'Rol / Cargo',
+      type: 'string',
+    }),
+    defineField({
       name: 'link',
       title: 'Link (URL)',
       type: 'url',

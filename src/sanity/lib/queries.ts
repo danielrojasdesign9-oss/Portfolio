@@ -23,8 +23,13 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     myRole,
     myGoal,
     productVision,
-    framerEmbedUrl,
     content,
+    gallery[] {
+      titleEn,
+      titleEs,
+      titleJp,
+      image
+    },
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,
     "nextProject": coalesce(
@@ -61,8 +66,10 @@ export const profileQuery = groq`*[_type == "profile"][0] {
 `
 
 // Obtener todas las experiencias laborales
-export const experienceQuery = groq`*[_type == "experience"] | order(_createdAt asc) {
+export const experienceQuery = groq`*[_type == "experience"] | order(year desc) {
     name,
+    year,
+    role,
     link,
     "imageUrl": image.asset->url
   }

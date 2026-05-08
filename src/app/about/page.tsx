@@ -26,180 +26,122 @@ export default async function AboutPage({
   const roleText = getLocaleText(profile?.role, locale);
 
   const t = {
-    en: { 
-      about: "About", 
-      experience: "Collaborated with", 
-      philosophy: "Professional Philosophy",
-      toolsTitle: "Stack & Expertise",
-      toolHeader: "Tool / Skill",
-      categoryHeader: "Category",
-      footer: "2026 ALL RIGHTS RESERVED" 
-    },
-    es: { 
-      about: "Sobre mí", 
-      experience: "He colaborado con", 
-      philosophy: "Filosofía Profesional",
-      toolsTitle: "Stack y Especialidad",
-      toolHeader: "Herramienta / Skill",
-      categoryHeader: "Categoría",
-      footer: "2026 TODOS LOS DERECHOS RESERVADOS" 
-    },
-    jp: { 
-      about: "について", 
-      experience: "とのコラボレーション", 
-      philosophy: "プロフェッショナルな哲学",
-      toolsTitle: "スタックと専門知識",
-      toolHeader: "ツール / スキル",
-      categoryHeader: "カテゴリー",
-      footer: "2026 全著作権所有" 
-    }
+    en: { about: "About", experience: "Collaborated with", philosophy: "Philosophy", toolsTitle: "Expertise", toolHeader: "Tool", categoryHeader: "Category", footer: "2026 ALL RIGHTS RESERVED" },
+    es: { about: "Sobre mí", experience: "He colaborado con", philosophy: "Filosofía", toolsTitle: "Especialidad", toolHeader: "Herramienta", categoryHeader: "Categoría", footer: "2026 TODOS LOS DERECHOS RESERVADOS" },
+    jp: { about: "について", experience: "とのコラボレーション", philosophy: "プロフェッショナルな哲学", toolsTitle: "スタックと専門知識", toolHeader: "ツール", categoryHeader: "カテゴリー", footer: "2026 全著作権所有" }
   }[locale];
+
+  const philosophyText = "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users.";
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white">
       <Navbar />
 
-      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 pt-40 pb-32">
-
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16 pt-24 pb-12">
+        
         {/* Header */}
-        <header className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 border-b border-black/5 pb-20">
+        <header className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 border-b border-black/5 pb-10">
           <div>
-            <p className="text-[14px] font-black uppercase tracking-[0.5em] text-black/40 mb-4">
-              {t.about}
-            </p>
-            <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase">
-              Daniel<br />Rojas
-            </h1>
+            <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/40 mb-2">{t.about}</p>
+            <h1 className="text-6xl md:text-[8rem] font-black tracking-tighter leading-[0.8] uppercase">Daniel<br />Rojas</h1>
           </div>
-          <div className="flex flex-col justify-end lg:pb-4 space-y-8">
-            {roleText && (
-              <p className="text-xl md:text-2xl font-medium text-black/80 leading-relaxed border-l-4 border-black pl-8 max-w-lg">
-                {roleText}
-              </p>
-            )}
+          <div className="flex flex-col justify-end lg:pb-4 space-y-6">
+            {roleText && (<p className="text-lg md:text-xl font-medium text-black/80 leading-relaxed border-l-4 border-black pl-6 max-w-lg">{roleText}</p>)}
             <div className="flex gap-4">
-              {profile?.email && (
-                <a href={`mailto:${profile.email}`} className="text-[10px] font-black uppercase tracking-widest bg-black text-white px-6 py-3 rounded-full hover:bg-black/80 transition-all">
-                  Email
-                </a>
-              )}
-              {profile?.linkedinUrl && (
-                <a href={profile.linkedinUrl} target="_blank" className="text-[10px] font-black uppercase tracking-widest border border-black/10 px-6 py-3 rounded-full hover:bg-black hover:text-white transition-all">
-                  LinkedIn
-                </a>
-              )}
+              {profile?.email && (<a href={`mailto:${profile.email}`} className="text-[9px] font-black uppercase tracking-widest bg-black text-white px-5 py-2.5 rounded-full hover:bg-black/80 transition-all">Email</a>)}
+              {profile?.linkedinUrl && (<a href={profile.linkedinUrl} target="_blank" className="text-[9px] font-black uppercase tracking-widest border border-black/10 px-5 py-2.5 rounded-full hover:bg-black hover:text-white transition-all">LinkedIn</a>)}
             </div>
           </div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Main Content */}
-          <div className="lg:col-span-8 space-y-32">
+          {/* LEFT CONTENT */}
+          <div className="lg:col-span-8 space-y-12">
             
-            {/* Bio */}
+            {/* Philosophy - Even Smaller (Caption style) */}
+            <div className="space-y-2">
+               <p className="text-[8px] font-black uppercase tracking-[0.5em] text-black/20">{t.philosophy}</p>
+               <h2 className="text-[13px] md:text-[15px] font-bold tracking-tight text-black italic max-w-xl leading-relaxed opacity-60">
+                  "{philosophyText}"
+               </h2>
+            </div>
+
+            {/* BIO in 3 COLUMNS */}
             {bio && (
-              <div className="prose prose-xl md:prose-2xl max-w-none prose-p:text-black/80 prose-p:leading-relaxed prose-p:font-normal prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:text-black">
-                <PortableText value={bio} />
-              </div>
-            )}
-
-            {/* Experience - LARGER LOGOS, SINGLE ROW */}
-            {experiences?.length > 0 && (
-              <div className="space-y-12">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.experience}
-                </p>
-                <div className="flex flex-wrap items-center gap-x-20 gap-y-12">
-                   {experiences.map((exp: any, i: number) => (
-                     <div key={i} className="group relative">
-                        <a 
-                          href={exp.link} 
-                          target="_blank" 
-                          className="block relative h-12 w-32 opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0"
-                        >
-                           {exp.imageUrl ? (
-                             <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain" />
-                           ) : (
-                             <span className="text-[12px] font-black uppercase tracking-widest">{exp.name}</span>
-                           )}
-                        </a>
-                     </div>
-                   ))}
-                </div>
-              </div>
-            )}
-
-            {/* Tools Matrix */}
-            {allTools?.length > 0 && (
-              <div className="space-y-12 pt-20 border-t border-black/10">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.toolsTitle}
-                </p>
-                <div className="w-full">
-                   <div className="grid grid-cols-2 pb-4 border-b border-black/5 mb-6 text-[10px] font-black uppercase tracking-widest text-black/30">
-                      <div>{t.toolHeader}</div>
-                      <div>{t.categoryHeader}</div>
-                   </div>
-                   <div className="space-y-4">
-                      {allTools.map((tool: any, i: number) => (
-                        <div key={i} className="grid grid-cols-2 py-4 border-b border-black/[0.03] group hover:bg-black/[0.02] transition-colors px-2 -mx-2 rounded-lg">
-                           <div className="flex items-center gap-4">
-                              {tool.imageUrl && (
-                                <div className="relative h-6 w-6 grayscale group-hover:grayscale-0 transition-all">
-                                   <Image src={tool.imageUrl} alt={tool.name} fill className="object-contain" />
-                                </div>
-                              )}
-                              <span className="text-lg font-black uppercase tracking-tighter text-black">{tool.name}</span>
-                           </div>
-                           <div className="text-sm font-medium text-black/50 group-hover:text-black/80 transition-colors flex items-center italic">
-                              {getLocaleText(tool.category, locale)}
-                           </div>
-                        </div>
-                      ))}
-                   </div>
+              <div className="border-t border-black/5 pt-10">
+                <div className="columns-1 md:columns-2 lg:columns-3 gap-12 space-y-12 [column-rule:1px_solid_rgba(0,0,0,0.05)]">
+                  <div className="prose prose-sm md:prose-base max-w-none prose-p:text-black/60 prose-p:leading-relaxed prose-p:mb-0">
+                    <PortableText value={bio} />
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-20">
-             <div className="relative aspect-[3/4] rounded-[12px] overflow-hidden bg-black/5 group shadow-xl">
-              {profile?.profileImageUrl && (
-                <Image
-                  src={profile.profileImageUrl}
-                  alt={profile.fullName || "Daniel Rojas"}
-                  fill
-                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100"
-                />
-              )}
+          {/* RIGHT: Photo */}
+          <aside className="lg:col-span-4">
+             <div className="relative aspect-[3.5/4] rounded-[12px] overflow-hidden bg-black/5 group shadow-2xl sticky top-24">
+              {profile?.profileImageUrl && (<Image src={profile.profileImageUrl} alt={profile.fullName || "Daniel Rojas"} fill className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100" />)}
             </div>
-
-            <div className="space-y-8 pt-10 border-t border-black/10">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.philosophy}
-                </p>
-                <div className="space-y-6">
-                   <p className="text-lg font-medium text-black/70 italic leading-relaxed">
-                      {locale === "es" 
-                        ? "Creo en el diseño como un sistema de decisiones, no solo de píxeles. Mi enfoque integra IA para potenciar la creatividad humana y escalar soluciones que impactan positivamente en el negocio y el usuario."
-                        : locale === "jp"
-                        ? "私はデザインを、単なるピクセルではなく、意思決定のシステムであると信じています。私の専門は、AIを統合して人間の創造性を高め、ビジネスとユーザーにプラスの影響を与えるソリューションを拡張することです。"
-                        : "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users."
-                      }
-                   </p>
-                </div>
-            </div>
-          </div>
+          </aside>
         </div>
 
-        {/* Footer */}
-        <footer className="mt-40 pt-10 border-t border-black/10 text-center">
-           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30">
-              {t.footer}
-           </p>
-        </footer>
+        {/* EXPERIENCE GRID (All visible, no scroll) */}
+        {experiences?.length > 0 && (
+          <div className="mt-24 pt-12 border-t border-black/10 space-y-12">
+            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40">{t.experience}</p>
+            
+            <div className="relative">
+              {/* Vertical line connector for grid if needed, but grid might be cleaner without line */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16">
+                {experiences.map((exp: any, i: number) => (
+                  <div key={i} className="space-y-6 group border-l border-black/5 pl-8">
+                    <div className="flex flex-col gap-2">
+                       <div className="text-[10px] font-black uppercase tracking-widest text-black/30 group-hover:text-black transition-colors">
+                          {exp.year || "2023"}
+                       </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="relative h-8 w-24 opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+                        {exp.imageUrl ? (
+                          <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain object-left" />
+                        ) : (
+                          <span className="text-[10px] font-black uppercase tracking-widest">{exp.name}</span>
+                        )}
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="text-lg font-black uppercase tracking-tighter group-hover:underline underline-offset-4 decoration-1">{exp.name}</h3>
+                        <p className="text-[8px] font-black uppercase tracking-widest text-black/40 italic leading-none">{exp.role || "Product Designer"}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Expertise Matrix */}
+        {allTools?.length > 0 && (
+          <div className="mt-24 space-y-10 pt-12 border-t border-black/10">
+            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40">{t.toolsTitle}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-2">
+               {allTools.map((tool: any, i: number) => (
+                <div key={i} className="grid grid-cols-2 py-3 border-b border-black/[0.03] group hover:bg-black/[0.02] transition-colors">
+                   <div className="flex items-center gap-3">
+                      {tool.imageUrl && (<div className="relative h-4 w-4 grayscale group-hover:grayscale-0 transition-all"><Image src={tool.imageUrl} alt={tool.name} fill className="object-contain" /></div>)}
+                      <span className="text-base font-black uppercase tracking-tighter text-black">{tool.name}</span>
+                   </div>
+                   <div className="text-[11px] font-medium text-black/40 group-hover:text-black/80 transition-colors flex items-center italic">{getLocaleText(tool.category, locale)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <footer className="mt-24 pt-8 border-t border-black/10 text-center"><p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30">{t.footer}</p></footer>
       </div>
     </main>
   );
