@@ -25,9 +25,9 @@ export default async function Home({
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white">
       <Navbar />
 
-      {/* Hero: 2 Column Layout */}
+      {/* Hero: 2 Column Layout - Aligned Top */}
       <section className="pt-48 pb-32 px-6 md:px-10 lg:px-16 max-w-[1400px] mx-auto border-b border-black/5 mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-4">
             <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/30">
               {locale === "es" ? "Diseñador de Producto" : locale === "jp" ? "プロダクトデザイナー" : "Product Designer"}
@@ -36,15 +36,10 @@ export default async function Home({
               Daniel<br />Rojas
             </h1>
           </div>
-          <div className="lg:pb-4 max-w-lg">
-            <p className="text-xl md:text-3xl font-medium text-black/80 leading-tight tracking-tight mb-8">
+          <div className="lg:pt-[10px]"> {/* Visual alignment with top label */}
+            <p className="text-lg md:text-xl font-medium text-black/60 leading-relaxed tracking-tight max-w-md uppercase">
               {getLocaleText(profile?.tagline, locale) || "Digital Experience & Creative Solutions"}
             </p>
-            <div className="flex gap-4">
-               <Link href={`/about?lang=${locale}`} className="text-[10px] font-black uppercase tracking-widest bg-black text-white px-8 py-4 rounded-full hover:opacity-80 transition-all">
-                  {locale === "es" ? "Sobre mí" : "About Me"}
-               </Link>
-            </div>
           </div>
         </div>
       </section>

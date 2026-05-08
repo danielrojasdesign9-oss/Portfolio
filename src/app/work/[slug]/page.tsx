@@ -148,7 +148,7 @@ export default async function ProjectLayout({
               )}
               
               {content && (
-                <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-img:rounded-[12px] prose-img:border prose-img:border-black/5">
+                <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5">
                   <PortableText value={content} />
                 </div>
               )}
