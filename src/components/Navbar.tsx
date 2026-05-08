@@ -35,7 +35,7 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        {/* Logo - Premium Serif/Sans Mix */}
+        {/* Logo */}
         <Link
           href={`/?lang=${currentLocale}`}
           className="font-black tracking-tighter text-xl text-black uppercase leading-none hover:opacity-70 transition-opacity"
@@ -43,8 +43,8 @@ export default function Navbar() {
           Daniel Rojas
         </Link>
 
-        {/* Nav Links - Using a Cleaner, High-End Sans (Outfit already global, but applying specific style) */}
-        <div className="flex items-center gap-6 md:gap-10 font-medium">
+        {/* Nav Links - Increased Weight (font-semibold) */}
+        <div className="flex items-center gap-6 md:gap-10 font-semibold">
           <Link
             href={`/about?lang=${currentLocale}`}
             className="text-[11px] uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors"
@@ -66,7 +66,7 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* Floating Language Selector - Minimalist WhatsApp Style */}
+      {/* Floating Language Selector */}
       <div className="fixed bottom-8 right-8 z-[110] flex flex-col gap-2">
         {["en", "es", "jp"].map((lang) => (
           <motion.button

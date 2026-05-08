@@ -36,9 +36,14 @@ export default async function Home({
               Daniel<br />Rojas
             </h1>
           </div>
-          <div className="lg:pt-[14px]"> {/* Adjusted for larger top label */}
+          <div className="lg:pt-[14px]">
             <p className="text-xl md:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
-              "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
+              {locale === "es" 
+                ? "Arquitectando sistemas de productos impulsados por IA que escalan el impacto. Redefiniendo experiencias a través de interfaces conversacionales y desarrollo asistido por IA."
+                : locale === "jp"
+                ? "インパクトを拡大するAI駆動の製品システムを構築。対話型インターフェースとAI支援開発を通じて製品体験を再定義します。"
+                : "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
+              }
             </p>
           </div>
         </div>
