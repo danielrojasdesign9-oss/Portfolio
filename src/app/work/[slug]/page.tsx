@@ -40,9 +40,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", goal: "My Goal", meta: "Meta" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", goal: "Mi Meta", meta: "Meta" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", goal: "目標", meta: "メタ" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", goal: "My Goal", meta: "Meta", prototype: "Live Prototype" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", goal: "Mi Meta", meta: "Meta", prototype: "Prototipo en vivo" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", goal: "目標", meta: "メタ", prototype: "ライブプロトタイプ" }
   }[locale];
 
   return (
@@ -83,9 +83,8 @@ export default async function ProjectLayout({
                   <p className="text-lg font-bold">{project.year}</p>
                 </div>
               )}
-              {/* Smaller Goal Section */}
               {myGoal && (
-                <div className="space-y-1 pt-4">
+                <div className="space-y-1 pt-4 border-t border-black/5">
                   <span className="text-[9px] font-black text-black/30 uppercase tracking-widest flex items-center gap-2">
                     <Target className="w-3 h-3" />
                     {t.goal} / {t.meta}
@@ -106,7 +105,7 @@ export default async function ProjectLayout({
               </p>
             )}
 
-            {/* NEW: Product Vision - High Hierarchy */}
+            {/* Product Vision */}
             {productVision && (
                <div className="py-20 border-y border-black/5">
                   <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-black/30 mb-8 flex items-center gap-3">
@@ -119,7 +118,22 @@ export default async function ProjectLayout({
                </div>
             )}
 
-            {/* Visuals with Thinner Borders */}
+            {/* Framer Embed / Canvas */}
+            {project.framerEmbedUrl && (
+              <div className="space-y-6 pt-10">
+                 <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-black/30">{t.prototype}</h4>
+                 <div className="relative w-full aspect-video rounded-[16px] overflow-hidden border border-black/10 bg-white shadow-2xl">
+                    <iframe 
+                       src={project.framerEmbedUrl} 
+                       className="w-full h-full border-none"
+                       allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                    />
+                 </div>
+              </div>
+            )}
+
+            {/* Visuals */}
             <div className="space-y-20 pt-10">
               {(project.previewImageUrl || project.mainImageUrl) && (
                 <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden border border-black/5 shadow-2xl transition-transform hover:scale-[1.01] duration-700">
@@ -140,7 +154,7 @@ export default async function ProjectLayout({
               )}
             </div>
 
-            {/* Pagination with Bucle */}
+            {/* Pagination */}
             <footer className="pt-24 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-12">
               {project.prevProject && (
                 <Link href={`/work/${project.prevProject.slug}?lang=${locale}`} className="group space-y-3 flex flex-col items-start transition-transform hover:-translate-x-1">

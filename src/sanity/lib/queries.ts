@@ -23,6 +23,7 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     myRole,
     myGoal,
     productVision,
+    framerEmbedUrl,
     content,
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,

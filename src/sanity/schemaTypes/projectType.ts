@@ -67,6 +67,12 @@ export const projectType = defineType({
       type: 'localeText',
     }),
     defineField({
+      name: 'framerEmbedUrl',
+      title: 'Framer Embed URL (Canvas)',
+      description: 'Pega aquí el enlace de compartido de tu canvas de Framer para incrustarlo.',
+      type: 'url',
+    }),
+    defineField({
       name: 'content',
       title: 'Project Core / Case Study (Detalle completo)',
       description: 'Aquí puedes explayarte sobre el proceso, retos, descubrimientos y resultados del proyecto.',
