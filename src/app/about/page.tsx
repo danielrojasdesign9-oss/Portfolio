@@ -28,7 +28,7 @@ export default async function AboutPage({
   const t = {
     en: { 
       about: "About", 
-      experience: "Experience", 
+      experience: "Collaborated with", 
       philosophy: "Professional Philosophy",
       toolsTitle: "Stack & Expertise",
       toolHeader: "Tool / Skill",
@@ -37,7 +37,7 @@ export default async function AboutPage({
     },
     es: { 
       about: "Sobre mí", 
-      experience: "Experiencia", 
+      experience: "He colaborado con", 
       philosophy: "Filosofía Profesional",
       toolsTitle: "Stack y Especialidad",
       toolHeader: "Herramienta / Skill",
@@ -46,7 +46,7 @@ export default async function AboutPage({
     },
     jp: { 
       about: "について", 
-      experience: "経験", 
+      experience: "とのコラボレーション", 
       philosophy: "プロフェッショナルな哲学",
       toolsTitle: "スタックと専門知識",
       toolHeader: "ツール / スキル",
@@ -104,24 +104,24 @@ export default async function AboutPage({
               </div>
             )}
 
-            {/* Experience */}
+            {/* Experience - LARGER LOGOS, SINGLE ROW */}
             {experiences?.length > 0 && (
               <div className="space-y-12">
                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
                   {t.experience}
                 </p>
-                <div className="flex flex-wrap items-center gap-16">
+                <div className="flex flex-wrap items-center gap-x-20 gap-y-12">
                    {experiences.map((exp: any, i: number) => (
                      <div key={i} className="group relative">
                         <a 
                           href={exp.link} 
                           target="_blank" 
-                          className="block relative h-10 w-28 opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0"
+                          className="block relative h-12 w-32 opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0"
                         >
                            {exp.imageUrl ? (
                              <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain" />
                            ) : (
-                             <span className="text-[11px] font-black uppercase tracking-widest">{exp.name}</span>
+                             <span className="text-[12px] font-black uppercase tracking-widest">{exp.name}</span>
                            )}
                         </a>
                      </div>
@@ -130,13 +130,12 @@ export default async function AboutPage({
               </div>
             )}
 
-            {/* Tools / Expertise Matrix */}
+            {/* Tools Matrix */}
             {allTools?.length > 0 && (
               <div className="space-y-12 pt-20 border-t border-black/10">
                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
                   {t.toolsTitle}
                 </p>
-                
                 <div className="w-full">
                    <div className="grid grid-cols-2 pb-4 border-b border-black/5 mb-6 text-[10px] font-black uppercase tracking-widest text-black/30">
                       <div>{t.toolHeader}</div>
@@ -164,7 +163,7 @@ export default async function AboutPage({
             )}
           </div>
 
-          {/* Sidebar Content */}
+          {/* Sidebar */}
           <div className="lg:col-span-4 space-y-20">
              <div className="relative aspect-[3/4] rounded-[12px] overflow-hidden bg-black/5 group shadow-xl">
               {profile?.profileImageUrl && (
@@ -177,7 +176,6 @@ export default async function AboutPage({
               )}
             </div>
 
-            {/* Philosophy Section (Replacement for Competencies) */}
             <div className="space-y-8 pt-10 border-t border-black/10">
                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
                   {t.philosophy}
@@ -196,7 +194,7 @@ export default async function AboutPage({
           </div>
         </div>
 
-        {/* Localized Footer */}
+        {/* Footer */}
         <footer className="mt-40 pt-10 border-t border-black/10 text-center">
            <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30">
               {t.footer}

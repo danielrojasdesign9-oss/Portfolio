@@ -25,8 +25,8 @@ export default async function ProjectLayout({
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[#F9F7F4] flex items-center justify-center text-black/30 uppercase tracking-[0.5em] text-[10px]">
-        Project not found
+      <div className="min-h-screen bg-[#F9F7F4] flex items-center justify-center">
+        <p className="text-black font-black uppercase tracking-[0.5em] text-[12px]">Project not found</p>
       </div>
     );
   }
@@ -43,6 +43,8 @@ export default async function ProjectLayout({
     es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", prototype: "Prototipo en vivo", problem: "El Problema" },
     jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", prototype: "ライブプロトタイプ", problem: "課題" }
   }[locale];
+
+  const isPaycool = title?.toLowerCase().includes("paycool");
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white font-sans">
@@ -86,19 +88,19 @@ export default async function ProjectLayout({
           </aside>
 
           {/* Right: Content */}
-          <div className="lg:col-span-8 space-y-12 lg:space-y-16">
+          <div className="lg:col-span-8 space-y-16">
             
-            {/* 1. Problem - Smaller & Lighter weight */}
+            {/* 1. Problem */}
             {introText && (
                <div className="space-y-2">
                   <span className="text-[8px] font-black uppercase tracking-[0.4em] text-black/20">{t.problem}</span>
-                  <p className="text-lg md:text-xl font-medium tracking-tight leading-snug text-black/80 max-w-xl">
+                  <p className="text-lg md:text-xl font-medium tracking-tight leading-snug text-black/60 max-w-xl">
                     {introText}
                   </p>
                </div>
             )}
 
-            {/* 2. Main Image - Vertically aligned Bottom */}
+            {/* 2. Main Image */}
             {(project.mainImageUrl || project.previewImageUrl) && (
               <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden border border-black/5 shadow-2xl">
                 <Image
@@ -111,25 +113,37 @@ export default async function ProjectLayout({
               </div>
             )}
 
-            {/* 3. Product Vision */}
-            {productVision && (
-               <div className="py-6 border-y border-black/5 space-y-2">
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-black/40 italic flex items-center gap-2">
-                     <Rocket className="w-3 h-3" />
-                     {t.vision}
-                  </h4>
-                  <p className="text-lg md:text-xl font-bold tracking-tight uppercase text-black italic leading-tight">
-                     {productVision}
-                  </p>
-               </div>
-            )}
+            {/* 3. Product Vision & Core Section - ZERO SPACE */}
+            <div className="flex flex-col">
+              {productVision && (
+                 <div className="py-10 border-y border-black/5 space-y-2">
+                    <h4 className="text-[8px] font-black uppercase tracking-[0.4em] text-black/20 italic flex items-center gap-2">
+                       <Rocket className="w-3 h-3" />
+                       {t.vision}
+                    </h4>
+                    <p className="text-lg md:text-xl font-medium tracking-tight leading-snug text-black/60 max-w-xl italic">
+                       {productVision}
+                    </p>
+                 </div>
+              )}
 
-            {/* 4. Core (Content) - Glued (no top padding) */}
-            {content && (
-              <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5">
-                <PortableText value={content} />
-              </div>
-            )}
+              {/* Paycool Special Layer (Framer CSS) */}
+              {isPaycool && (
+                <div className="relative w-full h-[min-content] flex flex-row justify-center items-center p-0 flex-nowrap gap-[10px] rounded-[10px] border border-black/5 bg-white/40 my-8 py-10 shadow-sm backdrop-blur-sm">
+                   <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center text-white font-black">P</div>
+                      <p className="text-sm font-black uppercase tracking-widest">Paycool Flow Integration</p>
+                   </div>
+                </div>
+              )}
+
+              {/* 4. Core (Content) - Pegado */}
+              {content && (
+                <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5 mt-0">
+                  <PortableText value={content} />
+                </div>
+              )}
+            </div>
 
             {/* 5. Framer Embed */}
             {project.framerEmbedUrl && (

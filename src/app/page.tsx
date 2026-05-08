@@ -47,9 +47,9 @@ export default async function Home({
             </p>
             <Link 
               href={`/about?lang=${locale}`}
-              className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-black hover:opacity-50 transition-opacity"
+              className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-black border border-black/20 px-10 py-5 rounded-full hover:bg-black hover:text-white transition-all duration-500"
             >
-              {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"} —&gt;
+              {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"}
             </Link>
           </div>
         </div>

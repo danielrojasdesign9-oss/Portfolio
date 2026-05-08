@@ -43,8 +43,8 @@ export default function Navbar() {
           Daniel Rojas
         </Link>
 
-        {/* Nav Links - Increased Weight (font-semibold) */}
-        <div className="flex items-center gap-6 md:gap-10 font-semibold">
+        {/* Nav Links - Max Weight (font-black) */}
+        <div className="flex items-center gap-6 md:gap-10 font-black">
           <Link
             href={`/about?lang=${currentLocale}`}
             className="text-[11px] uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors"
