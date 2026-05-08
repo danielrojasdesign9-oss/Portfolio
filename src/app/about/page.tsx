@@ -5,7 +5,7 @@ import { client } from "@/sanity/lib/client";
 import { profileQuery, experienceQuery, toolsQuery } from "@/sanity/lib/queries";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
 import { PortableText } from "@portabletext/react";
-import { ArrowUpRight, Mail, Layout, Rocket, Cpu } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -27,32 +27,150 @@ export default async function AboutPage({
   const roleText = getLocaleText(profile?.role, locale);
 
   const t = {
-    en: { about: "About me", experience: "Experience", skills: "Skills", tools: "Stack", footer: "2026 ALL RIGHTS RESERVED" },
-    es: { about: "Sobre mí", experience: "Experiencia", skills: "Competencias", tools: "Stack", footer: "2026 TODOS LOS DERECHOS RESERVADOS" },
-    jp: { about: "について", experience: "経験", skills: "スキル", tools: "スタック", footer: "2026 全著作権所有" }
+    en: { 
+      about: "About", 
+      experience: "Experience", 
+      skills: "Core Competencies", 
+      toolsTitle: "Stack & Expertise",
+      toolHeader: "Tool / Skill",
+      categoryHeader: "Category",
+      footer: "2026 ALL RIGHTS RESERVED" 
+    },
+    es: { 
+      about: "Sobre mí", 
+      experience: "Experiencia", 
+      skills: "Competencias", 
+      toolsTitle: "Stack y Especialidad",
+      toolHeader: "Herramienta / Skill",
+      categoryHeader: "Categoría",
+      footer: "2026 TODOS LOS DERECHOS RESERVADOS" 
+    },
+    jp: { 
+      about: "について", 
+      experience: "経験", 
+      skills: "スキル", 
+      toolsTitle: "スタックと専門知識",
+      toolHeader: "ツール / スキル",
+      categoryHeader: "カテゴリー",
+      footer: "2026 全著作権所有" 
+    }
   }[locale];
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white">
       <Navbar />
 
-      <div className="max-w-[1100px] mx-auto px-6 md:px-10 lg:px-16 pt-40 pb-32">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-10 lg:px-16 pt-40 pb-32">
 
-        {/* Restore Original Structure: Photo Prominent */}
-        <div className="mb-20">
-          <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/40 mb-4">
-            {t.about}
-          </p>
-          <h1 className="text-6xl sm:text-8xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase">
-            Daniel<br />Rojas
-          </h1>
-        </div>
+        {/* Header */}
+        <header className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 border-b border-black/5 pb-20">
+          <div>
+            <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/40 mb-4">
+              {t.about}
+            </p>
+            <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase">
+              Daniel<br />Rojas
+            </h1>
+          </div>
+          <div className="flex flex-col justify-end lg:pb-4 space-y-8">
+            {roleText && (
+              <p className="text-xl md:text-2xl font-medium text-black/80 leading-relaxed border-l-4 border-black pl-8 max-w-lg">
+                {roleText}
+              </p>
+            )}
+            <div className="flex gap-4">
+              {profile?.email && (
+                <a href={`mailto:${profile.email}`} className="text-[10px] font-black uppercase tracking-widest bg-black text-white px-6 py-3 rounded-full hover:bg-black/80 transition-all">
+                  Email
+                </a>
+              )}
+              {profile?.linkedinUrl && (
+                <a href={profile.linkedinUrl} target="_blank" className="text-[10px] font-black uppercase tracking-widest border border-black/10 px-6 py-3 rounded-full hover:bg-black hover:text-white transition-all">
+                  LinkedIn
+                </a>
+              )}
+            </div>
+          </div>
+        </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+          
+          {/* Main Content */}
+          <div className="lg:col-span-8 space-y-32">
+            
+            {/* Bio */}
+            {bio && (
+              <div className="prose prose-xl md:prose-2xl max-w-none prose-p:text-black/80 prose-p:leading-relaxed prose-p:font-normal prose-headings:font-black prose-headings:uppercase prose-headings:tracking-tighter prose-headings:text-black">
+                <PortableText value={bio} />
+              </div>
+            )}
 
-          {/* Left: Photo Structure (Original) */}
-          <div className="lg:col-span-5 space-y-12">
-            <div className="relative aspect-[3/4] rounded-[12px] overflow-hidden bg-black/5 group shadow-2xl">
+            {/* Experience */}
+            {experiences?.length > 0 && (
+              <div className="space-y-12">
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
+                  {t.experience}
+                </p>
+                <div className="flex flex-wrap items-center gap-16">
+                   {experiences.map((exp: any, i: number) => (
+                     <div key={i} className="group relative">
+                        <a 
+                          href={exp.link} 
+                          target="_blank" 
+                          className="block relative h-10 w-28 opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0"
+                        >
+                           {exp.imageUrl ? (
+                             <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain" />
+                           ) : (
+                             <span className="text-[11px] font-black uppercase tracking-widest">{exp.name}</span>
+                           )}
+                        </a>
+                     </div>
+                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* Tools / Expertise Matrix */}
+            {allTools?.length > 0 && (
+              <div className="space-y-12 pt-20 border-t border-black/10">
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
+                  {t.toolsTitle}
+                </p>
+                
+                <div className="w-full">
+                   {/* Table Headers */}
+                   <div className="grid grid-cols-2 pb-4 border-b border-black/5 mb-6 text-[10px] font-black uppercase tracking-widest text-black/30">
+                      <div>{t.toolHeader}</div>
+                      <div>{t.categoryHeader}</div>
+                   </div>
+
+                   {/* Tools Rows */}
+                   <div className="space-y-4">
+                      {allTools.map((tool: any, i: number) => (
+                        <div key={i} className="grid grid-cols-2 py-4 border-b border-black/[0.03] group hover:bg-black/[0.02] transition-colors px-2 -mx-2 rounded-lg">
+                           <div className="flex items-center gap-4">
+                              {tool.imageUrl && (
+                                <div className="relative h-6 w-6 grayscale group-hover:grayscale-0 transition-all">
+                                   <Image src={tool.imageUrl} alt={tool.name} fill className="object-contain" />
+                                </div>
+                              )}
+                              <span className="text-lg font-black uppercase tracking-tighter text-black">{tool.name}</span>
+                           </div>
+                           <div className="text-sm font-medium text-black/50 group-hover:text-black/80 transition-colors flex items-center italic">
+                              {getLocaleText(tool.category, locale)}
+                           </div>
+                        </div>
+                      ))}
+                   </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Sidebar Content */}
+          <div className="lg:col-span-4 space-y-20">
+             <div className="relative aspect-[3/4] rounded-[12px] overflow-hidden bg-black/5 group shadow-xl">
               {profile?.profileImageUrl && (
                 <Image
                   src={profile.profileImageUrl}
@@ -63,70 +181,13 @@ export default async function AboutPage({
               )}
             </div>
 
-            {/* Experience Icons in Row */}
-            {experiences?.length > 0 && (
-              <div className="space-y-6 pt-4">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.experience}
-                </p>
-                <div className="flex flex-wrap gap-8 items-center">
-                   {experiences.map((exp: any, i: number) => (
-                     <div key={i} className="group relative h-8 w-20 opacity-40 hover:opacity-100 transition-all duration-500 grayscale hover:grayscale-0">
-                        {exp.link ? (
-                          <a href={exp.link} target="_blank" className="block w-full h-full relative">
-                             <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain" />
-                          </a>
-                        ) : (
-                          <Image src={exp.imageUrl} alt={exp.name} fill className="object-contain" />
-                        )}
-                     </div>
-                   ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Right: Content */}
-          <div className="lg:col-span-7 space-y-16">
-            {roleText && (
-              <p className="text-2xl md:text-3xl font-medium text-black/80 leading-relaxed border-l-4 border-black pl-8">
-                {roleText}
-              </p>
-            )}
-
-            {bio && (
-              <div className="prose prose-xl md:prose-2xl max-w-none prose-p:text-black/80 prose-p:leading-relaxed prose-headings:font-black prose-headings:uppercase prose-headings:text-black">
-                <PortableText value={bio} />
-              </div>
-            )}
-
-            {/* Tools Grid (Logos Only) */}
-            {allTools?.length > 0 && (
-              <div className="space-y-8 pt-10 border-t border-black/10">
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.tools}
-                </p>
-                <div className="flex flex-wrap gap-6">
-                   {allTools.map((tool: any, i: number) => (
-                     <div key={i} className="relative h-10 w-10 grayscale hover:grayscale-0 transition-all">
-                        {tool.imageUrl ? (
-                          <Image src={tool.imageUrl} alt={tool.name} fill className="object-contain" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-black/5 rounded text-[8px] font-black text-center">{tool.name}</div>
-                        )}
-                     </div>
-                   ))}
-                </div>
-              </div>
-            )}
-
-            {/* Skills */}
+            {/* Core Competencies */}
             {profile?.skills?.length > 0 && (
-              <div className="space-y-10 pt-10 border-t border-black/10">
+              <div className="space-y-12 pt-10 border-t border-black/10">
                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
                   {t.skills}
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                <div className="space-y-12">
                   {profile.skills.map((skill: any, i: number) => (
                     <div key={i} className="space-y-4">
                       <h4 className="text-[11px] font-black uppercase tracking-widest text-black">
@@ -146,6 +207,13 @@ export default async function AboutPage({
             )}
           </div>
         </div>
+
+        {/* Localized Footer */}
+        <footer className="mt-40 pt-10 border-t border-black/10 text-center">
+           <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30">
+              {t.footer}
+           </p>
+        </footer>
       </div>
     </main>
   );

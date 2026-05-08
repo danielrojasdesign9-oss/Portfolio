@@ -9,8 +9,16 @@ export const toolType = defineType({
   fields: [
     defineField({
       name: 'name',
-      title: 'Nombre de la Herramienta',
+      title: 'Nombre de la Herramienta / Skill',
+      description: 'Ej: Figma & Framer (Se mantiene igual en todos los idiomas)',
       type: 'string',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'category',
+      title: 'Categoría (Localizada)',
+      description: 'Ej: Design Systems & Delivery',
+      type: 'localeString',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -19,19 +27,12 @@ export const toolType = defineType({
       type: 'image',
       options: { hotspot: true },
     }),
-    defineField({
-      name: 'category',
-      title: 'Categoría',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'Diseño', value: 'Design' },
-          { title: 'Producto', value: 'Product' },
-          { title: 'IA', value: 'AI' },
-        ],
-        layout: 'radio',
-      },
-      validation: (rule) => rule.required(),
-    }),
   ],
+  preview: {
+    select: {
+      title: 'name',
+      subtitle: 'category.en',
+      media: 'logo',
+    },
+  },
 })
