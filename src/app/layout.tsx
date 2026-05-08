@@ -12,6 +12,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: "Daniel Rojas | Product Designer & Digital Solutions",
   description: "Portfolio of Daniel Rojas, Product Designer focusing on Design Systems and Digital Solutions.",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

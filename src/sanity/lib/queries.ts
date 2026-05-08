@@ -25,10 +25,10 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     productVision,
     content,
     gallery[] {
-      titleEn,
-      titleEs,
-      titleJp,
-      image
+      titleEn, titleEs, titleJp,
+      subtitleEn, subtitleEs, subtitleJp,
+      descriptionEn, descriptionEs, descriptionJp,
+      images
     },
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,

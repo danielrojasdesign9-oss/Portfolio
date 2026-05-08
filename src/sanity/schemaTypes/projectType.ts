@@ -111,20 +111,55 @@ export const projectType = defineType({
               type: 'string',
             },
             {
-              name: 'image',
-              title: 'Imagen',
-              type: 'image',
-              options: { hotspot: true },
+              name: 'subtitleEn',
+              title: 'Subtítulo (EN)',
+              type: 'string',
+            },
+            {
+              name: 'subtitleEs',
+              title: 'Subtítulo (ES)',
+              type: 'string',
+            },
+            {
+              name: 'subtitleJp',
+              title: 'Subtítulo (JP)',
+              type: 'string',
+            },
+            {
+              name: 'descriptionEn',
+              title: 'Descripción (EN)',
+              type: 'text',
+              rows: 3,
+            },
+            {
+              name: 'descriptionEs',
+              title: 'Descripción (ES)',
+              type: 'text',
+              rows: 3,
+            },
+            {
+              name: 'descriptionJp',
+              title: 'Descripción (JP)',
+              type: 'text',
+              rows: 3,
+            },
+            {
+              name: 'images',
+              title: 'Imágenes',
+              description: 'Añade una o varias imágenes para esta sección. Se organizarán automáticamente en un grid.',
+              type: 'array',
+              of: [{ type: 'image', options: { hotspot: true } }],
+              validation: (rule) => rule.min(1),
             },
           ],
           preview: {
             select: {
               title: 'titleEn',
-              media: 'image',
+              media: 'images.0',
             },
             prepare({ title, media }: { title?: string; media?: any }) {
               return {
-                title: title || 'Untitled slide',
+                title: title || 'Untitled section',
                 media,
               };
             },

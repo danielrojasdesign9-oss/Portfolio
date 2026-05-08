@@ -1,8 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
+import imageUrlBuilder from "@sanity/image-url";
 import { projectQuery } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
+
+const builder = imageUrlBuilder(client);
 import { ArrowLeft, Rocket } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
@@ -41,9 +44,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", screens: "Product Interfaces", problem: "The Problem" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", screens: "Interfaces del Producto", problem: "El Problema" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", screens: "製品インターフェース", problem: "課題" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", screens: "Project Case Study", problem: "The Problem" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", screens: "Caso de Estudio", problem: "El Problema" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", screens: "ケーススタディ", problem: "課題" }
   }[locale];
 
   // Accent Colors
@@ -57,6 +60,9 @@ export default async function ProjectLayout({
   };
 
   const meta = projectsMeta[slug] || { accent: "#000000" };
+
+  // Determine if we should show the case study headers
+  const showCaseStudyHeaders = slug.toLowerCase() !== "tir";
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white font-sans">
@@ -120,28 +126,59 @@ export default async function ProjectLayout({
               </div>
             )}
 
-            {/* 5. Screens Section (Ready for gallery uploads) */}
+            {/* 5. MULTI-IMAGE GALLERY SECTIONS */}
             {project.gallery && project.gallery.length > 0 && (
-               <div className="space-y-12 pt-16 border-t border-black/5">
-                  <div className="flex justify-between items-end">
-                     <div className="space-y-2">
-                        <span className="text-[9px] font-black uppercase tracking-[0.5em] text-black/30">{t.screens}</span>
-                        <h3 className="text-4xl font-black uppercase tracking-tighter italic">Process & Results</h3>
-                     </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-12">
-                     {project.gallery.map((slide: any, i: number) => (
-                        <div key={i} className="space-y-4">
-                           {slide.titleEn && (
-                              <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">
-                                 {locale === 'en' ? slide.titleEn : locale === 'es' ? slide.titleEs : slide.titleJp}
-                              </p>
-                           )}
-                           <div className="relative aspect-video rounded-[16px] overflow-hidden border border-black/5 shadow-lg">
-                              <Image src={client.imageUrlBuilder.image(slide.image).url()} alt={slide.titleEn || "Gallery image"} fill className="object-cover" />
+               <div className="space-y-32 pt-16 border-t border-black/5">
+                  {showCaseStudyHeaders && (
+                    <div className="flex justify-between items-end">
+                      <div className="space-y-2">
+                          <span className="text-[9px] font-black uppercase tracking-[0.5em] text-black/30">{t.screens}</span>
+                          <h3 className="text-4xl font-black uppercase tracking-tighter italic">Process & Results</h3>
+                      </div>
+                    </div>
+                  )}
+                  
+                  <div className="space-y-40">
+                     {project.gallery.map((slide: any, i: number) => {
+                        const sTitle = locale === 'en' ? slide.titleEn : locale === 'es' ? slide.titleEs : slide.titleJp;
+                        const sSubtitle = locale === 'en' ? slide.subtitleEn : locale === 'es' ? slide.subtitleEs : slide.subtitleJp;
+                        const sDesc = locale === 'en' ? slide.descriptionEn : locale === 'es' ? slide.descriptionEs : slide.descriptionJp;
+                        const images = slide.images || [];
+
+                        if (images.length === 0) return null;
+
+                        return (
+                           <div key={i} className="space-y-12">
+                              {/* Header for this section */}
+                              {(sTitle || sSubtitle) && (
+                                <div className="space-y-2 border-b border-black/5 pb-6">
+                                   {sTitle && <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">{sTitle}</p>}
+                                   {sSubtitle && <h4 className="text-xl font-medium text-black/80 leading-relaxed">{sSubtitle}</h4>}
+                                </div>
+                              )}
+
+                              {/* IMAGES - One per row */}
+                              <div className="space-y-16">
+                                 {images.map((img: any, imgIdx: number) => (
+                                    <div key={imgIdx} className="space-y-6">
+                                      <div className="relative aspect-video rounded-[16px] overflow-hidden border border-black/5 shadow-2xl bg-white group">
+                                         <Image 
+                                            src={img ? builder.image(img).url() : '/placeholder.png'} 
+                                            alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`} 
+                                            fill 
+                                            className="object-contain p-4 md:p-8 group-hover:scale-[1.02] transition-transform duration-700" 
+                                         />
+                                      </div>
+                                      {/* Description below EACH image (if it's the last one or only one) or per section */}
+                                      {imgIdx === images.length - 1 && sDesc && (
+                                        <p className="text-base font-medium text-black/50 leading-relaxed italic max-w-2xl">{sDesc}</p>
+                                      )}
+                                    </div>
+                                 ))}
+                              </div>
                            </div>
-                        </div>
-                     ))}
+                        );
+                     })}
                   </div>
                </div>
             )}
