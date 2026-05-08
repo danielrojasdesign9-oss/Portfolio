@@ -29,16 +29,16 @@ export default async function Home({
       <section className="pt-48 pb-32 px-6 md:px-10 lg:px-16 max-w-[1400px] mx-auto border-b border-black/5 mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div className="space-y-4">
-            <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/30">
+            <p className="text-[14px] font-black uppercase tracking-[0.5em] text-black/30">
               {locale === "es" ? "Diseñador de Producto" : locale === "jp" ? "プロダクトデザイナー" : "Product Designer"}
             </p>
             <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase text-black">
               Daniel<br />Rojas
             </h1>
           </div>
-          <div className="lg:pt-[10px]"> {/* Visual alignment with top label */}
-            <p className="text-lg md:text-xl font-medium text-black/60 leading-relaxed tracking-tight max-w-md uppercase">
-              {getLocaleText(profile?.tagline, locale) || "Digital Experience & Creative Solutions"}
+          <div className="lg:pt-[14px]"> {/* Adjusted for larger top label */}
+            <p className="text-xl md:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
+              "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
             </p>
           </div>
         </div>

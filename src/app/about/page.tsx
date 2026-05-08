@@ -5,7 +5,6 @@ import { client } from "@/sanity/lib/client";
 import { profileQuery, experienceQuery, toolsQuery } from "@/sanity/lib/queries";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
 import { PortableText } from "@portabletext/react";
-import { ArrowUpRight, Mail } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -30,7 +29,7 @@ export default async function AboutPage({
     en: { 
       about: "About", 
       experience: "Experience", 
-      skills: "Core Competencies", 
+      philosophy: "Professional Philosophy",
       toolsTitle: "Stack & Expertise",
       toolHeader: "Tool / Skill",
       categoryHeader: "Category",
@@ -39,7 +38,7 @@ export default async function AboutPage({
     es: { 
       about: "Sobre mí", 
       experience: "Experiencia", 
-      skills: "Competencias", 
+      philosophy: "Filosofía Profesional",
       toolsTitle: "Stack y Especialidad",
       toolHeader: "Herramienta / Skill",
       categoryHeader: "Categoría",
@@ -48,7 +47,7 @@ export default async function AboutPage({
     jp: { 
       about: "について", 
       experience: "経験", 
-      skills: "スキル", 
+      philosophy: "プロフェッショナルな哲学",
       toolsTitle: "スタックと専門知識",
       toolHeader: "ツール / スキル",
       categoryHeader: "カテゴリー",
@@ -65,7 +64,7 @@ export default async function AboutPage({
         {/* Header */}
         <header className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 border-b border-black/5 pb-20">
           <div>
-            <p className="text-[12px] font-black uppercase tracking-[0.5em] text-black/40 mb-4">
+            <p className="text-[14px] font-black uppercase tracking-[0.5em] text-black/40 mb-4">
               {t.about}
             </p>
             <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase">
@@ -139,13 +138,10 @@ export default async function AboutPage({
                 </p>
                 
                 <div className="w-full">
-                   {/* Table Headers */}
                    <div className="grid grid-cols-2 pb-4 border-b border-black/5 mb-6 text-[10px] font-black uppercase tracking-widest text-black/30">
                       <div>{t.toolHeader}</div>
                       <div>{t.categoryHeader}</div>
                    </div>
-
-                   {/* Tools Rows */}
                    <div className="space-y-4">
                       {allTools.map((tool: any, i: number) => (
                         <div key={i} className="grid grid-cols-2 py-4 border-b border-black/[0.03] group hover:bg-black/[0.02] transition-colors px-2 -mx-2 rounded-lg">
@@ -181,30 +177,22 @@ export default async function AboutPage({
               )}
             </div>
 
-            {/* Core Competencies */}
-            {profile?.skills?.length > 0 && (
-              <div className="space-y-12 pt-10 border-t border-black/10">
+            {/* Philosophy Section (Replacement for Competencies) */}
+            <div className="space-y-8 pt-10 border-t border-black/10">
                 <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40">
-                  {t.skills}
+                  {t.philosophy}
                 </p>
-                <div className="space-y-12">
-                  {profile.skills.map((skill: any, i: number) => (
-                    <div key={i} className="space-y-4">
-                      <h4 className="text-[11px] font-black uppercase tracking-widest text-black">
-                        {getLocaleText(skill.category, locale)}
-                      </h4>
-                      <div className="flex flex-wrap gap-x-4 gap-y-2">
-                        {skill.items?.map((itemObj: any, j: number) => (
-                          <span key={j} className="text-xl text-black/70 font-semibold italic">
-                            {getLocaleText(itemObj, locale)}{j < skill.items.length - 1 ? " /" : ""}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
+                <div className="space-y-6">
+                   <p className="text-lg font-medium text-black/70 italic leading-relaxed">
+                      {locale === "es" 
+                        ? "Creo en el diseño como un sistema de decisiones, no solo de píxeles. Mi enfoque integra IA para potenciar la creatividad humana y escalar soluciones que impactan positivamente en el negocio y el usuario."
+                        : locale === "jp"
+                        ? "私はデザインを、単なるピクセルではなく、意思決定のシステムであると信じています。私の専門は、AIを統合して人間の創造性を高め、ビジネスとユーザーにプラスの影響を与えるソリューションを拡張することです。"
+                        : "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users."
+                      }
+                   </p>
                 </div>
-              </div>
-            )}
+            </div>
           </div>
         </div>
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { projectQuery } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import { ArrowLeft, ArrowRight, Rocket, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, Rocket } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
@@ -40,9 +40,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", goal: "My Goal", meta: "Meta", prototype: "Live Prototype" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", goal: "Mi Meta", meta: "Meta", prototype: "Prototipo en vivo" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", goal: "目標", meta: "メタ", prototype: "ライブプロトタイプ" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", goal: "Goal", prototype: "Live Prototype", problem: "The Problem" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", goal: "Meta", prototype: "Prototipo en vivo", problem: "El Problema" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", goal: "目標", prototype: "ライブプロトタイプ", problem: "課題" }
   }[locale];
 
   return (
@@ -83,44 +83,58 @@ export default async function ProjectLayout({
                   <p className="text-lg font-bold">{project.year}</p>
                 </div>
               )}
-              {myGoal && (
-                <div className="space-y-1 pt-4 border-t border-black/5">
-                  <span className="text-[9px] font-black text-black/30 uppercase tracking-widest flex items-center gap-2">
-                    <Target className="w-3 h-3" />
-                    {t.goal} / {t.meta}
-                  </span>
-                  <p className="text-sm font-medium text-black/60 leading-relaxed italic">"{myGoal}"</p>
-                </div>
-              )}
             </div>
           </aside>
 
-          {/* Right: Content */}
+          {/* Right: Content (Reordered) */}
           <div className="lg:col-span-8 space-y-24">
             
-            {/* Intro */}
+            {/* 1. Pregunta (Problem) - Special Typography */}
             {introText && (
-              <p className="text-3xl md:text-5xl font-medium leading-[1.1] text-black tracking-tight mb-20">
-                {introText}
-              </p>
+               <div className="space-y-6">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-black/30">{t.problem}</span>
+                  <p className="text-2xl md:text-4xl font-black tracking-tighter leading-tight uppercase text-black italic">
+                    {introText}
+                  </p>
+               </div>
             )}
 
-            {/* Product Vision */}
+            {/* 2. Main Image (Hero) */}
+            {(project.mainImageUrl || project.previewImageUrl) && (
+              <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden border border-black/5 shadow-2xl transition-transform hover:scale-[1.01] duration-700">
+                <Image
+                  src={project.mainImageUrl || project.previewImageUrl}
+                  alt={title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            )}
+
+            {/* 3. Product Vision - Size Refined (Around 14-16px visual weight) */}
             {productVision && (
-               <div className="py-20 border-y border-black/5">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-black/30 mb-8 flex items-center gap-3">
+               <div className="py-12 border-y border-black/5">
+                  <h4 className="text-[14px] font-black uppercase tracking-[0.5em] text-black italic mb-4 flex items-center gap-3">
                      <Rocket className="w-4 h-4" />
                      {t.vision}
                   </h4>
-                  <p className="text-3xl md:text-6xl font-black tracking-tighter leading-[0.95] uppercase text-black italic">
+                  <p className="text-xl md:text-2xl font-black tracking-tighter uppercase text-black italic leading-none">
                      {productVision}
                   </p>
                </div>
             )}
 
-            {/* Framer Embed / Canvas */}
+            {/* 4. Core (Content) */}
+            {content && (
+              <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5 pt-10">
+                <PortableText value={content} />
+              </div>
+            )}
+
+            {/* 5. Framer Embed - Last */}
             {project.framerEmbedUrl && (
-              <div className="space-y-6 pt-10">
+              <div className="space-y-6 pt-10 border-t border-black/5">
                  <h4 className="text-[10px] font-black uppercase tracking-[0.5em] text-black/30">{t.prototype}</h4>
                  <div className="relative w-full aspect-video rounded-[16px] overflow-hidden border border-black/10 bg-white shadow-2xl">
                     <iframe 
@@ -133,33 +147,11 @@ export default async function ProjectLayout({
               </div>
             )}
 
-            {/* Visuals */}
-            <div className="space-y-20 pt-10">
-              {(project.previewImageUrl || project.mainImageUrl) && (
-                <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden border border-black/5 shadow-2xl transition-transform hover:scale-[1.01] duration-700">
-                  <Image
-                    src={project.previewImageUrl || project.mainImageUrl}
-                    alt={title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-              )}
-              
-              {content && (
-                <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5">
-                  <PortableText value={content} />
-                </div>
-              )}
-            </div>
-
             {/* Pagination */}
             <footer className="pt-24 border-t border-black/10 flex flex-col md:flex-row justify-between items-center gap-12">
               {project.prevProject && (
                 <Link href={`/work/${project.prevProject.slug}?lang=${locale}`} className="group space-y-3 flex flex-col items-start transition-transform hover:-translate-x-1">
                   <span className="flex items-center gap-2 text-[9px] font-black text-black/30 uppercase tracking-widest group-hover:text-black transition-colors">
-                    <ArrowLeft className="w-3 h-3" />
                     {t.prev}
                   </span>
                   <p className="text-2xl font-black uppercase tracking-tighter leading-none group-hover:underline underline-offset-4 decoration-2">
@@ -174,7 +166,6 @@ export default async function ProjectLayout({
                 <Link href={`/work/${project.nextProject.slug}?lang=${locale}`} className="group space-y-3 flex flex-col items-end text-right transition-transform hover:translate-x-1">
                   <span className="flex items-center justify-end gap-2 text-[9px] font-black text-black/30 uppercase tracking-widest group-hover:text-black transition-colors">
                     {t.next}
-                    <ArrowRight className="w-3 h-3" />
                   </span>
                   <p className="text-2xl font-black uppercase tracking-tighter leading-none group-hover:underline underline-offset-4 decoration-2">
                     {getLocaleText(project.nextProject.title, locale)}
