@@ -23,12 +23,17 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     myRole,
     myGoal,
     productVision,
+    figmaEmbedUrl,
     content,
     gallery[] {
       titleEn, titleEs, titleJp,
       subtitleEn, subtitleEs, subtitleJp,
       descriptionEn, descriptionEs, descriptionJp,
-      images
+      images[] {
+        ...,
+        "url": asset->url,
+        captionEn, captionEs, captionJp
+      }
     },
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,

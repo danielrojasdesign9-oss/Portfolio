@@ -26,12 +26,37 @@ export default async function AboutPage({
   const roleText = getLocaleText(profile?.role, locale);
 
   const t = {
-    en: { about: "About", experience: "Collaborated with", philosophy: "Philosophy", toolsTitle: "Expertise", toolHeader: "Tool", categoryHeader: "Category", footer: "2026 ALL RIGHTS RESERVED" },
-    es: { about: "Sobre mí", experience: "He colaborado con", philosophy: "Filosofía", toolsTitle: "Especialidad", toolHeader: "Herramienta", categoryHeader: "Categoría", footer: "2026 TODOS LOS DERECHOS RESERVADOS" },
-    jp: { about: "について", experience: "とのコラボレーション", philosophy: "プロフェッショナルな哲学", toolsTitle: "スタックと専門知識", toolHeader: "ツール", categoryHeader: "カテゴリー", footer: "2026 全著作権所有" }
+    en: { 
+      about: "About", 
+      experience: "Collaborated with", 
+      philosophy: "Philosophy", 
+      toolsTitle: "Expertise", 
+      toolHeader: "Tool", 
+      categoryHeader: "Category", 
+      footer: "2026 ALL RIGHTS RESERVED",
+      philText: "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users."
+    },
+    es: { 
+      about: "Sobre mí", 
+      experience: "He colaborado con", 
+      philosophy: "Filosofía", 
+      toolsTitle: "Especialidad", 
+      toolHeader: "Herramienta", 
+      categoryHeader: "Categoría", 
+      footer: "2026 TODOS LOS DERECHOS RESERVADOS",
+      philText: "Creo en el diseño como un sistema de decisiones, no solo píxeles. Mi enfoque integra la IA para potenciar la creatividad humana y escalar soluciones que impacten positivamente tanto al negocio como a los usuarios."
+    },
+    jp: { 
+      about: "について", 
+      experience: "とのコラボレーション", 
+      philosophy: "プロフェッショナルな哲学", 
+      toolsTitle: "スタックと専門知識", 
+      toolHeader: "ツール", 
+      categoryHeader: "カテゴリー", 
+      footer: "2026 全著作権所有",
+      philText: "デザインは単なるピクセルではなく、一連の意思決定のシステムであると信じています。私の手法はAIを統合し、人間の創造性を高め、ビジネスとユーザーの両方にポジティブな影響を与えるソリューションを拡大します。"
+    }
   }[locale];
-
-  const philosophyText = "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users.";
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white">
@@ -59,11 +84,11 @@ export default async function AboutPage({
           {/* LEFT CONTENT */}
           <div className="lg:col-span-8 space-y-12">
             
-            {/* Philosophy - Even Smaller (Caption style) */}
+            {/* Philosophy - Translated */}
             <div className="space-y-2">
                <p className="text-[8px] font-black uppercase tracking-[0.5em] text-black/20">{t.philosophy}</p>
                <h2 className="text-[13px] md:text-[15px] font-bold tracking-tight text-black italic max-w-xl leading-relaxed opacity-60">
-                  "{philosophyText}"
+                  "{t.philText}"
                </h2>
             </div>
 
@@ -87,13 +112,12 @@ export default async function AboutPage({
           </aside>
         </div>
 
-        {/* EXPERIENCE GRID (All visible, no scroll) */}
+        {/* EXPERIENCE GRID */}
         {experiences?.length > 0 && (
           <div className="mt-24 pt-12 border-t border-black/10 space-y-12">
             <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40">{t.experience}</p>
             
             <div className="relative">
-              {/* Vertical line connector for grid if needed, but grid might be cleaner without line */}
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-12 gap-y-16">
                 {experiences.map((exp: any, i: number) => (
                   <div key={i} className="space-y-6 group border-l border-black/5 pl-8">

@@ -1,5 +1,5 @@
 import { DocumentTextIcon } from '@sanity/icons'
-import { defineField, defineType } from 'sanity'
+import { defineField, defineType, defineArrayMember } from 'sanity'
 
 export const projectType = defineType({
   name: 'project',
@@ -65,6 +65,12 @@ export const projectType = defineType({
       name: 'productVision',
       title: 'Product Vision (High Hierarchy)',
       type: 'localeText',
+    }),
+    defineField({
+      name: 'figmaEmbedUrl',
+      title: 'Figma Prototype URL',
+      description: 'Pega aquí el enlace de compartido de tu prototipo de Figma (Embed link) para mostrarlo.',
+      type: 'url',
     }),
     defineField({
       name: 'content',
@@ -145,11 +151,23 @@ export const projectType = defineType({
             },
             {
               name: 'images',
-              title: 'Imágenes',
-              description: 'Añade una o varias imágenes para esta sección. Se organizarán automáticamente en un grid.',
+              title: 'Galería de imágenes',
+              description: '¡Arroja aquí todas tus fotos de una vez! Aparecerán en una cuadrícula. Haz clic en el icono de edición de cada una para añadir su descripción.',
               type: 'array',
-              of: [{ type: 'image', options: { hotspot: true } }],
-              validation: (rule) => rule.min(1),
+              options: {
+                layout: 'grid'
+              },
+              of: [
+                defineArrayMember({
+                  type: 'image',
+                  options: { hotspot: true },
+                  fields: [
+                    { name: 'captionEn', title: 'Descripción (EN)', type: 'text', rows: 2 },
+                    { name: 'captionEs', title: 'Descripción (ES)', type: 'text', rows: 2 },
+                    { name: 'captionJp', title: 'Descripción (JP)', type: 'text', rows: 2 },
+                  ]
+                })
+              ],
             },
           ],
           preview: {

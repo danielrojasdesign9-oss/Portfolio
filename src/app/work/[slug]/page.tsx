@@ -9,6 +9,7 @@ const builder = imageUrlBuilder(client);
 import { ArrowLeft, Rocket } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
+import GalleryImage from "@/components/GalleryImage";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
 
 export const revalidate = 60;
@@ -44,9 +45,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", screens: "Project Case Study", problem: "The Problem" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", screens: "Caso de Estudio", problem: "El Problema" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", screens: "ケーススタディ", problem: "課題" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ" }
   }[locale];
 
   // Accent Colors
@@ -60,9 +61,6 @@ export default async function ProjectLayout({
   };
 
   const meta = projectsMeta[slug] || { accent: "#000000" };
-
-  // Determine if we should show the case study headers
-  const showCaseStudyHeaders = slug.toLowerCase() !== "tir";
 
   return (
     <main className="min-h-screen bg-[#F9F7F4] text-black selection:bg-black selection:text-white font-sans">
@@ -126,18 +124,26 @@ export default async function ProjectLayout({
               </div>
             )}
 
-            {/* 5. MULTI-IMAGE GALLERY SECTIONS */}
+            {/* 5. FIGMA EMBED */}
+            {project.figmaEmbedUrl && (
+              <div className="space-y-6 pt-12 border-t border-black/5">
+                <div className="flex items-center gap-4">
+                   <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30">{t.prototype}</span>
+                   <div className="h-px flex-1 bg-black/5" />
+                </div>
+                <div className="relative aspect-video rounded-[16px] overflow-hidden border border-black/10 shadow-2xl bg-black/5">
+                   <iframe 
+                      src={project.figmaEmbedUrl} 
+                      className="absolute inset-0 w-full h-full"
+                      allowFullScreen 
+                   />
+                </div>
+              </div>
+            )}
+
+            {/* 6. DYNAMIC GALLERY */}
             {project.gallery && project.gallery.length > 0 && (
                <div className="space-y-32 pt-16 border-t border-black/5">
-                  {showCaseStudyHeaders && (
-                    <div className="flex justify-between items-end">
-                      <div className="space-y-2">
-                          <span className="text-[9px] font-black uppercase tracking-[0.5em] text-black/30">{t.screens}</span>
-                          <h3 className="text-4xl font-black uppercase tracking-tighter italic">Process & Results</h3>
-                      </div>
-                    </div>
-                  )}
-                  
                   <div className="space-y-40">
                      {project.gallery.map((slide: any, i: number) => {
                         const sTitle = locale === 'en' ? slide.titleEn : locale === 'es' ? slide.titleEs : slide.titleJp;
@@ -145,36 +151,34 @@ export default async function ProjectLayout({
                         const sDesc = locale === 'en' ? slide.descriptionEn : locale === 'es' ? slide.descriptionEs : slide.descriptionJp;
                         const images = slide.images || [];
 
-                        if (images.length === 0) return null;
+                        if (images.length === 0 && !sTitle && !sSubtitle && !sDesc) return null;
 
                         return (
                            <div key={i} className="space-y-12">
                               {/* Header for this section */}
-                              {(sTitle || sSubtitle) && (
-                                <div className="space-y-2 border-b border-black/5 pb-6">
-                                   {sTitle && <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">{sTitle}</p>}
-                                   {sSubtitle && <h4 className="text-xl font-medium text-black/80 leading-relaxed">{sSubtitle}</h4>}
+                              {(sTitle || sSubtitle || sDesc) && (
+                                <div className="space-y-4 border-b border-black/5 pb-6">
+                                   <div className="space-y-1">
+                                      {sTitle && <p className="text-[13px] font-black uppercase tracking-[0.2em] text-black">{sTitle}</p>}
+                                      {sSubtitle && <h4 className="text-xl font-medium text-black/60 leading-relaxed">{sSubtitle}</h4>}
+                                   </div>
+                                   {sDesc && <p className="text-base font-medium text-black/50 leading-relaxed italic max-w-2xl">{sDesc}</p>}
                                 </div>
                               )}
 
-                              {/* IMAGES - One per row */}
-                              <div className="space-y-16">
-                                 {images.map((img: any, imgIdx: number) => (
-                                    <div key={imgIdx} className="space-y-6">
-                                      <div className="relative aspect-video rounded-[16px] overflow-hidden border border-black/5 shadow-2xl bg-white group">
-                                         <Image 
-                                            src={img ? builder.image(img).url() : '/placeholder.png'} 
-                                            alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`} 
-                                            fill 
-                                            className="object-contain p-4 md:p-8 group-hover:scale-[1.02] transition-transform duration-700" 
-                                         />
-                                      </div>
-                                      {/* Description below EACH image (if it's the last one or only one) or per section */}
-                                      {imgIdx === images.length - 1 && sDesc && (
-                                        <p className="text-base font-medium text-black/50 leading-relaxed italic max-w-2xl">{sDesc}</p>
-                                      )}
-                                    </div>
-                                 ))}
+                              <div className="space-y-24">
+                                 {images.map((img: any, imgIdx: number) => {
+                                    const sCaption = locale === 'en' ? img.captionEn : locale === 'es' ? img.captionEs : img.captionJp;
+
+                                    return (
+                                       <GalleryImage 
+                                          key={imgIdx}
+                                          src={img?.url || '/placeholder.png'} 
+                                          alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`} 
+                                          caption={sCaption}
+                                       />
+                                    );
+                                 })}
                               </div>
                            </div>
                         );
