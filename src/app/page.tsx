@@ -36,7 +36,7 @@ export default async function Home({
               Daniel<br />Rojas
             </h1>
           </div>
-          <div className="lg:pt-[14px]">
+          <div className="lg:pt-[14px] space-y-8">
             <p className="text-xl md:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
               {locale === "es" 
                 ? "Arquitectando sistemas de productos impulsados por IA que escalan el impacto. Redefiniendo experiencias a través de interfaces conversacionales y desarrollo asistido por IA."
@@ -45,6 +45,12 @@ export default async function Home({
                 : "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
               }
             </p>
+            <Link 
+              href={`/about?lang=${locale}`}
+              className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-black hover:opacity-50 transition-opacity"
+            >
+              {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"} —>
+            </Link>
           </div>
         </div>
       </section>

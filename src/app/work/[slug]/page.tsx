@@ -50,10 +50,10 @@ export default async function ProjectLayout({
 
       <ProjectCover title={title} category={category} year={project.year ?? ""} />
 
-      <section className="max-w-[1100px] mx-auto px-6 py-20 md:py-32 md:px-12 lg:px-16">
+      <section className="max-w-[1100px] mx-auto px-6 pb-20 md:pb-32 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 
-          {/* Persistent Back Link - Sticky on Mobile & Desktop */}
+          {/* Sticky Back Link */}
           <aside className="lg:col-span-4 h-fit sticky top-24 lg:top-32 z-50 py-4 lg:py-0 bg-[#F9F7F4]/80 backdrop-blur-sm lg:bg-transparent -mx-6 px-6 lg:mx-0 lg:px-0">
             <Link
               href={`/?lang=${locale}`}
@@ -86,45 +86,45 @@ export default async function ProjectLayout({
           </aside>
 
           {/* Right: Content */}
-          <div className="lg:col-span-8 space-y-16 lg:space-y-24">
+          <div className="lg:col-span-8 space-y-12 lg:space-y-16">
             
-            {/* 1. Pregunta (Problem) - Smaller */}
+            {/* 1. Problem - Smaller & Lighter weight */}
             {introText && (
-               <div className="space-y-4">
-                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30">{t.problem}</span>
-                  <p className="text-xl md:text-2xl font-black tracking-tighter leading-tight uppercase text-black italic max-w-2xl">
+               <div className="space-y-2">
+                  <span className="text-[8px] font-black uppercase tracking-[0.4em] text-black/20">{t.problem}</span>
+                  <p className="text-lg md:text-xl font-medium tracking-tight leading-snug text-black/80 max-w-xl">
                     {introText}
                   </p>
                </div>
             )}
 
-            {/* 2. Main Image - Centered */}
+            {/* 2. Main Image - Vertically aligned Bottom */}
             {(project.mainImageUrl || project.previewImageUrl) && (
               <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden border border-black/5 shadow-2xl">
                 <Image
                   src={project.mainImageUrl || project.previewImageUrl}
                   alt={title}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-bottom"
                   priority
                 />
               </div>
             )}
 
-            {/* 3. Product Vision - Smaller, Less Bold, Tight spacing */}
+            {/* 3. Product Vision */}
             {productVision && (
-               <div className="py-8 border-y border-black/5 space-y-4">
-                  <h4 className="text-[12px] font-bold uppercase tracking-[0.4em] text-black/40 italic flex items-center gap-3">
-                     <Rocket className="w-3.5 h-3.5" />
+               <div className="py-6 border-y border-black/5 space-y-2">
+                  <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-black/40 italic flex items-center gap-2">
+                     <Rocket className="w-3 h-3" />
                      {t.vision}
                   </h4>
-                  <p className="text-lg md:text-xl font-bold tracking-tight uppercase text-black italic leading-snug max-w-3xl">
+                  <p className="text-lg md:text-xl font-bold tracking-tight uppercase text-black italic leading-tight">
                      {productVision}
                   </p>
                </div>
             )}
 
-            {/* 4. Core (Content) */}
+            {/* 4. Core (Content) - Glued (no top padding) */}
             {content && (
               <div className="prose prose-xl max-w-none prose-p:text-black/70 prose-p:leading-relaxed prose-headings:uppercase prose-headings:tracking-tighter prose-headings:font-black prose-headings:text-black prose-h2:text-2xl prose-h3:text-xl prose-img:rounded-[12px] prose-img:border prose-img:border-black/5">
                 <PortableText value={content} />
