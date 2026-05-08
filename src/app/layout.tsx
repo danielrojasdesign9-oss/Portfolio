@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -20,8 +21,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} font-sans antialiased`}>
-        {children}
+      <body className={`${outfit.variable} font-sans antialiased cursor-none`}>
+        <SmoothScroll>
+          <CustomCursor />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

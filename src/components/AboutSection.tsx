@@ -16,17 +16,31 @@ export default function AboutSection({ profile, locale }: AboutSectionProps) {
   const bio = getLocaleContent(profile.bio, locale);
 
   return (
-    <section id="about" className="max-w-7xl mx-auto px-6 py-32 md:px-12 lg:px-24 bg-white rounded-[64px] my-32 shadow-[0_40px_100px_rgba(0,0,0,0.03)] border border-slate-100">
+    <motion.section 
+      id="about" 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={{
+        hidden: { opacity: 0 },
+        visible: { 
+          opacity: 1,
+          transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2
+          }
+        }
+      }}
+      className="max-w-7xl mx-auto px-6 py-32 md:px-12 lg:px-24 bg-white rounded-[64px] my-32 shadow-[0_40px_100px_rgba(0,0,0,0.03)] border border-slate-100"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
         
         {/* Foto de Perfil & CV */}
-        <div className="lg:col-span-5 space-y-12">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-50 border border-slate-100 group"
-          >
+        <motion.div 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+          className="lg:col-span-5 space-y-12"
+        >
+          <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-50 border border-slate-100 group">
             {profile.profileImageUrl ? (
               <Image 
                 src={profile.profileImageUrl} 
@@ -39,15 +53,10 @@ export default function AboutSection({ profile, locale }: AboutSectionProps) {
                 Upload your photo in Sanity
               </div>
             )}
-          </motion.div>
+          </div>
 
           {profile.resumeUrl && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="p-8 rounded-[32px] bg-indigo-600 text-white space-y-4 shadow-xl shadow-indigo-200"
-            >
+            <div className="p-8 rounded-[32px] bg-indigo-600 text-white space-y-4 shadow-xl shadow-indigo-200">
               <h4 className="text-xl font-bold">Curriculum Vitae</h4>
               <p className="text-white/80 text-sm leading-relaxed">
                 {locale === "es" ? "Descarga mi perfil profesional completo para conocer más sobre mi trayectoria." : "Download my professional profile to learn more about my background."}
@@ -59,25 +68,34 @@ export default function AboutSection({ profile, locale }: AboutSectionProps) {
               >
                 Download PDF
               </a>
-            </motion.div>
+            </div>
           )}
-        </div>
+        </motion.div>
 
         {/* Biografía & Skills */}
         <div className="lg:col-span-7 space-y-16">
-          <div className="space-y-6">
+          <motion.div 
+            variants={{ hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } }}
+            className="space-y-6"
+          >
             <h3 className="text-xs font-bold uppercase tracking-[0.4em] text-indigo-500">About Me</h3>
             <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-slate-900">
               Daniel <br /> Rojas<span className="text-indigo-500">.</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="prose prose-2xl dark:prose-invert prose-p:text-slate-600 prose-p:leading-relaxed font-light">
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="prose prose-2xl dark:prose-invert prose-p:text-slate-600 prose-p:leading-relaxed font-light"
+          >
             <PortableText value={bio} />
-          </div>
+          </motion.div>
 
           {/* Experience/Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          >
             {profile.skills?.map((skill: any, i: number) => (
               <div key={i} className="space-y-4 border-t border-slate-100 pt-8">
                 <h4 className="text-sm font-bold uppercase tracking-widest text-indigo-500">{skill.category}</h4>
@@ -90,9 +108,9 @@ export default function AboutSection({ profile, locale }: AboutSectionProps) {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -58,7 +58,12 @@ export const projectType = defineType({
     }),
     defineField({
       name: 'myGoal',
-      title: 'My Goal',
+      title: 'My Goal / Meta',
+      type: 'localeText',
+    }),
+    defineField({
+      name: 'productVision',
+      title: 'Product Vision (High Hierarchy)',
       type: 'localeText',
     }),
     defineField({
@@ -69,15 +74,77 @@ export const projectType = defineType({
     }),
     defineField({
       name: 'previewImage',
-      title: 'Preview Image',
+      title: 'Preview Image (Thumbnail)',
       type: 'image',
       options: { hotspot: true },
     }),
     defineField({
       name: 'mainImage',
-      title: 'Main Image',
+      title: 'Main Image (Hero)',
       type: 'image',
       options: { hotspot: true },
     }),
+    // NEW: Gallery — multiple slides with title per language + image
+    defineField({
+      name: 'gallery',
+      title: 'Galería de Slides',
+      description: 'Añade diapositivas al caso de estudio. Cada slide tiene título en cada idioma y su propia imagen.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          title: 'Slide',
+          fields: [
+            {
+              name: 'titleEn',
+              title: 'Título (EN)',
+              type: 'string',
+            },
+            {
+              name: 'titleEs',
+              title: 'Título (ES)',
+              type: 'string',
+            },
+            {
+              name: 'titleJp',
+              title: 'Título (JP)',
+              type: 'string',
+            },
+            {
+              name: 'image',
+              title: 'Imagen',
+              type: 'image',
+              options: { hotspot: true },
+            },
+          ],
+          preview: {
+            select: {
+              title: 'titleEn',
+              media: 'image',
+            },
+            prepare({ title, media }: { title?: string; media?: any }) {
+              return {
+                title: title || 'Untitled slide',
+                media,
+              };
+            },
+          },
+        },
+      ],
+    }),
   ],
+  preview: {
+    select: {
+      title: 'title.en',
+      category: 'category.en',
+      media: 'previewImage',
+    },
+    prepare({ title, category, media }: { title?: string; category?: string; media?: any }) {
+      return {
+        title: title || 'Untitled Project',
+        subtitle: category || 'No category',
+        media,
+      }
+    },
+  },
 })
