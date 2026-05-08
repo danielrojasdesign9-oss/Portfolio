@@ -49,7 +49,7 @@ export default async function Home({
               href={`/about?lang=${locale}`}
               className="inline-flex items-center gap-4 text-[11px] font-black uppercase tracking-[0.4em] text-black hover:opacity-50 transition-opacity"
             >
-              {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"} —>
+              {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"} —&gt;
             </Link>
           </div>
         </div>
