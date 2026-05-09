@@ -130,19 +130,19 @@ export default function Navbar() {
                  <div className="flex flex-col gap-6">
                     <Link 
                       href={`/?lang=${currentLocale}#projects`}
-                      className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
+                      className="text-3xl font-black uppercase tracking-tighter hover:italic transition-all text-black/80"
                     >
                       {t.work}
                     </Link>
                     <Link 
                       href={`/about?lang=${currentLocale}`} 
-                      className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
+                      className="text-3xl font-black uppercase tracking-tighter hover:italic transition-all text-black/80"
                     >
                       {t.about}
                     </Link>
                     <Link 
                       href={`/?lang=${currentLocale}#contact`} 
-                      className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
+                      className="text-3xl font-black uppercase tracking-tighter hover:italic transition-all text-black/80"
                     >
                       {t.contact}
                     </Link>
@@ -150,11 +150,11 @@ export default function Navbar() {
               </div>
 
               {/* Language Selector in Mobile Menu */}
-              <div className="space-y-6 pt-12 border-t border-black/5">
-                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-black/20 flex items-center gap-3">
+              <div className="space-y-4 pt-8 border-t border-black/5">
+                 <p className="text-[10px] font-black uppercase tracking-[0.5em] text-black/20 flex items-center gap-2">
                     <Globe className="w-3 h-3" /> Language
                  </p>
-                 <div className="flex flex-wrap gap-4">
+                 <div className="flex flex-wrap gap-2">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -163,7 +163,7 @@ export default function Navbar() {
                           params.set("lang", lang.code);
                           router.push(`${pathname}?${params.toString()}`);
                         }}
-                        className={`text-xl font-black uppercase tracking-tighter px-6 py-3 rounded-full border ${currentLocale === lang.code ? 'bg-black text-white border-black' : 'border-black/10 text-black/40'}`}
+                        className={`text-[11px] font-bold uppercase tracking-widest px-4 py-2 rounded-full border transition-all ${currentLocale === lang.code ? 'bg-black/5 text-black border-black/10' : 'bg-transparent border-transparent text-black/40 hover:text-black/60'}`}
                       >
                         {lang.emoji} {lang.code.toUpperCase()}
                       </button>
