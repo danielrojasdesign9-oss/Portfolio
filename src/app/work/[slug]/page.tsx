@@ -68,15 +68,20 @@ export default async function ProjectLayout({
 
       <ProjectCover title={title} category={category} year={project.year ?? ""} />
 
-      <section className="max-w-[1100px] mx-auto px-6 py-20 md:px-12 lg:px-16">
+      <section className="max-w-[1100px] mx-auto px-6 py-12 md:py-20 md:px-12 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
 
           {/* Sidebar */}
           <aside className="lg:col-span-4 h-fit sticky top-24 lg:top-32 z-50">
-            <Link href={`/?lang=${locale}`} className="group text-[11px] font-black uppercase tracking-[0.4em] text-black/60 hover:text-black transition-all inline-flex items-center gap-3">
-              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-              {t.back}
-            </Link>
+            <div className="md:static">
+              <Link 
+                href={`/?lang=${locale}`} 
+                className="group text-[11px] font-black uppercase tracking-[0.4em] text-black/60 hover:text-black transition-all inline-flex items-center gap-3 bg-white/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-sm md:bg-transparent md:backdrop-blur-none md:p-0 md:border-none md:shadow-none"
+              >
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+                {t.back}
+              </Link>
+            </div>
             <div className="hidden lg:block space-y-8 border-l border-black/10 pl-8 mt-12">
               {project.client && (<div><span className="text-[9px] font-black text-black/30 uppercase tracking-widest">Client</span><p className="text-lg font-bold">{project.client}</p></div>)}
               {myRole && (<div><span className="text-[9px] font-black text-black/30 uppercase tracking-widest">Role</span><p className="text-lg font-bold">{myRole}</p></div>)}
@@ -85,7 +90,7 @@ export default async function ProjectLayout({
           </aside>
 
           {/* Main Content */}
-          <div className="lg:col-span-8 space-y-12 lg:space-y-16">
+          <div className="lg:col-span-8 space-y-10 md:space-y-12 lg:space-y-16">
             
             {/* 1. Problem Intro */}
             {introText && (
@@ -126,7 +131,7 @@ export default async function ProjectLayout({
 
             {/* 5. FIGMA EMBED */}
             {project.figmaEmbedUrl && (
-              <div className="space-y-6 pt-12 border-t border-black/5">
+              <div className="space-y-6 pt-10 md:pt-12 border-t border-black/5">
                 <div className="flex items-center gap-4">
                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30">{t.prototype}</span>
                    <div className="h-px flex-1 bg-black/5" />
@@ -143,8 +148,8 @@ export default async function ProjectLayout({
 
             {/* 6. DYNAMIC GALLERY */}
             {project.gallery && project.gallery.length > 0 && (
-               <div className="space-y-32 pt-16 border-t border-black/5">
-                  <div className="space-y-40">
+               <div className="space-y-10 md:space-y-12 pt-10 md:pt-16 border-t border-black/5">
+                  <div className="space-y-12 md:space-y-16">
                      {project.gallery.map((slide: any, i: number) => {
                         const sTitle = locale === 'en' ? slide.titleEn : locale === 'es' ? slide.titleEs : slide.titleJp;
                         const sSubtitle = locale === 'en' ? slide.subtitleEn : locale === 'es' ? slide.subtitleEs : slide.subtitleJp;
@@ -154,19 +159,19 @@ export default async function ProjectLayout({
                         if (images.length === 0 && !sTitle && !sSubtitle && !sDesc) return null;
 
                         return (
-                           <div key={i} className="space-y-12">
+                           <div key={i} className="space-y-6">
                               {/* Header for this section */}
                               {(sTitle || sSubtitle || sDesc) && (
-                                <div className="space-y-4 border-b border-black/5 pb-6">
+                                <div className="space-y-3 border-b border-black/5 pb-4">
                                    <div className="space-y-1">
                                       {sTitle && <p className="text-[13px] font-black uppercase tracking-[0.2em] text-black">{sTitle}</p>}
                                       {sSubtitle && <h4 className="text-xl font-medium text-black/60 leading-relaxed">{sSubtitle}</h4>}
                                    </div>
-                                   {sDesc && <p className="text-base font-medium text-black/50 leading-relaxed italic max-w-2xl">{sDesc}</p>}
+                                   {sDesc && <p className="text-base font-medium text-black/50 leading-relaxed italic max-w-2xl whitespace-pre-line">{sDesc}</p>}
                                 </div>
                               )}
 
-                              <div className="space-y-24">
+                              <div className="space-y-2 md:space-y-4">
                                  {images.map((img: any, imgIdx: number) => {
                                     const sCaption = locale === 'en' ? img.captionEn : locale === 'es' ? img.captionEs : img.captionJp;
 

@@ -35,7 +35,7 @@ export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
         
         {caption && (
           <div className="border-l-2 border-black/5 pl-4 max-w-2xl py-1">
-            <p className="text-[13px] font-medium text-black/50 leading-relaxed italic">{caption}</p>
+            <p className="text-[13px] font-medium text-black/50 leading-relaxed italic whitespace-pre-line">{caption}</p>
           </div>
         )}
       </div>
