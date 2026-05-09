@@ -26,11 +26,13 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname, searchParams]);
 
-  const t = {
+  const translations = {
     en: { about: "About", work: "Work", contact: "Contact", langName: "EN" },
     es: { about: "Sobre mí", work: "Proyectos", contact: "Contacto", langName: "ES" },
     jp: { about: "について", work: "作品", contact: "連絡先", langName: "JP" }
-  }[currentLocale as "en" | "es" | "jp"] || t.en;
+  };
+  
+  const t = translations[currentLocale as "en" | "es" | "jp"] || translations.en;
 
   const languages = [
     { code: 'en', label: 'English', emoji: '🇺🇸' },
