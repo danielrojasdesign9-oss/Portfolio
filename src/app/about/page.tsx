@@ -147,6 +147,24 @@ export default async function AboutPage({
           </div>
         )}
 
+        {/* Expertise Matrix */}
+        {allTools?.length > 0 && (
+          <div className="mt-24 space-y-10 pt-12 border-t border-black/10">
+            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40">{t.toolsTitle}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-2">
+               {allTools.map((tool: any, i: number) => (
+                <div key={i} className="grid grid-cols-2 py-3 border-b border-black/[0.03] group hover:bg-black/[0.02] transition-colors">
+                   <div className="flex items-center gap-3">
+                      {tool.imageUrl && (<div className="relative h-4 w-4 grayscale group-hover:grayscale-0 transition-all"><Image src={tool.imageUrl} alt={tool.name} fill className="object-contain" /></div>)}
+                      <span className="text-base font-black uppercase tracking-tighter text-black">{tool.name}</span>
+                   </div>
+                   <div className="text-[11px] font-medium text-black/40 group-hover:text-black/80 transition-colors flex items-center italic">{getLocaleText(tool.category, locale)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <footer className="mt-24 pt-8 border-t border-black/10 text-center"><p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/30">{t.footer}</p></footer>
       </div>
     </main>

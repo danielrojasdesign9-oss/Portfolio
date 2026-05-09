@@ -37,18 +37,6 @@ export const profileType = defineType({
       title: 'LinkedIn URL',
       type: 'url',
     }),
-    defineField({
-      name: 'skills',
-      title: 'Core Competencies (Localizado)',
-      type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          { name: 'category', type: 'localeString', title: 'Categoría (Ej: Estrategia)' },
-          { name: 'items', type: 'array', of: [{ type: 'localeString' }], title: 'Habilidades' }
-        ]
-      }]
-    }),
     defineField({ name: 'resumeUrl', type: 'file', title: 'CV PDF' }),
     defineField({
       name: 'profileImage',
