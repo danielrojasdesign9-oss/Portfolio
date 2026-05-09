@@ -140,6 +140,12 @@ export default function Navbar() {
                     >
                       {t.about}
                     </Link>
+                    <Link 
+                      href={`/?lang=${currentLocale}#contact`} 
+                      className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
+                    >
+                      {t.contact}
+                    </Link>
                  </div>
               </div>
 
