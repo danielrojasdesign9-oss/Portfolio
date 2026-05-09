@@ -1,83 +1,121 @@
 'use client';
 
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { useSearchParams, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Menu, X, Globe } from "lucide-react";
 
 export default function Navbar() {
-  const searchParams = useSearchParams();
+  const router = useRouter();
   const pathname = usePathname();
-  const currentLang = searchParams.get("lang") || "en";
+  const searchParams = useSearchParams();
+  const currentLocale = searchParams.get("lang") || "en";
+  const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  // Close menu on route change
+  // Scroll effect
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname, searchParams]);
 
   const t = {
-    en: { work: "Work", about: "About", langName: "EN" },
-    es: { work: "Proyectos", about: "Sobre mí", langName: "ES" },
-    jp: { work: "作品", about: "について", langName: "JP" }
-  }[currentLang as 'en' | 'es' | 'jp'] || t.en;
+    en: { about: "About", work: "Work", contact: "Contact", langName: "EN" },
+    es: { about: "Sobre mí", work: "Proyectos", contact: "Contacto", langName: "ES" },
+    jp: { about: "について", work: "作品", contact: "連絡先", langName: "JP" }
+  }[currentLocale as "en" | "es" | "jp"] || t.en;
 
   const languages = [
-    { code: 'en', label: 'English' },
-    { code: 'es', label: 'Español' },
-    { code: 'jp', label: '日本語' }
+    { code: 'en', label: 'English', emoji: '🇺🇸' },
+    { code: 'es', label: 'Español', emoji: '🇪🇸' },
+    { code: 'jp', label: '日本語', emoji: '🇯🇵' }
   ];
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] px-6 py-8 md:px-10 lg:px-16 flex justify-between items-center pointer-events-none">
-        {/* Logo */}
-        <Link href={`/?lang=${currentLang}`} className="text-[11px] font-black uppercase tracking-[0.5em] pointer-events-auto hover:opacity-50 transition-opacity">
+      <motion.nav
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={`fixed top-0 left-0 right-0 z-[100] px-6 md:px-10 py-6 flex items-center justify-between transition-all duration-500 pointer-events-none ${
+          scrolled
+            ? "bg-[#F9F7F4]/90 backdrop-blur-md border-b border-black/5 shadow-sm"
+            : "bg-transparent"
+        }`}
+      >
+        {/* Logo - Restored Original Typography */}
+        <Link
+          href={`/?lang=${currentLocale}`}
+          className="font-black tracking-tighter text-xl text-black uppercase leading-none pointer-events-auto hover:opacity-70 transition-opacity"
+        >
           Daniel Rojas
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10 pointer-events-auto">
-          <Link 
-            href={`/?lang=${currentLang}`} 
-            className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:text-black ${pathname === '/' ? 'text-black' : 'text-black/30'}`}
-          >
-            {t.work}
-          </Link>
-          <Link 
-            href={`/about?lang=${currentLang}`} 
-            className={`text-[10px] font-black uppercase tracking-[0.3em] transition-all hover:text-black ${pathname === '/about' ? 'text-black' : 'text-black/30'}`}
+        {/* Desktop Menu - Restored Original Links */}
+        <div className="hidden md:flex items-center gap-6 md:gap-10 font-black pointer-events-auto">
+          <Link
+            href={`/about?lang=${currentLocale}`}
+            className={`text-[11px] uppercase tracking-[0.2em] transition-colors ${pathname === '/about' ? 'text-black' : 'text-black/60 hover:text-black'}`}
           >
             {t.about}
           </Link>
-          
-          <div className="h-4 w-px bg-black/10 mx-2" />
-          
-          <div className="flex gap-4">
-            {languages.map((lang) => (
-              <Link
-                key={lang.code}
-                href={`${pathname}?lang=${lang.code}`}
-                className={`text-[9px] font-black uppercase tracking-widest transition-all ${currentLang === lang.code ? 'text-black underline underline-offset-4' : 'text-black/20 hover:text-black/50'}`}
-              >
-                {lang.code}
-              </Link>
-            ))}
-          </div>
+          <Link
+            href={`/?lang=${currentLocale}#projects`}
+            className={`text-[11px] uppercase tracking-[0.2em] transition-colors ${pathname === '/' ? 'text-black' : 'text-black/60 hover:text-black'}`}
+          >
+            {t.work}
+          </Link>
+          <Link
+            href={`/?lang=${currentLocale}#contact`}
+            className="text-[11px] uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors"
+          >
+            {t.contact}
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setIsOpen(true)}
-          className="md:hidden p-3 bg-white/80 backdrop-blur-md rounded-full border border-black/5 shadow-sm pointer-events-auto active:scale-90 transition-transform"
+          className={`md:hidden p-3 rounded-full border shadow-sm pointer-events-auto active:scale-90 transition-all ${
+            scrolled ? "bg-transparent border-transparent" : "bg-white/80 backdrop-blur-md border-black/5"
+          }`}
         >
           <Menu className="w-5 h-5 text-black" />
         </button>
-      </nav>
+      </motion.nav>
+
+      {/* Floating Language Selector - Desktop Only (Restored) */}
+      <div className="hidden md:flex fixed bottom-8 right-8 z-[110] flex-col gap-2">
+        {languages.map((lang) => (
+          <motion.button
+            key={lang.code}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const params = new URLSearchParams(searchParams.toString());
+              params.set("lang", lang.code);
+              router.push(`${pathname}?${params.toString()}`);
+            }}
+            className={`w-10 h-10 rounded-full shadow-lg flex items-center justify-center text-sm border transition-all ${
+              currentLocale === lang.code
+                ? "bg-black text-white border-black"
+                : "bg-white text-black border-black/5 hover:border-black/20"
+            }`}
+          >
+            {lang.emoji}
+          </motion.button>
+        ))}
+      </div>
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-[110] bg-[#F9F7F4]/98 backdrop-blur-xl animate-in fade-in slide-in-from-right duration-300">
+        <div className="fixed inset-0 z-[120] bg-[#F9F7F4]/98 backdrop-blur-xl animate-in fade-in slide-in-from-right duration-300 md:hidden">
           <div className="h-full flex flex-col px-10 pt-32 pb-12">
             <button 
               onClick={() => setIsOpen(false)}
@@ -91,13 +129,13 @@ export default function Navbar() {
                  <p className="text-[10px] font-black uppercase tracking-[0.5em] text-black/20">Menu</p>
                  <div className="flex flex-col gap-6">
                     <Link 
-                      href={`/?lang=${currentLang}`} 
+                      href={`/?lang=${currentLocale}#projects`}
                       className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
                     >
                       {t.work}
                     </Link>
                     <Link 
-                      href={`/about?lang=${currentLang}`} 
+                      href={`/about?lang=${currentLocale}`} 
                       className="text-5xl font-black uppercase tracking-tighter hover:italic transition-all"
                     >
                       {t.about}
@@ -105,19 +143,24 @@ export default function Navbar() {
                  </div>
               </div>
 
+              {/* Language Selector in Mobile Menu */}
               <div className="space-y-6 pt-12 border-t border-black/5">
                  <p className="text-[10px] font-black uppercase tracking-[0.5em] text-black/20 flex items-center gap-3">
                     <Globe className="w-3 h-3" /> Language
                  </p>
                  <div className="flex flex-wrap gap-4">
                     {languages.map((lang) => (
-                      <Link
+                      <button
                         key={lang.code}
-                        href={`${pathname}?lang=${lang.code}`}
-                        className={`text-xl font-black uppercase tracking-tighter px-6 py-3 rounded-full border ${currentLang === lang.code ? 'bg-black text-white border-black' : 'border-black/10 text-black/40'}`}
+                        onClick={() => {
+                          const params = new URLSearchParams(searchParams.toString());
+                          params.set("lang", lang.code);
+                          router.push(`${pathname}?${params.toString()}`);
+                        }}
+                        className={`text-xl font-black uppercase tracking-tighter px-6 py-3 rounded-full border ${currentLocale === lang.code ? 'bg-black text-white border-black' : 'border-black/10 text-black/40'}`}
                       >
-                        {lang.label}
-                      </Link>
+                        {lang.emoji} {lang.code.toUpperCase()}
+                      </button>
                     ))}
                  </div>
               </div>

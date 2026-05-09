@@ -32,18 +32,19 @@ export default async function Home({
             <p className="text-[14px] font-black uppercase tracking-[0.5em] text-black/30">
               {locale === "es" ? "Diseñador de Producto" : locale === "jp" ? "プロダクトデザイナー" : "Product Designer"}
             </p>
-            <h1 className="text-7xl md:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase text-black">
+            <h1 className="text-7xl md:text-8xl lg:text-[9rem] font-black tracking-tighter leading-[0.82] uppercase text-black">
               Daniel<br />Rojas
             </h1>
           </div>
           <div className="lg:pt-[14px] space-y-8">
-            <p className="text-xl md:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
-              {locale === "es" 
-                ? "Arquitectando sistemas de productos impulsados por IA que escalan el impacto. Redefiniendo experiencias a través de interfaces conversacionales y desarrollo asistido por IA."
-                : locale === "jp"
-                ? "インパクトを拡大するAI駆動の製品システムを構築。対話型インターフェースとAI支援開発を通じて製品体験を再定義します。"
-                : "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
-              }
+            <p className="text-lg md:text-xl lg:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
+              {profile?.homeDescription ? getLocaleText(profile.homeDescription, locale) : (
+                locale === "es" 
+                  ? "Arquitectando sistemas de productos impulsados por IA que escalan el impacto. Redefiniendo experiencias a través de interfaces conversacionales y desarrollo asistido por IA."
+                  : locale === "jp"
+                  ? "インパクトを拡大するAI駆動の製品システムを構築。対話型インターフェースとAI支援開発を通じて製品体験を再定義します。"
+                  : "Architecting AI-driven product systems that scale impact. Redefining experiences through conversational interfaces and AI-assisted development."
+              )}
             </p>
             <Link 
               href={`/about?lang=${locale}`}

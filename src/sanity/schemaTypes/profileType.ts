@@ -23,6 +23,12 @@ export const profileType = defineType({
       type: 'localeText',
     }),
     defineField({
+      name: 'homeDescription',
+      title: 'Descripción Home',
+      type: 'localeText',
+      description: 'Texto descriptivo que aparece en la pantalla principal.'
+    }),
+    defineField({
       name: 'bio',
       title: 'Biografía',
       type: 'localeContent',

@@ -61,6 +61,7 @@ export const profileQuery = groq`*[_type == "profile"][0] {
     fullName,
     role,
     tagline,
+    homeDescription,
     bio,
     email,
     linkedinUrl,
