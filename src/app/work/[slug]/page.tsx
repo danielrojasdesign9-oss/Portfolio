@@ -73,10 +73,10 @@ export default async function ProjectLayout({
 
           {/* Sidebar */}
           <aside className="lg:col-span-4 h-fit sticky top-24 lg:top-32 z-50">
-            <div className="md:static">
+            <div className="lg:static">
               <Link 
                 href={`/?lang=${locale}`} 
-                className="group text-[11px] font-black uppercase tracking-[0.4em] text-black/60 hover:text-black transition-all inline-flex items-center gap-3 bg-white/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-sm md:bg-transparent md:backdrop-blur-none md:p-0 md:border-none md:shadow-none"
+                className="group text-[11px] font-black uppercase tracking-[0.4em] text-black/60 hover:text-black transition-all inline-flex items-center gap-3 bg-white/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-sm lg:bg-transparent lg:backdrop-blur-none lg:p-0 lg:border-none lg:shadow-none"
               >
                 <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
                 {t.back}
