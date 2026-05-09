@@ -26,8 +26,8 @@ export default async function Home({
       <Navbar />
 
       {/* Hero: 2 Column Layout - Aligned Top */}
-      <section className="pt-48 pb-32 px-6 md:px-10 lg:px-16 max-w-[1400px] mx-auto border-b border-black/5 mb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <section className="pt-40 md:pt-48 pb-32 px-6 md:px-10 lg:px-16 max-w-[1400px] mx-auto border-b border-black/5 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="space-y-4">
             <p className="text-[14px] font-black uppercase tracking-[0.5em] text-black/30">
               {locale === "es" ? "Diseñador de Producto" : locale === "jp" ? "プロダクトデザイナー" : "Product Designer"}
@@ -36,7 +36,7 @@ export default async function Home({
               Daniel<br />Rojas
             </h1>
           </div>
-          <div className="lg:pt-[14px] space-y-8">
+          <div className="lg:pt-12 space-y-8">
             <p className="text-lg md:text-xl lg:text-2xl font-medium text-black/60 leading-tight tracking-tight max-w-md uppercase italic">
               {profile?.homeDescription ? getLocaleText(profile.homeDescription, locale) : (
                 locale === "es" 
