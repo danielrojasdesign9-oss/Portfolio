@@ -50,5 +50,18 @@ export const profileType = defineType({
       title: 'Foto de Perfil',
       options: { hotspot: true }
     }),
+    defineField({
+      name: 'hobbies',
+      title: 'Hobbies / Actividades Extracurriculares',
+      description: 'Lo que haces cuando no estás en el trabajo.',
+      type: 'array',
+      of: [{
+        type: 'object',
+        fields: [
+          { name: 'name', type: 'localeString', title: 'Nombre de la actividad' },
+          { name: 'icon', type: 'image', title: 'Icono o Logo' }
+        ]
+      }]
+    }),
   ]
 })

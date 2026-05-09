@@ -66,6 +66,10 @@ export const profileQuery = groq`*[_type == "profile"][0] {
     email,
     linkedinUrl,
     skills,
+    hobbies[] {
+      "name": name,
+      "iconUrl": icon.asset->url
+    },
     "resumeUrl": resumeUrl.asset->url,
     "profileImageUrl": profileImage.asset->url
   }

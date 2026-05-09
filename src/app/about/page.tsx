@@ -34,7 +34,8 @@ export default async function AboutPage({
       toolHeader: "Tool", 
       categoryHeader: "Category", 
       footer: "2026 ALL RIGHTS RESERVED",
-      philText: "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users."
+      philText: "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users.",
+      offClock: "Off the Clock"
     },
     es: { 
       about: "Sobre mí", 
@@ -44,7 +45,8 @@ export default async function AboutPage({
       toolHeader: "Herramienta", 
       categoryHeader: "Categoría", 
       footer: "2026 TODOS LOS DERECHOS RESERVADOS",
-      philText: "Creo en el diseño como un sistema de decisiones, no solo píxeles. Mi enfoque integra la IA para potenciar la creatividad humana y escalar soluciones que impacten positivamente tanto al negocio como a los usuarios."
+      philText: "Creo en el diseño como un sistema de decisiones, no solo píxeles. Mi enfoque integra la IA para potenciar la creatividad humana y escalar soluciones que impacten positivamente tanto al negocio como a los usuarios.",
+      offClock: "Cuando no estoy en el trabajo"
     },
     jp: { 
       about: "について", 
@@ -54,7 +56,8 @@ export default async function AboutPage({
       toolHeader: "ツール", 
       categoryHeader: "カテゴリー", 
       footer: "2026 全著作権所有",
-      philText: "デザインは単なるピクセルではなく、一連の意思決定のシステムであると信じています。私の手法はAIを統合し、人間の創造性を高め、ビジネスとユーザーの両方にポジティブな影響を与えるソリューションを拡大します。"
+      philText: "デザインは単なるピクセルではなく、一連の意思決定のシステムであると信じています。私の手法はAIを統合し、人間の創造性を高め、ビジネスとユーザーの両方にポジティブな影響を与えるソリューションを拡大します。",
+      offClock: "仕事以外の時間"
     }
   }[locale];
 
@@ -159,6 +162,27 @@ export default async function AboutPage({
                       <span className="text-base font-black uppercase tracking-tighter text-black">{tool.name}</span>
                    </div>
                    <div className="text-[11px] font-medium text-black/40 group-hover:text-black/80 transition-colors flex items-center italic">{getLocaleText(tool.category, locale)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Off the Clock (Hobbies) Section */}
+        {profile?.hobbies && profile.hobbies.length > 0 && (
+          <div className="mt-24 space-y-10 pt-12 border-t border-black/10">
+            <p className="text-[9px] font-black uppercase tracking-[0.4em] text-black/40">{t.offClock}</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+              {profile.hobbies.map((hobby: any, i: number) => (
+                <div key={i} className="flex flex-col items-center justify-center p-6 bg-white border border-black/5 rounded-[16px] shadow-sm hover:shadow-md hover:border-black/10 transition-all group">
+                   {hobby.iconUrl && (
+                     <div className="relative w-12 h-12 mb-4 grayscale group-hover:grayscale-0 transition-all">
+                       <Image src={hobby.iconUrl} alt={getLocaleText(hobby.name, locale)} fill className="object-contain" />
+                     </div>
+                   )}
+                   <span className="text-[11px] font-black uppercase tracking-widest text-black/60 group-hover:text-black text-center">
+                     {getLocaleText(hobby.name, locale)}
+                   </span>
                 </div>
               ))}
             </div>
