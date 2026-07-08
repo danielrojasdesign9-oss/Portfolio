@@ -91,3 +91,17 @@ export const toolsQuery = groq`*[_type == "tool"] | order(name asc) {
     "imageUrl": logo.asset->url
   }
 `
+
+// Obtener todos los recursos (prompts/kits)
+export const resourcesQuery = groq`*[_type == "resource"] | order(title.en asc) {
+    _id,
+    title,
+    description,
+    category,
+    type,
+    aiCompatibility,
+    link,
+    "slug": slug.current,
+    "previewImageUrl": previewImage.asset->url
+  }
+`

@@ -27,9 +27,9 @@ export default function Navbar() {
   }, [pathname, searchParams]);
 
   const translations = {
-    en: { about: "About", work: "Work", contact: "Contact", langName: "EN" },
-    es: { about: "Sobre mí", work: "Proyectos", contact: "Contacto", langName: "ES" },
-    jp: { about: "について", work: "作品", contact: "連絡先", langName: "JP" }
+    en: { about: "About", work: "Work", recursos: "Resources", contact: "Contact", langName: "EN" },
+    es: { about: "Sobre mí", work: "Proyectos", recursos: "Recursos", contact: "Contacto", langName: "ES" },
+    jp: { about: "について", work: "作品", recursos: "リソース", contact: "連絡先", langName: "JP" }
   };
   
   const t = translations[currentLocale as "en" | "es" | "jp"] || translations.en;
@@ -72,6 +72,12 @@ export default function Navbar() {
             className={`text-[11px] uppercase tracking-[0.2em] transition-colors ${pathname === '/' ? 'text-black' : 'text-black/60 hover:text-black'}`}
           >
             {t.work}
+          </Link>
+          <Link
+            href={`/recursos?lang=${currentLocale}`}
+            className={`text-[11px] uppercase tracking-[0.2em] transition-colors ${pathname === '/recursos' ? 'text-black' : 'text-black/60 hover:text-black'}`}
+          >
+            {t.recursos}
           </Link>
           <Link
             href={`/?lang=${currentLocale}#contact`}
@@ -141,6 +147,12 @@ export default function Navbar() {
                       className="text-3xl font-black uppercase tracking-tighter hover:italic transition-all text-black/80"
                     >
                       {t.about}
+                    </Link>
+                    <Link 
+                      href={`/recursos?lang=${currentLocale}`} 
+                      className="text-3xl font-black uppercase tracking-tighter hover:italic transition-all text-black/80"
+                    >
+                      {t.recursos}
                     </Link>
                     <Link 
                       href={`/?lang=${currentLocale}#contact`} 
