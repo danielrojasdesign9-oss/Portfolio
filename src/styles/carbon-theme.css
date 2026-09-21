@@ -1,0 +1,197 @@
+/* Carbon Design System → Daniel Rojas Portfolio theme
+ * Palette: Midnight, Indigo, Merlot, Silver Mist, Onyx
+ * Typography: Space Grotesk (headings), Crimson Pro (body)
+ * Created: 2026-09-20
+ */
+
+@layer theme {
+  :root,
+  .cds--white,
+  .cds--g10 {
+    /* Background */
+    --cds-background: var(--color-bg);
+    --cds-background-hover: var(--color-bg-sunken);
+    --cds-background-active: #E8E8E8;
+    --cds-background-inverse: var(--color-bg-dark);
+    --cds-background-inverse-hover: var(--color-midnight);
+    --cds-background-brand: var(--color-primary);
+
+    /* Layer */
+    --cds-layer: var(--color-bg-elevated);
+    --cds-layer-01: var(--color-bg-elevated);
+    --cds-layer-02: var(--color-bg-sunken);
+    --cds-layer-03: #E0E0E0;
+    --cds-layer-hover-01: var(--color-bg-sunken);
+    --cds-layer-hover-02: #E8E8E8;
+    --cds-layer-active-01: #E0E0E0;
+
+    /* Field */
+    --cds-field: var(--color-bg-elevated);
+    --cds-field-01: var(--color-bg-elevated);
+    --cds-field-02: var(--color-bg-sunken);
+    --cds-field-hover-01: var(--color-bg-sunken);
+
+    /* Border */
+    --cds-border-subtle: var(--color-border-subtle);
+    --cds-border-subtle-00: var(--color-border-subtle);
+    --cds-border-subtle-01: var(--color-border-subtle);
+    --cds-border-strong-01: var(--color-border-strong);
+    --cds-border-tile-01: var(--color-border-subtle);
+    --cds-border-interactive: var(--color-primary);
+
+    /* Text */
+    --cds-text-primary: var(--color-text-primary);
+    --cds-text-secondary: var(--color-text-secondary);
+    --cds-text-placeholder: var(--color-text-tertiary);
+    --cds-text-helper: var(--color-text-tertiary);
+    --cds-text-on-color: var(--color-text-inverse);
+    --cds-text-inverse: var(--color-bg);
+    --cds-text-disabled: var(--color-silver-mist);
+
+    /* Link */
+    --cds-link-primary: var(--color-secondary);
+    --cds-link-primary-hover: var(--color-primary);
+    --cds-link-secondary: var(--color-primary);
+    --cds-link-visited: var(--color-accent);
+    --cds-link-inverse: #7B8CC7;
+
+    /* Icon */
+    --cds-icon-primary: var(--color-text-primary);
+    --cds-icon-secondary: var(--color-text-secondary);
+    --cds-icon-on-color: var(--color-text-inverse);
+    --cds-icon-interactive: var(--color-primary);
+
+    /* Interactive */
+    --cds-interactive: var(--color-primary);
+    --cds-support-error: var(--color-error);
+    --cds-support-success: var(--color-success);
+    --cds-support-warning: var(--color-warning);
+    --cds-support-info: var(--color-info);
+
+    /* Focus */
+    --cds-focus: var(--color-primary);
+    --cds-focus-inset: var(--color-bg);
+    --cds-focus-inverse: #7B8CC7;
+    --cds-highlight: #E8E0F0;
+
+    /* Overlay & Shadow */
+    --cds-overlay: rgba(29, 29, 21, 0.55);
+    --cds-shadow: rgba(29, 29, 21, 0.14);
+
+    /* Motion + radius */
+    --cds-button-radius: var(--radius-md);
+  }
+
+  /* Carbon component font overrides */
+  .cds--white,
+  .cds--g10,
+  .cds--g90,
+  .cds--g100,
+  [class^="cds--"],
+  [class*=" cds--"] {
+    font-family: var(--font-body), serif;
+  }
+
+  .cds--btn,
+  .cds--label,
+  .cds--form-item,
+  .cds--text-input,
+  .cds--text-area,
+  .cds--tag,
+  .cds--search-input {
+    font-family: var(--font-body), serif;
+  }
+
+  /* Primary button */
+  .cds--btn--primary {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-md);
+  }
+  .cds--btn--primary:hover {
+    background-color: var(--color-secondary);
+  }
+  .cds--btn--primary:focus {
+    box-shadow: inset 0 0 0 1px var(--color-bg), inset 0 0 0 2px var(--color-primary);
+  }
+
+  /* ---- Portfolio Header ---- */
+  .portfolio-header {
+    backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--color-bg-elevated) 88%, transparent);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+  .portfolio-header__name {
+    font-family: var(--font-heading), sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: 1.05rem;
+    text-transform: none;
+    color: var(--color-text-primary);
+  }
+  .portfolio-header .cds--header__nav {
+    height: 3rem;
+  }
+  .portfolio-header .cds--header__menu-item {
+    font-family: var(--font-heading), sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+  }
+  .portfolio-header .cds--header__menu-item[aria-current="page"],
+  .portfolio-header .cds--header__menu-item--current {
+    color: var(--color-text-primary);
+    border-bottom-color: var(--color-primary);
+  }
+  .portfolio-header .cds--header__global .cds--btn--icon-only {
+    color: var(--color-text-primary);
+  }
+  .portfolio-header .cds--header__action:hover {
+    background-color: var(--color-bg-sunken);
+  }
+
+  /* Mobile nav: links in a row below header */
+  .portfolio-mobile-nav {
+    display: none;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-bg-elevated);
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .portfolio-mobile-nav__link {
+    font-family: var(--font-heading), sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+  }
+
+  .portfolio-mobile-nav__link:hover {
+    background: var(--color-bg-sunken);
+    color: var(--color-text-primary);
+  }
+
+  /* Mobile: show mobile nav, hide desktop nav */
+  @media (max-width: 767px) {
+    .portfolio-header .cds--header__nav {
+      display: none;
+    }
+    .portfolio-mobile-nav {
+      display: flex;
+    }
+  }
+
+  /* Desktop: hide mobile nav */
+  @media (min-width: 768px) {
+    .portfolio-mobile-nav {
+      display: none;
+    }
+  }
+}
