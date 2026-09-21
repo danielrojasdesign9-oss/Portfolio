@@ -177,15 +177,15 @@ export default async function ProjectLayout({
                 <div className="space-y-10 md:space-y-12 pt-10 md:pt-16 border-t border-[var(--color-border-subtle)]">
                   <div className="space-y-12 md:space-y-16">
                     {project.gallery.map((slide: any, i: number) => {
-                      const sTitle = slide.title?.[locale] || slide.title?.en;
-                      const sSubtitle = slide.subtitle?.[locale] || slide.subtitle?.en;
-                      const sDesc = slide.description?.[locale] || slide.description?.en;
-                      const images = slide.images || [];
+                      const sTitle = getLocaleText(slide?.title, locale);
+                      const sSubtitle = getLocaleText(slide?.subtitle, locale);
+                      const sDesc = getLocaleText(slide?.description, locale);
+                      const images = slide?.images || [];
 
                       if (images.length === 0 && !sTitle && !sSubtitle && !sDesc) return null;
 
                       return (
-                        <div key={i} className="space-y-6">
+                        <div key={slide._key || i} className="space-y-6">
                           {(sTitle || sSubtitle || sDesc) && (
                             <div className="space-y-3 border-b border-[var(--color-border-subtle)] pb-4">
                               <div className="space-y-1">
@@ -197,14 +197,14 @@ export default async function ProjectLayout({
                           )}
 
                           <div className="space-y-2 md:space-y-4">
-                            {images.map((img: any, imgIdx: number) => {
-<GalleryImage
-                                  key={imgIdx}
-                                  src={img?.url || '/placeholder.png'}
-                                  alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`}
-                                  caption={img.caption?.[locale] || img.caption?.en}
-                                />
-                            })}
+                            {images.map((img: any, imgIdx: number) => (
+                              <GalleryImage
+                                key={img._key || imgIdx}
+                                src={img?.url || '/placeholder.png'}
+                                alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`}
+                                caption={getLocaleText(img?.caption, locale)}
+                              />
+                            ))}
                           </div>
                         </div>
                       );
