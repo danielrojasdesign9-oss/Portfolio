@@ -2,7 +2,7 @@ import { groq } from 'next-sanity'
 
 // Obtener todos los proyectos para el home page
 export const projectsQuery = groq`
-  *[_type == "project" && public == true] | order(year desc) {
+  *[_type == "project" && public == true] | order(coalesce(publishDate, year) desc) {
     _id,
     title,
     category,
@@ -19,24 +19,33 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     year,
     client,
     location,
+    publishDate,
+    seoTitle,
+    seoDescription,
     introText,
     myRole,
     myGoal,
     productVision,
     figmaEmbedUrl,
     content,
+    technologies[] {
+      name,
+      category,
+      "imageUrl": logo.asset->url
+    },
     gallery[] {
-      titleEn, titleEs, titleJp,
-      subtitleEn, subtitleEs, subtitleJp,
-      descriptionEn, descriptionEs, descriptionJp,
+      title,
+      subtitle,
+      description,
       images[] {
         ...,
         "url": asset->url,
-        captionEn, captionEs, captionJp
+        caption
       }
     },
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,
+    "ogImageUrl": ogImage.asset->url,
     "nextProject": coalesce(
       *[_type == "project" && _createdAt > ^._createdAt] | order(_createdAt asc) [0],
       *[_type == "project"] | order(_createdAt asc) [0]
@@ -65,6 +74,8 @@ export const profileQuery = groq`*[_type == "profile"][0] {
     bio,
     email,
     linkedinUrl,
+    seoTitle,
+    seoDescription,
     hobbies[] {
       "name": name,
       "iconUrl": icon.asset->url
@@ -75,7 +86,7 @@ export const profileQuery = groq`*[_type == "profile"][0] {
 `
 
 // Obtener todas las experiencias laborales
-export const experienceQuery = groq`*[_type == "experience"] | order(year desc) {
+export const experienceQuery = groq`*[_type == "experience"] | order(order asc, year desc) {
     name,
     year,
     role,

@@ -33,8 +33,8 @@ export const resourceType = defineType({
         list: [
           { title: 'Research', value: 'research' },
           { title: 'DesignOps', value: 'designops' },
-          { title: 'Producto', value: 'producto' },
-          { title: 'Liderazgo', value: 'liderazgo' },
+          { title: 'Product', value: 'product' },
+          { title: 'Leadership', value: 'leadership' },
         ],
         layout: 'radio',
       },

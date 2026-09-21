@@ -43,6 +43,18 @@ export const profileType = defineType({
       title: 'LinkedIn URL',
       type: 'url',
     }),
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      description: 'Título para buscadores (máx. 60 chars)',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      description: 'Descripción para buscadores (máx. 160 chars)',
+      type: 'localeText',
+    }),
     defineField({ name: 'resumeUrl', type: 'file', title: 'CV PDF' }),
     defineField({
       name: 'profileImage',

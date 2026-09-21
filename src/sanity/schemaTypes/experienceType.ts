@@ -1,5 +1,6 @@
 import { CaseIcon } from '@sanity/icons'
 import { defineField, defineType } from 'sanity'
+import { localeString } from './localeFields'
 
 export const experienceType = defineType({
   name: 'experience',
@@ -10,7 +11,7 @@ export const experienceType = defineType({
     defineField({
       name: 'name',
       title: 'Nombre de la Empresa / Proyecto',
-      type: 'string',
+      type: 'localeString',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -27,12 +28,19 @@ export const experienceType = defineType({
     defineField({
       name: 'role',
       title: 'Rol / Cargo',
-      type: 'string',
+      type: 'localeString',
     }),
     defineField({
       name: 'link',
       title: 'Link (URL)',
       type: 'url',
+    }),
+    defineField({
+      name: 'order',
+      title: 'Orden de visualización',
+      description: 'Número menor = aparece primero. Ej: 1, 2, 3...',
+      type: 'number',
+      initialValue: 0,
     }),
   ],
 })

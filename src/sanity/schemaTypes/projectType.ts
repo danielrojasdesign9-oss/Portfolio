@@ -1,5 +1,6 @@
 import { DocumentTextIcon } from '@sanity/icons'
 import { defineField, defineType, defineArrayMember } from 'sanity'
+import { localeString } from './localeFields'
 
 export const projectType = defineType({
   name: 'project',
@@ -47,6 +48,38 @@ export const projectType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'publishDate',
+      title: 'Fecha de publicación',
+      description: 'Para orden cronológico preciso y SEO',
+      type: 'date',
+    }),
+    defineField({
+      name: 'seoTitle',
+      title: 'SEO Title',
+      description: 'Título para buscadores (máx. 60 chars)',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'seoDescription',
+      title: 'SEO Description',
+      description: 'Descripción para buscadores (máx. 160 chars)',
+      type: 'localeText',
+    }),
+    defineField({
+      name: 'ogImage',
+      title: 'Open Graph Image',
+      description: 'Imagen para compartir en redes sociales (1200x630px)',
+      type: 'image',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'technologies',
+      title: 'Tecnologías / Herramientas',
+      description: 'Herramientas usadas en este proyecto (referencia a tools)',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'tool' }] }],
+    }),
+    defineField({
       name: 'introText',
       title: 'Intro Text (Resumen corto)',
       type: 'localeText',
@@ -90,11 +123,11 @@ export const projectType = defineType({
       type: 'image',
       options: { hotspot: true },
     }),
-    // NEW: Gallery — multiple slides with title per language + image
+    // Gallery — multiple slides with localized title/subtitle/description + images
     defineField({
       name: 'gallery',
       title: 'Galería de Slides',
-      description: 'Añade diapositivas al caso de estudio. Cada slide tiene título en cada idioma y su propia imagen.',
+      description: 'Añade diapositivas al caso de estudio. Cada slide tiene título subtítulo y descripción localizados + imágenes.',
       type: 'array',
       of: [
         {
@@ -102,57 +135,24 @@ export const projectType = defineType({
           title: 'Slide',
           fields: [
             {
-              name: 'titleEn',
-              title: 'Título (EN)',
-              type: 'string',
+              name: 'title',
+              title: 'Título',
+              type: 'localeString',
             },
             {
-              name: 'titleEs',
-              title: 'Título (ES)',
-              type: 'string',
+              name: 'subtitle',
+              title: 'Subtítulo',
+              type: 'localeString',
             },
             {
-              name: 'titleJp',
-              title: 'Título (JP)',
-              type: 'string',
-            },
-            {
-              name: 'subtitleEn',
-              title: 'Subtítulo (EN)',
-              type: 'string',
-            },
-            {
-              name: 'subtitleEs',
-              title: 'Subtítulo (ES)',
-              type: 'string',
-            },
-            {
-              name: 'subtitleJp',
-              title: 'Subtítulo (JP)',
-              type: 'string',
-            },
-            {
-              name: 'descriptionEn',
-              title: 'Descripción (EN)',
-              type: 'text',
-              rows: 3,
-            },
-            {
-              name: 'descriptionEs',
-              title: 'Descripción (ES)',
-              type: 'text',
-              rows: 3,
-            },
-            {
-              name: 'descriptionJp',
-              title: 'Descripción (JP)',
-              type: 'text',
-              rows: 3,
+              name: 'description',
+              title: 'Descripción',
+              type: 'localeText',
             },
             {
               name: 'images',
               title: 'Galería de imágenes',
-              description: '¡Arroja aquí todas tus fotos de una vez! Aparecerán en una cuadrícula. Haz clic en el icono de edición de cada una para añadir su descripción.',
+              description: '¡Arroja aquí todas tus fotos de una vez! Aparecerán en una cuadrícula.',
               type: 'array',
               options: {
                 layout: 'grid'
@@ -162,9 +162,7 @@ export const projectType = defineType({
                   type: 'image',
                   options: { hotspot: true },
                   fields: [
-                    { name: 'captionEn', title: 'Descripción (EN)', type: 'text', rows: 2 },
-                    { name: 'captionEs', title: 'Descripción (ES)', type: 'text', rows: 2 },
-                    { name: 'captionJp', title: 'Descripción (JP)', type: 'text', rows: 2 },
+                    { name: 'caption', title: 'Caption', type: 'localeText' },
                   ]
                 })
               ],
@@ -172,7 +170,7 @@ export const projectType = defineType({
           ],
           preview: {
             select: {
-              title: 'titleEn',
+              title: 'title.en',
               media: 'images.0',
             },
             prepare({ title, media }: { title?: string; media?: any }) {

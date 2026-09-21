@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Space_Grotesk, Crimson_Pro } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
-import CustomCursor from "@/components/CustomCursor";
+import Providers from "@/components/Providers";
 
-const outfit = Outfit({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const crimsonPro = Crimson_Pro({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Daniel Rojas | Product Designer & Digital Solutions",
-  description: "Portfolio of Daniel Rojas, Product Designer focusing on Design Systems and Digital Solutions.",
+  description:
+    "Portfolio of Daniel Rojas, Product Designer focusing on Design Systems and Digital Solutions.",
   icons: {
-    icon: '/favicon.png',
+    icon: "/favicon.png",
   },
 };
 
@@ -24,10 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${outfit.variable} font-sans antialiased cursor-none`}>
+      <body
+        className={`${spaceGrotesk.variable} ${crimsonPro.variable} antialiased`}
+      >
         <SmoothScroll>
-          <CustomCursor />
-          {children}
+          <Providers>{children}</Providers>
         </SmoothScroll>
       </body>
     </html>
