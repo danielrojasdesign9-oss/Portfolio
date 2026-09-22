@@ -5,7 +5,8 @@ import { projectsQuery, profileQuery } from "@/sanity/lib/queries";
 import { getLocaleText, Locale } from "@/lib/utils-locale";
 import { dummyProjects } from "@/lib/dummy-projects";
 import ContactSection from "@/components/ContactSection";
-import { Grid, Column, Tag, ClickableTile } from "@carbon/react";
+import ProjectsSection from "@/components/ProjectsSection";
+import { Grid, Column, Tag } from "@carbon/react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 
 export const revalidate = 60;
@@ -101,42 +102,21 @@ export default async function Home({
       </section>
 
       <section id="projects" className="px-4 md:px-8 py-24 max-w-[1400px] mx-auto">
-        <Grid narrow className="!p-0">
-          {projects.map((project: any) => {
-            const title = getLocaleText(project.title, locale);
-            const category = getLocaleText(project.category, locale);
-            return (
-              <Column key={project._id} sm={4} md={4} lg={5} className="mb-8">
-                <ClickableTile
-                  href={`/work/${project.slug}?lang=${locale}`}
-                  className="!p-0 !border-0 bg-transparent group block"
-                >
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] mb-4">
-                    {project.imageUrl ? (
-                      <Image
-                        src={project.imageUrl}
-                        alt={title}
-                        fill
-                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-[var(--color-text-tertiary)]">
-                        No image
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex justify-between items-start gap-4">
-                    <h2 className="font-display font-bold text-lg tracking-tight">{title}</h2>
-                    <Tag type="outline" size="sm">
-                      {project.year}
-                    </Tag>
-                  </div>
-                  <p className="text-[12px] text-[var(--color-text-secondary)] mt-1">{category}</p>
-                </ClickableTile>
-              </Column>
-            );
-          })}
+        <Grid narrow className="!p-0 mb-14">
+          <Column sm={4} md={8} lg={12}>
+            <div className="flex items-end justify-between">
+              <div>
+                <Tag type="green" size="sm" className="mb-4">
+                  {locale === "es" ? "Proyectos" : locale === "jp" ? "作品" : "Selected Projects"}
+                </Tag>
+                <h2 className="font-display text-4xl md:text-6xl font-black tracking-tighter leading-[0.9]">
+                  {locale === "es" ? "Trabajo" : locale === "jp" ? "仕事" : "Work"}
+                </h2>
+              </div>
+            </div>
+          </Column>
         </Grid>
+        <ProjectsSection projects={projects} locale={locale} />
       </section>
 
       <ContactSection locale={locale} profile={profile} />
