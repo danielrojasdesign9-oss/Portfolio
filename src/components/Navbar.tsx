@@ -4,14 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import {
-  Header,
-  HeaderNavigation,
-  HeaderMenuItem,
-  OverflowMenu,
-  OverflowMenuItem,
-} from "@carbon/react";
-import { Earth, Close, Menu, Sun, Moon, Contrast } from "@carbon/icons-react";
+import { Sun, Moon, Contrast, Globe, Close, Menu, Settings } from "@carbon/icons-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function Navbar() {
@@ -22,10 +15,12 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hash, setHash] = useState<string>("");
   const reducedMotion = useReducedMotion();
   const headerRef = useRef<HTMLDivElement>(null);
+  const settingsRef = useRef<HTMLDivElement>(null);
 
   const { theme, setTheme, aaaLevel, setAAALevel, resolvedTheme } = useTheme();
 
@@ -34,9 +29,9 @@ export default function Navbar() {
   });
 
   const translations = {
-    en: { home: "Home", about: "About", work: "Work", lab: "Lab", recursos: "Resources", contact: "Contact" },
-    es: { home: "Inicio", about: "Sobre mí", work: "Proyectos", lab: "Lab", recursos: "Recursos", contact: "Contacto" },
-    jp: { home: "ホーム", about: "について", work: "作品", lab: "Lab", recursos: "リソース", contact: "連絡先" },
+    en: { home: "Home", about: "About", work: "Work", lab: "Lab", recursos: "Resources", contact: "Contact", settings: "Settings" },
+    es: { home: "Inicio", about: "Sobre mí", work: "Proyectos", lab: "Lab", recursos: "Recursos", contact: "Contacto", settings: "Ajustes" },
+    jp: { home: "ホーム", about: "について", work: "作品", lab: "Lab", recursos: "リソース", contact: "連絡先", settings: "設定" },
   };
   const t = translations[currentLocale as "en" | "es" | "jp"] || translations.en;
 
@@ -51,10 +46,15 @@ export default function Navbar() {
     params.set("lang", code);
     router.push(`${pathname}?${params.toString()}`);
     setIsMobileOpen(false);
+    setIsSettingsOpen(false);
   };
 
   const handleMenuClick = () => {
     setIsMobileOpen(!isMobileOpen);
+  };
+
+  const handleSettingsClick = () => {
+    setIsSettingsOpen(!isSettingsOpen);
   };
 
   const handleThemeChange = (value: "light" | "dark" | "system") => {
@@ -119,6 +119,23 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (settingsRef.current && !settingsRef.current.contains(event.target as Node)) {
+        setIsSettingsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleHashChange = () => setHash(window.location.hash);
+    setHash(window.location.hash);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
   const yTransform = useTransform(scrollY, [0, 50], [0, -100]);
 
   return (
@@ -157,7 +174,7 @@ export default function Navbar() {
             Daniel Rojas
           </Link>
 
-          {/* Right nav items + theme toggle */}
+          {/* Right nav items + settings macro menu */}
           <nav className="portfolio-header__nav portfolio-header__nav--right" aria-label="Main navigation">
             <div className="portfolio-header__nav-items">
               {navItems.slice(3).map((item) => (
@@ -171,32 +188,121 @@ export default function Navbar() {
                 </a>
               ))}
             </div>
-            <div className="portfolio-header__global">
-              {/* Theme Toggle */}
-              <div className="portfolio-header__theme">
-                <button
-                  className="theme-toggle"
-                  onClick={() => handleThemeChange(
-                    theme === "light" ? "dark" : theme === "dark" ? "system" : "light"
-                  )}
-                  aria-label={`Current theme: ${theme}. Click to cycle.`}
-                  title={`Theme: ${theme}`}
-                >
-                  {theme === "light" && <Sun />}
-                  {theme === "dark" && <Moon />}
-                  {theme === "system" && <Contrast />}
-                </button>
-              </div>
 
+            {/* Settings Macro Menu - horizontal inline */}
+            <div className="portfolio-header__settings-macro" ref={settingsRef}>
               <button
-                className="portfolio-header__mobile-toggle"
-                onClick={handleMenuClick}
-                aria-label={isMobileOpen ? "Close menu" : "Open menu"}
-                aria-expanded={isMobileOpen}
+                className="portfolio-header__settings-trigger"
+                onClick={handleSettingsClick}
+                aria-label={t.settings}
+                aria-expanded={isSettingsOpen}
+                aria-haspopup="dialog"
               >
-                {isMobileOpen ? <Close /> : <Menu />}
+                <Settings className="w-5 h-5" />
               </button>
+
+              {/* Settings Popover - horizontal layout */}
+              {isSettingsOpen && (
+                <motion.div
+                  className="portfolio-header__settings-popover"
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: reducedMotion ? 0 : 0.2, ease: [0.4, 0, 0.2, 1] }}
+                  role="dialog"
+                  aria-label={t.settings}
+                >
+                  <div className="portfolio-header__settings-row">
+                    {/* Theme Toggle */}
+                    <div className="portfolio-header__setting-item">
+                      <span className="portfolio-header__setting-label">Theme</span>
+                      <div className="portfolio-header__setting-control">
+                        <button
+                          className={`portfolio-header__theme-btn ${theme === "light" ? "active" : ""}`}
+                          onClick={() => handleThemeChange("light")}
+                          aria-label="Light theme"
+                          aria-pressed={theme === "light"}
+                        >
+                          <Sun className="w-4 h-4" />
+                        </button>
+                        <button
+                          className={`portfolio-header__theme-btn ${theme === "dark" ? "active" : ""}`}
+                          onClick={() => handleThemeChange("dark")}
+                          aria-label="Dark theme"
+                          aria-pressed={theme === "dark"}
+                        >
+                          <Moon className="w-4 h-4" />
+                        </button>
+                        <button
+                          className={`portfolio-header__theme-btn ${theme === "system" ? "active" : ""}`}
+                          onClick={() => handleThemeChange("system")}
+                          aria-label="System theme"
+                          aria-pressed={theme === "system"}
+                        >
+                          <Contrast className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="portfolio-header__settings-divider" />
+
+                    {/* Language Selector */}
+                    <div className="portfolio-header__setting-item">
+                      <span className="portfolio-header__setting-label">Language</span>
+                      <div className="portfolio-header__setting-control">
+                        {languages.map((l) => (
+                          <button
+                            key={l.code}
+                            className={`portfolio-header__lang-btn ${currentLocale === l.code ? "active" : ""}`}
+                            onClick={() => setLang(l.code)}
+                            aria-label={l.label}
+                            aria-pressed={currentLocale === l.code}
+                          >
+                            {l.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="portfolio-header__settings-divider" />
+
+                    {/* AAA Toggle */}
+                    <div className="portfolio-header__setting-item">
+                      <span className="portfolio-header__setting-label">Contrast</span>
+                      <div className="portfolio-header__setting-control">
+                        <button
+                          className={`portfolio-header__aaa-btn ${aaaLevel === "AA" ? "active" : ""}`}
+                          onClick={handleAAAToggle}
+                          aria-label={`Contrast: ${aaaLevel}`}
+                          aria-pressed={aaaLevel === "AAA"}
+                        >
+                          AA
+                        </button>
+                        <button
+                          className={`portfolio-header__aaa-btn ${aaaLevel === "AAA" ? "active" : ""}`}
+                          onClick={handleAAAToggle}
+                          aria-label={`Contrast: AAA`}
+                          aria-pressed={aaaLevel === "AA"}
+                        >
+                          AAA
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
             </div>
+
+            <button
+              className="portfolio-header__mobile-toggle"
+              onClick={handleMenuClick}
+              aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isMobileOpen}
+            >
+              {isMobileOpen ? <Close /> : <Menu />}
+            </button>
           </nav>
         </header>
       </motion.div>
