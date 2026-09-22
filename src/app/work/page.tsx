@@ -45,7 +45,7 @@ export default async function WorkPage({
   }[locale];
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
 
       <section className="pt-32 md:pt-40 pb-16 px-4 md:px-8 max-w-[1400px] mx-auto border-b border-[var(--color-border-subtle)]">

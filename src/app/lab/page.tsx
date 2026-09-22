@@ -14,7 +14,7 @@ function LabContent() {
     try { localStorage.setItem('design-system', sys) } catch {}
   }, [sys])
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
       <div className="p-4 md:p-10 max-w-[1400px] mx-auto">
         <Tag type="green" size="sm" className="mb-4">Lab</Tag>

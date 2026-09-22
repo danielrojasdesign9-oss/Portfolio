@@ -21,6 +21,8 @@ export default function Navbar() {
   const reducedMotion = useReducedMotion();
   const headerRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   const { theme, setTheme, aaaLevel, setAAALevel, resolvedTheme } = useTheme();
 
@@ -135,6 +137,61 @@ export default function Navbar() {
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
+
+  // Mobile drawer focus trap + Escape key
+  useEffect(() => {
+    if (!isMobileOpen) return;
+
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+
+    // Save previously focused element
+    previousActiveElement.current = document.activeElement as HTMLElement;
+
+    // Get all focusable elements in drawer
+    const focusableElements = drawer.querySelectorAll<HTMLElement>(
+      'a[href], button, input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const firstFocusable = focusableElements[0];
+    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+    // Focus first element
+    firstFocusable?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setIsMobileOpen(false);
+        return;
+      }
+
+      if (e.key === "Tab") {
+        if (e.shiftKey) {
+          // Shift + Tab: going backwards
+          if (document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable?.focus();
+          }
+        } else {
+          // Tab: going forwards
+          if (document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable?.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+      // Restore focus to previously active element
+      previousActiveElement.current?.focus();
+    };
+  }, [isMobileOpen]);
 
   const yTransform = useTransform(scrollY, [0, 50], [0, -100]);
 
@@ -309,6 +366,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       <motion.aside
+        ref={drawerRef}
         className="portfolio-mobile-drawer"
         initial={{ x: "100%" }}
         animate={{ x: isMobileOpen ? 0 : "100%" }}

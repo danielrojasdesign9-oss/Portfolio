@@ -76,7 +76,7 @@ export default async function AboutPage({
   }[locale];
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
 
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 pt-24 pb-12">

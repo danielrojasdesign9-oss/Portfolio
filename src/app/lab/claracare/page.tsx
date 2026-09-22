@@ -8,7 +8,7 @@ function ClaraLabContent(){
   const qs=['¿Fiebre >38.5°C?', '¿Dificultad respiratoria?', '¿Dolor torácico?']
   const [ars,setArs]=useState<string[]>([])
   const urgent = ars.includes('¿Dificultad respiratoria?')
-  return <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+  return <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
     <Navbar />
     <div className="p-8 max-w-[1400px] mx-auto">
       <h1 className="text-3xl font-black uppercase">ClaraCare — Vibecoding Triaje</h1>

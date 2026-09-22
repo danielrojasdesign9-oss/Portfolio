@@ -208,21 +208,23 @@
     text-transform: uppercase;
     color: var(--color-text-secondary);
     position: relative;
-    padding: var(--space-1) 0;
+    padding: var(--space-1) var(--space-2);
     text-decoration: none;
-    transition: color var(--transition-fast);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    border-radius: var(--radius-md);
   }
 
   .portfolio-header__menu-item::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -2px;
     left: 50%;
     width: 0;
-    height: 2px;
+    height: 3px;
     background: var(--color-primary);
     transition: all var(--transition-fast);
     transform: translateX(-50%);
+    border-radius: 2px;
   }
 
   .portfolio-header__menu-item:hover::after,
@@ -231,10 +233,20 @@
     width: 100%;
   }
 
-  .portfolio-header__menu-item:hover,
+  .portfolio-header__menu-item:hover {
+    color: var(--color-text-primary);
+    background-color: var(--color-primary-light);
+  }
+
   .portfolio-header__menu-item[aria-current="page"],
   .portfolio-header__menu-item.active {
     color: var(--color-text-primary);
+    background-color: var(--color-primary-light);
+  }
+
+  .portfolio-header__menu-item[aria-current="page"]::after,
+  .portfolio-header__menu-item.active::after {
+    background: var(--color-primary);
   }
 
   /* ---- Settings Macro Menu (Horizontal Inline) ---- */

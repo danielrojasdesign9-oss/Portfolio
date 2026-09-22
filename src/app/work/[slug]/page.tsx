@@ -74,7 +74,7 @@ export default async function ProjectLayout({
   const meta = projectsMeta[slug] || { accent: "#000000" };
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
 
       <ProjectCover title={title} category={category} year={project.year ?? ""} />

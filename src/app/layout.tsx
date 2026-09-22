@@ -35,6 +35,12 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${crimsonPro.variable} antialiased`}
       >
+        <a
+          href="#main-content"
+          className="skip-link"
+        >
+          Skip to main content
+        </a>
         <SmoothScroll>
           <Providers>{children}</Providers>
         </SmoothScroll>

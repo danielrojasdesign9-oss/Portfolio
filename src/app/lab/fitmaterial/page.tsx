@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 function FitMaterialLabContent(){
   const [cm,setCm]=useState(27)
   const rec = cm<25.5?'38':cm<26.5?'39':cm<27.5?'40':'41'
-  return <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+  return <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
     <Navbar />
     <div className="p-8 max-w-[1400px] mx-auto">
       <h1 className="text-3xl font-black uppercase">FitMaterial — Vibecoding Calzado KOAJ</h1>

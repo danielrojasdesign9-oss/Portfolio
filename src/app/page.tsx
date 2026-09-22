@@ -54,7 +54,7 @@ export default async function Home({
     : "Product Designer";
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
 
       <section className="pt-40 md:pt-48 pb-28 px-4 md:px-8 max-w-[1400px] mx-auto border-b border-[var(--color-border-subtle)]">

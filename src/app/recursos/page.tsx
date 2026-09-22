@@ -27,7 +27,7 @@ export default async function RecursosPage({
   }));
 
   return (
-    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
+    <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
       <Suspense fallback={<div className="pt-48 text-center">Loading...</div>}>
         <RecursosClient resources={resourcesWithLocale} t={t} locale={locale} />
