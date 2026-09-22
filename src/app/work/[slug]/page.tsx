@@ -4,13 +4,15 @@ import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { projectQuery, projectsQuery } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import { ArrowLeft, Rocket } from "@carbon/icons-react";
+import { ArrowLeft, Rocket, ChevronLeft, ChevronRight } from "@carbon/icons-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
 import { Grid, Column, Tag } from "@carbon/react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
+import Footer from "@/components/Footer";
+import SequentialNav from "@/components/SequentialNav";
 
 const builder = imageUrlBuilder(client);
 
@@ -36,11 +38,15 @@ export default async function ProjectLayout({
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-[var(--cds-background)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
         <p className="text-[var(--color-text-secondary)] font-black uppercase tracking-[0.5em] text-[12px]">Project not found</p>
       </div>
     );
   }
+
+  const allProjects = await client.fetch(projectsQuery).catch(() => []);
+  const currentIndex = allProjects.findIndex((p: any) => p.slug === slug);
+  const totalProjects = allProjects.length;
 
   const title = getLocaleText(project.title, locale);
   const category = getLocaleText(project.category, locale);
@@ -51,9 +57,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype", of: "of" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo", of: "de" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ", of: "/" }
   }[locale];
 
   const projectsMeta: Record<string, any> = {
@@ -103,6 +109,14 @@ export default async function ProjectLayout({
                   <div>
                     <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Year</span>
                     <p className="text-lg font-bold">{project.year}</p>
+                  </div>
+                )}
+                {totalProjects > 0 && (
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">
+                      {t.of} {String(totalProjects).padStart(2, "0")}
+                    </span>
+                    <p className="text-lg font-bold">{String(currentIndex + 1).padStart(2, "0")}</p>
                   </div>
                 )}
               </div>
@@ -160,7 +174,7 @@ export default async function ProjectLayout({
                 <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
                   <div className="flex items-center gap-4">
                     <Tag type="outline" size="sm">{t.prototype}</Tag>
-                    <div className="h-px flex-1 bg-[var(--cds-border-subtle)]" />
+                    <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
                   </div>
                   <div className="relative aspect-video rounded-[6px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
                     <iframe
@@ -213,34 +227,77 @@ export default async function ProjectLayout({
                 </div>
               )}
 
-              {/* Pagination */}
-              <footer className="pt-24 border-t border-[var(--color-border-subtle)] flex flex-col md:flex-row justify-between items-center gap-12">
-                {project.prevProject && (
-                  <CarbonLinkButton
-                    href={`/work/${project.prevProject.slug}?lang=${locale}`}
-                    kind="ghost"
-                    size="lg"
-                    icon="ArrowLeft"
-                  >
-                    {getLocaleText(project.prevProject.title, locale)}
-                  </CarbonLinkButton>
-                )}
-                <div className="hidden md:block w-px h-16 bg-[var(--cds-border-subtle)]" />
-                {project.nextProject && (
-                  <CarbonLinkButton
-                    href={`/work/${project.nextProject.slug}?lang=${locale}`}
-                    kind="ghost"
-                    size="lg"
-                    icon="ArrowRight"
-                  >
-                    {getLocaleText(project.nextProject.title, locale)}
-                  </CarbonLinkButton>
-                )}
+              {/* Pagination - Sequential Navigation */}
+              <footer className="pt-24 border-t border-[var(--color-border-subtle)]">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
+                  <div className="flex items-center gap-4 text-center md:text-left w-full md:w-auto">
+                    <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-primary)]">
+                      {String(currentIndex + 1).padStart(2, "0")} {t.of} {String(totalProjects).padStart(2, "0")}
+                    </span>
+                    <div className="hidden md:block w-px h-16 bg-[var(--color-border-subtle)]" />
+                    <div className="flex items-center gap-4">
+                      {project.prevProject && (
+                        <CarbonLinkButton
+                          href={`/work/${project.prevProject.slug}?lang=${locale}`}
+                          kind="ghost"
+                          size="lg"
+                          icon="ChevronLeft"
+                        >
+                          {t.prev}
+                        </CarbonLinkButton>
+                      )}
+                      {project.nextProject && (
+                        <CarbonLinkButton
+                          href={`/work/${project.nextProject.slug}?lang=${locale}`}
+                          kind="ghost"
+                          size="lg"
+                          icon="ChevronRight"
+                        >
+                          {t.next}
+                        </CarbonLinkButton>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-8 md:grid-cols-2">
+                  {project.prevProject && (
+                    <CarbonLinkButton
+                      href={`/work/${project.prevProject.slug}?lang=${locale}`}
+                      kind="ghost"
+                      size="lg"
+                      className="w-full text-left"
+                    >
+                      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.prev}</span>
+                      <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.prevProject.title, locale)}</span>
+                    </CarbonLinkButton>
+                  )}
+                  {project.nextProject && (
+                    <CarbonLinkButton
+                      href={`/work/${project.nextProject.slug}?lang=${locale}`}
+                      kind="ghost"
+                      size="lg"
+                      className="w-full md:text-right md:col-start-2"
+                    >
+                      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.next}</span>
+                      <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.nextProject.title, locale)}</span>
+                    </CarbonLinkButton>
+                  )}
+                </div>
               </footer>
             </div>
           </Column>
         </Grid>
       </section>
+
+      <Footer locale={locale} />
+
+      {/* Sequential Navigation Keyboard Support */}
+      <SequentialNav
+        prevSlug={project.prevProject?.slug}
+        nextSlug={project.nextProject?.slug}
+        locale={locale}
+      />
     </main>
   );
 }

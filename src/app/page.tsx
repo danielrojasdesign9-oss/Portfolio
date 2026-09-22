@@ -6,6 +6,7 @@ import { getLocaleText, Locale } from "@/lib/utils-locale";
 import { dummyProjects } from "@/lib/dummy-projects";
 import ContactSection from "@/components/ContactSection";
 import ProjectsSection from "@/components/ProjectsSection";
+import Footer from "@/components/Footer";
 import { Grid, Column, Tag } from "@carbon/react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 
@@ -47,7 +48,7 @@ export default async function Home({
     : "Product Designer";
 
   return (
-    <main className="min-h-screen bg-[var(--cds-background)] text-[var(--cds-text-primary)]">
+    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
 
       <section className="pt-32 md:pt-40 pb-24 px-4 md:px-8 max-w-[1400px] mx-auto border-b border-[var(--color-border-subtle)]">
@@ -121,16 +122,7 @@ export default async function Home({
 
       <ContactSection locale={locale} profile={profile} />
 
-      <footer className="py-10 px-4 md:px-8 border-t border-[var(--color-border-subtle)] text-center">
-        <p className="text-[11px] tracking-[0.3em] text-[var(--color-text-tertiary)]">
-          © {new Date().getFullYear()}{" "}
-          {locale === "es"
-            ? "TODOS LOS DERECHOS RESERVADOS"
-            : locale === "jp"
-            ? "全著作権所有"
-            : "ALL RIGHTS RESERVED"}
-        </p>
-      </footer>
+      <Footer locale={locale} />
     </main>
   );
 }
