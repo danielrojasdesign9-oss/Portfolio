@@ -279,13 +279,13 @@
     outline-offset: 2px;
   }
 
-  .theme-toggle svg {
+.theme-toggle svg {
     width: 20px;
     height: 20px;
     transition: transform var(--transition-base), opacity var(--transition-base);
   }
 
-  /* ---- Language Selector (Pinned in Navbar) ---- */
+  /* ---- Language Selector & AAA Toggle (Footer & Mobile) ---- */
   .lang-selector {
     position: relative;
   }
@@ -486,6 +486,34 @@
     inset: 0;
     z-index: 1050;
     background: var(--color-overlay);
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  footer > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    footer {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    footer > div {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   /* Mobile: show mobile toggle, hide desktop nav */

@@ -11,7 +11,7 @@ import {
   OverflowMenu,
   OverflowMenuItem,
 } from "@carbon/react";
-import { Earth, Close, Menu, Sun, Moon, Contrast, Globe } from "@carbon/icons-react";
+import { Earth, Close, Menu, Sun, Moon, Contrast } from "@carbon/icons-react";
 import { useTheme } from "@/components/ThemeProvider";
 
 export default function Navbar() {
@@ -23,11 +23,9 @@ export default function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [langOpen, setLangOpen] = useState(false);
   const [hash, setHash] = useState<string>("");
   const reducedMotion = useReducedMotion();
   const headerRef = useRef<HTMLDivElement>(null);
-  const langRef = useRef<HTMLDivElement>(null);
 
   const { theme, setTheme, aaaLevel, setAAALevel, resolvedTheme } = useTheme();
 
@@ -48,26 +46,15 @@ export default function Navbar() {
     { code: "jp", label: "日本語" },
   ];
 
-  const themes: { value: "light" | "dark" | "system"; label: string; icon: React.ReactNode }[] = [
-    { value: "light", label: "Light", icon: <Sun /> },
-    { value: "dark", label: "Dark", icon: <Moon /> },
-    { value: "system", label: "System", icon: <Contrast /> },
-  ];
-
   const setLang = (code: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("lang", code);
     router.push(`${pathname}?${params.toString()}`);
     setIsMobileOpen(false);
-    setLangOpen(false);
   };
 
   const handleMenuClick = () => {
     setIsMobileOpen(!isMobileOpen);
-  };
-
-  const handleLangClick = () => {
-    setLangOpen(!langOpen);
   };
 
   const handleThemeChange = (value: "light" | "dark" | "system") => {
@@ -126,16 +113,6 @@ export default function Navbar() {
   }, [lastScrollY, reducedMotion]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(event.target as Node)) {
-        setLangOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  useEffect(() => {
     const handleHashChange = () => setHash(window.location.hash);
     setHash(window.location.hash);
     window.addEventListener("hashchange", handleHashChange);
@@ -180,7 +157,7 @@ export default function Navbar() {
             Daniel Rojas
           </Link>
 
-          {/* Right nav items + global actions */}
+          {/* Right nav items + theme toggle */}
           <nav className="portfolio-header__nav portfolio-header__nav--right" aria-label="Main navigation">
             <div className="portfolio-header__nav-items">
               {navItems.slice(3).map((item) => (
@@ -210,44 +187,6 @@ export default function Navbar() {
                   {theme === "system" && <Contrast />}
                 </button>
               </div>
-
-              {/* Language Selector (Pinned) */}
-              <div className="lang-selector" ref={langRef}>
-                <button
-                  className="lang-selector__trigger"
-                  onClick={handleLangClick}
-                  aria-label="Select language"
-                  aria-expanded={langOpen}
-                  aria-haspopup="listbox"
-                >
-                  <Globe />
-                  <span>{currentLocale.toUpperCase()}</span>
-                </button>
-                <div className={`lang-selector__dropdown ${langOpen ? "open" : ""}`} role="listbox">
-                  {languages.map((l) => (
-                    <button
-                      key={l.code}
-                      className={`lang-selector__option ${currentLocale === l.code ? "active" : ""}`}
-                      onClick={() => setLang(l.code)}
-                      role="option"
-                      aria-selected={currentLocale === l.code}
-                    >
-                      {l.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* AAA Toggle */}
-              <button
-                className="aaa-toggle"
-                onClick={handleAAAToggle}
-                aria-label={`Accessibility level: ${aaaLevel}. Click to toggle.`}
-                aria-pressed={aaaLevel === "AAA"}
-              >
-                <Contrast />
-                <span>AA{aaaLevel === "AAA" ? "A" : ""}</span>
-              </button>
 
               <button
                 className="portfolio-header__mobile-toggle"
