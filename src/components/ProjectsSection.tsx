@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Grid, ListNumbered, ArrowRight, Filter } from "@carbon/icons-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getLocaleText, Locale } from "@/lib/utils-locale";
 import { resolveProjectImage, getPexelsFallback } from "@/lib/pexels-images";
 
@@ -16,22 +17,41 @@ interface ProjectsSectionProps {
 }
 
 export default function ProjectsSection({ projects, locale }: ProjectsSectionProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [view, setView] = useState<ViewMode>("grid");
   const [category, setCategory] = useState<string>("all");
+  const [mounted, setMounted] = useState(false);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
+    setMounted(true);
     try {
-      const saved = localStorage.getItem("projects-view");
-      if (saved === "grid" || saved === "revista") setView(saved);
+      const savedView = localStorage.getItem("projects-view");
+      if (savedView === "grid" || savedView === "revista") setView(savedView);
+      const urlCategory = searchParams.get("category");
+      if (urlCategory) setCategory(urlCategory);
     } catch {}
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
+    if (!mounted) return;
     try {
       localStorage.setItem("projects-view", view);
     } catch {}
-  }, [view]);
+  }, [view, mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const params = new URLSearchParams(searchParams.toString());
+    if (category === "all") {
+      params.delete("category");
+    } else {
+      params.set("category", category);
+    }
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }, [category, searchParams, mounted]);
 
   const categories = useMemo(() => {
     const seen = new Set<string>();
@@ -53,6 +73,14 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
     jp: { all: "すべて", grid: "グリッド", revista: "レビスタ", result: "件" },
   }[locale as Locale];
 
+  const handleCategoryChange = (c: string) => {
+    setCategory(c);
+  };
+
+  const handleViewChange = (v: ViewMode) => {
+    setView(v);
+  };
+
   return (
     <div>
       {/* Toolbar */}
@@ -62,7 +90,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
           <button
             role="tab"
             aria-selected={category === "all"}
-            onClick={() => setCategory("all")}
+            onClick={() => handleCategoryChange("all")}
             className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${
               category === "all"
                 ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]"
@@ -76,7 +104,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
               key={c}
               role="tab"
               aria-selected={category === c}
-              onClick={() => setCategory(c)}
+              onClick={() => handleCategoryChange(c)}
               className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${
                 category === c
                   ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]"
@@ -95,7 +123,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
           aria-label="View mode"
         >
           <button
-            onClick={() => setView("grid")}
+            onClick={() => handleViewChange("grid")}
             aria-pressed={view === "grid"}
             title={labels.grid}
             aria-label={labels.grid}
@@ -109,7 +137,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
             {labels.grid}
           </button>
           <button
-            onClick={() => setView("revista")}
+            onClick={() => handleViewChange("revista")}
             aria-pressed={view === "revista"}
             title={labels.revista}
             aria-label={labels.revista}
