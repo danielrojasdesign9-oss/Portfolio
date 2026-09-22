@@ -41,7 +41,7 @@ export const localeContent = defineType({
       title: lang.title,
       name: lang.id,
       type: 'array',
-      of: [{ type: 'block' }, { type: 'image' }]
+      of: [{ type: 'block' }, { type: 'image' }, { type: 'portableTable' }]
     })
   ))
 })

@@ -10,6 +10,7 @@ import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
 import { Grid, Column } from "@carbon/react";
+import PortableTable from "@/components/PortableTable";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 import Footer from "@/components/Footer";
 import SequentialNav from "@/components/SequentialNav";
@@ -63,12 +64,12 @@ export default async function ProjectLayout({
   }[locale];
 
   const projectsMeta: Record<string, any> = {
-    "paycool": { accent: "#635B9B" },
-    "innu": { accent: "#9FB2A9" },
-    "tir": { accent: "#0066FF" },
-    "silin": { accent: "#00A88F" },
-    "linklight": { accent: "#FFC107" },
-    "e-signer": { accent: "#804D6D" }
+    "paycool-banking-gamification": { accent: "#635B9B" },
+    "innu-ux-redesign-roadside-assistance": { accent: "#9FB2A9" },
+    "tir-tax-information-reporting": { accent: "#0066FF" },
+    "silin-government-tax-reporting": { accent: "#00A88F" },
+    "linklight-assertive-communication": { accent: "#FFC107" },
+    "e-signer-app-documentos-firmas-digitales": { accent: "#804D6D" }
   };
 
   const meta = projectsMeta[slug] || { accent: "#000000" };
@@ -165,7 +166,16 @@ export default async function ProjectLayout({
               {/* 4. Case Study Content */}
               {content && (
                 <div className="prose prose-xl max-w-none pt-6">
-                  <PortableText value={content} />
+                  <PortableText
+                    value={content}
+                    components={{
+                      types: {
+                        portableTable: ({ value }: any) => (
+                          <PortableTable rows={value?.rows || []} />
+                        ),
+                      },
+                    }}
+                  />
                 </div>
               )}
 

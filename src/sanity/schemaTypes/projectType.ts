@@ -48,6 +48,37 @@ export const projectType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'subtitle',
+      title: 'Subtitle / Tagline',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'scope',
+      title: 'Scope',
+      type: 'localeText',
+    }),
+    defineField({
+      name: 'teamSize',
+      title: 'Team Size',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'duration',
+      title: 'Duration',
+      type: 'localeString',
+    }),
+    defineField({
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
       name: 'publishDate',
       title: 'Fecha de publicación',
       description: 'Para orden cronológico preciso y SEO',

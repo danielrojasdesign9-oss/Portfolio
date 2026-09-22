@@ -5,7 +5,8 @@ import { experienceType } from './experienceType'
 import { toolType } from './toolType'
 import { resourceType } from './resourceType'
 import { localeString, localeText, localeContent } from './localeFields'
+import { portableTable } from './portableTable'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [projectType, profileType, experienceType, toolType, resourceType, localeString, localeText, localeContent],
+  types: [projectType, profileType, experienceType, toolType, resourceType, localeString, localeText, localeContent, portableTable],
 }

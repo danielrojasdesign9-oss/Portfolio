@@ -1,6 +1,7 @@
 @layer theme, base, carbon, components, utilities;
 
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "../styles/design-tokens.css";
 @import "@carbon/styles/css/styles.css" layer(carbon);
 @import "../styles/carbon-theme.css" layer(carbon);
@@ -70,4 +71,22 @@
     height: 120px;
     border-radius: 9999px;
   }
+}
+
+/* Case-study prose: theme tokens over typography defaults (unlayered = wins) */
+.prose {
+  --tw-prose-body: var(--color-text-primary);
+  --tw-prose-headings: var(--color-text-primary);
+  --tw-prose-lead: var(--color-text-primary);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text-primary);
+  --tw-prose-counters: var(--color-text-secondary);
+  --tw-prose-bullets: var(--color-text-secondary);
+  --tw-prose-hr: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
+  --tw-prose-quotes: var(--color-text-primary);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--color-text-secondary);
+  --tw-prose-code: var(--color-text-primary);
+  --tw-prose-th-borders: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
+  --tw-prose-td-borders: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
 }
