@@ -154,95 +154,112 @@ export default function Navbar() {
         animate={{ y: isHidden ? -100 : 0 }}
         transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
       >
-        <Header
+        <header
           aria-label="Daniel Rojas"
           className={`portfolio-header ${isScrolled ? "scrolled" : ""}`}
         >
+          {/* Left nav items */}
+          <nav className="portfolio-header__nav portfolio-header__nav--left" aria-label="Main navigation">
+            {navItems.slice(0, 3).map((item) => (
+              <a
+                key={item.key}
+                href={item.href}
+                className={`portfolio-header__menu-item ${isActive(item) ? "active" : ""}`}
+                aria-current={isActive(item) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Centered logo */}
           <Link
             href={`/?lang=${currentLocale}`}
-            className="cds--header__name portfolio-header__name"
+            className="portfolio-header__name portfolio-header__name--center"
           >
             Daniel Rojas
           </Link>
 
-          <HeaderNavigation aria-label="Main navigation" className="portfolio-header__nav">
-            {navItems.map((item) => (
-              <HeaderMenuItem
-                key={item.key}
-                href={item.href}
-                isActive={isActive(item)}
-                className="portfolio-header__menu-item"
-              >
-                {item.label}
-              </HeaderMenuItem>
-            ))}
-          </HeaderNavigation>
-
-          <div className="cds--header__global portfolio-header__global">
-            {/* Theme Toggle */}
-            <div className="portfolio-header__theme">
-              <button
-                className="theme-toggle"
-                onClick={() => handleThemeChange(
-                  theme === "light" ? "dark" : theme === "dark" ? "system" : "light"
-                )}
-                aria-label={`Current theme: ${theme}. Click to cycle.`}
-                title={`Theme: ${theme}`}
-              >
-                {theme === "light" && <Sun />}
-                {theme === "dark" && <Moon />}
-                {theme === "system" && <Contrast />}
-              </button>
+          {/* Right nav items + global actions */}
+          <nav className="portfolio-header__nav portfolio-header__nav--right" aria-label="Main navigation">
+            <div className="portfolio-header__nav-items">
+              {navItems.slice(3).map((item) => (
+                <a
+                  key={item.key}
+                  href={item.href}
+                  className={`portfolio-header__menu-item ${isActive(item) ? "active" : ""}`}
+                  aria-current={isActive(item) ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-
-            {/* Language Selector (Pinned) */}
-            <div className="lang-selector" ref={langRef}>
-              <button
-                className="lang-selector__trigger"
-                onClick={handleLangClick}
-                aria-label="Select language"
-                aria-expanded={langOpen}
-                aria-haspopup="listbox"
-              >
-                <Globe />
-                <span>{currentLocale.toUpperCase()}</span>
-              </button>
-              <div className={`lang-selector__dropdown ${langOpen ? "open" : ""}`} role="listbox">
-                {languages.map((l) => (
-                  <button
-                    key={l.code}
-                    className={`lang-selector__option ${currentLocale === l.code ? "active" : ""}`}
-                    onClick={() => setLang(l.code)}
-                    role="option"
-                    aria-selected={currentLocale === l.code}
-                  >
-                    {l.label}
-                  </button>
-                ))}
+            <div className="portfolio-header__global">
+              {/* Theme Toggle */}
+              <div className="portfolio-header__theme">
+                <button
+                  className="theme-toggle"
+                  onClick={() => handleThemeChange(
+                    theme === "light" ? "dark" : theme === "dark" ? "system" : "light"
+                  )}
+                  aria-label={`Current theme: ${theme}. Click to cycle.`}
+                  title={`Theme: ${theme}`}
+                >
+                  {theme === "light" && <Sun />}
+                  {theme === "dark" && <Moon />}
+                  {theme === "system" && <Contrast />}
+                </button>
               </div>
+
+              {/* Language Selector (Pinned) */}
+              <div className="lang-selector" ref={langRef}>
+                <button
+                  className="lang-selector__trigger"
+                  onClick={handleLangClick}
+                  aria-label="Select language"
+                  aria-expanded={langOpen}
+                  aria-haspopup="listbox"
+                >
+                  <Globe />
+                  <span>{currentLocale.toUpperCase()}</span>
+                </button>
+                <div className={`lang-selector__dropdown ${langOpen ? "open" : ""}`} role="listbox">
+                  {languages.map((l) => (
+                    <button
+                      key={l.code}
+                      className={`lang-selector__option ${currentLocale === l.code ? "active" : ""}`}
+                      onClick={() => setLang(l.code)}
+                      role="option"
+                      aria-selected={currentLocale === l.code}
+                    >
+                      {l.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* AAA Toggle */}
+              <button
+                className="aaa-toggle"
+                onClick={handleAAAToggle}
+                aria-label={`Accessibility level: ${aaaLevel}. Click to toggle.`}
+                aria-pressed={aaaLevel === "AAA"}
+              >
+                <Contrast />
+                <span>AA{aaaLevel === "AAA" ? "A" : ""}</span>
+              </button>
+
+              <button
+                className="portfolio-header__mobile-toggle"
+                onClick={handleMenuClick}
+                aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+                aria-expanded={isMobileOpen}
+              >
+                {isMobileOpen ? <Close /> : <Menu />}
+              </button>
             </div>
-
-            {/* AAA Toggle */}
-            <button
-              className="aaa-toggle"
-              onClick={handleAAAToggle}
-              aria-label={`Accessibility level: ${aaaLevel}. Click to toggle.`}
-              aria-pressed={aaaLevel === "AAA"}
-            >
-              <Contrast />
-              <span>AA{aaaLevel === "AAA" ? "A" : ""}</span>
-            </button>
-
-            <button
-              className="portfolio-header__mobile-toggle"
-              onClick={handleMenuClick}
-              aria-label={isMobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={isMobileOpen}
-            >
-              {isMobileOpen ? <Close /> : <Menu />}
-            </button>
-          </div>
-        </Header>
+          </nav>
+        </header>
       </motion.div>
 
       {/* Mobile Drawer */}
