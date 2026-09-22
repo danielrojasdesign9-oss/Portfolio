@@ -15,6 +15,7 @@ import {
   StructuredListCell,
 } from "@carbon/react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
+import Footer from "@/components/Footer";
 
 export const revalidate = 60;
 
@@ -268,7 +269,7 @@ export default async function AboutPage({
                       />
                     </div>
                   )}
-                  <span className="text-[11px] font-black uppercase tracking-widest text-[var(--color-text-secondary)] group-hover:text-[var(--cds-text-primary)] text-center">
+                  <span className="text-[11px] font-black uppercase tracking-widest text-[var(--color-text-secondary)] group-hover:text-[var(--color-text-primary)] text-center">
                     {getLocaleText(hobby.name, locale)}
                   </span>
                 </div>
@@ -277,11 +278,7 @@ export default async function AboutPage({
           </div>
         )}
 
-        <footer className="mt-24 pt-8 border-t border-[var(--color-border-subtle)] text-center">
-          <p className="text-[11px] tracking-[0.4em] text-[var(--color-text-tertiary)]">
-            {t.footer}
-          </p>
-        </footer>
+        <Footer locale={locale} />
       </div>
     </main>
   );

@@ -5,6 +5,7 @@ import { getLocaleText, type Locale } from "@/lib/utils-locale";
 import { getRecursosT } from "@/lib/utils-recursos";
 import { Suspense } from "react";
 import RecursosClient from "./RecursosClient";
+import Footer from "@/components/Footer";
 
 export const revalidate = 60;
 
@@ -26,11 +27,12 @@ export default async function RecursosPage({
   }));
 
   return (
-    <main className="min-h-screen bg-[var(--cds-background)] text-[var(--cds-text-primary)]">
+    <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
       <Suspense fallback={<div className="pt-48 text-center">Loading...</div>}>
         <RecursosClient resources={resourcesWithLocale} t={t} locale={locale} />
       </Suspense>
+      <Footer locale={locale} />
     </main>
   );
 }
