@@ -119,12 +119,12 @@ function SystemCard({
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
-            style={{ background: system.vars['--color-silver-mist'] || '#CCC' }}
+            style={{ background: system.vars['--color-silver-mist'] || '#C6C6C6' }}
             title="Neutral"
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
-            style={{ background: system.vars['--color-onyx'] || '#1D1D15' }}
+            style={{ background: system.vars['--color-onyx'] || '#161616' }}
             title="Dark"
           />
         </div>

@@ -52,7 +52,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
           viewport={{ once: true }}
           className="space-y-6"
         >
-          <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-[var(--color-primary)]">
+          <p className="text-xl font-medium text-[var(--color-text-secondary)]">
             {copy.kicker}
           </p>
           <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] whitespace-pre-line">

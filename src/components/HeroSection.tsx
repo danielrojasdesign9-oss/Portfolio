@@ -59,12 +59,11 @@ export default function HeroSection({
         >
           <motion.div variants={item} className="flex-shrink-0 relative w-full md:w-1/2">
             <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none">
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-midnight)] via-[var(--color-indigo)] to-[var(--color-merlot)] rounded-full opacity-10 blur-2xl" />
               <motion.div
                 initial={reduced ? false : { clipPath: "circle(0% at 50% 50%)" }}
                 animate={{ clipPath: "circle(75% at 50% 50%)" }}
                 transition={{ duration: reduced ? 0 : 1.1, ease }}
-                className="relative aspect-square overflow-hidden rounded-full border-[3px] border-[var(--color-primary)] shadow-2xl ring-4 ring-[var(--color-bg)]"
+                className="relative aspect-square overflow-hidden rounded-full border-[3px] border-[var(--color-primary)] shadow-2xl ring-4 ring-white"
               >
                 {profileImageUrl ? (
                   <Image
@@ -80,13 +79,6 @@ export default function HeroSection({
                   </div>
                 )}
               </motion.div>
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5" aria-hidden>
-                <div className="w-5 h-5 rounded-full bg-[var(--color-midnight)]" />
-                <div className="w-5 h-5 rounded-full bg-[var(--color-indigo)]" />
-                <div className="w-5 h-5 rounded-full bg-[var(--color-merlot)]" />
-                <div className="w-5 h-5 rounded-full bg-[var(--color-silver-mist)] border border-[var(--color-border-subtle)]" />
-                <div className="w-5 h-5 rounded-full bg-[var(--color-onyx)]" />
-              </div>
             </div>
           </motion.div>
 

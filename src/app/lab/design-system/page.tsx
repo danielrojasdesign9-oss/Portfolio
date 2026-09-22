@@ -8,11 +8,11 @@ import Footer from "@/components/Footer";
 import { designSystems } from "@/lib/design-systems";
 
 const palette = [
-  { name: "Midnight", token: "--color-midnight", hex: "#1C0B69" },
-  { name: "Indigo", token: "--color-indigo", hex: "#2D318C" },
-  { name: "Merlot", token: "--color-merlot", hex: "#7F333D" },
-  { name: "Silver Mist", token: "--color-silver-mist", hex: "#CCCCCC" },
-  { name: "Onyx", token: "--color-onyx", hex: "#1D1D15" },
+  { name: "Blue Ribbon", token: "--color-midnight", hex: "#0F62FE" },
+  { name: "Dark Blue", token: "--color-indigo", hex: "#0043CE" },
+  { name: "Orchid", token: "--color-merlot", hex: "#8A3FFC" },
+  { name: "Silver Mist", token: "--color-silver-mist", hex: "#C6C6C6" },
+  { name: "Onyx", token: "--color-onyx", hex: "#161616" },
 ];
 
 const typeScale = [
@@ -40,7 +40,7 @@ function DesignSystemDocs() {
             Design system
           </h1>
           <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">
-            Midnight, Indigo, Merlot, Silver Mist, Onyx. Space Grotesk for structure, Crimson Pro for reading.
+            Blue Ribbon #0F62FE, Dark Blue, Orchid, Silver Mist, Onyx. Space Grotesk for structure, IBM Plex Sans for reading.
             Hot-swap systems live in the{" "}
             <Link href={`/lab?lang=${lang}`} className="text-[var(--color-primary)] underline underline-offset-4">
               Lab switcher

@@ -70,7 +70,7 @@ export default async function Home({
 
       <section id="projects" className="px-4 md:px-8 py-24 max-w-[1400px] mx-auto scroll-mt-[var(--header-height)]">
         <div className="mb-14 max-w-3xl">
-          <p className="text-[11px] font-bold uppercase tracking-[0.4em] text-[var(--color-primary)] mb-4">
+          <p className="text-xl font-medium text-[var(--color-text-secondary)] mb-4">
             {workCopy.kicker}
           </p>
           <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] mb-4">

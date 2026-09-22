@@ -1,8 +1,9 @@
 /* Carbon Design System → Daniel Rojas Portfolio theme
- * Palette: Midnight, Indigo, Merlot, Silver Mist, Onyx
- * Typography: Space Grotesk (headings), Crimson Pro (body)
+ * Palette: Blue Ribbon #0F62FE, Dark Blue, Orchid, Silver Mist, Onyx
+ * Typography: Space Grotesk (headings), IBM Plex Sans (body)
  * Supports: Light/Dark mode, AA/AAA accessibility
  * Created: 2026-09-20
+ * v2: IBM Plex Sans + Carbon Blue #0F62FE (PS:Home Daniel)
  */
 
 @layer theme {
@@ -90,7 +91,7 @@
   .cds--g100,
   [class^="cds--"],
   [class*=" cds--"] {
-    font-family: var(--font-body), serif;
+    font-family: var(--font-body), sans-serif;
   }
 
   .cds--btn,
@@ -100,7 +101,7 @@
   .cds--text-area,
   .cds--tag,
   .cds--search-input {
-    font-family: var(--font-body), serif;
+    font-family: var(--font-body), sans-serif;
   }
 
   /* Primary button */

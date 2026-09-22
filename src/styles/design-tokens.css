@@ -1,30 +1,31 @@
 /* Design Tokens — Daniel Rojas Portfolio
- * Palette: Midnight, Indigo, Merlot, Silver Mist, Onyx
- * Typography: Space Grotesk (headings), Crimson Pro (body)
+ * Palette: Blue Ribbon (#0F62FE), Dark Blue, Orchid, Silver Mist, Onyx
+ * Typography: Space Grotesk (headings), IBM Plex Sans (body)
  * Created: 2026-09-20
+ * v2: IBM Plex Sans + Carbon Blue #0F62FE (PS:Home Daniel)
  * Supports: Light/Dark mode, AA/AAA accessibility
  */
 
 @layer theme {
   :root {
     /* === Color Palette (Brand) === */
-    --color-midnight: #1C0B69;
-    --color-indigo: #2D318C;
-    --color-merlot: #7F333D;
-    --color-silver-mist: #CCCCCC;
-    --color-onyx: #1D1D15;
+    --color-midnight: #0F62FE;
+    --color-indigo: #0043CE;
+    --color-merlot: #8A3FFC;
+    --color-silver-mist: #C6C6C6;
+    --color-onyx: #161616;
 
     /* === Semantic Colors (Light Mode) === */
     --color-primary: var(--color-midnight);
     --color-primary-hover: var(--color-indigo);
-    --color-primary-light: #E8E0F0;
-    --color-secondary: var(--color-indigo);
+    --color-primary-light: #D0E2FF;
+    --color-secondary: #393939;
     --color-accent: var(--color-merlot);
     --color-neutral: var(--color-silver-mist);
     --color-text: var(--color-onyx);
 
     /* Background Scale (Light) */
-    --color-bg: #FAFAFA;
+    --color-bg: #FFFFFF;
     --color-bg-elevated: #FFFFFF;
     --color-bg-sunken: #F0F0F0;
     --color-bg-dark: var(--color-onyx);
@@ -32,8 +33,8 @@
 
     /* Text Scale (Light) - AA compliant */
     --color-text-primary: var(--color-onyx);
-    --color-text-secondary: #555555;
-    --color-text-tertiary: #888888;
+    --color-text-secondary: #333333;
+    --color-text-tertiary: #444444;
     --color-text-inverse: #FFFFFF;
     --color-text-link: var(--color-indigo);
     --color-text-link-hover: var(--color-midnight);
@@ -41,7 +42,7 @@
     /* Border Scale (Light) */
     --color-border: var(--color-silver-mist);
     --color-border-subtle: #E5E5E5;
-    --color-border-strong: #999999;
+    --color-border-strong: #222222;
 
     /* Status Colors */
     --color-success: #129A56;
@@ -71,8 +72,8 @@
     --color-border-dark-aaa: #CCCCCC;
 
     /* === Typography === */
-    --font-heading: var(--font-sg), system-ui, sans-serif;
-    --font-body: var(--font-cp), Georgia, serif;
+    --font-heading: var(--font-sg), 'Space Grotesk', system-ui, sans-serif;
+    --font-body: var(--font-plex), 'IBM Plex Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     /* Font Scale */
@@ -184,18 +185,18 @@
 
   /* === Explicit Theme Override (for manual toggle) === */
   [data-theme="light"] {
-    --color-bg: #FAFAFA;
+    --color-bg: #FFFFFF;
     --color-bg-elevated: #FFFFFF;
     --color-bg-sunken: #F0F0F0;
     --color-text-primary: var(--color-onyx);
-    --color-text-secondary: #555555;
-    --color-text-tertiary: #888888;
+    --color-text-secondary: #333333;
+    --color-text-tertiary: #444444;
     --color-text-inverse: #FFFFFF;
     --color-text-link: var(--color-indigo);
     --color-text-link-hover: var(--color-midnight);
     --color-border: var(--color-silver-mist);
     --color-border-subtle: #E5E5E5;
-    --color-border-strong: #999999;
+    --color-border-strong: #222222;
   }
 
   [data-theme="dark"] {

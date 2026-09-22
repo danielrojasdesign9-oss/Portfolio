@@ -1,0 +1,11 @@
+{
+  "name": "Portfolio Sync by OpenCode",
+  "id": "portfolio-sync-opencode",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  },
+  "documentAccess": "dynamic-page"
+}

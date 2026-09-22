@@ -52,7 +52,7 @@ export default async function WorkPage({
       <section className="pt-32 md:pt-40 pb-16 px-4 md:px-8 max-w-[1400px] mx-auto border-b border-[var(--color-border-subtle)]">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
-            <p className="text-[12px] font-bold tracking-[0.4em] text-[var(--color-primary)] mb-4">
+            <p className="text-xl font-medium text-[var(--color-text-secondary)] mb-4">
               {t.kicker}
             </p>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-6">

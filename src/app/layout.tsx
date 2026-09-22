@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Crimson_Pro, DM_Serif_Display, Inter } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans, DM_Serif_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Providers from "@/components/Providers";
@@ -10,9 +10,10 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const crimsonPro = Crimson_Pro({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-cp",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex",
   display: "swap",
 });
 
@@ -46,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`scroll-smooth ${spaceGrotesk.variable} ${crimsonPro.variable} ${dmSerif.variable} ${inter.variable}`}
+      className={`scroll-smooth ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${dmSerif.variable} ${inter.variable}`}
     >
       <body className="antialiased">
         <a
