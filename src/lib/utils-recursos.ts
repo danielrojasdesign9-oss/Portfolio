@@ -8,7 +8,7 @@ export const recursosTranslations = {
     designops: "DesignOps",
     producto: "Product",
     liderazgo: "Leadership",
-    free: "GRATIS",
+    free: "FREE",
     kit: "KIT",
     ctaTitle: "Do you have a complex design problem?",
     ctaDescription: "Tell me your context in 5 quick questions. I'll recommend the next best step: resources, chat, mentorship, workshop or consulting.",
@@ -16,6 +16,7 @@ export const recursosTranslations = {
     viewDetails: "View details",
     viewKit: "View kit",
     compatibleWith: "Compatible with",
+    result: "resources",
     footer: "ALL RIGHTS RESERVED",
   },
   es: {
@@ -35,6 +36,7 @@ export const recursosTranslations = {
     viewDetails: "Ver detalles",
     viewKit: "Ver kit",
     compatibleWith: "Compatible con",
+    result: "recursos",
     footer: "TODOS LOS DERECHOS RESERVADOS",
   },
   jp: {
@@ -54,6 +56,7 @@ export const recursosTranslations = {
     viewDetails: "詳細を見る",
     viewKit: "キットを見る",
     compatibleWith: "対応",
+    result: "リソース",
     footer: "全著作権所有",
   },
 } as const;

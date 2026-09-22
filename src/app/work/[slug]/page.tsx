@@ -9,7 +9,7 @@ import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
-import { Grid, Column, Tag } from "@carbon/react";
+import { Grid, Column } from "@carbon/react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 import Footer from "@/components/Footer";
 import SequentialNav from "@/components/SequentialNav";
@@ -85,7 +85,7 @@ export default async function ProjectLayout({
           <Column sm={4} md={4} lg={4}>
             <div className="h-fit sticky top-24 lg:top-32">
               <CarbonLinkButton
-                href={`/?lang=${locale}`}
+                href={`/work?lang=${locale}`}
                 kind="ghost"
                 size="sm"
                 icon="ArrowLeft"
@@ -129,7 +129,7 @@ export default async function ProjectLayout({
               {/* 1. Problem Intro */}
               {introText && (
                 <div className="space-y-4">
-                  <Tag type="outline" size="sm">{t.problem}</Tag>
+                  <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.problem}</span>
                   <div className="text-2xl md:text-3xl font-bold tracking-tight leading-tight italic max-w-2xl">
                     {introText}
                   </div>
@@ -173,7 +173,7 @@ export default async function ProjectLayout({
               {project.figmaEmbedUrl && (
                 <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
                   <div className="flex items-center gap-4">
-                    <Tag type="outline" size="sm">{t.prototype}</Tag>
+                    <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.prototype}</span>
                     <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
                   </div>
                   <div className="relative aspect-video rounded-[6px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
@@ -203,7 +203,7 @@ export default async function ProjectLayout({
                           {(sTitle || sSubtitle || sDesc) && (
                             <div className="space-y-3 border-b border-[var(--color-border-subtle)] pb-4">
                               <div className="space-y-1">
-                                {sTitle && <Tag type="outline" size="sm">{sTitle}</Tag>}
+                                {sTitle && <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{sTitle}</span>}
                                 {sSubtitle && <h4 className="text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed">{sSubtitle}</h4>}
                               </div>
                               {sDesc && <p className="text-base font-medium text-[var(--color-text-secondary)] leading-relaxed italic max-w-2xl whitespace-pre-line">{sDesc}</p>}

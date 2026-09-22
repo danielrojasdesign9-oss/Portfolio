@@ -124,16 +124,19 @@
   }
 
   /* ---- Portfolio Header ---- */
-  .portfolio-header {
+  .portfolio-header-shell {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+  }
+
+  .portfolio-header {
+    position: relative;
     backdrop-filter: blur(12px);
     background: color-mix(in srgb, var(--color-bg-elevated) 88%, transparent);
     border-bottom: 1px solid var(--color-border-subtle);
-    transition: all var(--transition-base);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,10 +151,10 @@
 
   .portfolio-header__name {
     font-family: var(--font-heading), sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    font-size: 1.05rem;
-    text-transform: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    text-transform: uppercase;
     color: var(--color-text-primary);
     white-space: nowrap;
     z-index: 1;
@@ -202,9 +205,9 @@
 
   .portfolio-header__menu-item {
     font-family: var(--font-heading), sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-text-secondary);
     position: relative;
@@ -309,6 +312,32 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-4);
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-header__settings-popover {
+      min-width: 720px;
+      max-width: 880px;
+    }
+
+    .portfolio-header__settings-row {
+      flex-direction: row;
+      align-items: stretch;
+      gap: var(--space-3);
+    }
+
+    .portfolio-header__setting-item {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0;
+      gap: var(--space-2);
+    }
+
+    .portfolio-header__settings-divider {
+      width: 1px;
+      height: auto;
+      margin: 0 var(--space-2);
+    }
   }
 
   .portfolio-header__setting-item {
@@ -700,10 +729,15 @@
     }
   }
 
-  /* Mobile: show mobile toggle, hide desktop nav */
+  /* Mobile: hide desktop links, keep hamburger */
   @media (max-width: 767px) {
-    .portfolio-header__nav {
+    .portfolio-header__nav--left,
+    .portfolio-header__nav-items,
+    .portfolio-header__settings-macro {
       display: none;
+    }
+    .portfolio-header__nav--right {
+      display: flex;
     }
     .portfolio-header__mobile-toggle {
       display: flex;

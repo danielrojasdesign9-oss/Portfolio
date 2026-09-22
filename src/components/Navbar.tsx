@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { Sun, Moon, Contrast, Globe, Close, Menu, Settings } from "@carbon/icons-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Sun, Moon, Contrast, Close, Menu, Settings } from "@carbon/icons-react";
 import { useTheme } from "@/components/ThemeProvider";
+import SettingsToast from "@/components/SettingsToast";
 
 export default function Navbar() {
   const router = useRouter();
@@ -18,22 +19,19 @@ export default function Navbar() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hash, setHash] = useState<string>("");
+  const [toast, setToast] = useState<string | null>(null);
   const reducedMotion = useReducedMotion();
   const headerRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<HTMLDivElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
-  const { theme, setTheme, aaaLevel, setAAALevel, resolvedTheme } = useTheme();
-
-  const { scrollY } = useScroll({
-    target: headerRef,
-  });
+  const { theme, setTheme, aaaLevel, setAAALevel } = useTheme();
 
   const translations = {
-    en: { home: "Home", about: "About", work: "Work", lab: "Lab", recursos: "Resources", contact: "Contact", settings: "Settings" },
-    es: { home: "Inicio", about: "Sobre mí", work: "Proyectos", lab: "Lab", recursos: "Recursos", contact: "Contacto", settings: "Ajustes" },
-    jp: { home: "ホーム", about: "について", work: "作品", lab: "Lab", recursos: "リソース", contact: "連絡先", settings: "設定" },
+    en: { home: "Home", about: "About", work: "Work", lab: "Lab", recursos: "Resources", contact: "Contact", settings: "Settings", theme: "Theme", language: "Language", contrast: "Contrast", contrastOn: "Contrast: AAA", contrastOff: "Contrast: AA" },
+    es: { home: "Inicio", about: "Sobre mí", work: "Proyectos", lab: "Lab", recursos: "Recursos", contact: "Contacto", settings: "Ajustes", theme: "Tema", language: "Idioma", contrast: "Contraste", contrastOn: "Contraste: AAA", contrastOff: "Contraste: AA" },
+    jp: { home: "ホーム", about: "について", work: "作品", lab: "Lab", recursos: "リソース", contact: "連絡先", settings: "設定", theme: "テーマ", language: "言語", contrast: "コントラスト", contrastOn: "コントラスト: AAA", contrastOff: "コントラスト: AA" },
   };
   const t = translations[currentLocale as "en" | "es" | "jp"] || translations.en;
 
@@ -63,13 +61,19 @@ export default function Navbar() {
     setTheme(value);
   };
 
+  const handleAAALevel = (level: "AA" | "AAA") => {
+    setAAALevel(level);
+    setToast(level === "AAA" ? t.contrastOn : t.contrastOff);
+    window.setTimeout(() => setToast(null), 2200);
+  };
+
   const handleAAAToggle = () => {
-    setAAALevel(aaaLevel === "AA" ? "AAA" : "AA");
+    handleAAALevel(aaaLevel === "AA" ? "AAA" : "AA");
   };
 
   const navItems = [
     { href: `/?lang=${currentLocale}`, label: t.home, key: "home", exact: true },
-    { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work", hash: "projects" },
+    { href: `/work?lang=${currentLocale}`, label: t.work, key: "work", startsWith: true },
     { href: `/about?lang=${currentLocale}`, label: t.about, key: "about", exact: true },
     { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab", startsWith: true },
     { href: `/recursos?lang=${currentLocale}`, label: t.recursos, key: "recursos", exact: true },
@@ -78,7 +82,7 @@ export default function Navbar() {
 
   const isActive = (item: typeof navItems[0]) => {
     if (item.key === "home") {
-      return pathname === "/" && !["#projects", "#contact"].includes(hash);
+      return pathname === "/" && hash !== "#contact";
     }
     if (item.hash) {
       return pathname === "/" && hash === `#${item.hash}`;
@@ -127,16 +131,17 @@ export default function Navbar() {
         setIsSettingsOpen(false);
       }
     };
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsSettingsOpen(false);
+    };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKey);
+    };
   }, []);
 
-  useEffect(() => {
-    const handleHashChange = () => setHash(window.location.hash);
-    setHash(window.location.hash);
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
-  }, []);
 
   // Mobile drawer focus trap + Escape key
   useEffect(() => {
@@ -193,18 +198,15 @@ export default function Navbar() {
     };
   }, [isMobileOpen]);
 
-  const yTransform = useTransform(scrollY, [0, 50], [0, -100]);
-
   return (
     <>
-      <motion.div
-        ref={headerRef}
-        className="portfolio-header"
-        style={{ y: reducedMotion ? 0 : yTransform }}
-        initial={{ y: -100 }}
-        animate={{ y: isHidden ? -100 : 0 }}
-        transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
-      >
+    <motion.div
+      ref={headerRef}
+      className="portfolio-header-shell"
+      initial={{ y: -100 }}
+      animate={{ y: isHidden ? -100 : 0 }}
+      transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.4, 0, 0.2, 1] }}
+    >
         <header
           aria-label="Daniel Rojas"
           className={`portfolio-header ${isScrolled ? "scrolled" : ""}`}
@@ -259,6 +261,7 @@ export default function Navbar() {
               </button>
 
               {/* Settings Popover - horizontal layout */}
+              <AnimatePresence>
               {isSettingsOpen && (
                 <motion.div
                   className="portfolio-header__settings-popover"
@@ -272,7 +275,7 @@ export default function Navbar() {
                   <div className="portfolio-header__settings-row">
                     {/* Theme Toggle */}
                     <div className="portfolio-header__setting-item">
-                      <span className="portfolio-header__setting-label">Theme</span>
+                      <span className="portfolio-header__setting-label">{t.theme}</span>
                       <div className="portfolio-header__setting-control">
                         <button
                           className={`portfolio-header__theme-btn ${theme === "light" ? "active" : ""}`}
@@ -306,7 +309,7 @@ export default function Navbar() {
 
                     {/* Language Selector */}
                     <div className="portfolio-header__setting-item">
-                      <span className="portfolio-header__setting-label">Language</span>
+                      <span className="portfolio-header__setting-label">{t.language}</span>
                       <div className="portfolio-header__setting-control">
                         {languages.map((l) => (
                           <button
@@ -327,21 +330,21 @@ export default function Navbar() {
 
                     {/* AAA Toggle */}
                     <div className="portfolio-header__setting-item">
-                      <span className="portfolio-header__setting-label">Contrast</span>
+                      <span className="portfolio-header__setting-label">{t.contrast}</span>
                       <div className="portfolio-header__setting-control">
                         <button
                           className={`portfolio-header__aaa-btn ${aaaLevel === "AA" ? "active" : ""}`}
-                          onClick={handleAAAToggle}
-                          aria-label={`Contrast: ${aaaLevel}`}
-                          aria-pressed={aaaLevel === "AAA"}
+                          onClick={() => handleAAALevel("AA")}
+                          aria-label={`Contrast: AA`}
+                          aria-pressed={aaaLevel === "AA"}
                         >
                           AA
                         </button>
                         <button
                           className={`portfolio-header__aaa-btn ${aaaLevel === "AAA" ? "active" : ""}`}
-                          onClick={handleAAAToggle}
+                          onClick={() => handleAAALevel("AAA")}
                           aria-label={`Contrast: AAA`}
-                          aria-pressed={aaaLevel === "AA"}
+                          aria-pressed={aaaLevel === "AAA"}
                         >
                           AAA
                         </button>
@@ -350,6 +353,7 @@ export default function Navbar() {
                   </div>
                 </motion.div>
               )}
+              </AnimatePresence>
             </div>
 
             <button
@@ -447,6 +451,7 @@ export default function Navbar() {
           onClick={() => setIsMobileOpen(false)}
         />
       )}
+      <SettingsToast message={toast} />
     </>
   );
 }

@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Grid, ListNumbered, CarouselHorizontal, ArrowRight, Filter, ChevronLeft, ChevronRight } from "@carbon/icons-react";
+import { Grid, ListNumbered, CarouselHorizontal, ArrowRight, ChevronLeft, ChevronRight } from "@carbon/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getLocaleText, Locale } from "@/lib/utils-locale";
 import { resolveProjectImage, getPexelsFallback } from "@/lib/pexels-images";
@@ -74,6 +74,15 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
 }
 
 function RevistaView({ filtered, locale, reducedMotion }: { filtered: any[]; locale: Locale; reducedMotion: boolean }) {
+  const hero = filtered[0];
+  const rest = filtered.slice(1);
+
+  if (!hero) return null;
+
+  const heroTitle = getLocaleText(hero.title, locale);
+  const heroCat = getLocaleText(hero.category, locale);
+  const heroImg = resolveProjectImage(hero.imageUrl, hero.slug) || getPexelsFallback(hero.slug);
+
   return (
     <motion.div
       key="revista"
@@ -81,65 +90,163 @@ function RevistaView({ filtered, locale, reducedMotion }: { filtered: any[]; loc
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
-      className="space-y-24"
+      className="space-y-20"
     >
-      {filtered.map((project: any, i: number) => {
-        const title = getLocaleText(project.title, locale);
-        const categoryText = getLocaleText(project.category, locale);
-        const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug);
-        const reversed = i % 2 === 1;
-        return (
-          <motion.article
-            key={project._id || `${project.slug}-${i}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: reducedMotion ? 0 : 0.6 }}
-            className={`relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center ${reversed ? "lg:[&>*:first-child]:order-2" : ""}`}
-          >
-            <span className="hidden lg:block absolute -top-6 left-0 font-display text-[9rem] font-black leading-none text-[var(--color-text-primary)]/[0.05] select-none pointer-events-none tracking-tighter">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <div className="lg:col-span-8 relative overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
-              <Link href={`/work/${project.slug}?lang=${locale}`} className="group block relative aspect-[16/10]">
-                {img ? (
-                  <Image
-                    src={img}
-                    alt={title}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 66vw"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center font-display font-black text-6xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
-                    {title.slice(0, 2)}
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-[var(--color-midnight)]/0 group-hover:bg-[var(--color-midnight)]/20 transition-colors duration-500" />
-              </Link>
-            </div>
-            <div className={`lg:col-span-4 ${reversed ? "lg:order-1" : ""}`}>
-              <div className="space-y-4 lg:-mx-6">
-                <div className="flex items-center gap-3">
-                  <span className="text-[11px] font-black tracking-[0.4em] text-[var(--color-primary)]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="h-px flex-1 bg-[var(--color-border-subtle)]" />
-                  <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year}</span>
-                </div>
-                <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">{categoryText}</p>
-                <Link href={`/work/${project.slug}?lang=${locale}`} className="group block">
-                  <h3 className="font-display text-4xl md:text-5xl font-black tracking-tighter leading-[0.95] text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors">{title}</h3>
-                  <span className="inline-flex items-center gap-2 mt-6 text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
-                    {locale === "es" ? "Ver caso" : locale === "jp" ? "ケースを見る" : "View case"}
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
+      {/* Hero project — full width */}
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: reducedMotion ? 0 : 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Link href={`/work/${hero.slug}?lang=${locale}`} className="group block relative w-full overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
+          <div className="relative aspect-[21/10] w-full overflow-hidden">
+            {heroImg ? (
+              <Image
+                src={heroImg}
+                alt={heroTitle}
+                fill
+                sizes="100vw"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                priority
+              />
+            ) : (
+              <div className="w-full h-full bg-[var(--color-bg-elevated)] flex items-center justify-center font-display font-black text-8xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
+                {heroTitle.slice(0, 2)}
               </div>
+            )}
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            {/* Text overlay */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+              <div className="flex items-center gap-4 mb-4">
+                <span className="text-[11px] font-black tracking-[0.4em] text-white/60">
+                  {String(1).padStart(2, "0")} — {String(filtered.length).padStart(2, "0")}
+                </span>
+                <span className="h-px w-8 bg-white/30" />
+                <span className="text-[11px] font-bold tracking-widest text-white/60 uppercase">{heroCat}</span>
+                <span className="text-[11px] font-bold tracking-widest text-white/40">{hero.year}</span>
+              </div>
+              <h3 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.88] text-white max-w-4xl">
+                {heroTitle}
+              </h3>
+              <span className="inline-flex items-center gap-2 mt-6 text-[12px] font-bold uppercase tracking-[0.15em] text-white/70 group-hover:text-white transition-colors">
+                {locale === "es" ? "Ver caso" : locale === "jp" ? "ケースを見る" : "View case"}
+                <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
             </div>
-          </motion.article>
-        );
-      })}
+          </div>
+        </Link>
+      </motion.article>
+
+      {/* Rest of projects — magazine spread + staggered columns */}
+      {rest.length > 0 && (
+        <div className="space-y-16">
+          {rest[0] && (() => {
+            const feature = rest[0];
+            const title = getLocaleText(feature.title, locale);
+            const categoryText = getLocaleText(feature.category, locale);
+            const img = resolveProjectImage(feature.imageUrl, feature.slug) || getPexelsFallback(feature.slug);
+            return (
+              <motion.article
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: reducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <Link href={`/work/${feature.slug}?lang=${locale}`} className="group grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                  <div className="relative md:col-span-7 aspect-[16/10] overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
+                    {img ? (
+                      <Image
+                        src={img}
+                        alt={title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center font-display font-black text-5xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
+                        {title.slice(0, 2)}
+                      </div>
+                    )}
+                  </div>
+                  <div className="md:col-span-5 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[11px] font-black tracking-[0.4em] text-[var(--color-primary)]">02</span>
+                      <span className="h-px flex-1 bg-[var(--color-border-subtle)]" />
+                      <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{feature.year}</span>
+                    </div>
+                    <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">{categoryText}</p>
+                    <h3 className="font-display text-4xl md:text-5xl font-black tracking-tighter leading-[0.92] group-hover:text-[var(--color-primary)] transition-colors">
+                      {title}
+                    </h3>
+                    <span className="inline-flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+                      {locale === "es" ? "Ver caso" : locale === "jp" ? "ケースを見る" : "View case"}
+                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.article>
+            );
+          })()}
+
+          {rest.length > 1 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          {rest.slice(1).map((project: any, i: number) => {
+            const title = getLocaleText(project.title, locale);
+            const categoryText = getLocaleText(project.category, locale);
+            const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug);
+            const portrait = i % 2 === 0;
+            return (
+              <motion.article
+                key={project._id || `${project.slug}-${i}`}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: reducedMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className={portrait ? "md:mt-12" : ""}
+              >
+                <Link href={`/work/${project.slug}?lang=${locale}`} className="group block">
+                  <div className={`relative ${portrait ? "aspect-[4/5]" : "aspect-[16/10]"} overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] mb-6`}>
+                    {img ? (
+                      <Image
+                        src={img}
+                        alt={title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center font-display font-black text-5xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
+                        {title.slice(0, 2)}
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-[var(--color-midnight)]/0 group-hover:bg-[var(--color-midnight)]/15 transition-colors duration-500" />
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="text-[11px] font-black tracking-[0.4em] text-[var(--color-primary)]">
+                        {String(i + 3).padStart(2, "0")}
+                      </span>
+                      <span className="h-px flex-1 bg-[var(--color-border-subtle)]" />
+                      <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year}</span>
+                    </div>
+                    <p className="text-[12px] font-bold uppercase tracking-[0.2em] text-[var(--color-text-secondary)]">{categoryText}</p>
+                    <h3 className="font-display text-3xl md:text-4xl font-black tracking-tighter leading-[0.92] text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
+                      {title}
+                    </h3>
+                    <span className="inline-flex items-center gap-2 mt-2 text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
+                      {locale === "es" ? "Ver caso" : locale === "jp" ? "ケースを見る" : "View case"}
+                      <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.article>
+            );
+          })}
+        </div>
+      )}
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -254,7 +361,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
 export default function ProjectsSection({ projects, locale }: ProjectsSectionProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [view, setView] = useState<ViewMode>("grid");
+  const [view, setView] = useState<ViewMode>("revista");
   const [category, setCategory] = useState<string>("all");
   const [mounted, setMounted] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);

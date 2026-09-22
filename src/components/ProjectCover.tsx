@@ -51,7 +51,7 @@ export default function ProjectCover({ title, category, year }: ProjectCoverProp
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-[12px] font-black uppercase tracking-[0.6em] text-[var(--color-text-primary)]/40 mb-6"
+          className="inline-block px-3 py-1 mb-6 text-[11px] font-bold uppercase tracking-[0.2em] rounded-full border border-[var(--color-primary)] text-[var(--color-primary)]"
         >
           {category}
         </motion.p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { applyDesignSystem, getStoredSystem } from "@/lib/design-systems";
 
 type Theme = "light" | "dark" | "system";
 type AAALevel = "AA" | "AAA";
@@ -27,6 +28,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const storedAAA = localStorage.getItem("aaaLevel") as AAALevel | null;
     if (storedTheme) setTheme(storedTheme);
     if (storedAAA) setAAALevel(storedAAA);
+    applyDesignSystem(getStoredSystem());
   }, []);
 
   useEffect(() => {
@@ -45,6 +47,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     root.setAttribute("data-theme", resolved);
     root.setAttribute("data-aaa", aaaLevel === "AAA" ? "true" : "false");
     localStorage.setItem("theme", theme);
+    localStorage.setItem("aaaLevel", aaaLevel);
   }, [theme, aaaLevel, mounted]);
 
   useEffect(() => {

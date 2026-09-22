@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Email, LogoLinkedin, Chat } from "@carbon/icons-react";
 import { Locale } from "@/lib/utils-locale";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 
 interface ContactSectionProps {
   locale: Locale;
-  profile?: any;
+  profile?: {
+    email?: string;
+    linkedinUrl?: string;
+  };
 }
 
 export default function ContactSection({ locale, profile }: ContactSectionProps) {
@@ -19,67 +21,77 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
     es: "Hola Daniel, vi tu portafolio y me gustaría hablar sobre una oportunidad profesional...",
     en: "Hi Daniel, I saw your portfolio and would like to discuss a professional opportunity...",
     jp: "ダニエルさん、こんにちは。ポートフォリオを拝見しました。お仕事の件で相談させてください...",
-  }[locale as Locale];
+  }[locale];
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage || "")}`;
 
+  const copy = {
+    en: {
+      kicker: "Let's work together",
+      title: "Have a brief,\nnot a form.",
+      body: "Write directly. I reply to email, LinkedIn, and WhatsApp — no empty inbox theater.",
+    },
+    es: {
+      kicker: "Trabajemos juntos",
+      title: "Un brief,\nno un formulario.",
+      body: "Escríbeme directo. Respondo por email, LinkedIn y WhatsApp — sin formularios vacíos.",
+    },
+    jp: {
+      kicker: "一緒に働きましょう",
+      title: "フォームではなく、\n直接どうぞ。",
+      body: "メール、LinkedIn、WhatsAppで直接ご連絡ください。",
+    },
+  }[locale];
+
   return (
-    <section id="contact" className="max-w-[1400px] mx-auto px-4 md:px-8 py-24">
-      <div className="bg-[var(--color-bg-dark)] rounded-[14px] p-10 md:p-20 text-center text-[var(--color-text-inverse)] relative overflow-hidden">
+    <section id="contact" className="max-w-[1400px] mx-auto px-4 md:px-8 py-24 scroll-mt-[var(--header-height)]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end border-t border-[var(--color-border-subtle)] pt-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative z-10 space-y-10"
+          className="space-y-6"
         >
-          <div className="space-y-4">
-            <p className="text-[12px] font-bold tracking-[0.4em] text-white/50">
-              {locale === "es"
-                ? "TRABAJEMOS JUNTOS"
-                : locale === "jp"
-                ? "一緒に働きましょう"
-                : "LET'S WORK TOGETHER"}
-            </p>
-            <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.95]">
-              {locale === "es" ? "Hablemos" : locale === "jp" ? "話しましょう" : "Let's talk"}
-            </h2>
-          </div>
+          <p className="text-[11px] font-bold tracking-[0.4em] uppercase text-[var(--color-primary)]">
+            {copy.kicker}
+          </p>
+          <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] whitespace-pre-line">
+            {copy.title}
+          </h2>
+          <p className="text-lg text-[var(--color-text-secondary)] max-w-md leading-relaxed">{copy.body}</p>
+        </motion.div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-            <CarbonLinkButton
-              href={`mailto:${email}`}
-              kind="tertiary"
-              size="lg"
-              icon="Email"
-              className="w-full md:w-auto"
-            >
-              Email
-            </CarbonLinkButton>
-
-            <CarbonLinkButton
-              href={linkedinUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              kind="tertiary"
-              size="lg"
-              icon="LogoLinkedin"
-              className="w-full md:w-auto"
-            >
-              LinkedIn
-            </CarbonLinkButton>
-
-            <CarbonLinkButton
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              kind="primary"
-              size="lg"
-              icon="Chat"
-              className="w-full md:w-auto"
-            >
-              WhatsApp
-            </CarbonLinkButton>
-          </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3"
+        >
+          <CarbonLinkButton href={`mailto:${email}`} kind="primary" size="lg" icon="Email" className="w-full">
+            Email
+          </CarbonLinkButton>
+          <CarbonLinkButton
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            kind="secondary"
+            size="lg"
+            icon="LogoLinkedin"
+            className="w-full"
+          >
+            LinkedIn
+          </CarbonLinkButton>
+          <CarbonLinkButton
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            kind="tertiary"
+            size="lg"
+            icon="Chat"
+            className="w-full"
+          >
+            WhatsApp
+          </CarbonLinkButton>
         </motion.div>
       </div>
     </section>

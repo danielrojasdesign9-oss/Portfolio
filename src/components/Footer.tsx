@@ -1,8 +1,9 @@
 "use client";
 
 import { useTheme } from "@/components/ThemeProvider";
-import { Globe, Contrast } from "@carbon/icons-react";
-import { useState, useRef, useEffect } from "react";
+import { Sun, Moon, Contrast } from "@carbon/icons-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import type { Locale } from "@/lib/utils-locale";
 
 interface FooterProps {
@@ -21,84 +22,121 @@ const languages = [
   { code: "jp", label: "日本語" },
 ];
 
-export default function Footer({ locale }: FooterProps) {
-  const router = typeof window !== "undefined" ? require("next/navigation").useRouter() : null;
-  const searchParams = typeof window !== "undefined" ? require("next/navigation").useSearchParams() : null;
-  const { aaaLevel, setAAALevel } = useTheme();
-  const [langOpen, setLangOpen] = useState(false);
-  const langRef = useRef<HTMLDivElement>(null);
+function FooterContent({ locale }: FooterProps) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { theme, setTheme, aaaLevel, setAAALevel } = useTheme();
 
   const setLang = (code: string) => {
     if (!router || !searchParams) return;
     const params = new URLSearchParams(searchParams.toString());
     params.set("lang", code);
     router.push(`${window.location.pathname}?${params.toString()}`);
-    setLangOpen(false);
   };
-
-  const handleAAAToggle = () => {
-    setAAALevel(aaaLevel === "AA" ? "AAA" : "AA");
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(event.target as Node)) {
-        setLangOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <footer className="py-10 px-4 md:px-8 border-t border-[var(--color-border-subtle)] mt-24">
       <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <p className="text-[11px] tracking-[0.4em] text-[var(--color-text-tertiary)]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
+          <p className="text-[11px] tracking-[0.4em] text-[var(--color-text-tertiary)] text-center md:text-left">
             © {new Date().getFullYear()} {footerText[locale] || footerText.en}
           </p>
 
-          <div className="flex items-center gap-4">
-            {/* Language Selector */}
-            <div className="lang-selector" ref={langRef}>
+          <div className="flex flex-col md:flex-row items-center gap-6 md:divide-x md:divide-[var(--color-border-subtle)]">
+            {/* Theme Toggle */}
+            <div className="flex items-center gap-2 md:pr-6" role="group" aria-label="Theme selection">
               <button
-                className="lang-selector__trigger"
-                onClick={() => setLangOpen(!langOpen)}
-                aria-label="Select language"
-                aria-expanded={langOpen}
-                aria-haspopup="listbox"
+                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                  theme === "light"
+                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                }`}
+                onClick={() => setTheme("light")}
+                aria-pressed={theme === "light"}
+                aria-label="Light theme"
               >
-                <Globe className="w-4 h-4" />
-                <span>{locale.toUpperCase()}</span>
+                <Sun className="w-4 h-4" />
               </button>
-              <div className={`lang-selector__dropdown ${langOpen ? "open" : ""}`} role="listbox">
-                {languages.map((l) => (
-                  <button
-                    key={l.code}
-                    className={`lang-selector__option ${locale === l.code ? "active" : ""}`}
-                    onClick={() => setLang(l.code)}
-                    role="option"
-                    aria-selected={locale === l.code}
-                  >
-                    {l.label}
-                  </button>
-                ))}
-              </div>
+              <button
+                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                  theme === "dark"
+                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                }`}
+                onClick={() => setTheme("dark")}
+                aria-pressed={theme === "dark"}
+                aria-label="Dark theme"
+              >
+                <Moon className="w-4 h-4" />
+              </button>
+              <button
+                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                  theme === "system"
+                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                }`}
+                onClick={() => setTheme("system")}
+                aria-pressed={theme === "system"}
+                aria-label="System theme"
+              >
+                <Contrast className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Language Selector */}
+            <div className="flex items-center gap-2 md:px-6" role="group" aria-label="Language selection">
+              {languages.map((l) => (
+                <button
+                  key={l.code}
+                  className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                    locale === l.code
+                      ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                      : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                  }`}
+                  onClick={() => setLang(l.code)}
+                  aria-pressed={locale === l.code}
+                >
+                  {l.label}
+                </button>
+              ))}
             </div>
 
             {/* AAA Toggle */}
-            <button
-              className="aaa-toggle"
-              onClick={() => setAAALevel(aaaLevel === "AA" ? "AAA" : "AA")}
-              aria-label={`Accessibility level: ${aaaLevel}. Click to toggle.`}
-              aria-pressed={aaaLevel === "AAA"}
-            >
-              <Contrast className="w-4 h-4" />
-              <span>AA{aaaLevel === "AAA" ? "A" : ""}</span>
-            </button>
+            <div className="flex items-center gap-2 md:pl-6" role="group" aria-label="Accessibility contrast level">
+              <button
+                className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                  aaaLevel === "AA"
+                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                }`}
+                onClick={() => setAAALevel("AA")}
+                aria-pressed={aaaLevel === "AA"}
+              >
+                AA
+              </button>
+              <button
+                className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                  aaaLevel === "AAA"
+                    ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)]"
+                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                }`}
+                onClick={() => setAAALevel("AAA")}
+                aria-pressed={aaaLevel === "AAA"}
+              >
+                AAA
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+export default function Footer({ locale }: FooterProps) {
+  return (
+    <Suspense fallback={<footer className="py-10 px-4 md:px-8 border-t border-[var(--color-border-subtle)] mt-24"><div className="max-w-[1400px] mx-auto h-8"></div></footer>}>
+      <FooterContent locale={locale} />
+    </Suspense>
   );
 }

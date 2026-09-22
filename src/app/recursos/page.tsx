@@ -1,11 +1,8 @@
 import Navbar from "@/components/Navbar";
-import { client } from "@/sanity/lib/client";
-import { resourcesQuery } from "@/sanity/lib/queries";
-import { getLocaleText, type Locale } from "@/lib/utils-locale";
 import { getRecursosT } from "@/lib/utils-recursos";
+import { type Locale } from "@/lib/utils-locale";
 import { Suspense } from "react";
 import RecursosClient from "./RecursosClient";
-import Footer from "@/components/Footer";
 
 export const revalidate = 60;
 
@@ -18,21 +15,12 @@ export default async function RecursosPage({
   const locale: Locale = (['en', 'es', 'jp'] as const).includes(lang as Locale) ? (lang as Locale) : 'en';
   const t = getRecursosT(locale);
 
-  const resources = await client.fetch(resourcesQuery).catch(() => []);
-
-  const resourcesWithLocale = resources.map((r: Record<string, unknown>) => ({
-    ...r,
-    title: getLocaleText(r.title, locale),
-    description: getLocaleText(r.description, locale),
-  }));
-
   return (
     <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
       <Suspense fallback={<div className="pt-48 text-center">Loading...</div>}>
-        <RecursosClient resources={resourcesWithLocale} t={t} locale={locale} />
+        <RecursosClient t={t} locale={locale} />
       </Suspense>
-      <Footer locale={locale} />
     </main>
   );
 }

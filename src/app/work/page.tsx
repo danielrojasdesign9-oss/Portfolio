@@ -5,6 +5,7 @@ import { getLocaleText, Locale } from "@/lib/utils-locale";
 import { dummyProjects } from "@/lib/dummy-projects";
 import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
+import Footer from "@/components/Footer";
 
 export const revalidate = 60;
 
@@ -39,9 +40,9 @@ export default async function WorkPage({
   ];
 
   const t = {
-    en: { work: "Work", description: "Selected projects and case studies." },
-    es: { work: "Proyectos", description: "Proyectos y casos de estudio seleccionados." },
-    jp: { work: "作品", description: "選抜されたプロジェクトとケーススタディ。" },
+    en: { work: "Work", kicker: "Index", description: "Selected projects and case studies — product, systems, and AI-assisted delivery." },
+    es: { work: "Proyectos", kicker: "Índice", description: "Proyectos y casos de estudio: producto, sistemas y entrega asistida por IA." },
+    jp: { work: "作品", kicker: "インデックス", description: "選抜されたプロジェクトとケーススタディ。" },
   }[locale];
 
   return (
@@ -52,7 +53,7 @@ export default async function WorkPage({
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
             <p className="text-[12px] font-bold tracking-[0.4em] text-[var(--color-primary)] mb-4">
-              {t.work}
+              {t.kicker}
             </p>
             <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-6">
               {t.work}
@@ -67,6 +68,8 @@ export default async function WorkPage({
       <section className="px-4 md:px-8 py-16 max-w-[1400px] mx-auto">
         <ProjectsSection projects={projects} locale={locale} />
       </section>
+
+      <Footer locale={locale} />
     </main>
   );
 }

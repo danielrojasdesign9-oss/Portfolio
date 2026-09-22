@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Crimson_Pro } from "next/font/google";
+import { Space_Grotesk, Crimson_Pro, DM_Serif_Display, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Providers from "@/components/Providers";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-heading",
+  variable: "--font-sg",
   display: "swap",
 });
 
 const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
-  variable: "--font-body",
+  variable: "--font-cp",
+  display: "swap",
+});
+
+const dmSerif = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-editorial",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-ui",
   display: "swap",
 });
 
@@ -31,10 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
-        className={`${spaceGrotesk.variable} ${crimsonPro.variable} antialiased`}
-      >
+    <html
+      lang="en"
+      className={`scroll-smooth ${spaceGrotesk.variable} ${crimsonPro.variable} ${dmSerif.variable} ${inter.variable}`}
+    >
+      <body className="antialiased">
         <a
           href="#main-content"
           className="skip-link"
