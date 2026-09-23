@@ -41,6 +41,8 @@
 
     /* Interactive hover fill (toggle chips, ghost buttons) */
     --color-layer-hover: #E5E5E5;
+    /* Always-white label on primary brand fills (never flips with theme) */
+    --color-on-primary: #FFFFFF;
 
     /* Border Scale (Light) */
     --color-border: var(--color-silver-mist);
