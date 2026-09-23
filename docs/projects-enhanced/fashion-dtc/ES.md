@@ -13,7 +13,7 @@
 - **Tamaño del equipo:** [VALIDAR]
 - **Duración:** [VALIDAR]
 - **Estado:** ⏳ PENDING APPROVAL
-- **Público:** ❌ NO
+- **Público:** ✅ SÍ
 - **Destacado:** false
 
 ---

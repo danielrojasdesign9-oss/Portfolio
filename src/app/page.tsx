@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import { client } from "@/sanity/lib/client";
 import { projectsQuery, profileQuery } from "@/sanity/lib/queries";
 import { getLocaleText, Locale } from "@/lib/utils-locale";
-import { dummyProjects } from "@/lib/dummy-projects";
 import ContactSection from "@/components/ContactSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import Footer from "@/components/Footer";
@@ -22,12 +21,7 @@ export default async function Home({
     client.fetch(projectsQuery).catch(() => []),
     client.fetch(profileQuery).catch(() => null),
   ]);
-  const projects = [
-    ...(sanityProjects || []),
-    ...dummyProjects.filter(
-      (d) => !(sanityProjects || []).some((s: { slug?: string }) => s.slug === d.slug)
-    ),
-  ];
+  const projects = sanityProjects || [];
 
   const heroHeadline = {
     en: "I make human experiences feel memorable, intuitive, and visually striking.",

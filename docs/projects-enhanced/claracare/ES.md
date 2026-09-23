@@ -13,7 +13,7 @@
 - **Tamaño del equipo:** [VALIDAR]
 - **Duración:** [VALIDAR — incluye piloto 6 meses]
 - **Estado:** ⏳ PENDING APPROVAL
-- **Público:** ❌ NO
+- **Público:** ✅ SÍ
 - **Destacado:** false
 
 ---

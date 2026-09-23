@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { projectsQuery, profileQuery } from "@/sanity/lib/queries";
 import { getLocaleText, Locale } from "@/lib/utils-locale";
-import { dummyProjects } from "@/lib/dummy-projects";
 import Navbar from "@/components/Navbar";
 import ProjectsSection from "@/components/ProjectsSection";
 import Footer from "@/components/Footer";
@@ -32,12 +31,7 @@ export default async function WorkPage({
     client.fetch(projectsQuery).catch(() => []),
     client.fetch(profileQuery).catch(() => null),
   ]);
-  const projects = [
-    ...(sanityProjects || []),
-    ...dummyProjects.filter(
-      (d) => !(sanityProjects || []).some((s: any) => s.slug === d.slug)
-    ),
-  ];
+  const projects = sanityProjects || [];
 
   const t = {
     en: { work: "Work", kicker: "Index", description: "Selected projects and case studies — product, systems, and AI-assisted delivery." },

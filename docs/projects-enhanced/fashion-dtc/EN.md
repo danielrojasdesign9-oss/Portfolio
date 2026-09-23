@@ -13,7 +13,7 @@
 - **Team Size:** [VALIDAR]
 - **Duration:** [VALIDAR]
 - **Status:** ⏳ PENDING APPROVAL
-- **Public:** ❌ NO
+- **Public:** ✅ YES
 - **Featured:** false
 
 ---

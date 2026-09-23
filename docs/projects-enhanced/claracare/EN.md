@@ -13,7 +13,7 @@
 - **Team Size:** [VALIDAR]
 - **Duration:** [VALIDAR — 6-month pilot included]
 - **Status:** ⏳ PENDING APPROVAL
-- **Public:** ❌ NO
+- **Public:** ✅ YES
 - **Featured:** false
 
 ---
