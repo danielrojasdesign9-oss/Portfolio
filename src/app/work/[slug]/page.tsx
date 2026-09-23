@@ -9,7 +9,6 @@ import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
 import { getLocaleText, getLocaleContent, Locale } from "@/lib/utils-locale";
-import { Grid, Column } from "@carbon/react";
 import PortableTable from "@/components/PortableTable";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 import Footer from "@/components/Footer";
@@ -76,53 +75,47 @@ export default async function ProjectLayout({
 
       <ProjectCover title={title} category={category} year={project.year ?? ""} />
 
-      <section className="max-w-[1100px] mx-auto px-4 md:px-8 py-12 md:py-20">
-        <Grid narrow className="!p-0 items-start gap-y-12">
-          {/* Sidebar */}
-          <Column sm={4} md={4} lg={4}>
-            <div className="h-fit sticky top-24 lg:top-32">
-              <CarbonLinkButton
-                href={`/work?lang=${locale}`}
-                kind="ghost"
-                size="sm"
-                icon="ArrowLeft"
-              >
-                {t.back}
-              </CarbonLinkButton>
-              <div className="hidden lg:block space-y-8 border-l border-[var(--color-border-subtle)] pl-8 mt-12">
-                {project.client && (
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Client</span>
-                    <p className="text-lg font-bold">{project.client}</p>
-                  </div>
-                )}
-                {myRole && (
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Role</span>
-                    <p className="text-lg font-bold">{myRole}</p>
-                  </div>
-                )}
-                {project.year && (
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Year</span>
-                    <p className="text-lg font-bold">{project.year}</p>
-                  </div>
-                )}
-                {totalProjects > 0 && (
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">
-                      {t.of} {String(totalProjects).padStart(2, "0")}
-                    </span>
-                    <p className="text-lg font-bold">{String(currentIndex + 1).padStart(2, "0")}</p>
-                  </div>
-                )}
-              </div>
+      <section className="max-w-[1400px] mx-auto px-4 md:px-8 py-12 md:py-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="mb-12 flex flex-col gap-8 border-b border-[var(--color-border-subtle)] pb-10 md:flex-row md:items-start md:justify-between">
+            <CarbonLinkButton
+              href={`/work?lang=${locale}`}
+              kind="ghost"
+              size="sm"
+              icon="ArrowLeft"
+            >
+              {t.back}
+            </CarbonLinkButton>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 w-full md:w-auto">
+              {project.client && (
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Client</span>
+                  <p className="text-lg font-bold">{project.client}</p>
+                </div>
+              )}
+              {myRole && (
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Role</span>
+                  <p className="text-lg font-bold">{myRole}</p>
+                </div>
+              )}
+              {project.year && (
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Year</span>
+                  <p className="text-lg font-bold">{project.year}</p>
+                </div>
+              )}
+              {totalProjects > 0 && (
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">
+                    {t.of} {String(totalProjects).padStart(2, "0")}
+                  </span>
+                  <p className="text-lg font-bold">{String(currentIndex + 1).padStart(2, "0")}</p>
+                </div>
+              )}
             </div>
-          </Column>
-
-          {/* Main Content */}
-          <Column sm={4} md={8} lg={8}>
-            <div className="space-y-10 md:space-y-12 lg:space-y-16">
+          </div>
+          <div className="space-y-10 md:space-y-12 lg:space-y-16">
               {/* 1. Problem Intro */}
               {introText && (
                 <div className="space-y-4">
@@ -252,13 +245,13 @@ export default async function ProjectLayout({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 md:grid-cols-2">
+                <div className="grid grid-cols-2 gap-12 md:gap-24">
                   {project.prevProject && (
                     <CarbonLinkButton
                       href={`/work/${project.prevProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full text-left"
+                      className="w-full min-w-0 text-left"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.prev}</span>
                       <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.prevProject.title, locale)}</span>
@@ -269,7 +262,7 @@ export default async function ProjectLayout({
                       href={`/work/${project.nextProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full md:text-right md:col-start-2"
+                      className="w-full min-w-0 md:text-right md:col-start-2"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.next}</span>
                       <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.nextProject.title, locale)}</span>
@@ -277,9 +270,8 @@ export default async function ProjectLayout({
                   )}
                 </div>
               </footer>
-            </div>
-          </Column>
-        </Grid>
+</div>
+        </div>
       </section>
 
       <Footer locale={locale} />

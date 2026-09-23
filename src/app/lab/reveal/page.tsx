@@ -69,6 +69,7 @@ function ProjectCard({
   stagger,
   viewportMargin,
   once,
+  play,
 }: {
   project: (typeof mockProjects)[0];
   index: number;
@@ -76,6 +77,7 @@ function ProjectCard({
   stagger: number;
   viewportMargin: string;
   once: boolean;
+  play: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, margin: viewportMargin as unknown as "-100px", amount: 0.1 });
@@ -92,7 +94,7 @@ function ProjectCard({
         style={{ "--card-color": colorMap[project.color] } as CSSProperties}
         variants={containerVariants}
         initial="hidden"
-        animate={isInView || reducedMotion ? "visible" : "hidden"}
+        animate={isInView || reducedMotion || play ? "visible" : "hidden"}
         custom={index}
         transition={{ staggerChildren: stagger }}
       >
@@ -112,7 +114,7 @@ function ProjectCard({
       style={{ "--card-color": colorMap[project.color] } as CSSProperties}
       variants={cardVariants}
       initial="hidden"
-      animate={isInView || reducedMotion ? "visible" : "hidden"}
+      animate={isInView || reducedMotion || play ? "visible" : "hidden"}
       transition={{ delay: index * stagger }}
     >
       <div className="project-card__image" />
@@ -138,14 +140,19 @@ function RevealDemo({
   reducedMotion: boolean;
 }) {
   const [trigger, setTrigger] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const handleRestart = () => setTrigger((t) => t + 1);
+  const handleRestart = () => {
+    setIsPlaying(false);
+    setTrigger((t) => t + 1);
+    requestAnimationFrame(() => setIsPlaying(true));
+  };
 
   return (
-    <div>
+    <div className="reveal-demo">
       <div className="reveal-demo__controls">
         <button onClick={handleRestart} className="reveal-demo__restart">
-          Scroll Down to Trigger →
+          {isPlaying ? "Replay effect ↻" : "Play effect →"}
         </button>
         <span className="reveal-demo__hint">
           {once ? "Once only — refresh page to replay" : "Re-triggers on scroll"}
@@ -159,7 +166,7 @@ function RevealDemo({
         key={trigger}
         variants={revealVariants["stagger-children"]}
         initial="hidden"
-        animate={reducedMotion ? "visible" : "hidden"}
+        animate={reducedMotion || isPlaying ? "visible" : "hidden"}
         custom={0}
       >
         {mockProjects.map((project, index) => (
@@ -171,6 +178,7 @@ function RevealDemo({
             stagger={stagger}
             viewportMargin={viewportMargin}
             once={once}
+            play={isPlaying}
           />
         ))}
       </motion.div>
@@ -178,26 +186,35 @@ function RevealDemo({
       <div className="reveal-demo__spacer-bottom" />
 
       <style jsx>{`
+        .reveal-demo {
+          padding: var(--space-6) var(--space-4);
+          max-width: 1000px;
+          margin: 0 auto;
+        }
         .reveal-demo__controls {
           display: flex;
           align-items: center;
           gap: var(--space-4);
-          margin-bottom: var(--space-6);
-          padding: var(--space-4);
-          background: var(--color-bg);
+          margin-bottom: var(--space-8);
+          padding: var(--space-4) var(--space-6);
+          background: var(--color-bg-elevated);
           border-radius: var(--radius-md);
           border: 1px solid var(--color-border-subtle);
         }
         .reveal-demo__restart {
-          padding: var(--space-2) var(--space-4);
+          padding: var(--space-3) var(--space-5);
           font-family: var(--font-heading);
           font-size: var(--text-sm);
           font-weight: var(--weight-medium);
-          color: var(--color-primary);
-          background: var(--color-primary-light);
+          color: var(--color-text-inverse);
+          background: var(--color-primary);
           border: none;
-          border-radius: var(--radius-sm);
+          border-radius: var(--radius-md);
           cursor: pointer;
+          transition: background var(--transition-fast);
+        }
+        .reveal-demo__restart:hover {
+          background: var(--color-primary-hover);
         }
         .reveal-demo__hint {
           font-size: var(--text-xs);
@@ -205,7 +222,7 @@ function RevealDemo({
         }
         .reveal-demo__spacer-top,
         .reveal-demo__spacer-bottom {
-          height: 200px;
+          height: 150px;
         }
         .reveal-demo__grid {
           display: grid;
@@ -433,6 +450,9 @@ export function ProjectGrid({ projects }) {
           display: flex;
           flex-direction: column;
           gap: var(--space-8);
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: var(--space-10) var(--space-6) var(--space-16);
         }
         .lab-page__header {
           margin-bottom: var(--space-4);
@@ -454,6 +474,10 @@ export function ProjectGrid({ projects }) {
           grid-template-columns: 1fr 320px;
           gap: var(--space-8);
           align-items: start;
+        }
+        @media (max-width: 900px) {
+          .lab-page { padding-inline: var(--space-4); }
+          .lab-page__grid { grid-template-columns: 1fr; }
         }
         .lab-page__actions {
           margin-top: var(--space-6);

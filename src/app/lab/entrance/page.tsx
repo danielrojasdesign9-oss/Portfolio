@@ -54,13 +54,14 @@ function HeroDemo({ variantKey, reducedMotion }: { variantKey: VariantKey; reduc
   }, [variantKey, reducedMotion]);
 
   return (
-    <motion.div
-      className="hero-demo"
-      variants={variant}
-      initial={reducedMotion || !hasAnimated ? "hidden" : "show"}
-      animate={reducedMotion || !hasAnimated ? "hidden" : "show"}
-      custom={0}
-    >
+    <div className="hero-demo-wrap">
+      <motion.div
+        className="hero-demo"
+        variants={variant}
+        initial={reducedMotion || !hasAnimated ? "hidden" : "show"}
+        animate={reducedMotion || !hasAnimated ? "hidden" : "show"}
+        custom={0}
+      >
       <motion.div className="hero-demo__photo" variants={variant} custom={0} />
       <motion.div className="hero-demo__content" variants={variant} custom={0}>
         <motion.span className="hero-demo__tag" variants={variant} custom={0}>
@@ -81,6 +82,13 @@ function HeroDemo({ variantKey, reducedMotion }: { variantKey: VariantKey; reduc
           </motion.button>
         </motion.div>
       </motion.div>
+      </motion.div>
+      <button className="hero-demo__play" onClick={() => {
+        setHasAnimated(false);
+        requestAnimationFrame(() => setHasAnimated(true));
+      }}>
+        {hasAnimated ? "Replay effect" : "Play effect"}
+      </button>
       <style jsx>{`
         .hero-demo {
           display: flex;
@@ -88,6 +96,7 @@ function HeroDemo({ variantKey, reducedMotion }: { variantKey: VariantKey; reduc
           align-items: center;
           gap: var(--space-8);
           text-align: center;
+          padding: var(--space-6) var(--space-4);
         }
         .hero-demo__photo {
           width: 160px;
@@ -159,13 +168,36 @@ function HeroDemo({ variantKey, reducedMotion }: { variantKey: VariantKey; reduc
           border-color: var(--color-primary);
           color: var(--color-primary);
         }
+        .hero-demo-wrap {
+          display: grid;
+          gap: var(--space-6);
+          justify-items: center;
+          padding: var(--space-6) var(--space-4);
+        }
+        .hero-demo__play {
+          padding: var(--space-3) var(--space-6);
+          border: 1px solid var(--color-border-subtle);
+          border-radius: var(--radius-md);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
+          cursor: pointer;
+          font: inherit;
+          font-family: var(--font-heading);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-medium);
+          transition: background var(--transition-fast);
+        }
+        .hero-demo__play:hover {
+          background: var(--color-primary-hover);
+        }
       `}</style>
-    </motion.div>
+    </div>
   );
 }
 
 function EntranceLabContent() {
   const [activeVariant, setActiveVariant] = useState<VariantKey>("spring-stagger");
+  const [restartKey, setRestartKey] = useState(0);
   const reducedMotion = useReducedMotion() ?? false;
   const [controls, setControls] = useState({
     stagger: 0.08,
@@ -322,12 +354,12 @@ export function Hero() {
               description={variantDescriptions[activeVariant]}
               isActive
             >
-              <HeroDemo variantKey={activeVariant} reducedMotion={reducedMotion ?? false} />
+              <HeroDemo key={`active-${restartKey}`} variantKey={activeVariant} reducedMotion={reducedMotion ?? false} />
             </LabVariant>
 
             {(Object.keys(variants) as VariantKey[]).map((v) => (
               <LabVariant key={v} title={v} description={variantDescriptions[v]}>
-                <HeroDemo variantKey={v} reducedMotion={reducedMotion ?? false} />
+                <HeroDemo key={`${v}-${restartKey}`} variantKey={v} reducedMotion={reducedMotion ?? false} />
               </LabVariant>
             ))}
           </LabCanvas>
@@ -336,7 +368,7 @@ export function Hero() {
             <button
               className="lab-page__restart"
               onClick={() => {
-                setActiveVariant(activeVariant);
+                setRestartKey((key) => key + 1);
               }}
             >
               Restart Animation
@@ -399,6 +431,9 @@ export function Hero() {
           display: flex;
           flex-direction: column;
           gap: var(--space-8);
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: var(--space-10) var(--space-6) var(--space-16);
         }
         .lab-page__header {
           margin-bottom: var(--space-4);
@@ -420,6 +455,10 @@ export function Hero() {
           grid-template-columns: 1fr 320px;
           gap: var(--space-8);
           align-items: start;
+        }
+        @media (max-width: 900px) {
+          .lab-page { padding-inline: var(--space-4); }
+          .lab-page__grid { grid-template-columns: 1fr; }
         }
         .lab-page__actions {
           display: flex;

@@ -63,13 +63,14 @@ export default function HeroSection({
                 initial={reduced ? false : { clipPath: "inset(8% 8% 8% 8% round 8px)" }}
                 animate={{ clipPath: "inset(0% 0% 0% 0% round 8px)" }}
                 transition={{ duration: reduced ? 0 : 1.1, ease }}
-                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl shadow-[inset_0_18px_36px_-16px_rgba(0,0,0,0.45)]"
+                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl shadow-[inset_0_24px_48px_-20px_rgba(0,0,0,0.55)]"
               >
                 {profileImageUrl ? (
                   <Image
                     src={profileImageUrl}
                     alt={fullName}
                     fill
+                    sizes="(max-width: 768px) 100vw, 560px"
                     className="object-cover object-center"
                     priority
                   />
@@ -78,13 +79,14 @@ export default function HeroSection({
                     <span className="text-7xl md:text-9xl font-black text-[var(--color-primary)]">DR</span>
                   </div>
                 )}
+                <div className="pointer-events-none absolute inset-0 rounded-[5px] shadow-[inset_0_0_60px_16px_rgba(0,0,0,0.45)]" aria-hidden="true" />
               </motion.div>
             </div>
 
-            <motion.div
-              variants={item}
-              className="flex flex-wrap items-center justify-end gap-x-6 gap-y-3 mt-8 max-w-[480px] ml-auto mr-0 md:max-w-none"
-            >
+<motion.div
+                variants={item}
+                className="flex flex-wrap items-center justify-start gap-x-6 gap-y-3 mt-8 max-w-[480px] md:max-w-none"
+              >
               <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)]">
                 {locale === "es" ? "Conecta conmigo" : locale === "jp" ? "つながる" : "Connect"}
               </p>
@@ -123,7 +125,7 @@ export default function HeroSection({
               <CarbonLinkButton href={`/about?lang=${locale}`} icon="ArrowRight" kind="primary" size="lg">
                 {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"}
               </CarbonLinkButton>
-              <CarbonLinkButton href={`/?lang=${locale}#contact`} kind="secondary" size="lg">
+              <CarbonLinkButton href={`/?lang=${locale}#contact`} kind="secondary" size="lg" className="rounded-[var(--radius-md)]">
                 {locale === "es" ? "Hablemos" : locale === "jp" ? "お問い合わせ" : "Let's Talk"}
               </CarbonLinkButton>
             </motion.div>

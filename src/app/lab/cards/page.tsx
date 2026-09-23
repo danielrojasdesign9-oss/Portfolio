@@ -68,6 +68,7 @@ function InteractiveCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const cardVariants = hoverVariants[variant];
 
@@ -89,24 +90,14 @@ function InteractiveCard({
   const tiltY = variant === "tilt-3d" && !reducedMotion ? mousePos.x * 10 : 0;
 
   return (
-    <div
-      className="interactive-card"
-      style={{
-        "--hover-scale": hoverScale,
-        "--hover-lift": `${hoverLift}px`,
-        "--hover-duration": `${hoverDuration}s`,
-        "--tap-scale": tapScale,
-        "--tap-duration": `${tapDuration}s`,
-        "--tilt-x": `${tiltX}deg`,
-        "--tilt-y": `${tiltY}deg`,
-      } as CSSProperties}
-    >
+    <div className="interactive-card">
       <motion.div
         ref={cardRef}
         className="interactive-card__inner"
         variants={cardVariants}
         whileHover={reducedMotion ? undefined : { y: -hoverLift, scale: hoverScale, transition: { duration: hoverDuration, ease: [0.4, 0, 0.2, 1] } }}
         whileTap={reducedMotion ? undefined : { scale: tapScale, transition: { duration: tapDuration } }}
+        animate={isPlaying && !reducedMotion ? cardVariants.hover : undefined}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => { setIsHovered(false); handleMouseLeave(); }}
@@ -155,6 +146,9 @@ function InteractiveCard({
         </div>
       </div>
       </motion.div>
+      <button className="interactive-card__play" onClick={() => setIsPlaying((playing) => !playing)}>
+        {isPlaying ? "Pause effect" : "Play effect"}
+      </button>
       <style jsx>{`
         .interactive-card {
           width: 360px;
@@ -165,14 +159,35 @@ function InteractiveCard({
           cursor: pointer;
           transform-style: preserve-3d;
           perspective: 1000px;
+          padding: var(--space-4);
         }
         .interactive-card:hover {
           border-color: var(--color-border-strong);
+        }
+        .interactive-card__play {
+          display: block;
+          width: calc(100% - var(--space-6));
+          margin: 0 var(--space-3) var(--space-3);
+          padding: var(--space-3) var(--space-4);
+          border: 1px solid var(--color-border-subtle);
+          border-radius: var(--radius-md);
+          background: var(--color-primary);
+          color: var(--color-text-inverse);
+          cursor: pointer;
+          font: inherit;
+          font-family: var(--font-heading);
+          font-size: var(--text-sm);
+          font-weight: var(--weight-medium);
+          transition: background var(--transition-fast);
+        }
+        .interactive-card__play:hover {
+          background: var(--color-primary-hover);
         }
         .card__image-wrapper {
           position: relative;
           height: 200px;
           overflow: hidden;
+          border-radius: var(--radius-md);
         }
         .card__image {
           width: 100%;
@@ -230,7 +245,7 @@ function InteractiveCard({
           backdrop-filter: blur(8px);
         }
         .card__content {
-          padding: var(--space-5);
+          padding: var(--space-5) var(--space-2);
         }
         .card__category {
           display: block;
@@ -482,6 +497,9 @@ export function ProjectCard() {
           display: flex;
           flex-direction: column;
           gap: var(--space-8);
+          max-width: 1440px;
+          margin: 0 auto;
+          padding: var(--space-10) var(--space-6) var(--space-16);
         }
         .lab-page__header {
           margin-bottom: var(--space-4);
@@ -503,6 +521,10 @@ export function ProjectCard() {
           grid-template-columns: 1fr 320px;
           gap: var(--space-8);
           align-items: start;
+        }
+        @media (max-width: 900px) {
+          .lab-page { padding-inline: var(--space-4); }
+          .lab-page__grid { grid-template-columns: 1fr; }
         }
         .lab-canvas--cards .lab-canvas__inner {
           display: flex;

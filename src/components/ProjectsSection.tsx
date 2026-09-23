@@ -121,15 +121,16 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
 }
 
 function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarouselIndex, handleCarouselPrev, handleCarouselNext, carouselRef }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; setCarouselIndex: (i: number) => void; handleCarouselPrev: () => void; handleCarouselNext: () => void; carouselRef: React.RefObject<HTMLDivElement | null> }) {
-  // Native non-passive wheel listener: vertical page scroll is locked while the
-  // pointer is over the carousel (React's delegated onWheel is passive and can't preventDefault).
+  // Native non-passive wheel listener: vertical page scroll is blocked ONLY when
+  // the pointer is over the carousel AND the scroll is primarily vertical.
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
+      const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
+      if (!isVertical) return; // Allow horizontal scroll (trackpad swipe, shift+wheel)
       e.preventDefault();
-      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
-      el.scrollBy({ left: delta >= 0 ? 320 : -320, behavior: reducedMotion ? "auto" : "smooth" });
+      el.scrollBy({ left: e.deltaY >= 0 ? 320 : -320, behavior: reducedMotion ? "auto" : "smooth" });
     };
     el.addEventListener("wheel", onWheel, { passive: false });
     return () => el.removeEventListener("wheel", onWheel);
@@ -145,7 +146,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
     >
       <div
         ref={carouselRef}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4"
+        className="flex gap-6 overflow-x-auto overflow-y-hidden overscroll-none snap-x snap-mandatory pb-4"
       >
         {filtered.map((project: any, i: number) => {
           const title = getLocaleText(project.title, locale);
@@ -203,7 +204,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
           <button
             onClick={handleCarouselPrev}
             disabled={carouselIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 lg:-translate-x-12 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
             aria-label="Previous project"
           >
             <ChevronLeft size={24} />
@@ -211,7 +212,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
           <button
             onClick={handleCarouselNext}
             disabled={carouselIndex === filtered.length - 1}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 lg:translate-x-12 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
             aria-label="Next project"
           >
             <ChevronRight size={24} />
@@ -369,8 +370,8 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
 
   return (
     <div>
-      <div className="mb-14 border-b border-[var(--color-border-subtle)] pb-8 space-y-7">
-        <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter projects">
+      <div className="mb-14 space-y-7">
+        <div className="border-b border-[var(--color-border-subtle)] pb-8" role="tablist" aria-label="Filter projects">
           <button
             role="tab"
             aria-selected={category === "all"}
@@ -392,7 +393,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
           ))}
         </div>
 
-        <div className="flex justify-start">
+        <div className="flex justify-start pt-1 border-b border-[var(--color-border-subtle)] pb-8">
           <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)]" role="group" aria-label="View mode">
             <button
               onClick={() => setView("grid")}
