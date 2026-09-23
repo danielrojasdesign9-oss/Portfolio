@@ -76,7 +76,7 @@ export default function Navbar() {
     { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work", hash: "projects" },
     { href: `/about?lang=${currentLocale}`, label: t.about, key: "about", exact: true },
     { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab", startsWith: true },
-    { href: `/recursos?lang=${currentLocale}`, label: t.recursos, key: "recursos", exact: true },
+    // { href: `/recursos?lang=${currentLocale}`, label: t.recursos, key: "recursos", exact: true },
     { href: `/?lang=${currentLocale}#contact`, label: t.contact, key: "contact", hash: "contact" },
   ];
 

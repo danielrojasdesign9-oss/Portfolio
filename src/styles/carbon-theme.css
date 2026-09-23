@@ -418,7 +418,7 @@
   .portfolio-header__theme-btn.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: var(--color-text-inverse);
+    color: var(--color-on-primary);
   }
 
   .portfolio-header__theme-btn svg {
@@ -449,7 +449,7 @@
   .portfolio-header__lang-btn.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: var(--color-text-inverse);
+    color: var(--color-on-primary);
   }
 
   /* AAA Buttons */
@@ -480,7 +480,7 @@
   .portfolio-header__aaa-btn.active {
     background: var(--color-primary);
     border-color: var(--color-primary);
-    color: var(--color-text-inverse);
+    color: var(--color-on-primary);
   }
 
   .portfolio-header__mobile-toggle {
@@ -502,14 +502,14 @@
     border-radius: var(--radius-full);
     border: 1px solid var(--color-border);
     background: var(--color-bg-sunken);
-    color: var(--color-text-primary);
+    color: var(--color-text-secondary);
     cursor: pointer;
     transition: all var(--transition-fast);
   }
 
   .theme-toggle:hover {
-    background: var(--color-bg-sunken);
     border-color: var(--color-primary);
+    color: var(--color-text-primary);
   }
 
   .theme-toggle:focus-visible {
@@ -617,6 +617,13 @@
     color: var(--color-text-primary);
   }
 
+  .aaa-toggle.active,
+  .aaa-toggle[aria-pressed="true"] {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-on-primary);
+  }
+
   .aaa-toggle input[type="checkbox"] {
     width: 16px;
     height: 16px;
@@ -685,7 +692,7 @@
   .portfolio-mobile-drawer__link:hover,
   .portfolio-mobile-drawer__link.active {
     background: var(--color-primary);
-    color: var(--color-text-inverse);
+    color: var(--color-on-primary);
   }
 
   .portfolio-mobile-drawer__lang {
@@ -715,7 +722,7 @@
   .portfolio-mobile-drawer__lang-btn:hover,
   .portfolio-mobile-drawer__lang-btn.active {
     background: var(--color-primary);
-    color: var(--color-text-inverse);
+    color: var(--color-on-primary);
     border-color: var(--color-primary);
   }
 

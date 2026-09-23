@@ -47,6 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`scroll-smooth ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${dmSerif.variable} ${inter.variable}`}
     >
       <body className="antialiased">

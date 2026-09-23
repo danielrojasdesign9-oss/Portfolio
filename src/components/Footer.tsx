@@ -46,10 +46,10 @@ function FooterContent({ locale }: FooterProps) {
             {/* Theme Toggle */}
             <div className="flex items-center gap-2 md:pr-6" role="group" aria-label="Theme selection">
               <button
-                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
                   theme === "light"
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                 }`}
                 onClick={() => setTheme("light")}
                 aria-pressed={theme === "light"}
@@ -58,10 +58,10 @@ function FooterContent({ locale }: FooterProps) {
                 <Sun className="w-4 h-4" />
               </button>
               <button
-                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
                   theme === "dark"
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                 }`}
                 onClick={() => setTheme("dark")}
                 aria-pressed={theme === "dark"}
@@ -70,10 +70,10 @@ function FooterContent({ locale }: FooterProps) {
                 <Moon className="w-4 h-4" />
               </button>
               <button
-                className={`p-2 rounded-full transition-colors flex items-center justify-center ${
+                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
                   theme === "system"
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                 }`}
                 onClick={() => setTheme("system")}
                 aria-pressed={theme === "system"}
@@ -88,10 +88,10 @@ function FooterContent({ locale }: FooterProps) {
               {languages.map((l) => (
                 <button
                   key={l.code}
-                  className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                  className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                     locale === l.code
-                      ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                      : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                      ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                      : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                   }`}
                   onClick={() => setLang(l.code)}
                   aria-pressed={locale === l.code}
@@ -104,10 +104,10 @@ function FooterContent({ locale }: FooterProps) {
             {/* AAA Toggle */}
             <div className="flex items-center gap-2 md:pl-6" role="group" aria-label="Accessibility contrast level">
               <button
-                className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                   aaaLevel === "AA"
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                 }`}
                 onClick={() => setAAALevel("AA")}
                 aria-pressed={aaaLevel === "AA"}
@@ -115,10 +115,10 @@ function FooterContent({ locale }: FooterProps) {
                 AA
               </button>
               <button
-                className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
+                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
                   aaaLevel === "AAA"
-                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
-                    : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
+                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
+                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
                 }`}
                 onClick={() => setAAALevel("AAA")}
                 aria-pressed={aaaLevel === "AAA"}

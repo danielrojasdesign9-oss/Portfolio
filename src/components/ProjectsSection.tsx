@@ -207,7 +207,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
         </>
       )}
 
-      <div className="mt-10 flex items-center justify-center gap-2 pb-2">
+      <div className="mt-10 flex items-center justify-start gap-2 pb-2">
         {filtered.map((_, i) => (
           <button
             key={i}
@@ -348,7 +348,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
           ))}
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-start">
           <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)]" role="group" aria-label="View mode">
             <button
               onClick={() => setView("grid")}

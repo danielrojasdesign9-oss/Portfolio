@@ -49,21 +49,21 @@ export default function HeroSection({
   };
 
   return (
-    <section className="relative min-h-[calc(100svh-var(--header-height))] flex items-center justify-center px-4 md:px-8 pt-[calc(var(--header-height)+1.5rem)]">
+    <section className="relative flex items-start justify-center px-4 md:px-8 pt-[calc(var(--header-height)+1.5rem)] pb-8 md:pb-12">
       <div className="w-full max-w-[1400px] mx-auto">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 py-12 md:py-20"
+          className="flex flex-col md:flex-row items-start justify-start gap-10 md:gap-16 pt-4 md:pt-8"
         >
-          <motion.div variants={item} className="flex-shrink-0 relative w-full md:w-1/2">
+          <motion.div variants={item} className="flex-shrink-0 relative w-full md:w-1/2 max-w-[480px] md:max-w-[560px] mx-auto md:mx-0">
             <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none">
               <motion.div
                 initial={reduced ? false : { clipPath: "inset(8% 8% 8% 8% round 8px)" }}
                 animate={{ clipPath: "inset(0% 0% 0% 0% round 8px)" }}
                 transition={{ duration: reduced ? 0 : 1.1, ease }}
-                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl"
+                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl shadow-[inset_0_18px_36px_-16px_rgba(0,0,0,0.45)]"
               >
                 {profileImageUrl ? (
                   <Image
@@ -105,7 +105,7 @@ export default function HeroSection({
             </motion.div>
           </motion.div>
 
-          <div className="flex-1 text-center md:w-1/2 max-w-2xl mx-auto md:mx-0 md:text-left">
+          <div className="flex-1 text-center md:w-1/2 max-w-2xl mx-auto md:mx-0 md:text-left self-stretch md:self-start">
             <motion.h1
               variants={item}
               className="font-display text-[2.75rem] md:text-6xl lg:text-[4.75rem] font-black tracking-tighter leading-[0.92] mb-8 text-balance"

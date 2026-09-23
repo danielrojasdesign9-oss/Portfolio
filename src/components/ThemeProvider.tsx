@@ -30,6 +30,22 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (storedTheme) setTheme(storedTheme);
     if (storedAAA) setAAALevel(storedAAA);
     applyDesignSystem(getStoredSystem());
+    // Clear any legacy inline theme pins from older sessions
+    const legacy = [
+      "--color-bg",
+      "--color-bg-elevated",
+      "--color-bg-sunken",
+      "--color-text-primary",
+      "--color-text-secondary",
+      "--color-text-tertiary",
+      "--color-text-inverse",
+      "--color-border",
+      "--color-border-subtle",
+      "--color-border-strong",
+      "--color-text",
+      "--color-layer-hover",
+    ];
+    legacy.forEach((p) => document.documentElement.style.removeProperty(p));
   }, []);
 
   useEffect(() => {

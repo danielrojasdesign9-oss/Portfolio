@@ -14,17 +14,7 @@ export interface DesignSystemTokens {
   "--color-primary-light"?: string;
   "--color-secondary"?: string;
   "--color-accent"?: string;
-  "--color-bg"?: string;
-  "--color-bg-elevated"?: string;
-  "--color-bg-sunken"?: string;
   "--color-bg-dark"?: string;
-  "--color-text-primary"?: string;
-  "--color-text-secondary"?: string;
-  "--color-text-tertiary"?: string;
-  "--color-text-inverse"?: string;
-  "--color-border"?: string;
-  "--color-border-subtle"?: string;
-  "--color-border-strong"?: string;
   "--font-heading"?: string;
   "--font-body"?: string;
   "--radius-sm"?: string;
@@ -68,17 +58,7 @@ export const designSystems: Record<string, DesignSystem> = {
       "--color-primary-light": "#D0E2FF",
       "--color-secondary": "#393939",
       "--color-accent": "#8A3FFC",
-      "--color-bg": "#FFFFFF",
-      "--color-bg-elevated": "#FFFFFF",
-      "--color-bg-sunken": "#F0F0F0",
       "--color-bg-dark": "#161616",
-      "--color-text-primary": "#161616",
-      "--color-text-secondary": "#333333",
-      "--color-text-tertiary": "#444444",
-      "--color-text-inverse": "#FFFFFF",
-      "--color-border": "#C6C6C6",
-      "--color-border-subtle": "#E5E5E5",
-      "--color-border-strong": "#222222",
       "--font-heading": "var(--font-sg), 'Space Grotesk', system-ui, sans-serif",
       "--font-body": "var(--font-plex), 'IBM Plex Sans', system-ui, sans-serif",
       "--radius-sm": "4px",
@@ -104,17 +84,7 @@ export const designSystems: Record<string, DesignSystem> = {
       "--color-primary-light": "#F5EBE0",
       "--color-secondary": "#C47A2B",
       "--color-accent": "#5C2D1E",
-      "--color-bg": "#F9F6F1",
-      "--color-bg-elevated": "#FFFDF8",
-      "--color-bg-sunken": "#F1E9DC",
       "--color-bg-dark": "#2A1F1A",
-      "--color-text-primary": "#2A1F1A",
-      "--color-text-secondary": "#5A4A3E",
-      "--color-text-tertiary": "#7A6A5C",
-      "--color-text-inverse": "#FFFFFF",
-      "--color-border": "#D4C5B0",
-      "--color-border-subtle": "#E8DFD2",
-      "--color-border-strong": "#2A1F1A",
       "--font-heading": "var(--font-editorial), 'Times New Roman', serif",
       "--font-body": "var(--font-ui), system-ui, sans-serif",
       "--radius-sm": "2px",
@@ -140,17 +110,7 @@ export const designSystems: Record<string, DesignSystem> = {
       "--color-primary-light": "#F0F0F0",
       "--color-secondary": "#333333",
       "--color-accent": "#666666",
-      "--color-bg": "#F5F5F5",
-      "--color-bg-elevated": "#FFFFFF",
-      "--color-bg-sunken": "#E8E8E8",
       "--color-bg-dark": "#111111",
-      "--color-text-primary": "#111111",
-      "--color-text-secondary": "#333333",
-      "--color-text-tertiary": "#555555",
-      "--color-text-inverse": "#FFFFFF",
-      "--color-border": "#CCCCCC",
-      "--color-border-subtle": "#DDDDDD",
-      "--color-border-strong": "#111111",
       "--font-heading": "var(--font-sg), system-ui, sans-serif",
       "--font-body": "var(--font-ui), system-ui, sans-serif",
       "--radius-sm": "0px",
@@ -164,12 +124,35 @@ export const designSystems: Record<string, DesignSystem> = {
 
 export type SystemKey = keyof typeof designSystems;
 
+/**
+ * Tokens that must come from design-tokens.css cascade (light/dark/AAA).
+ * Design systems must NOT pin these as inline styles or dark mode breaks.
+ */
+export const THEME_DEPENDENT_PROPS = [
+  "--color-bg",
+  "--color-bg-elevated",
+  "--color-bg-sunken",
+  "--color-text-primary",
+  "--color-text-secondary",
+  "--color-text-tertiary",
+  "--color-text-inverse",
+  "--color-border",
+  "--color-border-subtle",
+  "--color-border-strong",
+  "--color-text",
+  "--color-layer-hover",
+] as const;
+
 export function applyDesignSystem(key: string): void {
   const system = designSystems[key];
   if (!system) return;
   const root = document.documentElement;
+  // Always clear theme-dependent inline overrides first
+  THEME_DEPENDENT_PROPS.forEach((prop) => root.style.removeProperty(prop));
   Object.entries(system.vars).forEach(([prop, value]) => {
-    if (value) root.style.setProperty(prop, value);
+    if (value && !(THEME_DEPENDENT_PROPS as readonly string[]).includes(prop)) {
+      root.style.setProperty(prop, value);
+    }
   });
   try {
     localStorage.setItem("design-system", key);
@@ -186,7 +169,7 @@ export function getStoredSystem(): string {
 
 /** All custom properties ever managed by any system — used to fully clear inline overrides. */
 export function allManagedProps(): string[] {
-  const props = new Set<string>();
+  const props = new Set<string>(THEME_DEPENDENT_PROPS);
   Object.values(designSystems).forEach((system) => {
     Object.keys(system.vars).forEach((prop) => props.add(prop));
   });

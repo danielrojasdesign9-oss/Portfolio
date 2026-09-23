@@ -39,6 +39,9 @@
     --color-text-link: var(--color-indigo);
     --color-text-link-hover: var(--color-midnight);
 
+    /* Interactive hover fill (toggle chips, ghost buttons) */
+    --color-layer-hover: #E5E5E5;
+
     /* Border Scale (Light) */
     --color-border: var(--color-silver-mist);
     --color-border-subtle: #E5E5E5;
@@ -176,12 +179,14 @@
       --color-text-primary: var(--color-text-primary-dark);
       --color-text-secondary: var(--color-text-secondary-dark);
       --color-text-tertiary: var(--color-text-tertiary-dark);
-      --color-border: var(--color-border-dark);
-      --color-border-subtle: var(--color-border-subtle-dark);
-      --color-bg-sunken: var(--color-bg-sunken-dark);
-      --color-text-link: var(--color-text-link-dark);
-      --color-text-link-hover: var(--color-text-link-hover-dark);
-    }
+    --color-border: var(--color-border-dark);
+    --color-border-subtle: var(--color-border-subtle-dark);
+    --color-bg-sunken: var(--color-bg-sunken-dark);
+    --color-text-link: var(--color-text-link-dark);
+    --color-text-link-hover: var(--color-text-link-hover-dark);
+    --color-text: var(--color-text-primary-dark);
+    --color-layer-hover: #333333;
+  }
   }
 
   /* === Explicit Theme Override (for manual toggle) === */
@@ -213,6 +218,8 @@
     --color-border: var(--color-border-dark);
     --color-border-subtle: var(--color-border-subtle-dark);
     --color-bg-sunken: var(--color-bg-sunken-dark);
+    --color-text: var(--color-text-primary-dark);
+    --color-layer-hover: #333333;
   }
 
   /* AAA Mode — stronger than AA so the toggle is actually visible */
@@ -224,6 +231,8 @@
     --color-border-subtle: #B8B8B8;
     --color-border-strong: #222222;
     --color-bg: #FFFFFF;
+    --color-text: #000000;
+    --color-layer-hover: #D0D0D0;
   }
 
   [data-theme="dark"][data-aaa="true"] {
@@ -235,6 +244,8 @@
     --color-border-strong: #EEEEEE;
     --color-bg: #000000;
     --color-bg-elevated: #0A0A0A;
+    --color-text: #FFFFFF;
+    --color-layer-hover: #444444;
   }
 }
 
