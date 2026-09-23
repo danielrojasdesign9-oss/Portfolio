@@ -1,8 +1,8 @@
-# Silin Tax Reporting
+# Silin Tax Information Reporting
 
 ## META
 - **Slug:** `silin-government-tax-reporting`
-- **Title:** Silin Tax Reporting
+- **Title:** Silin Tax Information Reporting
 - **Subtitle:** Making Colombian government tax reporting transparent, correct, and human
 - **Year:** 2023
 - **Category:** Government / Tax Reporting / Public Sector

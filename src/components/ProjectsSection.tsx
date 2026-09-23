@@ -38,7 +38,17 @@ const CATEGORY_ALIASES: Record<string, string> = {
   "govtech": "GovTech",
   "gov tech": "GovTech",
   "government": "GovTech",
-  "tax": "GovTech",
+  "tax": "Tax Information Reporting",
+  "tax information reporting": "Tax Information Reporting",
+  "tax reporting": "Tax Information Reporting",
+  "reporte tributario": "Tax Information Reporting",
+  "tributos": "Tax Information Reporting",
+  "government / tax reporting / public sector": "Tax Information Reporting",
+  "gobierno / reporte tributario / sector público": "Tax Information Reporting",
+  "tax information reporting / compliance / b2b saas": "Tax Information Reporting",
+  "reporte tributario / cumplimiento / b2b saas": "Tax Information Reporting",
+  "政府 / 税務報告 / 公共セクター": "Tax Information Reporting",
+  "税務情報報告 / コンプライアンス / B2B SaaS": "Tax Information Reporting",
 };
 
 function normalizeCategory(raw: unknown): string {
@@ -69,6 +79,7 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
         return (
           <motion.div
             key={project._id || `${project.slug}-${i}`}
+            data-project-slug={project.slug}
             initial={reducedMotion ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
@@ -146,8 +157,9 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
               initial={reducedMotion ? false : { opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
-              className="flex-shrink-0 snap-center w-full sm:max-w-[520px] lg:max-w-[640px]"
-            >
+            data-project-slug={project.slug}
+            className="flex-shrink-0 snap-center w-full sm:max-w-[520px] lg:max-w-[640px]"
+          >
               <Link href={`/work/${project.slug}?lang=${locale}`} className="group block h-full">
                 <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-sunken)] border border-[var(--color-border-subtle)] mb-6">
                   {img ? (
@@ -264,25 +276,6 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   const handleCarouselPrev = () => setCarouselIndex((prev) => Math.max(prev - 1, 0));
   const handleCarouselNext = () => setCarouselIndex((prev) => Math.min(prev + 1, filtered.length - 1));
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (view !== "carousel" || reducedMotion) return;
-      if (e.key === "ArrowRight") handleCarouselNext();
-      if (e.key === "ArrowLeft") handleCarouselPrev();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [view, reducedMotion, projects.length, category]);
-
-  useEffect(() => {
-    if (!carouselRef.current) return;
-    const container = carouselRef.current;
-    container.scrollTo({
-      left: carouselIndex * container.offsetWidth,
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  }, [carouselIndex, reducedMotion]);
-
   const categories = useMemo(() => {
     const seen = new Set<string>();
     projects.forEach((p: any) => {
@@ -296,6 +289,57 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
     if (category === "all") return projects;
     return projects.filter((p: any) => normalizeCategory(getLocaleText(p.category, locale)) === category);
   }, [projects, category, locale]);
+
+  // Keep dots in sync with manual scroll (wheel, drag, snap)
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    let frame = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const children = Array.from(el.children) as HTMLElement[];
+        if (!children.length) return;
+        const scrollLeft = el.scrollLeft;
+        let best = 0;
+        let bestDist = Infinity;
+        children.forEach((child, i) => {
+          const dist = Math.abs(child.offsetLeft - scrollLeft);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = i;
+          }
+        });
+        setCarouselIndex((prev) => (prev === best ? prev : best));
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      el.removeEventListener("scroll", onScroll);
+    };
+  }, [filtered.length]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (view !== "carousel" || reducedMotion) return;
+      if (e.key === "ArrowRight") handleCarouselNext();
+      if (e.key === "ArrowLeft") handleCarouselPrev();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [view, reducedMotion, projects.length, category]);
+
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+    const child = container.children[carouselIndex] as HTMLElement | undefined;
+    if (!child) return;
+    container.scrollTo({
+      left: child.offsetLeft,
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+  }, [carouselIndex, reducedMotion, filtered.length]);
 
   const labels = {
     en: { all: "All projects", grid: "Grid", carousel: "Carousel", result: "projects" },

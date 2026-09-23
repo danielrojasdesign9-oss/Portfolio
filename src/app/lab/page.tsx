@@ -2,20 +2,86 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'next/navigation';
 import { designSystems, applyDesignSystem, getStoredSystem, resetDesignSystem } from '@/lib/design-systems';
 import type { DesignSystem } from '@/lib/design-systems';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { CheckmarkFilled } from '@carbon/icons-react';
 
+const labStrings = {
+  en: {
+    loading: 'Loading...',
+    badge: 'Lab',
+    title: 'Design System\nSwitcher',
+    subtitle: 'Hot-swap the complete visual language of the portfolio in real time. Changes persist across sessions.',
+    reset: 'Reset',
+    tokenDocs: 'Token docs',
+    activeBadge: 'Active',
+    activeTokens: 'Active tokens',
+    applied: (name: string) => `Applied: ${name}`,
+    resetToast: 'Reset: base identity',
+    applyAria: (label: string) => `Apply design system: ${label}`,
+    primary: 'Primary',
+    secondary: 'Secondary',
+    accent: 'Accent',
+    neutral: 'Neutral',
+    dark: 'Dark',
+  },
+  es: {
+    loading: 'Cargando...',
+    badge: 'Lab',
+    title: 'Switcher de\nDesign System',
+    subtitle: 'Cambia en tiempo real el lenguaje visual completo del portafolio. Los cambios persisten entre sesiones.',
+    reset: 'Reset',
+    tokenDocs: 'Docs de tokens',
+    activeBadge: 'Activo',
+    activeTokens: 'Tokens activos',
+    applied: (name: string) => `Aplicado: ${name}`,
+    resetToast: 'Reset: identidad base',
+    applyAria: (label: string) => `Aplicar design system: ${label}`,
+    primary: 'Primario',
+    secondary: 'Secundario',
+    accent: 'Acento',
+    neutral: 'Neutro',
+    dark: 'Oscuro',
+  },
+  jp: {
+    loading: '読み込み中...',
+    badge: 'Lab',
+    title: 'デザインシステム\nスイッチャー',
+    subtitle: 'ポートフォリオのビジュアル言語をリアルタイムで切り替え。変更はセッション間で保持されます。',
+    reset: 'リセット',
+    tokenDocs: 'トークンドキュメント',
+    activeBadge: 'アクティブ',
+    activeTokens: 'アクティブトークン',
+    applied: (name: string) => `適用: ${name}`,
+    resetToast: 'リセット: ベースアイデンティティ',
+    applyAria: (label: string) => `デザインシステムを適用: ${label}`,
+    primary: 'プライマリ',
+    secondary: 'セカンダリ',
+    accent: 'アクセント',
+    neutral: 'ニュートラル',
+    dark: 'ダーク',
+  },
+} as const;
+
+type LabLocale = keyof typeof labStrings;
+type LabLabels = (typeof labStrings)[LabLocale];
+function isLabLocale(v: string | null): v is LabLocale {
+  return v === 'en' || v === 'es' || v === 'jp';
+}
+
 function SystemCard({
   system,
   isActive,
   onSelect,
+  labels,
 }: {
   system: DesignSystem;
   isActive: boolean;
   onSelect: () => void;
+  labels: LabLabels;
 }) {
   return (
     <motion.button
@@ -29,7 +95,7 @@ function SystemCard({
           : 'border-[var(--color-border-subtle)] hover:border-[var(--color-border-strong)] shadow-sm hover:shadow-md'
       }`}
       aria-pressed={isActive}
-      aria-label={`Apply design system: ${system.label}`}
+      aria-label={labels.applyAria(system.label)}
     >
       {/* Preview swatch */}
       <div
@@ -92,7 +158,7 @@ function SystemCard({
           </span>
           {isActive && (
             <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-[0.12em] rounded-full bg-[var(--color-primary)] text-[var(--color-text-inverse)]">
-              Active
+              {labels.activeBadge}
             </span>
           )}
         </div>
@@ -105,27 +171,27 @@ function SystemCard({
           <div
             className="w-5 h-5 rounded-full border border-black/10"
             style={{ background: system.vars['--color-midnight'] || system.preview.primary }}
-            title="Primary"
+            title={labels.primary}
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
             style={{ background: system.vars['--color-indigo'] || system.preview.secondary }}
-            title="Secondary"
+            title={labels.secondary}
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
             style={{ background: system.vars['--color-merlot'] || '#7F333D' }}
-            title="Accent"
+            title={labels.accent}
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
             style={{ background: system.vars['--color-silver-mist'] || '#C6C6C6' }}
-            title="Neutral"
+            title={labels.neutral}
           />
           <div
             className="w-5 h-5 rounded-full border border-black/10"
             style={{ background: system.vars['--color-onyx'] || '#161616' }}
-            title="Dark"
+            title={labels.dark}
           />
         </div>
       </div>
@@ -134,6 +200,11 @@ function SystemCard({
 }
 
 function LabContent() {
+  const searchParams = useSearchParams();
+  const rawLang = searchParams.get('lang');
+  const locale: LabLocale = isLabLocale(rawLang) ? rawLang : 'en';
+  const labels = labStrings[locale];
+
   const [activeSystem, setActiveSystem] = useState<string>('v1');
   const [mounted, setMounted] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
@@ -148,16 +219,18 @@ function LabContent() {
     setActiveSystem(key);
     applyDesignSystem(key);
     const name = designSystems[key]?.label ?? key;
-    setToast(`Applied: ${name}`);
+    setToast(labels.applied(name));
     setTimeout(() => setToast(null), 2500);
   };
 
   const handleReset = () => {
     resetDesignSystem();
     setActiveSystem('v1');
-    setToast('Reset: base identity');
+    setToast(labels.resetToast);
     setTimeout(() => setToast(null), 2500);
   };
+
+  const withLang = (path: string) => `${path}?lang=${locale}`;
 
   return (
     <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
@@ -167,31 +240,31 @@ function LabContent() {
         {/* Header */}
         <div className="mb-16">
           <span className="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full bg-[var(--color-primary)] text-[var(--color-text-inverse)] mb-6">
-            Lab
+            {labels.badge}
           </span>
-          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-6">
-            Design System<br />Switcher
+          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-[0.85] mb-6 whitespace-pre-line">
+            {labels.title}
           </h1>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-xl leading-relaxed">
-            Hot-swap the complete visual language of the portfolio in real time. Changes persist across sessions.
+            {labels.subtitle}
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <button
               onClick={handleReset}
               className="px-4 py-2 text-[12px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
             >
-              Reset
+              {labels.reset}
             </button>
-            <a href="/lab/design-system" className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-primary)] underline underline-offset-4">
-              Token docs
+            <a href={withLang('/lab/design-system')} className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-primary)] underline underline-offset-4">
+              {labels.tokenDocs}
             </a>
-            <a href="/lab/reveal" className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
+            <a href={withLang('/lab/reveal')} className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
               Reveal
             </a>
-            <a href="/lab/cards" className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
+            <a href={withLang('/lab/cards')} className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
               Cards
             </a>
-            <a href="/lab/entrance" className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
+            <a href={withLang('/lab/entrance')} className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)]">
               Entrance
             </a>
           </div>
@@ -206,6 +279,7 @@ function LabContent() {
                 system={system}
                 isActive={activeSystem === system.key}
                 onSelect={() => handleSelect(system.key)}
+                labels={labels}
               />
             ))}
           </div>
@@ -215,7 +289,7 @@ function LabContent() {
         {mounted && (
           <div className="border-t border-[var(--color-border-subtle)] pt-16 space-y-8">
             <p className="text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-text-tertiary)]">
-              Active tokens — {designSystems[activeSystem]?.label}
+              {labels.activeTokens} — {designSystems[activeSystem]?.label}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {Object.entries(designSystems[activeSystem]?.vars ?? {}).map(([token, value]) => (
@@ -257,14 +331,14 @@ function LabContent() {
         )}
       </AnimatePresence>
 
-      <Footer locale="en" />
+      <Footer locale={locale} />
     </main>
   );
 }
 
 export default function Lab() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">...</div>}>
       <LabContent />
     </Suspense>
   );

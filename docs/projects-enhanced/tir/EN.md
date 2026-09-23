@@ -1,8 +1,8 @@
-# TIR Tax Reporting
+# TIR Tax Information Reporting
 
 ## META
 - **Slug:** `tir-tax-information-reporting`
-- **Title:** TIR Tax Reporting
+- **Title:** TIR Tax Information Reporting
 - **Subtitle:** Automated compliance dashboards that cut manual data entry 60% across 15+ LATAM countries
 - **Year:** 2025
 - **Category:** Tax Information Reporting / Compliance / B2B SaaS

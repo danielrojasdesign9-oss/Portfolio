@@ -224,14 +224,16 @@ export default async function ProjectLayout({
                           )}
 
                           <div className="space-y-2 md:space-y-4">
-                            {images.map((img: any, imgIdx: number) => (
-                              <GalleryImage
-                                key={img._key || imgIdx}
-                                src={img?.url || '/placeholder.png'}
-                                alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`}
-                                caption={getLocaleText(img?.caption, locale) || sSubtitle || sTitle || `${title} — ${locale === "es" ? "imagen" : locale === "jp" ? "画像" : "image"} ${imgIdx + 1}`}
-                              />
-                            ))}
+                            {images
+                              .filter((img: any) => img?.url)
+                              .map((img: any, imgIdx: number) => (
+                                <GalleryImage
+                                  key={img._key || imgIdx}
+                                  src={img.url}
+                                  alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`}
+                                  caption={getLocaleText(img?.caption, locale) || sSubtitle || sTitle || `${title} — ${locale === "es" ? "imagen" : locale === "jp" ? "画像" : "image"} ${imgIdx + 1}`}
+                                />
+                              ))}
                           </div>
                         </div>
                       );

@@ -83,7 +83,7 @@ export default function HeroSection({
 
             <motion.div
               variants={item}
-              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-8 max-w-[480px] mx-auto md:max-w-none"
+              className="flex flex-wrap items-center justify-end gap-x-6 gap-y-3 mt-8 max-w-[480px] ml-auto mr-0 md:max-w-none"
             >
               <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)]">
                 {locale === "es" ? "Conecta conmigo" : locale === "jp" ? "つながる" : "Connect"}
