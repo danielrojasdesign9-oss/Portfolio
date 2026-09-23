@@ -331,7 +331,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
             role="tab"
             aria-selected={category === "all"}
             onClick={() => setCategory("all")}
-            className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === "all" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)] border-[var(--color-text-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-primary)]"}`}
+            className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === "all" ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]"}`}
           >
             {labels.all}
           </button>
@@ -341,7 +341,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
               role="tab"
               aria-selected={category === c}
               onClick={() => setCategory(c)}
-              className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === c ? "bg-[var(--color-text-primary)] text-[var(--color-bg)] border-[var(--color-text-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-primary)]"}`}
+              className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === c ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]"}`}
             >
               {c}
             </button>

@@ -88,7 +88,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
             kind="tertiary"
             size="lg"
             icon="Chat"
-            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0"
+            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0 pr-2"
           >
             WhatsApp
           </CarbonLinkButton>
