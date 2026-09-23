@@ -83,7 +83,9 @@
     /* Motion + radius */
     --cds-button-radius: var(--radius-md);
   }
+}
 
+/* Component styles: unlayered inside import layer(carbon) so they beat base/preflight */
   /* Carbon component font overrides */
   .cds--white,
   .cds--g10,
@@ -170,24 +172,24 @@
   .portfolio-header__nav {
     display: flex;
     align-items: center;
-    gap: var(--space-5);
+    gap: var(--space-6);
     height: 100%;
     margin: 0;
   }
 
   .portfolio-header__nav--left {
     position: absolute;
-    left: var(--space-6);
+    left: var(--space-8);
     transform: none;
   }
 
   .portfolio-header__nav--right {
     position: absolute;
-    right: var(--space-6);
+    right: var(--space-8);
     transform: none;
     display: flex;
     align-items: center;
-    gap: var(--space-5);
+    gap: var(--space-6);
     flex-wrap: nowrap;
     white-space: nowrap;
   }
@@ -791,7 +793,6 @@
       display: none !important;
     }
   }
-}
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
