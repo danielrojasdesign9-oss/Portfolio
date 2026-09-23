@@ -10,8 +10,8 @@
 - **Location:** Colombia — Remote
 - **Role:** Product Designer — Research, Clinical Flows, AI Safety UX
 - **Scope:** Clinical Research, Safety-First Flow Design, Explainable AI, Doctor Dashboard, Pilot
-- **Team Size:** [VALIDAR]
-- **Duration:** [VALIDAR — 6-month pilot included]
+- **Team Size:** 1 (me) — research + AI solution
+- **Duration:** 1 month — research & conceptual solution; not implemented
 - **Status:** ⏳ PENDING APPROVAL
 - **Public:** ✅ YES
 - **Featured:** false
@@ -148,10 +148,8 @@ The nurses had the real veto. They rejected the AI initially — "AI doesn't kno
 #### Qualitative
 > "Oh, that's just a smart checklist." — Triage nurse, turning from skeptic to user
 
-> [VALIDAR — additional clinician quote]
-
 #### Business Impact
-- [VALIDAR — EPS cost/latency metrics, patient satisfaction]
+- Not yet measured — an unbuilt conceptual solution
 
 #### Adoption Metrics
 - 80% nurse adoption in pilot; 2,000 patients triaged

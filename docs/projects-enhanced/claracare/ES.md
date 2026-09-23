@@ -10,8 +10,8 @@
 - **Ubicación:** Colombia — Remoto
 - **Rol:** Product Designer — Research, Flujos Clínicos, UX Seguridad IA
 - **Alcance:** Research Clínico, Diseño Flow Seguridad, IA Explicable, Dashboard Médico, Piloto
-- **Tamaño del equipo:** [VALIDAR]
-- **Duración:** [VALIDAR — incluye piloto 6 meses]
+- **Tamaño del equipo:** 1 (yo) — research + solución IA
+- **Duración:** 1 mes — investigación y solución conceptual; no implementado
 - **Estado:** ⏳ PENDING APPROVAL
 - **Público:** ✅ SÍ
 - **Destacado:** false
@@ -148,10 +148,8 @@ Las enfermeras tenían el veto real. Rechazaron la IA al principio — "la IA no
 #### Cualitativos
 > "Ah, es solo checklist inteligente." — Enfermera de triaje, pasando de escéptica a usuaria
 
-> [VALIDAR — cita clínico adicional]
-
 #### Impacto de Negocio
-- [VALIDAR — métricas costo/latencia EPS, satisfacción paciente]
+- Aún no medido — solución conceptual no implementada
 
 #### Métricas de Adopción
 - 80% adopción enfermeras en piloto; 2,000 pacientes triajeados

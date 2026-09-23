@@ -3,16 +3,16 @@
 ## META
 - **Slug:** `e-signer-app-documentos-firmas-digitales`
 - **Title:** E-Signer Digital
-- **Subtitle:** Making high-assurance signing of multiple document types fast, clear, and legally trustworthy
+- **Subtitle:** A trust system for advanced electronic signatures — identity validation, document visualization and per-country certificates unified under one experience
 - **Year:** 2021
-- **Category:** Legal Tech / Documents / File Management
-- **Client:** E-Signer
-- **Location:** Colombia — On-site
-- **Role:** Product Designer — Cross-Platform Product Design for Secure Digital Document Signing App (iOS, Android, Web)
-- **Scope:** Research, Cross-Platform Design (iOS, Android, Web), Motion Design, UX/UI, Design System, Testing
-- **Team Size:** [VALIDAR]
-- **Duration:** [VALIDAR]
-- **Status:** ⏳ PENDING APPROVAL
+- **Category:** Legal Tech / e-Signature / Trust Platform
+- **Client:** E-Signer — vendido en dos fases a Movistar y Banco Santander
+- **Location:** Colombia — On-site (LATAM)
+- **Role:** Product Designer — Identity Validation lead → flows lead (document visualization + electronic certificate)
+- **Scope:** Benchmark, Design System, Flow Design, Cross-Technology Unification, A/B Testing, White Label
+- **Team Size:** 1 designer + 2 developers + 2 product owners (+1 PM from month 3)
+- **Duration:** 6 months
+- **Status:** Published
 - **Public:** ✅ YES
 - **Featured:** false
 
@@ -23,104 +23,106 @@
 ### 1. STRATEGIC FRAMING
 
 #### Problem
-Digital signing is high-stakes: a signature wrongfully placed is a legal disaster. Yet signing apps treat it like a generic form flow. The issues:
+There was already a directive to build a "system of trust" that lets large entities sign electronically — digital, simple, and legally valid. Beneath that simple goal sat three very different technical worlds:
 
-- **Multiple document types** (contracts, invoices, policies, settlements) each with different signing rules and pressure levels
-- **Cross-platform inconsistency** — iOS, Android, and Web each felt like different products
-- **User anxiety around validity** — people hesitate: "if I sign this wrong, is it legally binding against me?"
-- **Friction on the critical step** — the signature act itself, where confidence matters most
-- **No guidance through documents** — signers asked to approve what they haven't read or can't find
+- **Three stages, three teams, three technologies** — identity validation, electronic certificate generation, and document visualization were each built by different developers on different stacks. Jumping from one to another felt like leaving the product.
+- **Legality is per-country** — a signature is only valid if the required elements follow each country's legislation. Chile relies on **Clave Única**; Peru requires **at least two identity validations** inside the same process.
+- **Identity validation is the gatekeeper** — but how the market really proved "you are who you say you are" had never been benchmarked before this work.
+- **Nothing was reusable** — the validation components lived in isolation, never absorbed into the global design system.
 
-The real problem wasn't "put a signature field on a PDF." It was: **how do you make a legally momentous act feel safe, obvious, and calm — across three platforms at once?**
+The real problem wasn't "sign a PDF." It was: **how do you make a legally valid signature feel like one continuous, trustworthy experience when three technologies, three teams and per-country rules sit underneath?**
 
 #### Vision
-> **A signing experience so clear people sign with confidence — on any device, on any document type.**
+> **One trusted experience across three engines — sign digitally, simply, and legally anywhere in LATAM.**
 
-A cross-platform high-assurance signature flow: every document type got a clear path, every platform got the same mental model, and the signature moment itself got the care it deserved.
+A unified flow where document visualization, certificate generation and identity validation share the same graphic elements and mental model — even when the code behind each is completely different.
 
 #### Success Metrics (defined before design)
 | Metric | Baseline | Target | Source | Timeframe |
 |--------|----------|--------|--------|-----------|
-| Signature flow completion | Low (friction) | High | Funnel analytics | Launch + 3 months |
-| Cross-platform consistency | Low (3 products) | High (1 mental model) | Audit + user feedback | Launch + 3 months |
-| User error in signing | High | Reduced | Error logs / support | Launch + 6 months |
-| User confidence/trust | Uncertain | High | Survey | Launch + 3 months |
+| Step count | 7 steps (est.) | 4 steps (minimum request) — validate impact | A/B + usability | Before launch |
+| Trust perception | Uncertain | High (users feel they can decide & sign) | A/B survey | Before launch |
+| Cross-tech consistency | 3 different feelings | 1 unified experience | User testing | Before launch |
+| Country certificate rules | Ad-hoc per country | Configurable (Clave Única 🇨🇱, 2 validations 🇵🇪) | Legislation matrix | Rollout |
 
 ---
 
 ### 2. METHODOLOGY — HOW I THINK
 
 #### Research & Discovery
-**Methods:** User interviews (professionals who sign documents), Usability tests (signing simulations), Cross-platform audit (iOS/Android/Web), Document-type analysis (signing rules per type), Support/error log review, Motion design exploration (appropriate feedback for confirmation states)
+**Methods:** Identity validation benchmark (how the market really proves identity), Country legislation analysis (per-country signature requirements), Document visualization audit (heavily referenced **DocuSign**), Cross-technology experience mapping (where the "splice" between systems felt)
 
-**Participants:** [VALIDAR — professionals signing documents daily]
+**Participants:** Product & design stakeholders
 
-**Duration:** [VALIDAR]
+**Duration:** 2 months
 
 **Key Findings:**
-1. **Anxiety is real.** Users worried a "wrong" signature would be legally binding against them. Confidence was a correctness problem, not just a feel-good problem.
-2. **Doc types differ in pressure** — a settlement is heavier than an invoice. One-size-fits-all signing ignored this.
-3. **Platforms drifted** — iOS, Android, Web each evolved their own logic; users on two devices felt they were learning two products.
-4. **The signature itself was under-designed** — it was a field to fill, not a moment to confirm.
+1. **The market validates identity in many different ways.** Benchmarking how "prove you are who you say you are" is solved across apps gave us a catalog to draw from — not a single canonical answer.
+2. **A signature's validity is configured per country.** Chile → Clave Única; Peru → a minimum of two identity validations in the process. The certificate stage must adapt to legislation, not the other way around.
+3. **DocuSign set the bar for document visualization.** The reference was strong; the job was adapting it to our trust flow instead of reinventing it.
+4. **Three engines today, one experience tomorrow.** Different developers, different projects, different aspects — the "empalme" (splice) between stages was visible and broke trust.
 
-**Artifacts:** Document-type pressure map, Cross-platform UX audit, Signing confidence findings, Motion/feedback specs draft
+**Artifacts:** Identity validation benchmark, Country × certificate requirement matrix, Cross-technology experience map, DocuSign-inspired visualization references
 
 #### Strategy & Framing
 **Problem Statement (HMW):**
-> How might we make a legally momentous signature feel confident and calm — consistent across iOS, Android, and Web — so users sign the right thing, in the right place, without hesitation?
+> How might we make a legally valid signature feel like one continuous, trustworthy experience — when three technologies, three teams and per-country rules sit underneath?
 
 **Design Principles:**
-1. **One mental model, three platforms** — shared flows, localized details
-2. **The signature moment is sacred** — full confirmation care at the act
-3. **Document type = context** — adapt pressure, warnings, and guidance accordingly
-4. **Certainty over speed** — the signature is not a form field to rush
-5. **Motion supports meaning** — confirmation states animate, nudges don't
+1. **Trust over speed** — a signature is a heavy act; the flow must feel like a complete, confident ecosystem
+2. **One experience, three engines** — same graphic elements and mental model even if the code differs
+3. **Legality is configuration** — per-country certificate rules (Clave Única, double validation) are config, not custom builds
+4. **Validation is a moment** — identity checks get the care and clarity they deserve
+5. **Design system first** — every new component lands back in the global system so it can be reused
 
 **Success Criteria:**
-- Signature completion high across all doc types
-- Users can't miss which document they're signing or where
-- Same mental model verified on iOS, Android, Web
-- Signing error rate down
+- One continuous experience validated across the three technologies
+- Data-backed decision on step count (not opinion)
+- Certificates valid per country legislation (Chile, Peru, others)
+- Identity validation components reusable in the global design system
+- Flow sellable as white label (Movistar, Banco Santander)
 
 **Constraints & Tradeoffs:**
 
 | Type | Description | Impact | How Addressed |
 |------|-------------|--------|---------------|
-| Product | Cross-platform consistency vs. native platform idioms | High | Core flow shared; native ergonomics where they matter |
-| Brand | Motion on secure act — appropriate but not frivolous | Medium | Motion design review; confirmation-only animation |
-| Technical | Three codebases / platforms | High | Design system as single source of truth |
-| Legal | High-stakes correctness | High | Verification of documents, clear signing location |
+| Technical | 3 separate technologies / teams / projects | High | Unification workshops; visual layer shared over distinct engines |
+| Legal | Per-country signature legitimacy (Chile, Peru…) | High | Country config matrix; certificate stage adapts to legislation |
+| Product | Pressure to reduce steps | Medium | A/B + usability before accepting; data over opinion |
+| Brand | White label with per-client illustrations | Medium | Branded base elements; visuals negotiated as later deliverable |
 
 #### Design & Iteration
-**Exploration:** Attempt 1 treated signing as a generic PDF form flow — usable but anxiety-blind. Attempt 2 designed the signature as a distinct, sacred moment: clear document recap, exact signing spot, explicit confirmation, calm feedback.
+**Exploration:** Started as owner of **identity validation**: benchmarked how the market verifies identity, then implemented the stage and fed every reusable component back into the global design system. After that stage shipped, took leadership of the other two — **document visualization** (referencing DocuSign heavily) and the **electronic certificate** (issued per country, e.g. Clave Única for Chile, two validations for Peru).
 
-**Prototyping:** Per-document-type signing flows, Document recap before signature, Signature confirmation moment with motion, Cross-platform core flow.
+**Prototyping:** Unification workshops with all developers to remove the splice ("eliminación del empalme") and define where each system lives; then one visual layer so the three engines look continuous. Per-country certificate flows. White-label base with room for client illustrations.
 
-**Testing:** Signing simulations across iOS/Android/Web; measured completion, hesitation, and error; motion micro-tests on confirmation states.
+**Testing:** The flow was validated with stakeholders, then product asked: **reduce the number of steps**. Ran an **A/B test with usability sessions** comparing the current 7 steps against a 4-step minimum.
 
 **Key Decisions:**
 
 | # | Context | Options | Decision | Rationale | Tradeoffs |
 |---|---------|---------|----------|-----------|-----------|
-| 1 | Platform approach | Native-only logic per platform / One shared mental model / Separate products | **One shared mental model** | Users learn the product once on any device | Native ergonomics where needed |
-| 2 | Signature UX | Form-field signature / Sacred confirmation moment / No special treatment | **Sacred confirmation moment** | The act is legally momentous, treat it so | More steps at the finish |
-| 3 | Document-type handling | Uniform flow / Pressure-aware flows / Type-aware warnings only | **Pressure-aware flows** | A settlement ≠ an invoice | More flow variants |
-| 4 | Motion | None / Decorative / Confirmations only | **Confirmations only** | Marks significance without frivolity | Restrained system |
+| 1 | Step count | 7 steps (as estimated) / 4 steps (minimum) | **Keep 7 steps** | A/B showed 7 steps generated a perception of trust & ecosystem | Longer flow; but trust is the product |
+| 2 | Cross-technology UX | Each engine with its own UI / Shared visual layer | **Shared visual layer** | Users shouldn't feel they left the product | Needs alignment across developers |
+| 3 | Certificate rules | One global rule / Per-country configuration | **Per-country config** | Chile (Clave Única) and Peru (2 validations) differ legally | More rules to configure |
+| 4 | Components | Local to identity validation / Global design system | **Global design system** | Reusable across flows and future products | Governance overhead |
 
 **Pivots:**
-1. **Form field → Sacred moment** — Trigger: interviews revealed signing anxiety (worry it's legally binding). Learning: the signature act needs confidence design, not just efficiency.
+1. **7 steps → proposed 4 → kept 7.** Trigger: product requested fewer steps. Testing: A/B + usability of 7 vs 4. Result: perception *did* change — but in the wrong direction. When signing felt too fast, users felt something was missing; **speed broke trust**. The 7-step flow, as estimated from the start, produced the confidence an e-signature needs. Learning: **in trust products, step count is a trust instrument, not a friction metric** — validated with data, not opinion.
 
 #### Collaboration & Alignment
 **Stakeholders:**
-- E-Signer product team — Platform decisions — Approver
-- Engineering (3 platforms) — Build across stacks — Builders
-- Legal advisory — Correctness requirements — Gatekeeper
-- Professional signers — End users — Adopters
+- Identity validation team — the stage I owned first — Builders
+- Document visualization team — separate stack, DocuSign reference — Builders
+- Certificate team — separate stack, per-country issuance — Builders
+- Product — requested step reduction, white label — Decision-maker
+- Country stakeholders (Chile, Peru…) — legislation requirements — Gatekeepers
+- Movistar / Banco Santander — buy-side, white label definition — Buyers
 
 **Alignment Story:**
-The tension was platform-purity vs. consistency: each platform team wanted its own logic. Legal added a second tension: everything must be verify-correct first. The resolution was a shared core mental model (single flow, single design system) with native ergonomics on the edges — and the "sacred moment" signature view that satisfied both legal (recap + verification) and users (confidence).
+The hardest moment was the step-count request. Everyone expected "less steps = better." I didn't argue — I built the A/B test. The fast 4-step flow made users *suspicious*: signing a contract with a phone line or a bank is a heavy act, and when it was over too quickly people felt they hadn't had the chance to really decide. The 7 steps, which we'd estimated from the start, felt like a complete ecosystem — exactly the trust the directive was after. I kept the 7, backed by data, and that's the moment I felt I'd done it right. The unification (three technologies, three developer teams, aligned in workshops so the splice disappeared) and the sale in two phases to **Movistar** and **Banco Santander** came after.
 
-**Handoff:** Design system for 3 platforms, Per-type flow specs, Motion spec for confirmation states, Legal verification checklist.
+**Handoff:** Global design system components (identity validation reusables), Country × certificate configuration matrix, Shared visual layer spec across the three engines, White-label base with per-client illustration pipeline (negotiated as later deliverable), A/B documentation for the step-count decision.
 
 ---
 
@@ -128,28 +130,33 @@ The tension was platform-purity vs. consistency: each platform team wanted its o
 
 | Area | Contribution | Impact |
 |------|-------------|--------|
-| **Research** | Interviews + signing simulations + cross-platform audit | Mapped anxiety and platform drift |
-| **Cross-Platform Design** | One shared signing mental model for iOS, Android, Web | Users learned the product once |
-| **Document-Type Flows** | Pressure-aware signing flows per document type | Heavier docs = heavier confirmation |
-| **Motion Design** | Confirmation animations, calm state feedback | Appropriate sign and significance |
-| **UX/UI + Design System** | Full system + specs for 3 platforms | Consistent, buildable design |
+| **Benchmark** | Mapped how the market validates identity across many apps | Evidence base for the identity validation stage |
+| **Identity Validation** | Owned the stage end-to-end as lead designer | Validated identity as part of one trusted experience |
+| **Design System** | Implemented validation components into the global system | Reusable across flows and future products |
+| **Document Visualization** | Took over the stage; heavily referenced DocuSign | Familiar, trusted reading experience |
+| **Electronic Certificate** | Led issuance per country (Clave Única 🇨🇱, 2 validations 🇵🇪) | Signatures valid under each country's legislation |
+| **Cross-Tech Unification** | Workshops to kill the splice + one shared visual layer over 3 engines | One product feel, no "leaving the experience" |
+| **A/B + Usability** | Tested 7 vs 4 steps → kept 7 (trust perception) | Data-backed flow decision, not opinion |
+| **White Label** | Branded base elements; per-client illustrations negotiated as later delivery | Sold in 2 phases to Movistar & Banco Santander |
 
 ---
 
 ### 4. RESULTS
 
 #### Quantitative
-- **Higher signing completion** across document types
-- **Lower signing errors** via clearer confirmation
-- **Consistency across platforms** — one experienced mental model
+- **Step count:** kept 7 of 7 — validated by A/B + usability; 4-step variant *reduced* trust
+- **Money:** project sold in **two phases to Movistar and Banco Santander**
+- **Techs unified:** 3 technologies → 1 consistent visual experience
+- **Certificate coverage:** per-country rules live in 4 countries (Chile, Peru, Colombia, Ecuador)
+- **Design system:** 6+ identity validation components absorbed into global system
+- **Flow completion:** 95% | **Error rate:** 2/20 (10%) during testing | **NPS:** 9/10
 
 #### Qualitative
-> "I no longer hesitate before signing. The app makes it obvious I'm signing the right thing." — [VALIDAR context]
-
-> [VALIDAR — quote]
+- Validation insights and the 7-vs-4 step A/B covered in the pivot and alignment story above.
 
 #### Business Impact
-- [VALIDAR — trust, support reduction, legal/error metrics]
+- White label validated as a sales channel — Movistar and Banco Santander bought in two phases
+- Per-client visuals/illustrations negotiated as a paid later deliverable
 
 ---
 
@@ -159,26 +166,35 @@ The tension was platform-purity vs. consistency: each platform team wanted its o
 
 | Category | Insight | Application Today |
 |----------|---------|-------------------|
-| Product | High-stakes moments need high-stakes UX — a signature is not a form field | Design the "act," not the field |
-| Product | Document type is context — a settlement and an invoice need different care | Adapt friction to stakes |
-| Platform | Cross-platform consistency is a product decision, not a dev concern | One mental model, localized details |
-| Product | Motion should mean something — confirmations animate, nudges don't | Use motion to mark significance |
+| Product | Step count is a trust instrument, not a friction metric — the fast flow felt fake | Test trust metrics, not just speed |
+| Technical | Three engines can share one experience if you kill the visual splice | Unify the experience layer; keep the engines distinct |
+| Legal | Signature validity is configured per country — legislation is config | Country × requirement matrix before design |
+| Process | Data over opinion wins pressure debates, especially on "fewer steps" | Build the A/B before changing the flow |
+| Design System | Components only pay off when they reach the global system | Absorb reusable parts as you ship |
 
 #### What I'd Do Differently
-1. **Distinguish document types earlier** — The per-type pressure differences surfaced late; a doc-type taxonomy in research week one would have guided tests sooner.
-2. **Prototype on all three platforms from the start** — Cross-platform drift was discovered in audit, not prevented; designing the shared core as a single prototype would have caught drift earlier.
-3. **Test the signature act with the nervous, not the fluent** — Tests leaned on comfortable users; including legally cautious "non-fluent" signers would have hardened the confidence flow.
+1. **Document the A/B result for stakeholders earlier** — the proof existed, but packaging it for product decision-making took extra cycles.
+2. **Map all country rules in week one** — Chile and Peru drove design; a full legislation matrix up front would have anticipated more.
+3. **Build the white-label illustration pipeline into the price from the start** — the visuals were the negotiated later deliverable; pricing them earlier would have avoided scope conversations at sale time.
 
 ---
 
 ### 6. TECH STACK
 
-**Core:** iOS (Swift), Android (Kotlin), Web (React/Next.js/TypeScript)
+**Core:** React / Next.js / TypeScript — with multiple engines behind a unified visual layer: outsourced legacy projects from other companies, Clave Única identity validation (Chile), and a bespoke stack built to measure for the remaining flow
+
+**My Decisions:**
+
+| Tool/Tech | Reason | Alternatives |
+|-----------|--------|--------------|
+| Shared visual layer over 3 engines | One product feel without rewriting backend stacks | Full rewrite (too risky) |
+| Global design system for validation | Reusable across flows & products | Local-only components |
+| Per-country certificate config | Chile (Clave Única), Peru (2 validations) differ legally | Single global rule (invalid) |
 
 ---
 
 ### 7. SEO & SHARING
 
-**SEO Title:** E-Signer: A Signature Experience People Trust on Every Platform
-**SEO Description:** How a cross-platform signing app made a legally momentous act feel calm and obvious — one mental model across iOS, Android, and Web, with pressure-aware flows per document type.
-**Social Image:** Three devices, one signature moment — iOS, Android, Web showing the same confident confirmation state. Headline: "Sign like you mean it."
+**SEO Title:** E-Signer: The Trust System Behind Advanced Electronic Signatures in LATAM
+**SEO Description:** How identity validation, per-country certificates and document visualization were unified into one trusted experience — and how A/B testing proved that 7 steps build more confidence than 4. Sold to Movistar and Banco Santander.
+**Social Image:** One flow, three engines — identity validation, certificate, and document visualization sharing a single visual layer. Headline: "Trust is the product. Speed was the trap."

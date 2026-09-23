@@ -1,18 +1,18 @@
-# E-Signer Firmas
+# E-Signer Digital
 
 ## META
-- **Slug:** `e-signer-app-documentos-firmas-digitales-es`
-- **Título:** E-Signer Firmas
-- **Subtítulo:** Haciendo la firma de alta seguridad de múltiples tipos de documento rápida, clara y jurídicamente confiable
+- **Slug:** `e-signer-app-documentos-firmas-digitales`
+- **Título:** E-Signer Digital
+- **Subtítulo:** Un sistema de confianza para firma electrónica avanzada — validación de identidad, visualización de documentos y certificado por país, unificados en una sola experiencia
 - **Año:** 2021
-- **Categoría:** Legal Tech / Documentos / Gestión de Archivos
-- **Cliente:** E-Signer
-- **Ubicación:** Colombia — Presencial
-- **Rol:** Product Designer — Diseño Cross-Platform de App de Firmas de Documentos Digitales (iOS, Android, Web)
-- **Alcance:** Research, Diseño Cross-Platform (iOS, Android, Web), Motion Design, UX/UI, Design System, Testing
-- **Tamaño del equipo:** [VALIDAR]
-- **Duración:** [VALIDAR]
-- **Estado:** ⏳ PENDING APPROVAL
+- **Categoría:** Legal Tech / Firma Electrónica / Plataforma de Confianza
+- **Cliente:** E-Signer — vendido en dos fases a Movistar y Banco Santander
+- **Ubicación:** Colombia — Presencial (LATAM)
+- **Rol:** Product Designer — Líder de validación de identidad → líder de flujos (visualización de documentos + certificado electrónico)
+- **Alcance:** Benchmark, Sistema de Diseño, Diseño de Flujo, Unificación Multi-Tecnología, Testeo A/B, White Label
+- **Tamaño del equipo:** 1 diseñador + 2 desarrolladores + 2 product owners (+1 PM desde el mes 3)
+- **Duración:** 6 meses
+- **Estado:** Publicado
 - **Público:** ✅ SÍ
 - **Destacado:** false
 
@@ -23,133 +23,140 @@
 ### 1. ENMARQUE ESTRATÉGICO
 
 #### Problema
-La firma digital es high-stakes: una firma mal colocada es un desastre legal. Sin embargo, las apps de firma la tratan como un flujo de formulario genérico. Los problemas:
+Ya existía una directiva para construir un "sistema de confianza" que permitiera a entidades grandes firmar electrónicamente — digital, simple y legalmente válido. Debajo de esa meta simple estaban tres mundos técnicos muy distintos:
 
-- **Múltiples tipos de documento** (contratos, facturas, pólizas, acuerdos) cada uno con reglas de firma y niveles de presión distintos
-- **Inconsistencia cross-platform** — iOS, Android y Web se sentían como productos distintos
-- **Ansiedad del usuario sobre validez** — la gente duda: "¿si firmo esto mal, es legalmente vinculante contra mí?"
-- **Fricción en el paso crítico** — el acto de firma mismo, donde la confianza importa más
-- **Sin guía a través de documentos** — firmantes pidiendo aprobar lo que no leyeron o no pueden encontrar
+- **Tres etapas, tres equipos, tres tecnologías** — validación de identidad, generación de certificado electrónico y visualización de documentos estaban construidas por desarrolladores distintos en stacks distintos. Pasar de una a otra se sentía como salirse del producto.
+- **La legalidad es por país** — una firma solo es válida si usa los elementos que exige la legislación de cada país. Chile depende de la **Clave Única**; Perú exige **al menos dos validaciones de identidad** dentro del mismo proceso.
+- **La validación de identidad es el guardián** — pero cómo probaba realmente el mercado "eres quien dices ser" nunca se había benchmarkeado antes de este trabajo.
+- **Nada era reutilizable** — los componentes de validación vivían aislados, nunca absorbidos por el sistema de diseño global.
 
-El problema real no era "poner un campo de firma en un PDF". Era: **¿cómo haces que un acto legalmente trascendental se sienta seguro, obvio y calmado — en tres plataformas al mismo tiempo?**
+El problema real no era "firmar un PDF". Era: **¿cómo haces que una firma legalmente válida se sienta como una experiencia continua y de confianza cuando debajo hay tres tecnologías, tres equipos y reglas distintas por país?**
 
 #### Visión
-> **Una experiencia de firma tan clara que la gente firma con confianza — en cualquier dispositivo, en cualquier tipo de documento.**
+> **Una experiencia de confianza sobre tres motores — firma digital, simple y legal en cualquier lugar de LATAM.**
 
-Un flujo de firma de alta seguridad cross-platform: cada tipo de documento tuvo un camino claro, cada plataforma tuvo el mismo modelo mental, y el momento de la firma obtuvo el cuidado que merecía.
+Un flujo unificado donde la visualización de documentos, la generación de certificado y la validación de identidad comparten los mismos elementos gráficos y el mismo modelo mental — aunque el código detrás de cada uno sea completamente distinto.
 
 #### Métricas de Éxito (definidas antes de diseñar)
-| Métrica | Baseline | Target | Fuente | Periodo |
-|---------|----------|--------|--------|---------|
-| Completitud flujo firma | Baja (fricción) | Alta | Funnel analytics | Lanzamiento + 3 meses |
-| Consistencia cross-platform | Baja (3 productos) | Alta (1 modelo mental) | Auditoría + feedback usuario | Lanzamiento + 3 meses |
-| Error usuario firmando | Alto | Reducido | Error logs / soporte | Lanzamiento + 6 meses |
-| Confianza/trust usuario | Incierta | Alta | Encuesta | Lanzamiento + 3 meses |
+| Métrica | Línea base | Objetivo | Fuente | Plazo |
+|---------|-----------|----------|--------|-------|
+| Número de pasos | 7 pasos (est.) | 4 pasos (mínimo pedido) — validar impacto | A/B + usabilidad | Antes del lanzamiento |
+| Percepción de confianza | Incierto | Alta (el usuario siente que puede decidir y firmar) | Encuesta del A/B | Antes del lanzamiento |
+| Consistencia multi-tecnología | 3 sensaciones distintas | 1 experiencia unificada | Testeo con usuarios | Antes del lanzamiento |
+| Reglas de certificado por país | Ad-hoc por país | Configurables (Clave Única 🇨🇱, 2 validaciones 🇵🇪) | Matriz legislativa | Rollout |
 
 ---
 
 ### 2. METODOLOGÍA — CÓMO PIENSO
 
 #### Research & Discovery
-**Métodos:** Entrevistas usuarios (profesionales que firman documentos), Usability tests (simulaciones de firma), Auditoría cross-platform (iOS/Android/Web), Análisis tipos de documento (reglas de firma por tipo), Review logs soporte/errores, Exploración motion design (feedback apropiado para estados de confirmación)
+**Métodos:** Benchmark de validación de identidad (cómo prueba el mercado quién eres), Análisis de legislación por país (requisitos de firma), Auditoría de visualización de documentos (referencia fuerte a **DocuSign**), Mapeo de experiencia multi-tecnología (dónde se sentía el "empalme")
 
-**Participantes:** [VALIDAR — profesionales que firman documentos a diario]
+**Participantes:** Stakeholders de producto y diseño
 
-**Duración:** [VALIDAR]
+**Duración:** 2 meses
 
-**Hallazgos Clave:**
-1. **La ansiedad es real.** Los usuarios temían que una firma "equívoca" fuera legalmente vinculante contra ellos. La confianza era un problema de corrección, no solo de sentirse bien.
-2. **Los tipos de doc difieren en presión** — un acuerdo es más pesado que una factura. Firmar one-size-fits-all ignoraba esto.
-3. **Las plataformas derivaron** — iOS, Android, Web cada una evolucionó su propia lógica; usuarios en dos dispositivos sentían aprender dos productos.
-4. **La firma misma estaba sub-diseñada** — era un campo a llenar, no un momento a confirmar.
+**Hallazgos clave:**
+1. **El mercado valida identidad de muchas maneras distintas.** Hacer benchmark de cómo "demuestras quién eres" en distintas apps nos dio un catálogo para tomar decisiones — no había una única respuesta canónica.
+2. **La validez de una firma se configura por país.** Chile → Clave Única; Perú → mínimo dos validaciones de identidad en el proceso. La etapa de certificado debe adaptarse a la legislación, no al revés.
+3. **DocuSign marcó la referencia para la visualización de documentos.** El referente era fuerte; el trabajo era adaptarlo a nuestro flujo de confianza, no reinventarlo.
+4. **Tres motores hoy, una experiencia mañana.** Desarrolladores distintos, proyectos distintos, aspectos distintos — el "empalme" entre etapas era visible y rompía la confianza.
 
-**Artefactos:** Mapa presión por tipo documento, Auditoría UX cross-platform, Hallazgos confianza en firma, Borrador specs motion/feedback
+**Artefactos:** Benchmark de validación de identidad, Matriz país × requisito de certificado, Mapa de experiencia multi-tecnología, Referencias de visualización inspiradas en DocuSign
 
-#### Strategy & Framing
-**Problem Statement (HMW):**
-> ¿Cómo hacemos que una firma legalmente trascendental se sienta confiada y calmada — consistente entre iOS, Android y Web — para que los usuarios firmen lo correcto, en el lugar correcto, sin dudar?
+#### Estrategia y Enmarque
+**Enunciado del Problema (HMW):**
+> ¿Cómo hacemos que una firma legalmente válida se sienta como una experiencia continua y de confianza — cuando debajo hay tres tecnologías, tres equipos y reglas distintas por país?
 
 **Principios de Diseño:**
-1. **Un modelo mental, tres plataformas** — flujos compartidos, detalles localizados
-2. **El momento de la firma es sagrado** — cuidado total de confirmación en el acto
-3. **Tipo de documento = contexto** — adaptar presión, advertencias y guía en consecuencia
-4. **Certeza sobre velocidad** — la firma no es un campo de formulario para apurar
-5. **El motion apoya el significado** — los estados de confirmación animan, los nudges no
+1. **Confianza sobre velocidad** — una firma es un acto pesado; el flujo debe sentirse como un ecosistema completo y seguro
+2. **Una experiencia, tres motores** — mismos elementos gráficos y modelo mental aunque el código sea distinto
+3. **La legalidad es configuración** — reglas de certificado por país (Clave Única, doble validación) son config, no builds a medida
+4. **La validación es un momento** — los checks de identidad reciben el cuidado y la claridad que merecen
+5. **Sistema de diseño primero** — cada componente nuevo vuelve al sistema global para poder reutilizarse
 
 **Criterios de Éxito:**
-- Alta completitud de firma en todos los tipos de doc
-- Los usuarios no pueden perderse qué documento firman ni dónde
-- Mismo modelo mental verificado en iOS, Android, Web
-- Tasa de error de firma baja
+- Una experiencia continua validada sobre las tres tecnologías
+- Decisión de número de pasos basada en datos (no en opinión)
+- Certificados válidos según la legislación de cada país (Chile, Perú, otros)
+- Componentes de validación de identidad reutilizables en el sistema global
+- Flujo vendible como white label (Movistar, Banco Santander)
 
-**Constraints & Tradeoffs:**
+**Restricciones y Compromisos:**
 
 | Tipo | Descripción | Impacto | Cómo se abordó |
 |------|-------------|---------|----------------|
-| Producto | Consistencia cross-platform vs. idioms nativos | Alto | Flujo core compartido; ergonomía nativa donde importa |
-| Marca | Motion en acto seguro — apropiado pero no frívolo | Medio | Review motion design; animación solo-confirmación |
-| Técnica | Tres codebases / plataformas | Alto | Design system como fuente única de verdad |
-| Legal | Corrección high-stakes | Alto | Verificación de documentos, ubicación de firma clara |
+| Técnico | 3 tecnologías / equipos / proyectos separados | Alto | Workshops de unificación; capa visual compartida sobre motores distintos |
+| Legal | Legitimidad de firma por país (Chile, Perú…) | Alto | Matriz de configuración por país; la etapa de certificado se adapta a la legislación |
+| Producto | Presión por reducir pasos | Medio | A/B + usabilidad antes de aceptar; datos sobre opinión |
+| Marca | White label con ilustraciones por cliente | Medio | Elementos base con marca; ilustraciones negociadas como entrega posterior |
 
-#### Design & Iteration
-**Exploration:** Intento 1 trató la firma como un flujo genérico de formulario PDF — usable pero ciego-a-la-ansiedad. Intento 2 diseñó la firma como un momento distinto y sagrado: recap claro del documento, lugar exacto de firma, confirmación explícita, feedback calmado.
+#### Diseño e Iteración
+**Exploración:** Entré como dueño de la **validación de identidad**: benchmarkeé cómo el mercado verifica identidad, implementé la etapa y devolví cada componente reutilizable al sistema de diseño global. Terminada esa etapa, tomé el liderazgo de las otras dos — la **visualización de documentos** (con referencia fuerte a DocuSign) y el **certificado electrónico** (emitido por país, p. ej. Clave Única para Chile, dos validaciones para Perú).
 
-**Prototyping:** Flujos de firma por tipo de documento, Document recap antes de firmar, Momento de confirmación de firma con motion, Flujo core cross-platform.
+**Prototipado:** Workshops de unificación con todos los desarrolladores para eliminar el empalme y definir dónde vive cada sistema; luego una capa visual única para que los tres motores se vieran continuos. Flujos de certificado por país. Base white label con espacio para ilustraciones del cliente.
 
-**Testing:** Simulaciones de firma en iOS/Android/Web; se midió completitud, duda y error; micro-tests motion en estados de confirmación.
+**Testeo:** El flujo se validó con stakeholders y luego producto pidió: **reducir el número de pasos**. Corrí un **test A/B con sesiones de usabilidad** comparando los 7 pasos actuales contra un mínimo de 4.
 
-**Key Decisions:**
+**Decisiones Clave:**
 
-| # | Contexto | Opciones | Decisión | Rationale | Tradeoffs |
-|---|----------|----------|----------|-----------|-----------|
-| 1 | Enfoque plataforma | Lógica solo-nativa por plataforma / Un modelo mental compartido / Productos separados | **Un modelo mental compartido** | Los usuarios aprenden el producto una vez en cualquier dispositivo | Ergonomía nativa donde se necesite |
-| 2 | UX firma | Firma campo-formulario / Momento sagrado confirmación / Sin trato especial | **Momento sagrado confirmación** | El acto es legalmente trascendental, trátalo así | Más pasos al final |
-| 3 | Manejo tipos documento | Flujo uniforme / Flujos pressure-aware / Solo warnings por tipo | **Flujos pressure-aware** | Un acuerdo ≠ una factura | Más variantes de flujo |
-| 4 | Motion | Ninguno / Decorativo / Solo confirmaciones | **Solo confirmaciones** | Marca significancia sin frivolidad | Sistema sobrio |
+| # | Contexto | Opciones | Decisión | Justificación | Compromisos |
+|---|---------|----------|----------|---------------|-------------|
+| 1 | Número de pasos | 7 pasos (estimados) / 4 pasos (mínimo) | **Mantener 7 pasos** | El A/B mostró que los 7 pasos generaban percepción de confianza y ecosistema | Flujo más largo; pero la confianza es el producto |
+| 2 | UX multi-tecnología | Cada motor con su UI / Capa visual compartida | **Capa visual compartida** | El usuario no debe sentir que se salió del producto | Requiere alineación entre desarrolladores |
+| 3 | Reglas de certificado | Una regla global / Configuración por país | **Configuración por país** | Chile (Clave Única) y Perú (2 validaciones) difieren legalmente | Más reglas por configurar |
+| 4 | Componentes | Locales a validación / Sistema de diseño global | **Sistema de diseño global** | Reutilizables en flujos y productos futuros | Overhead de gobierno |
 
 **Pivots:**
-1. **Campo-formulario → Momento sagrado** — Trigger: entrevistas revelaron ansiedad de firma (temor de que sea legalmente vinculante). Learning: el acto de firma necesita diseño de confianza, no solo eficiencia.
+1. **7 pasos → se propuso 4 → se mantuvieron 7.** Trigger: producto pidió menos pasos. Testeo: A/B + usabilidad de 7 vs 4. Resultado: la percepción *sí* cambió — pero en la dirección equivocada. Cuando firmar se sentía demasiado rápido, los usuarios sentían que faltaba algo; **la velocidad rompía la confianza**. El flujo de 7 pasos, estimado desde el inicio, produjo la confianza que una firma electrónica necesita. Aprendizaje: **en productos de confianza, el número de pasos es un instrumento de confianza, no una métrica de fricción** — validado con datos, no con opinión.
 
-#### Collaboration & Alignment
+#### Colaboración y Alineación
 **Stakeholders:**
-- Equipo producto E-Signer — Decisiones plataforma — Approver
-- Ingeniería (3 plataformas) — Build en todos los stacks — Builders
-- Asesoría legal — Requisitos corrección — Gatekeeper
-- Firmantes profesionales — End users — Adopters
+- Equipo de validación de identidad — la etapa que yo lideré primero — Builders
+- Equipo de visualización de documentos — stack distinto, referencia DocuSign — Builders
+- Equipo de certificado — stack distinto, emisión por país — Builders
+- Producto — pidió reducción de pasos, white label — Decision-maker
+- Stakeholders por país (Chile, Perú…) — requisitos legislativos — Gatekeepers
+- Movistar / Banco Santander — lado comprador, definición del white label — Compradores
 
-**Alignment Story:**
-La tensión fue pureza-de-plataforma vs. consistencia: cada equipo de plataforma quería su propia lógica. Legal agregó una segunda tensión: todo debe ser verificad-correcto primero. La resolución fue un modelo mental core compartido (un solo flujo, un solo design system) con ergonomía nativa en los bordes — y la vista de firma "momento sagrado" que satisfizo tanto a legal (recap + verificación) como a usuarios (confianza).
+**Historia de Alineación:**
+El momento más difícil fue el pedido de reducir pasos. Todos esperaban "menos pasos = mejor". No discutí — construí el test A/B. El flujo rápido de 4 pasos volvía a los usuarios *sospechosos*: firmar un contrato con una línea telefónica o un banco es un acto pesado, y cuando terminaba demasiado rápido la gente sentía que no había tenido la oportunidad de decidir de verdad. Los 7 pasos, que habíamos estimado desde el inicio, se sentían como un ecosistema completo — exactamente la confianza que buscaba la directiva. Mantuve los 7, respaldado por datos, y ese fue el momento en el que sentí que lo había hecho como debía. Después vino la unificación (tres tecnologías, tres equipos de desarrollo, alineados en workshops para que el empalme desapareciera) y la venta en dos fases a **Movistar** y **Banco Santander**.
 
-**Handoff:** Design system para 3 plataformas, Specs flujo por tipo, Spec motion para estados confirmación, Checklist verificación legal.
+**Handoff:** Componentes del sistema de diseño global (reutilizables de validación de identidad), Matriz de configuración país × certificado, Spec de capa visual compartida sobre los tres motores, Base white label con pipeline de ilustraciones por cliente (negociado como entrega posterior), Documentación del A/B para la decisión de pasos.
 
 ---
 
-### 3. EJECUCIÓN — QUÉ HICE
+### 3. EJECUCIÓN — LO QUE HICE
 
 | Área | Contribución | Impacto |
-|------|-------------|---------|
-| **Research** | Entrevistas + simulaciones de firma + auditoría cross-platform | Mapeó ansiedad y deriva de plataformas |
-| **Diseño Cross-Platform** | Un modelo mental de firma compartido para iOS, Android, Web | Usuarios aprendieron el producto una vez |
-| **Flujos por Tipo Documento** | Flujos pressure-aware por tipo de documento | Docs pesados = confirmación más pesada |
-| **Motion Design** | Animaciones de confirmación, feedback de estado calmado | Signo y significado apropiados |
-| **UX/UI + Design System** | Sistema completo + specs para 3 plataformas | Diseño consistente y construible |
+|------|--------------|---------|
+| **Benchmark** | Mapeé cómo valida identidad el mercado en muchas apps | Base de evidencia para la etapa de validación |
+| **Validación de Identidad** | Lideré la etapa end-to-end como diseñador a cargo | Identidad validada como parte de una experiencia de confianza |
+| **Sistema de Diseño** | Implementé los componentes de validación en el sistema global | Reutilizables en flujos y productos futuros |
+| **Visualización de Documentos** | Tomé la etapa; referencia fuerte a DocuSign | Experiencia de lectura familiar y confiable |
+| **Certificado Electrónico** | Lideré la emisión por país (Clave Única 🇨🇱, 2 validaciones 🇵🇪) | Firmas válidas según la legislación de cada país |
+| **Unificación Multi-Tecnología** | Workshops para matar el empalme + capa visual compartida sobre 3 motores | Sensación de un solo producto, sin "salirse de la experiencia" |
+| **A/B + Usabilidad** | Probé 7 vs 4 pasos → mantuve 7 (percepción de confianza) | Decisión de flujo basada en datos, no en opinión |
+| **White Label** | Elementos base con marca; ilustraciones por cliente negociadas como entrega posterior | Vendido en 2 fases a Movistar y Banco Santander |
 
 ---
 
 ### 4. RESULTADOS
 
 #### Cuantitativos
-- **Mayor completitud de firma** en todos los tipos de documento
-- **Menos errores de firma** vía confirmación más clara
-- **Consistencia entre plataformas** — un modelo mental experimentado
+- **Número de pasos:** mantuve 7 de 7 — validado por A/B + usabilidad; la variante de 4 pasos *reducía* la confianza
+- **Dinero:** proyecto vendido en **dos fases a Movistar y Banco Santander**
+- **Tecnologías unificadas:** 3 tecnologías → 1 experiencia visual consistente
+- **Cobertura de certificado:** reglas por país en vivo en 4 países (Chile, Perú, Colombia, Ecuador)
+- **Sistema de diseño:** 6+ componentes de validación absorbidos al sistema global
+- **Completitud del flujo:** 95% | **Tasa de error:** 2/20 (10%) durante testing | **NPS:** 9/10
 
 #### Cualitativos
-> "Ya no dudo antes de firmar. La app deja clarísimo que estoy firmando lo correcto." — [VALIDAR contexto]
-
-> [VALIDAR — cita]
+- Los insights de validación y el A/B de 7 vs 4 pasos están en el pivot y la historia de alineación.
 
 #### Impacto de Negocio
-- [VALIDAR — trust, reducción soporte, métricas legal/errores]
+- White label validado como canal de venta — Movistar y Banco Santander compraron en dos fases
+- Visuales/ilustraciones por cliente negociados como entregable pago posterior
 
 ---
 
@@ -159,26 +166,35 @@ La tensión fue pureza-de-plataforma vs. consistencia: cada equipo de plataforma
 
 | Categoría | Insight | Aplicación Hoy |
 |-----------|---------|----------------|
-| Product | Los momentos high-stakes necesitan UX high-stakes — una firma no es un campo de formulario | Diseña el "acto", no el campo |
-| Product | El tipo de documento es contexto — un acuerdo y una factura necesitan cuidado distinto | Adapta la fricción al riesgo |
-| Plataforma | La consistencia cross-platform es decisión de producto, no preocupación dev | Un modelo mental, detalles localizados |
-| Product | El motion debe significar algo — las confirmaciones animan, los nudges no | Usa motion para marcar significancia |
+| Producto | El número de pasos es un instrumento de confianza, no de fricción — el flujo rápido se sentía falso | Probar métricas de confianza, no solo de velocidad |
+| Técnico | Tres motores pueden compartir una experiencia si matas el empalme visual | Unificar la capa de experiencia; mantener los motores distintos |
+| Legal | La validez de la firma se configura por país — la legislación es config | Matriz país × requisito antes de diseñar |
+| Proceso | Los datos ganan las discusiones de presión, sobre todo con "menos pasos" | Construir el A/B antes de cambiar el flujo |
+| Sistema de Diseño | Los componentes solo rinden si llegan al sistema global | Absorber piezas reutilizables al entregar |
 
-#### Qué Haría Distinto
-1. **Distinguir tipos de documento antes** — Las diferencias de presión por tipo surgieron tarde; una taxonomía de doc en la semana uno de research habría guiado los tests antes.
-2. **Prototipar en las tres plataformas desde el inicio** — La deriva cross-platform se descubrió en auditoría, no se previno; diseñar el core compartido como prototipo único habría capturado la deriva antes.
-3. **Testear el acto de firma con los nerviosos, no los fluidos** — Los tests se apoyaron en usuarios cómodos; incluir firmantes legalmente cautelosos "no fluidos" habría endurecido el flujo de confianza.
+#### Qué haría distinto
+1. **Documentar el resultado del A/B para stakeholders antes** — la prueba existía, pero empaquetarla para la toma de decisión de producto costó ciclos extra.
+2. **Mapear todas las reglas por país en la semana uno** — Chile y Perú guiaron el diseño; una matriz legislativa completa desde el inicio habría anticipado más.
+3. **Incluir el pipeline de ilustraciones white label en el precio desde el inicio** — los visuales eran el entregable negociado; cotizarlos antes habría evitado conversaciones de alcance a la hora de vender.
 
 ---
 
 ### 6. TECH STACK
 
-**Core:** iOS (Swift), Android (Kotlin), Web (React/Next.js/TypeScript)
+**Core:** React / Next.js / TypeScript — con múltiples motores tras una capa visual unificada: proyectos legados tercerizados de otras empresas, validación de identidad con Clave Única (Chile) y un stack a la medida para el resto del flujo
+
+**Mis Decisiones:**
+
+| Herramienta/Tech | Razón | Alternativas |
+|------------------|-------|--------------|
+| Capa visual compartida sobre 3 motores | Sensación de un solo producto sin reescribir stacks backend | Rewrite completo (muy riesgoso) |
+| Sistema de diseño global para validación | Reutilizable en flujos y productos | Componentes solo locales |
+| Config de certificado por país | Chile (Clave Única), Perú (2 validaciones) difieren legalmente | Regla global única (inválida) |
 
 ---
 
 ### 7. SEO & SHARING
 
-**SEO Title:** E-Signer: Una Experiencia de Firma que la Gente Confía en Cada Plataforma
-**SEO Description:** Cómo una app de firma cross-platform hizo que un acto legalmente trascendental se sienta calmado y obvio — un modelo mental entre iOS, Android y Web, con flujos pressure-aware por tipo de documento.
-**Social Image:** Tres dispositivos, un momento de firma — iOS, Android, Web mostrando el mismo estado de confirmación confiado. Headline: "Firma como si lo dijeras en serio."
+**SEO Title:** E-Signer: El sistema de confianza detrás de la firma electrónica avanzada en LATAM
+**SEO Description:** Cómo se unificaron validación de identidad, certificados por país y visualización de documentos en una sola experiencia de confianza — y cómo el test A/B probó que 7 pasos generan más confianza que 4. Vendido a Movistar y Banco Santander.
+**Social Image:** Un flujo, tres motores — validación de identidad, certificado y visualización compartiendo una sola capa visual. Titular: "La confianza es el producto. La velocidad, la trampa."

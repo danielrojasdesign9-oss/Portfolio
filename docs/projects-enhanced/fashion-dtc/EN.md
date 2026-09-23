@@ -6,12 +6,12 @@
 - **Subtitle:** A fashion storefront that speaks the brand's language — editorial energy, conversion discipline
 - **Year:** 2021
 - **Category:** E-commerce / Fashion / Direct-to-Consumer
-- **Client:** [VALIDAR — fashion brand]
+- **Client:** White-label fashion retailer (shoes)
 - **Location:** Remote
 - **Role:** UX/UI Designer — Fashion E-commerce & Platform Redesign
 - **Scope:** UX/UI Design, Design System, Prototyping, Testing, Design Handoff
-- **Team Size:** [VALIDAR]
-- **Duration:** [VALIDAR]
+- **Team Size:** 1 (me) — research + AI
+- **Duration:** 1 month
 - **Status:** ⏳ PENDING APPROVAL
 - **Public:** ✅ YES
 - **Featured:** false
@@ -53,9 +53,7 @@ Fashion e-commerce where every screen carries brand energy — while the path fr
 #### Research & Discovery
 **Methods:** Brand audit (identity, tone), UX audit (existing storefront), Shopper interviews, Competitive analysis (premium DTC fashion), Funnel analytics review, Usability testing
 
-**Participants:** [VALIDAR — shoppers, brand stakeholders]
-
-**Duration:** [VALIDAR]
+**Duration:** 1 month
 
 **Key Findings:**
 1. **Shoppers buy the mood first, product second.** The site's energy matched the product — when it felt generic, trust dropped.
@@ -144,15 +142,10 @@ Marketing wanted "a magazine." The e-commerce lead wanted "conversion at all cos
 - Shoppers rated the experience **"on-brand"**
 
 #### Qualitative
-> [VALIDAR — shopper quote]
-
-> "It finally feels like shopping the brand, not a template with the brand's logo on it." — [VALIDAR context]
 
 #### Business Impact
-- [VALIDAR — sales, return rate, brand perception metrics]
 
 #### Adoption Metrics
-- [VALIDAR — funnel conversion, mobile share]
 
 ---
 

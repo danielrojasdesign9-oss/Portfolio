@@ -6,12 +6,12 @@
 - **Subtítulo:** Un storefront de moda que habla el lenguaje de la marca — energía editorial, disciplina de conversión
 - **Año:** 2021
 - **Categoría:** E-commerce / Moda / Direct-to-Consumer
-- **Cliente:** [VALIDAR — marca de moda]
+- **Cliente:** Retail de moda white label (zapatos)
 - **Ubicación:** Remoto
 - **Rol:** Diseñador UX/UI — E-commerce de Moda & Rediseño de Plataforma
 - **Alcance:** Diseño UX/UI, Design System, Prototipado, Testing, Handoff Diseño
-- **Tamaño del equipo:** [VALIDAR]
-- **Duración:** [VALIDAR]
+- **Tamaño del equipo:** 1 (yo) — investigación + IA
+- **Duración:** 1 mes
 - **Estado:** ⏳ PENDING APPROVAL
 - **Público:** ✅ SÍ
 - **Destacado:** false
@@ -53,9 +53,7 @@ E-commerce de moda donde cada pantalla lleva energía de marca — mientras el c
 #### Research & Discovery
 **Métodos:** Auditoría marca (identidad, tono), Auditoría UX (storefront existente), Entrevistas shoppers, Análisis competitivo (DTC premium fashion), Review funnel analytics, Usability testing
 
-**Participantes:** [VALIDAR — shoppers, stakeholders marca]
-
-**Duración:** [VALIDAR]
+**Duración:** 1 mes
 
 **Hallazgos Clave:**
 1. **Los shoppers compran el mood primero, el producto después.** La energía del sitio igualaba al producto — cuando se sentía genérico, la confianza caía.
@@ -144,15 +142,10 @@ Marketing quería "una revista". El lead de e-commerce quería "conversión a to
 - Shoppers calificaron la experiencia como **"on-brand"**
 
 #### Cualitativos
-> [VALIDAR — cita shopper]
-
-> "Por fin se siente como comprar la marca, no un template con el logo de la marca encima." — [VALIDAR contexto]
 
 #### Impacto de Negocio
-- [VALIDAR — ventas, tasa retorno, métricas percepción marca]
 
 #### Métricas de Adopción
-- [VALIDAR — conversión funnel, share móvil]
 
 ---
 
