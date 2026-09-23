@@ -16,6 +16,7 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     _id,
     title,
     category,
+    public,
     year,
     client,
     location,

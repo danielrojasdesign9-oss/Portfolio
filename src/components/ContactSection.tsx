@@ -65,9 +65,9 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3"
+          className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 min-w-0"
         >
-          <CarbonLinkButton href={`mailto:${email}`} kind="primary" size="lg" icon="Email" className="w-full">
+          <CarbonLinkButton href={`mailto:${email}`} kind="primary" size="lg" icon="Email" className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0">
             Email
           </CarbonLinkButton>
           <CarbonLinkButton
@@ -77,7 +77,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
             kind="secondary"
             size="lg"
             icon="LogoLinkedin"
-            className="w-full"
+            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0"
           >
             LinkedIn
           </CarbonLinkButton>
@@ -88,7 +88,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
             kind="tertiary"
             size="lg"
             icon="Chat"
-            className="w-full"
+            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0"
           >
             WhatsApp
           </CarbonLinkButton>

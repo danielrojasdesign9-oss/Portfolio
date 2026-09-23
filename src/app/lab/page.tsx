@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { designSystems, applyDesignSystem, getStoredSystem } from '@/lib/design-systems';
+import { designSystems, applyDesignSystem, getStoredSystem, resetDesignSystem } from '@/lib/design-systems';
 import type { DesignSystem } from '@/lib/design-systems';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -152,6 +152,13 @@ function LabContent() {
     setTimeout(() => setToast(null), 2500);
   };
 
+  const handleReset = () => {
+    resetDesignSystem();
+    setActiveSystem('v1');
+    setToast('Reset: base identity');
+    setTimeout(() => setToast(null), 2500);
+  };
+
   return (
     <main id="main-content" className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text-primary)]">
       <Navbar />
@@ -168,7 +175,13 @@ function LabContent() {
           <p className="text-lg text-[var(--color-text-secondary)] max-w-xl leading-relaxed">
             Hot-swap the complete visual language of the portfolio in real time. Changes persist across sessions.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            <button
+              onClick={handleReset}
+              className="px-4 py-2 text-[12px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              Reset
+            </button>
             <a href="/lab/design-system" className="text-[12px] font-bold uppercase tracking-[0.12em] text-[var(--color-primary)] underline underline-offset-4">
               Token docs
             </a>

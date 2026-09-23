@@ -73,7 +73,7 @@ export default function Navbar() {
 
   const navItems = [
     { href: `/?lang=${currentLocale}`, label: t.home, key: "home", exact: true },
-    { href: `/work?lang=${currentLocale}`, label: t.work, key: "work", startsWith: true },
+    { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work", hash: "projects" },
     { href: `/about?lang=${currentLocale}`, label: t.about, key: "about", exact: true },
     { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab", startsWith: true },
     { href: `/recursos?lang=${currentLocale}`, label: t.recursos, key: "recursos", exact: true },
@@ -82,7 +82,7 @@ export default function Navbar() {
 
   const isActive = (item: typeof navItems[0]) => {
     if (item.key === "home") {
-      return pathname === "/" && hash !== "#contact";
+      return pathname === "/" && hash !== "#contact" && hash !== "#projects";
     }
     if (item.hash) {
       return pathname === "/" && hash === `#${item.hash}`;

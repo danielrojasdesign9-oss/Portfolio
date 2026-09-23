@@ -60,10 +60,10 @@ export default function HeroSection({
           <motion.div variants={item} className="flex-shrink-0 relative w-full md:w-1/2">
             <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none">
               <motion.div
-                initial={reduced ? false : { clipPath: "circle(0% at 50% 50%)" }}
-                animate={{ clipPath: "circle(75% at 50% 50%)" }}
+                initial={reduced ? false : { clipPath: "inset(8% 8% 8% 8% round 8px)" }}
+                animate={{ clipPath: "inset(0% 0% 0% 0% round 8px)" }}
                 transition={{ duration: reduced ? 0 : 1.1, ease }}
-                className="relative aspect-square overflow-hidden rounded-full border-[3px] border-[var(--color-primary)] shadow-2xl ring-4 ring-white"
+                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl"
               >
                 {profileImageUrl ? (
                   <Image
@@ -80,36 +80,12 @@ export default function HeroSection({
                 )}
               </motion.div>
             </div>
-          </motion.div>
-
-          <div className="flex-1 text-center md:w-1/2 max-w-2xl mx-auto md:mx-0 md:text-left">
-            <motion.h1
-              variants={item}
-              className="font-display text-[2.75rem] md:text-6xl lg:text-[4.75rem] font-black tracking-tighter leading-[0.92] mb-8 text-balance"
-            >
-              {headline}
-            </motion.h1>
-            <motion.p
-              variants={item}
-              className="text-lg md:text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed mb-12 max-w-xl mx-auto md:mx-0"
-            >
-              {description}
-            </motion.p>
-
-            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mb-16">
-              <CarbonLinkButton href={`/about?lang=${locale}`} icon="ArrowRight" kind="primary" size="lg">
-                {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"}
-              </CarbonLinkButton>
-              <CarbonLinkButton href={`/?lang=${locale}#contact`} kind="secondary" size="lg">
-                {locale === "es" ? "Hablemos" : locale === "jp" ? "お問い合わせ" : "Let's Talk"}
-              </CarbonLinkButton>
-            </motion.div>
 
             <motion.div
               variants={item}
-              className="flex flex-wrap items-center justify-center md:justify-start gap-6 pt-8 border-t border-[var(--color-border-subtle)]"
+              className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 mt-8 max-w-[480px] mx-auto md:max-w-none"
             >
-              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] self-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)]">
                 {locale === "es" ? "Conecta conmigo" : locale === "jp" ? "つながる" : "Connect"}
               </p>
               <div className="flex items-center gap-4">
@@ -127,20 +103,33 @@ export default function HeroSection({
                 ))}
               </div>
             </motion.div>
+          </motion.div>
+
+          <div className="flex-1 text-center md:w-1/2 max-w-2xl mx-auto md:mx-0 md:text-left">
+            <motion.h1
+              variants={item}
+              className="font-display text-[2.75rem] md:text-6xl lg:text-[4.75rem] font-black tracking-tighter leading-[0.92] mb-8 text-balance"
+            >
+              {headline}
+            </motion.h1>
+            <motion.p
+              variants={item}
+              className="text-lg md:text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed mb-12 max-w-xl mx-auto md:mx-0"
+            >
+              {description}
+            </motion.p>
+
+            <motion.div variants={item} className="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
+              <CarbonLinkButton href={`/about?lang=${locale}`} icon="ArrowRight" kind="primary" size="lg">
+                {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"}
+              </CarbonLinkButton>
+              <CarbonLinkButton href={`/?lang=${locale}#contact`} kind="secondary" size="lg">
+                {locale === "es" ? "Hablemos" : locale === "jp" ? "お問い合わせ" : "Let's Talk"}
+              </CarbonLinkButton>
+            </motion.div>
           </div>
         </motion.div>
       </div>
-
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-text-tertiary)]"
-        animate={reduced ? undefined : { y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-      >
-        <span className="text-[9px] font-bold uppercase tracking-widest">
-          {locale === "es" ? "Desplázate" : locale === "jp" ? "スクロール" : "Scroll"}
-        </span>
-        <div className="w-px h-10 bg-current" />
-      </motion.div>
     </section>
   );
 }

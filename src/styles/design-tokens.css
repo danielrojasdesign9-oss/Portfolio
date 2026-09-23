@@ -63,9 +63,9 @@
     --color-text-link-dark: #A5B4FC;
     --color-text-link-hover-dark: #C7D2FE;
 
-    /* AAA Enhanced Contrast (Opt-in) */
+    /* AAA Enhanced Contrast (Opt-in) — visibly stricter than AA */
     --color-text-primary-aaa: #000000;
-    --color-text-secondary-aaa: #333333;
+    --color-text-secondary-aaa: #000000;
     --color-text-primary-dark-aaa: #FFFFFF;
     --color-text-secondary-dark-aaa: #DDDDDD;
     --color-border-aaa: #666666;
@@ -218,7 +218,7 @@
   [data-aaa="true"] {
     --color-text-primary: var(--color-text-primary-aaa);
     --color-text-secondary: var(--color-text-secondary-aaa);
-    --color-text-tertiary: #444444;
+    --color-text-tertiary: #333333;
     --color-border: var(--color-border-aaa);
     --color-border-subtle: #B8B8B8;
     --color-border-strong: #222222;

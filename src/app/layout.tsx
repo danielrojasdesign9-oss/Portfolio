@@ -50,6 +50,12 @@ export default function RootLayout({
       className={`scroll-smooth ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${dmSerif.variable} ${inter.variable}`}
     >
       <body className="antialiased">
+        {/* Pre-paint theme bootstrap: default light, no dark flash on reload. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=null,a=null;try{t=localStorage.getItem('theme');a=localStorage.getItem('aaaLevel');}catch(e){}var d=document.documentElement;var dark=t==='dark'||(t==='system'&&window.matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');d.setAttribute('data-aaa',a==='AAA'?'true':'false');}catch(e){}})();`,
+          }}
+        />
         <a
           href="#main-content"
           className="skip-link"

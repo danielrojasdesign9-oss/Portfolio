@@ -11,6 +11,43 @@ import { resolveProjectImage, getPexelsFallback } from "@/lib/pexels-images";
 
 type ViewMode = "grid" | "carousel";
 
+/** Normalize raw Sanity categories into a shared set so filters reveal what's common across projects. */
+const CATEGORY_ALIASES: Record<string, string> = {
+  "ai": "AI Systems",
+  "ai systems": "AI Systems",
+  "ai system": "AI Systems",
+  "ai-assisted": "AI Systems",
+  "ai assisted": "AI Systems",
+  "artificial intelligence": "AI Systems",
+  "fintech": "Fintech",
+  "banking": "Fintech",
+  "finance": "Fintech",
+  "product": "Product",
+  "product design": "Product",
+  "e-commerce": "E-commerce",
+  "ecommerce": "E-commerce",
+  "e commerce": "E-commerce",
+  "fashion e-commerce": "E-commerce",
+  "fashion ecommerce": "E-commerce",
+  "fashion": "E-commerce",
+  "retail": "E-commerce",
+  "telemedicine": "Telemedicine",
+  "telehealth": "Telemedicine",
+  "health": "Telemedicine",
+  "healthcare": "Telemedicine",
+  "govtech": "GovTech",
+  "gov tech": "GovTech",
+  "government": "GovTech",
+  "tax": "GovTech",
+};
+
+function normalizeCategory(raw: unknown): string {
+  const text = typeof raw === "string" ? raw.trim().toLowerCase() : "";
+  if (!text) return "";
+  if (CATEGORY_ALIASES[text]) return CATEGORY_ALIASES[text];
+  return text.replace(/\w\S*/g, (w) => w.charAt(0).toUpperCase() + w.slice(1));
+}
+
 interface ProjectsSectionProps {
   projects: any[];
   locale: Locale;
@@ -73,7 +110,21 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
   );
 }
 
-function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarouselIndex, handleCarouselPrev, handleCarouselNext, carouselRef }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; setCarouselIndex: (i: number) => void; handleCarouselPrev: () => void; handleCarouselNext: () => void; carouselRef: React.RefObject<HTMLDivElement> }) {
+function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarouselIndex, handleCarouselPrev, handleCarouselNext, carouselRef }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; setCarouselIndex: (i: number) => void; handleCarouselPrev: () => void; handleCarouselNext: () => void; carouselRef: React.RefObject<HTMLDivElement | null> }) {
+  // Native non-passive wheel listener: vertical page scroll is locked while the
+  // pointer is over the carousel (React's delegated onWheel is passive and can't preventDefault).
+  useEffect(() => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      const delta = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      el.scrollBy({ left: delta >= 0 ? 320 : -320, behavior: reducedMotion ? "auto" : "smooth" });
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel);
+  }, [carouselRef, reducedMotion]);
+
   return (
     <motion.div
       key="carousel"
@@ -86,13 +137,6 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
       <div
         ref={carouselRef}
         className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
-        onWheel={(e) => {
-          if (e.deltaY !== 0) {
-            e.preventDefault();
-            const container = e.currentTarget;
-            container.scrollBy({ left: e.deltaY > 0 ? 300 : -300, behavior: reducedMotion ? "auto" : "smooth" });
-          }
-        }}
       >
         {filtered.map((project: any, i: number) => {
           const title = getLocaleText(project.title, locale);
@@ -165,14 +209,14 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
         </>
       )}
 
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 py-4">
+      <div className="mt-10 flex items-center justify-center gap-2 pb-2">
         {filtered.map((_, i) => (
           <button
             key={i}
             onClick={() => setCarouselIndex(i)}
             aria-label={`Go to project ${i + 1}`}
             aria-current={i === carouselIndex}
-            className={`w-2 h-2 rounded-full transition-all ${i === carouselIndex ? "bg-[var(--color-primary)] w-6" : "bg-[var(--color-text-tertiary)] hover:bg-[var(--color-text-secondary)]"}`}
+            className={`h-2 rounded-full transition-all ${i === carouselIndex ? "bg-[var(--color-primary)] w-6" : "w-2 bg-[var(--color-text-tertiary)] hover:bg-[var(--color-text-secondary)]"}`}
           />
         ))}
       </div>
@@ -187,7 +231,7 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   const [category, setCategory] = useState<string>("all");
   const [mounted, setMounted] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const carouselRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
@@ -244,15 +288,15 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   const categories = useMemo(() => {
     const seen = new Set<string>();
     projects.forEach((p: any) => {
-      const c = getLocaleText(p.category, locale)?.trim();
+      const c = normalizeCategory(getLocaleText(p.category, locale));
       if (c) seen.add(c);
     });
-    return Array.from(seen);
+    return Array.from(seen).sort();
   }, [projects, locale]);
 
   const filtered = useMemo(() => {
     if (category === "all") return projects;
-    return projects.filter((p: any) => getLocaleText(p.category, locale) === category);
+    return projects.filter((p: any) => normalizeCategory(getLocaleText(p.category, locale)) === category);
   }, [projects, category, locale]);
 
   const labels = {
@@ -283,13 +327,13 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-14 border-b border-[var(--color-border-subtle)] pb-8">
+      <div className="mb-14 border-b border-[var(--color-border-subtle)] pb-8 space-y-7">
         <div className="flex flex-wrap items-center gap-2" role="tablist" aria-label="Filter projects">
           <button
             role="tab"
             aria-selected={category === "all"}
             onClick={() => setCategory("all")}
-            className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === "all" ? "bg-black text-white border-black" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-black"}`}
+            className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === "all" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)] border-[var(--color-text-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-primary)]"}`}
           >
             {labels.all}
           </button>
@@ -299,34 +343,36 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
               role="tab"
               aria-selected={category === c}
               onClick={() => setCategory(c)}
-              className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === c ? "bg-black text-white border-black" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-black"}`}
+              className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === c ? "bg-[var(--color-text-primary)] text-[var(--color-bg)] border-[var(--color-text-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-text-primary)]"}`}
             >
               {c}
             </button>
           ))}
         </div>
 
-        <div className="inline-flex items-center gap-1 p-1 rounded-full border border-black bg-white" role="group" aria-label="View mode">
-          <button
-            onClick={() => setView("grid")}
-            aria-pressed={view === "grid"}
-            title={labels.grid}
-            aria-label={labels.grid}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "grid" ? "bg-black text-white" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
-          >
-            <Grid size={16} />
-            {labels.grid}
-          </button>
-          <button
-            onClick={() => setView("carousel")}
-            aria-pressed={view === "carousel"}
-            title={labels.carousel}
-            aria-label={labels.carousel}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "carousel" ? "bg-black text-white" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
-          >
-            <CarouselHorizontal size={16} />
-            {labels.carousel}
-          </button>
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)]" role="group" aria-label="View mode">
+            <button
+              onClick={() => setView("grid")}
+              aria-pressed={view === "grid"}
+              title={labels.grid}
+              aria-label={labels.grid}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "grid" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
+            >
+              <Grid size={16} />
+              {labels.grid}
+            </button>
+            <button
+              onClick={() => setView("carousel")}
+              aria-pressed={view === "carousel"}
+              title={labels.carousel}
+              aria-label={labels.carousel}
+              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "carousel" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
+            >
+              <CarouselHorizontal size={16} />
+              {labels.carousel}
+            </button>
+          </div>
         </div>
       </div>
 

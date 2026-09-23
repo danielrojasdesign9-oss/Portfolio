@@ -48,7 +48,7 @@ function FooterContent({ locale }: FooterProps) {
               <button
                 className={`p-2 rounded-full transition-colors flex items-center justify-center ${
                   theme === "light"
-                    ? "bg-black text-white"
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                     : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                 }`}
                 onClick={() => setTheme("light")}
@@ -60,7 +60,7 @@ function FooterContent({ locale }: FooterProps) {
               <button
                 className={`p-2 rounded-full transition-colors flex items-center justify-center ${
                   theme === "dark"
-                    ? "bg-black text-white"
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                     : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                 }`}
                 onClick={() => setTheme("dark")}
@@ -72,7 +72,7 @@ function FooterContent({ locale }: FooterProps) {
               <button
                 className={`p-2 rounded-full transition-colors flex items-center justify-center ${
                   theme === "system"
-                    ? "bg-black text-white"
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                     : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                 }`}
                 onClick={() => setTheme("system")}
@@ -90,7 +90,7 @@ function FooterContent({ locale }: FooterProps) {
                   key={l.code}
                   className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
                     locale === l.code
-                      ? "bg-black text-white"
+                      ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                       : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                   }`}
                   onClick={() => setLang(l.code)}
@@ -106,7 +106,7 @@ function FooterContent({ locale }: FooterProps) {
               <button
                 className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
                   aaaLevel === "AA"
-                    ? "bg-black text-white"
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                     : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                 }`}
                 onClick={() => setAAALevel("AA")}
@@ -117,7 +117,7 @@ function FooterContent({ locale }: FooterProps) {
               <button
                 className={`rounded-full transition-colors px-4 py-1.5 text-sm font-medium ${
                   aaaLevel === "AAA"
-                    ? "bg-black text-white"
+                    ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]"
                     : "bg-transparent text-[var(--color-text)] hover:bg-[var(--color-layer-hover)]"
                 }`}
                 onClick={() => setAAALevel("AAA")}

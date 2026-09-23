@@ -1,10 +1,10 @@
-import Link from "next/link";
+import { notFound } from "next/navigation";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { projectQuery, projectsQuery } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import { ArrowLeft, Rocket, ChevronLeft, ChevronRight } from "@carbon/icons-react";
+import { Rocket } from "@carbon/icons-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
@@ -20,7 +20,7 @@ const builder = imageUrlBuilder(client);
 export const revalidate = 60;
 
 export async function generateStaticParams() {
-  const projects = await client.fetch(projectsQuery);
+  const projects = await client.fetch(projectsQuery).catch(() => []);
   return projects.map((project: any) => ({ slug: project.slug }));
 }
 
@@ -35,14 +35,10 @@ export default async function ProjectLayout({
   const { lang = "en" } = await searchParams;
   const locale: Locale = (['en', 'es', 'jp'] as const).includes(lang as Locale) ? (lang as Locale) : 'en';
 
-  const project = await client.fetch(projectQuery, { slug });
+  const project = await client.fetch(projectQuery, { slug }).catch(() => null);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen bg-[var(--color-bg)] flex items-center justify-center">
-        <p className="text-[var(--color-text-secondary)] font-black uppercase tracking-[0.5em] text-[12px]">Project not found</p>
-      </div>
-    );
+  if (!project || project.public === false) {
+    notFound();
   }
 
   const allProjects = await client.fetch(projectsQuery).catch(() => []);
@@ -139,15 +135,22 @@ export default async function ProjectLayout({
 
               {/* 2. Hero Image */}
               {(project.mainImageUrl || project.previewImageUrl) && (
-                <div className="relative aspect-[16/10] rounded-[6px] overflow-hidden border border-[var(--color-border-subtle)]">
-                  <Image
-                    src={project.mainImageUrl || project.previewImageUrl}
-                    alt={title}
-                    fill
-                    className="object-cover object-bottom"
-                    priority
-                  />
-                </div>
+                <figure className="space-y-3">
+                  <div className="relative aspect-[16/10] rounded-[6px] overflow-hidden border border-[var(--color-border-subtle)]">
+                    <Image
+                      src={project.mainImageUrl || project.previewImageUrl}
+                      alt={title}
+                      fill
+                      className="object-cover object-bottom"
+                      priority
+                    />
+                  </div>
+                  <figcaption className="border-l-2 border-[var(--color-primary)]/30 pl-4 max-w-2xl">
+                    <p className="text-[13px] font-medium text-[var(--color-text-secondary)] leading-relaxed italic">
+                      {title}{category ? ` — ${category}` : ""}{project.year ? ` · ${project.year}` : ""}
+                    </p>
+                  </figcaption>
+                </figure>
               )}
 
               {/* 3. Product Vision */}
@@ -211,8 +214,8 @@ export default async function ProjectLayout({
                       return (
                         <div key={slide._key || i} className="space-y-6">
                           {(sTitle || sSubtitle || sDesc) && (
-                            <div className="space-y-3 border-b border-[var(--color-border-subtle)] pb-4">
-                              <div className="space-y-1">
+                            <div className="space-y-4 border-b border-[var(--color-border-subtle)] pb-5">
+                              <div className="space-y-3">
                                 {sTitle && <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{sTitle}</span>}
                                 {sSubtitle && <h4 className="text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed">{sSubtitle}</h4>}
                               </div>
@@ -226,7 +229,7 @@ export default async function ProjectLayout({
                                 key={img._key || imgIdx}
                                 src={img?.url || '/placeholder.png'}
                                 alt={`${sTitle || "Gallery image"} ${imgIdx + 1}`}
-                                caption={getLocaleText(img?.caption, locale)}
+                                caption={getLocaleText(img?.caption, locale) || sSubtitle || sTitle || `${title} — ${locale === "es" ? "imagen" : locale === "jp" ? "画像" : "image"} ${imgIdx + 1}`}
                               />
                             ))}
                           </div>
@@ -244,29 +247,6 @@ export default async function ProjectLayout({
                     <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-primary)]">
                       {String(currentIndex + 1).padStart(2, "0")} {t.of} {String(totalProjects).padStart(2, "0")}
                     </span>
-                    <div className="hidden md:block w-px h-16 bg-[var(--color-border-subtle)]" />
-                    <div className="flex items-center gap-4">
-                      {project.prevProject && (
-                        <CarbonLinkButton
-                          href={`/work/${project.prevProject.slug}?lang=${locale}`}
-                          kind="ghost"
-                          size="lg"
-                          icon="ChevronLeft"
-                        >
-                          {t.prev}
-                        </CarbonLinkButton>
-                      )}
-                      {project.nextProject && (
-                        <CarbonLinkButton
-                          href={`/work/${project.nextProject.slug}?lang=${locale}`}
-                          kind="ghost"
-                          size="lg"
-                          icon="ChevronRight"
-                        >
-                          {t.next}
-                        </CarbonLinkButton>
-                      )}
-                    </div>
                   </div>
                 </div>
 

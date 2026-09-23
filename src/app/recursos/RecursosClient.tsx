@@ -36,14 +36,11 @@ function ResourceCard({ resource, t, locale }: { resource: Resource; t: Record<s
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
     >
-      <a
-        href={resource.link || "#"}
-        target="_blank"
-        rel="noopener noreferrer"
+      <article
         className="group block h-full"
         aria-label={`${resource.title} — ${isKit ? t.kit : t.free}`}
       >
-        <div className="h-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-[6px] p-7 hover:shadow-lg hover:border-[var(--color-primary)] transition-all duration-300 flex flex-col gap-5">
+        <div className="h-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] rounded-[6px] p-7 transition-all duration-300 flex flex-col gap-5">
           {/* Type badge */}
           <div className="flex items-center justify-between">
             <span
@@ -57,13 +54,14 @@ function ResourceCard({ resource, t, locale }: { resource: Resource; t: Record<s
             </span>
             <ArrowUpRight
               size={20}
-              className="text-[var(--color-text-tertiary)] group-hover:text-[var(--color-primary)] transition-colors"
+              className="text-[var(--color-text-tertiary)]"
+              aria-hidden="true"
             />
           </div>
 
           {/* Title */}
           <div className="flex-1 space-y-2">
-            <h3 className="font-display text-xl font-black tracking-tighter leading-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
+            <h3 className="font-display text-xl font-black tracking-tighter leading-tight text-[var(--color-text-primary)]">
               {resource.title}
             </h3>
             <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
@@ -107,7 +105,7 @@ function ResourceCard({ resource, t, locale }: { resource: Resource; t: Record<s
             </div>
           )}
         </div>
-      </a>
+      </article>
     </motion.div>
   );
 }
