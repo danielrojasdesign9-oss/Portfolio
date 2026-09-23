@@ -57,31 +57,30 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
   return (
     <motion.div
       key="grid"
-      initial={{ opacity: reducedMotion ? 1 : 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14"
     >
       {filtered.map((project: any, i: number) => {
         const title = getLocaleText(project.title, locale);
         const categoryText = getLocaleText(project.category, locale);
-        const img = resolveProjectImage(project.imageUrl, project.slug);
+        const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug || String(i));
         return (
           <motion.div
             key={project._id || `${project.slug}-${i}`}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : i * 0.05 }}
+            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
           >
             <Link href={`/work/${project.slug}?lang=${locale}`} className="group block">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] mb-5">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-sunken)] border border-[var(--color-border-subtle)] mb-5">
                 {img ? (
                   <Image
                     src={img}
                     alt={title}
                     fill
+                    priority={i < 4}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                   />
@@ -100,7 +99,7 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
               </div>
               <div className="flex justify-between items-center mt-2">
                 <p className="text-[12px] text-[var(--color-text-secondary)]">{categoryText}</p>
-                <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year}</span>
+                <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year || ""}</span>
               </div>
             </Link>
           </motion.div>
@@ -128,36 +127,35 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
   return (
     <motion.div
       key="carousel"
-      initial={{ opacity: reducedMotion ? 1 : 0 }}
+      initial={false}
       animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
       className="relative"
     >
       <div
         ref={carouselRef}
-        className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
+        className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4"
       >
         {filtered.map((project: any, i: number) => {
           const title = getLocaleText(project.title, locale);
           const categoryText = getLocaleText(project.category, locale);
-          const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug);
+          const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug || String(i));
           return (
             <motion.div
               key={project._id || `${project.slug}-${i}`}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: reducedMotion ? 0 : 0.5, delay: reducedMotion ? 0 : i * 0.05 }}
+              initial={reducedMotion ? false : { opacity: 0, x: 32 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
               className="flex-shrink-0 snap-center w-full sm:max-w-[520px] lg:max-w-[640px]"
             >
               <Link href={`/work/${project.slug}?lang=${locale}`} className="group block h-full">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] mb-6">
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-sunken)] border border-[var(--color-border-subtle)] mb-6">
                   {img ? (
                     <Image
                       src={img}
                       alt={title}
                       fill
+                      priority={i < 2}
                       sizes="(max-width: 640px) 100vw, 640px"
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                     />

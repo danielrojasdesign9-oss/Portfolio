@@ -6,6 +6,7 @@ export const projectsQuery = groq`
     _id,
     title,
     category,
+    year,
     "slug": slug.current,
     "imageUrl": previewImage.asset->url
   }
