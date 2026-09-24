@@ -118,9 +118,20 @@
     box-shadow: inset 0 0 0 1px var(--color-bg-elevated), inset 0 0 0 2px var(--color-primary);
   }
 
+  /* Secondary button */
+  .cds--btn--secondary {
+    border-radius: var(--radius-md);
+  }
+
+  /* Tertiary button */
+  .cds--btn--tertiary {
+    border-radius: var(--radius-md);
+  }
+
   /* Ghost button */
   .cds--btn--ghost {
     color: var(--color-primary);
+    border-radius: var(--radius-md);
   }
   .cds--btn--ghost:hover {
     background-color: var(--color-primary-light);

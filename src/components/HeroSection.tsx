@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { Email, LogoLinkedin, LogoGithub } from "@carbon/icons-react";
+import { Email, LogoLinkedin, LogoGithub, Chat } from "@carbon/icons-react";
 import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
 import type { Locale } from "@/lib/utils-locale";
 
@@ -34,6 +34,7 @@ export default function HeroSection({
     { href: `mailto:${email}`, icon: Email, label: locale === "es" ? "Email" : locale === "jp" ? "メール" : "Email" },
     { href: linkedinUrl, icon: LogoLinkedin, label: "LinkedIn", external: true },
     { href: githubUrl, icon: LogoGithub, label: "GitHub", external: true },
+    { href: `https://wa.me/573000000000`, icon: Chat, label: "WhatsApp", external: true },
   ];
 
   const container = {
@@ -90,14 +91,14 @@ export default function HeroSection({
               <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)]">
                 {locale === "es" ? "Conecta conmigo" : locale === "jp" ? "つながる" : "Connect"}
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3">
                 {contactLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-layer-hover)] transition-all"
                   >
                     <link.icon className="w-5 h-5" />
                     <span className="text-sm font-medium">{link.label}</span>
