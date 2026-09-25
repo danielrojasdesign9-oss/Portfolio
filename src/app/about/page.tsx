@@ -91,13 +91,13 @@ export default async function AboutPage({
           {/* COL 1 — Left sticky: Photo + Name + Role + Contact */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-24 flex-shrink-0">
             {/* Photo */}
-            <div className="relative w-full aspect-[3/4] max-h-[75vh] rounded-[6px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] shadow-lg mb-8">
+            <div className="relative w-full aspect-square max-h-[60vh] rounded-[6px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] shadow-lg mb-8">
               {profile?.profileImageUrl ? (
                 <Image
                   src={profile.profileImageUrl}
                   alt={profile.fullName || "Daniel Rojas"}
                   fill
-                  className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
+                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
                   priority
                 />
               ) : (
@@ -108,8 +108,8 @@ export default async function AboutPage({
             </div>
 
             {/* Name */}
-            <h1 className="font-display text-6xl md:text-7xl lg:text-6xl xl:text-7xl font-black tracking-tighter leading-[0.85] mb-4">
-              Daniel<br />Rojas
+            <h1 className="font-display text-6xl md:text-7xl lg:text-6xl xl:text-7xl font-black tracking-tighter leading-[0.85] mb-4 whitespace-nowrap">
+              Daniel Rojas
             </h1>
 
             {/* Role */}

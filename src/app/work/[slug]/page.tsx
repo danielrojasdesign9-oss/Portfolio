@@ -245,16 +245,16 @@ export default async function ProjectLayout({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-12 md:gap-24">
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-between">
                   {project.prevProject && (
                     <CarbonLinkButton
                       href={`/work/${project.prevProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full min-w-0 text-left"
+                      className="w-full md:w-1/2 min-w-0 text-left whitespace-nowrap overflow-hidden"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.prev}</span>
-                      <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.prevProject.title, locale)}</span>
+                      <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.prevProject.title, locale)}</span>
                     </CarbonLinkButton>
                   )}
                   {project.nextProject && (
@@ -262,10 +262,10 @@ export default async function ProjectLayout({
                       href={`/work/${project.nextProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full min-w-0 md:text-right md:col-start-2"
+                      className="w-full md:w-1/2 min-w-0 text-right whitespace-nowrap overflow-hidden"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.next}</span>
-                      <span className="font-display text-lg font-black tracking-tight block">{getLocaleText(project.nextProject.title, locale)}</span>
+                      <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.nextProject.title, locale)}</span>
                     </CarbonLinkButton>
                   )}
                 </div>
