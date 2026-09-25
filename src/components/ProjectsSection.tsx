@@ -341,15 +341,15 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
     <section id="projects">
       <div className="max-w-[1400px] mx-auto px-8 pt-10 pb-8">
         {/* Section header row */}
-        <div className="flex gap-4 items-end justify-between mb-6">
+        <div className="flex flex-col md:flex-row gap-4 md:items-end md:justify-between mb-6">
           <div className="flex flex-col gap-[15px]">
             <div className="font-ibm-plex-bold font-bold text-[#333] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>Selected work</div>
             <h2 className="font-display font-black text-black" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "63.36px" }}>Projects</h2>
             <p className="font-ibm-plex-regular text-[#333] text-[18px] leading-[28px]" style={{ fontVariationSettings: '"wdth" 100' }}>Case studies across product, systems, and AI-assisted delivery.</p>
           </div>
 
-          {/* View mode toggle */}
-          <div className="bg-white border border-[#222] rounded-[12px] flex gap-1 items-center p-[5px] shrink-0">
+          {/* View mode toggle - below text on mobile, beside on desktop */}
+          <div className="bg-white border border-[#222] rounded-[12px] flex gap-1 items-center p-[5px] shrink-0 w-full md:w-auto">
             <button
               onClick={() => setView("grid")}
               className={`rounded-[12px] flex gap-2 items-center px-4 py-2 transition-colors ${view === "grid" ? "bg-black text-white" : "text-black"}`}

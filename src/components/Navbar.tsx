@@ -195,22 +195,8 @@ export default function Navbar() {
               Daniel Rojas
             </Link>
 
-            {/* Right nav + settings (desktop) + hamburger (mobile) */}
-            <div className="flex gap-5 items-center">
-              {/* Right nav - desktop */}
-              <nav className="hidden md:flex gap-5 items-center" aria-label="Secondary navigation">
-                {navItemsDesktopRight.map((item) => (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    className={`font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
-                    style={{ fontVariationSettings: '"wdth" 100' }}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-
+            {/* Right section: desktop settings + mobile hamburger (on RIGHT) */}
+            <div className="flex items-center gap-5">
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
@@ -316,9 +302,9 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              {/* Mobile menu toggle - on the right */}
+              {/* Mobile menu toggle - explicitly on the right */}
               <button
-                className="md:hidden bg-[#f0f0f0] border border-[#666] flex items-center justify-center size-10 rounded-full"
+                className="md:hidden bg-[#f0f0f0] border border-[#666] flex items-center justify-center size-10 rounded-full ml-auto"
                 onClick={handleMenuClick}
                 aria-label={isMobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileOpen}
