@@ -22,9 +22,9 @@ export default function Navbar() {
   const { theme, setTheme, aaaLevel, setAAALevel } = useTheme();
 
   const translations = {
-    en: { home: "Home", about: "About", lab: "Lab", contact: "Contact", settings: "Settings" },
-    es: { home: "Inicio", about: "Sobre mí", lab: "Lab", contact: "Contacto", settings: "Ajustes" },
-    jp: { home: "ホーム", about: "について", lab: "Lab", contact: "連絡先", settings: "設定" },
+    en: { home: "Home", about: "About", work: "Work", lab: "Lab", resources: "Resources", contact: "Contact", settings: "Settings" },
+    es: { home: "Inicio", about: "Sobre mí", work: "Proyectos", lab: "Lab", resources: "Recursos", contact: "Contacto", settings: "Ajustes" },
+    jp: { home: "ホーム", about: "について", work: "作品", lab: "Lab", resources: "リソース", contact: "連絡先", settings: "設定" },
   };
   const t = translations[currentLocale as "en" | "es" | "jp"] || translations.en;
 
@@ -42,11 +42,26 @@ export default function Navbar() {
     setIsSettingsOpen(false);
   };
 
-  // Only Home, About, Lab, Contact in mobile drawer
+  // Desktop nav items - all visible
+  const navItemsDesktopLeft = [
+    { href: `/?lang=${currentLocale}`, label: t.home, key: "home" },
+    { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work" },
+    { href: `/about?lang=${currentLocale}`, label: t.about, key: "about" },
+  ];
+
+  const navItemsDesktopRight = [
+    { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab" },
+    { href: `/recursos?lang=${currentLocale}`, label: t.resources, key: "resources" },
+    { href: `/?lang=${currentLocale}#contact`, label: t.contact, key: "contact" },
+  ];
+
+  // Mobile drawer items
   const navItemsMobile = [
     { href: `/?lang=${currentLocale}`, label: t.home, key: "home" },
+    { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work" },
     { href: `/about?lang=${currentLocale}`, label: t.about, key: "about" },
     { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab" },
+    { href: `/recursos?lang=${currentLocale}`, label: t.resources, key: "resources" },
     { href: `/?lang=${currentLocale}#contact`, label: t.contact, key: "contact" },
   ];
 
@@ -57,6 +72,7 @@ export default function Navbar() {
     }
     if (cleanHref === "/about") return pathname === "/about";
     if (cleanHref === "/lab") return pathname.startsWith("/lab");
+    if (cleanHref === "/recursos") return pathname === "/recursos";
     return false;
   };
 
@@ -155,7 +171,24 @@ export default function Navbar() {
           aria-label="Main navigation"
         >
           <div className="h-full max-w-[1400px] mx-auto px-6 flex items-center justify-between relative">
-            {/* Center name - only visible element on desktop besides settings */}
+            {/* Left nav - desktop */}
+            <nav className="hidden md:flex gap-12 items-center" aria-label="Primary navigation">
+              {navItemsDesktopLeft.map((item) => (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={`relative py-[3px] px-0 font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
+                  style={{ fontVariationSettings: '"wdth" 100' }}
+                >
+                  {item.label}
+                  {isActive(item.href) && (
+                    <span className="absolute -bottom-[2px] left-0 right-0 h-[3px] bg-black rounded-[2px]" />
+                  )}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Center name */}
             <Link
               href={`/?lang=${currentLocale}`}
               className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-ibm-plex-bold font-bold text-[16px] text-black tracking-[1.28px] uppercase leading-none"
@@ -164,8 +197,22 @@ export default function Navbar() {
               Daniel Rojas
             </Link>
 
-            {/* Right: settings (desktop) + hamburger (mobile) */}
+            {/* Right nav + settings (desktop) + hamburger (mobile) */}
             <div className="flex gap-5 items-center">
+              {/* Right nav - desktop */}
+              <nav className="hidden md:flex gap-5 items-center" aria-label="Secondary navigation">
+                {navItemsDesktopRight.map((item) => (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
@@ -271,7 +318,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              {/* Mobile menu toggle */}
+              {/* Mobile menu toggle - on the right */}
               <button
                 className="md:hidden bg-[#f0f0f0] border border-[#666] flex items-center justify-center size-10 rounded-full"
                 onClick={handleMenuClick}
