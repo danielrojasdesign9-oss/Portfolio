@@ -16,7 +16,7 @@ import SequentialNav from "@/components/SequentialNav";
 
 const builder = imageUrlBuilder(client);
 
-export const revalidate = 60;
+export const revalidate = 0;
 
 export async function generateStaticParams() {
   const projects = await client.fetch(projectsQuery).catch(() => []);
