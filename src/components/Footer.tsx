@@ -10,12 +10,6 @@ interface FooterProps {
   locale: Locale;
 }
 
-const footerText = {
-  en: "2026 ALL RIGHTS RESERVED",
-  es: "2026 TODOS LOS DERECHOS RESERVADOS",
-  jp: "2026 全著作権所有",
-};
-
 const languages = [
   { code: "en", label: "English" },
   { code: "es", label: "Español" },
@@ -35,97 +29,77 @@ function FooterContent({ locale }: FooterProps) {
   };
 
   return (
-    <footer className="py-10 px-4 md:px-8 border-t border-[var(--color-border-subtle)] mt-24">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0">
-          <p className="text-[11px] tracking-[0.4em] text-[var(--color-text-tertiary)] text-center md:text-left">
-            © {new Date().getFullYear()} {footerText[locale] || footerText.en}
-          </p>
+    <footer className="border-t border-[#b8b8b8] py-10">
+      <div className="max-w-[1400px] mx-auto px-8 flex items-center gap-12 flex-wrap">
+        <p
+          className="font-ibm-plex-regular text-[#444] text-[11px] tracking-[4.4px] leading-[16.5px] uppercase flex-1 min-w-[200px]"
+          style={{ fontVariationSettings: '"wdth" 100' }}
+        >
+          © 2024 2026 ALL RIGHTS RESERVED
+        </p>
 
-          <div className="flex flex-col md:flex-row items-center gap-6 md:divide-x md:divide-[var(--color-border-subtle)]">
-            {/* Theme Toggle */}
-            <div className="flex items-center gap-2 md:pr-6" role="group" aria-label="Theme selection">
-              <button
-                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
-                  theme === "light"
-                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                }`}
-                onClick={() => setTheme("light")}
-                aria-pressed={theme === "light"}
-                aria-label="Light theme"
-              >
-                <Sun className="w-4 h-4" />
-              </button>
-              <button
-                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
-                  theme === "dark"
-                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                }`}
-                onClick={() => setTheme("dark")}
-                aria-pressed={theme === "dark"}
-                aria-label="Dark theme"
-              >
-                <Moon className="w-4 h-4" />
-              </button>
-              <button
-                className={`h-9 w-9 rounded-full border transition-colors flex items-center justify-center ${
-                  theme === "system"
-                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                }`}
-                onClick={() => setTheme("system")}
-                aria-pressed={theme === "system"}
-                aria-label="System theme"
-              >
-                <Contrast className="w-4 h-4" />
-              </button>
-            </div>
+        <div className="flex gap-6 items-center flex-wrap">
+          {/* Theme */}
+          <div className="flex gap-2 items-center pr-6 border-r border-[#b8b8b8]">
+            <button
+              className={`flex items-center justify-center p-2 rounded-full ${theme === "light" ? "bg-black" : ""}`}
+              onClick={() => setTheme("light")}
+              aria-label="Light theme"
+              aria-pressed={theme === "light"}
+            >
+              <Sun className={`w-4 h-4 ${theme === "light" ? "text-white" : "text-black"}`} />
+            </button>
+            <button
+              className={`flex items-center justify-center p-2 rounded-full ${theme === "dark" ? "bg-black" : ""}`}
+              onClick={() => setTheme("dark")}
+              aria-label="Dark theme"
+              aria-pressed={theme === "dark"}
+            >
+              <Moon className={`w-4 h-4 ${theme === "dark" ? "text-white" : "text-black"}`} />
+            </button>
+            <button
+              className={`flex items-center justify-center p-2 rounded-full ${theme === "system" ? "bg-black" : ""}`}
+              onClick={() => setTheme("system")}
+              aria-label="System theme"
+              aria-pressed={theme === "system"}
+            >
+              <Contrast className={`w-4 h-4 ${theme === "system" ? "text-white" : "text-black"}`} />
+            </button>
+          </div>
 
-            {/* Language Selector */}
-            <div className="flex items-center gap-2 md:px-6" role="group" aria-label="Language selection">
-              {languages.map((l) => (
-                <button
-                  key={l.code}
-                  className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                    locale === l.code
-                      ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                      : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                  }`}
-                  onClick={() => setLang(l.code)}
-                  aria-pressed={locale === l.code}
-                >
-                  {l.label}
-                </button>
-              ))}
-            </div>
+          {/* Language */}
+          <div className="flex gap-2 items-center px-6 border-r border-[#b8b8b8]">
+            {languages.map((l) => (
+              <button
+                key={l.code}
+                className={`flex items-center justify-center px-4 py-[6px] rounded-full ${locale === l.code ? "bg-black text-white" : "text-[#111]"} `}
+                onClick={() => setLang(l.code)}
+                aria-label={l.label}
+                aria-pressed={locale === l.code}
+              >
+                <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{l.label}</span>
+              </button>
+            ))}
+          </div>
 
-            {/* AAA Toggle */}
-            <div className="flex items-center gap-2 md:pl-6" role="group" aria-label="Accessibility contrast level">
-              <button
-                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                  aaaLevel === "AA"
-                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                }`}
-                onClick={() => setAAALevel("AA")}
-                aria-pressed={aaaLevel === "AA"}
-              >
-                AA
-              </button>
-              <button
-                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-                  aaaLevel === "AAA"
-                    ? "bg-[var(--color-primary)] border-[var(--color-primary)] text-[var(--color-on-primary)]"
-                    : "bg-[var(--color-bg-sunken)] border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)] hover:text-[var(--color-text-primary)]"
-                }`}
-                onClick={() => setAAALevel("AAA")}
-                aria-pressed={aaaLevel === "AAA"}
-              >
-                AAA
-              </button>
-            </div>
+          {/* Accessibility level */}
+          <div className="flex gap-2 items-center pl-6">
+            <button
+              className={`flex items-center justify-center px-4 py-[6px] rounded-full ${aaaLevel === "AA" ? "bg-black text-white" : "text-[#111]"} `}
+              onClick={() => setAAALevel("AA")}
+              aria-label="Contrast: AA"
+              aria-pressed={aaaLevel === "AA"}
+            >
+              <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AA</span>
+            </button>
+            <button
+              className={`flex items-center justify-center px-4 py-[6px] rounded-full ${aaaLevel === "AAA" ? "bg-black text-white" : "text-[#111]"} `}
+              onClick={() => setAAALevel("AAA")}
+              aria-label="Contrast: AAA"
+              aria-pressed={aaaLevel === "AAA"}
+            >
+              <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AAA</span>
+            </button>
           </div>
         </div>
       </div>
@@ -135,7 +109,7 @@ function FooterContent({ locale }: FooterProps) {
 
 export default function Footer({ locale }: FooterProps) {
   return (
-    <Suspense fallback={<footer className="py-10 px-4 md:px-8 border-t border-[var(--color-border-subtle)] mt-24"><div className="max-w-[1400px] mx-auto h-8"></div></footer>}>
+    <Suspense fallback={<footer className="border-t border-[#b8b8b8] py-10"><div className="max-w-[1400px] mx-auto px-8 h-8"></div></footer>}>
       <FooterContent locale={locale} />
     </Suspense>
   );

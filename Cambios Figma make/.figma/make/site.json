@@ -1,0 +1,10 @@
+{
+  "description": "Create a personalized portfolio homepage effortlessly with customizable designs, showcasing your work and enhancing your online presence.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

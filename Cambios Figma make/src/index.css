@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: "IBM Plex Sans:Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://static.figma.com/font/IBMPlexSans_wdth_wght__1") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans:Medium";
+  font-style: normal;
+  font-weight: 500;
+  src: url("https://static.figma.com/font/IBMPlexSans_wdth_wght__1") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans:Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://static.figma.com/font/IBMPlexSans_wdth_wght__1") format("woff2");
+}
+
+@font-face {
+  font-family: "Space Grotesk:Bold";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("https://static.figma.com/font/SpaceGrotesk_wght__1") format("woff2");
+}
+
+@theme {
+  --font-ibm-plex-bold: "IBM Plex Sans:Bold", system-ui, sans-serif;
+  --font-ibm-plex-medium: "IBM Plex Sans:Medium", system-ui, sans-serif;
+  --font-ibm-plex-regular: "IBM Plex Sans:Regular", system-ui, sans-serif;
+  --font-space-grotesk: "Space Grotesk:Bold", system-ui, sans-serif;
+  --font-yahei: "Microsoft YaHei", "WenQuanYi Zen Hei", "Noto Sans CJK SC", system-ui, sans-serif;
+}

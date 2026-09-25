@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { Email, LogoLinkedin, LogoGithub, Chat } from "@carbon/icons-react";
-import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
+import { Email, LogoLinkedin, LogoGithub, ArrowRight } from "@carbon/icons-react";
 import type { Locale } from "@/lib/utils-locale";
 
 interface HeroSectionProps {
@@ -19,6 +18,12 @@ interface HeroSectionProps {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const contactLinks = [
+  { href: `mailto:danielrojasdesign9@gmail.com`, icon: Email, label: "Email" },
+  { href: "https://www.linkedin.com/in/danielrojas010/", icon: LogoLinkedin, label: "LinkedIn", external: true },
+  { href: "https://github.com/danielrojasdesign", icon: LogoGithub, label: "GitHub", external: true },
+];
+
 export default function HeroSection({
   locale,
   headline,
@@ -30,12 +35,6 @@ export default function HeroSection({
   githubUrl,
 }: HeroSectionProps) {
   const reduced = useReducedMotion();
-  const contactLinks = [
-    { href: `mailto:${email}`, icon: Email, label: locale === "es" ? "Email" : locale === "jp" ? "メール" : "Email" },
-    { href: linkedinUrl, icon: LogoLinkedin, label: "LinkedIn", external: true },
-    { href: githubUrl, icon: LogoGithub, label: "GitHub", external: true },
-    { href: `https://wa.me/573000000000`, icon: Chat, label: "WhatsApp", external: true },
-  ];
 
   const container = {
     hidden: {},
@@ -56,81 +55,91 @@ export default function HeroSection({
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col md:flex-row items-start justify-start gap-10 md:gap-16 pt-4 md:pt-8"
+          className="flex gap-20 md:gap-16 items-start"
         >
-          <motion.div variants={item} className="flex-shrink-0 relative w-full md:w-1/2 max-w-[480px] md:max-w-[560px] mx-auto md:mx-0">
-            <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none">
-              <motion.div
-                initial={reduced ? false : { clipPath: "inset(8% 8% 8% 8% round 8px)" }}
-                animate={{ clipPath: "inset(0% 0% 0% 0% round 8px)" }}
-                transition={{ duration: reduced ? 0 : 1.1, ease }}
-                className="relative aspect-square overflow-hidden rounded-[8px] border-[3px] border-[var(--color-primary)] shadow-2xl shadow-[inset_0_24px_48px_-20px_rgba(0,0,0,0.55)]"
-              >
-                {profileImageUrl ? (
-                  <Image
-                    src={profileImageUrl}
-                    alt={fullName}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 560px"
-                    className="object-cover object-center"
-                    priority
-                  />
-                ) : (
-                  <div className="w-full h-full bg-[var(--color-bg-elevated)] flex items-center justify-center">
-                    <span className="text-7xl md:text-9xl font-black text-[var(--color-primary)]">DR</span>
-                  </div>
-                )}
-                <div className="pointer-events-none absolute inset-0 rounded-[5px] shadow-[inset_0_0_60px_16px_rgba(0,0,0,0.45)]" aria-hidden="true" />
-              </motion.div>
+          {/* Left: photo + social links */}
+          <motion.div variants={item} className="flex flex-col justify-between shrink-0" style={{ width: "min(700px, 45%)" }}>
+            <div className="relative overflow-hidden rounded-[8px]" style={{ height: "515px" }}>
+              {profileImageUrl ? (
+                <Image
+                  src={profileImageUrl}
+                  alt={fullName}
+                  fill
+                  className="absolute"
+                  style={{ height: "150%", left: "4.24%", top: "-25.09%", width: "95.76%", maxWidth: "none", objectFit: "cover" }}
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full bg-[var(--color-bg-elevated)] flex items-center justify-center">
+                  <span className="text-7xl md:text-9xl font-black text-[var(--color-primary)]">DR</span>
+                </div>
+              )}
             </div>
 
-<motion.div
-                variants={item}
-                className="flex flex-wrap items-center justify-start gap-x-6 gap-y-3 mt-8 max-w-[480px] md:max-w-none"
-              >
-              <p className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)]">
-                {locale === "es" ? "Conecta conmigo" : locale === "jp" ? "つながる" : "Connect"}
-              </p>
-              <div className="flex flex-wrap items-center gap-3">
+            <motion.div
+              variants={item}
+              className="flex flex-wrap gap-x-10 items-center justify-end mt-6"
+            >
+              <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+                Connect
+              </span>
+
+              <div className="flex gap-10 items-center">
                 {contactLinks.map((link) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-md)] border border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] hover:bg-[var(--color-layer-hover)] transition-all"
+                    className="flex gap-2 items-center"
                   >
                     <link.icon className="w-5 h-5" />
-                    <span className="text-sm font-medium">{link.label}</span>
+                    <span className="font-ibm-plex-medium font-medium text-[#333] text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{link.label}</span>
                   </a>
                 ))}
               </div>
             </motion.div>
           </motion.div>
 
-          <div className="flex-1 text-center md:w-1/2 max-w-2xl mx-auto md:mx-0 md:text-left self-stretch md:self-start">
-            <motion.h1
-              variants={item}
-              className="font-display text-[2.75rem] md:text-6xl lg:text-[4.75rem] font-black tracking-tighter leading-[0.92] mb-8 text-balance"
-            >
-              {headline}
-            </motion.h1>
-            <motion.p
-              variants={item}
-              className="text-lg md:text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed mb-12 max-w-xl mx-auto md:mx-0"
-            >
-              {description}
-            </motion.p>
-
-            <motion.div variants={item} className="flex flex-row flex-wrap gap-4 justify-center md:justify-start">
-              <CarbonLinkButton href={`/about?lang=${locale}`} icon="ArrowRight" kind="primary" size="lg">
-                {locale === "es" ? "Conóceme más" : locale === "jp" ? "私について" : "About Me"}
-              </CarbonLinkButton>
-              <CarbonLinkButton href={`/?lang=${locale}#contact`} kind="secondary" size="lg" className="rounded-[var(--radius-md)]">
-                {locale === "es" ? "Hablemos" : locale === "jp" ? "お問い合わせ" : "Let's Talk"}
-              </CarbonLinkButton>
+          {/* Right: headline + description + CTAs */}
+          <motion.div variants={item} className="flex flex-col gap-10 flex-1 min-w-0">
+            <motion.div variants={item} className="flex flex-col gap-10">
+              <h1 className="font-display font-black text-black" style={{ fontSize: "76px", letterSpacing: "-3.8px", lineHeight: "69.92px" }}>
+                {headline.split(" ").map((word, i) => (
+                  <span key={i}>{word}</span>
+                )).reduce((acc, word, i) => {
+                  if (i === 0) return [word];
+                  const last = acc[acc.length - 1];
+                  if (typeof last === "string" && last.endsWith("<br />")) {
+                    acc[acc.length - 1] = last + " " + word;
+                  } else {
+                    acc.push(<br key={`br-${i}`} />, word);
+                  }
+                  return acc;
+                }, [] as React.ReactNode[])}
+              </h1>
+              <p className="font-ibm-plex-medium font-medium text-[#333]" style={{ fontSize: "20px", lineHeight: "33px", maxWidth: "576px", fontVariationSettings: '"wdth" 100' }}>
+                {description}
+              </p>
             </motion.div>
-          </div>
+
+            <motion.div variants={item} className="flex gap-4 items-start">
+              <a
+                href={`/?lang=${locale}#contact`}
+                className="relative bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-4 pr-[63px] py-[14px] shrink-0"
+              >
+                <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
+                <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />
+              </a>
+              <a
+                href={`/about?lang=${locale}`}
+                className="relative bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-4 pr-[63px] py-[14px] shrink-0"
+              >
+                <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
+                <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />
+              </a>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

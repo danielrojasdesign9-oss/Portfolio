@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Locale } from "@/lib/utils-locale";
-import CarbonLinkButton from "@/components/ui/CarbonLinkButton";
+import { Email, LogoLinkedin, Chat } from "@carbon/icons-react";
+import React from "react";
 
 interface ContactSectionProps {
   locale: Locale;
@@ -15,7 +16,7 @@ interface ContactSectionProps {
 export default function ContactSection({ locale, profile }: ContactSectionProps) {
   const email = profile?.email || "hello@danielrojas.design";
   const linkedinUrl = profile?.linkedinUrl || "https://www.linkedin.com/in/danielrojasdesign/";
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "573174446641";
+  const whatsappNumber = "573174446641";
 
   const whatsappMessage = {
     es: "Hola Daniel, vi tu portafolio y me gustaría hablar sobre una oportunidad profesional...",
@@ -44,56 +45,64 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
   }[locale];
 
   return (
-    <section id="contact" className="max-w-[1400px] mx-auto px-4 md:px-8 py-24 scroll-mt-[var(--header-height)]">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end border-t border-[var(--color-border-subtle)] pt-16">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="space-y-6"
-        >
-          <p className="text-xl font-medium text-[var(--color-text-secondary)]">
+    <section id="contact" className="max-w-[1400px] mx-auto px-8 pt-16 pb-8 border-t border-[#b8b8b8]">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="flex gap-20 items-end flex-wrap"
+      >
+        {/* Left */}
+        <div className="flex flex-col gap-[23px] shrink-0" style={{ width: "min(448px, 100%)" }}>
+          <p className="font-ibm-plex-medium font-medium text-[#333] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>
             {copy.kicker}
           </p>
-          <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.9] whitespace-pre-line">
-            {copy.title}
+          <h2 className="font-display font-black text-black" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "64.8px" }}>
+            {copy.title.split("\n").map((line, i) => (
+              <React.Fragment key={i}>
+                {line}
+                {i < 1 && <br />}
+              </React.Fragment>
+            ))}
           </h2>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-md leading-relaxed">{copy.body}</p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 min-w-0"
-        >
-          <CarbonLinkButton href={`mailto:${email}`} kind="primary" size="lg" icon="Email" className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0 rounded-[var(--radius-md)]">
-            Email
-          </CarbonLinkButton>
-          <CarbonLinkButton
-            href={linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            kind="secondary"
-            size="lg"
-            icon="LogoLinkedin"
-            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0 rounded-[var(--radius-md)]"
-          >
-            LinkedIn
-          </CarbonLinkButton>
-          <CarbonLinkButton
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            kind="tertiary"
-            size="lg"
-            icon="Chat"
-            className="w-full sm:w-auto sm:flex-1 lg:w-full xl:w-auto xl:flex-1 min-w-0 pr-2 rounded-[var(--radius-md)]"
-          >
-            WhatsApp
-          </CarbonLinkButton>
-        </motion.div>
-      </div>
+        {/* Right */}
+        <div className="flex flex-col gap-6 items-start flex-1 min-w-0">
+          <p className="font-ibm-plex-regular text-[#333] text-[18px] leading-[29.7px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+            {copy.body}
+          </p>
+          <div className="flex gap-10 items-center flex-wrap">
+            <a
+              href={`mailto:${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-[206px]"
+            >
+              <Email className="w-4 h-4 shrink-0" />
+              <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Email</span>
+            </a>
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center gap-4 pl-[15px] pr-16 py-[14px] w-[276px]"
+            >
+              <LogoLinkedin className="w-4 h-4 shrink-0" />
+              <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>LinkedIn</span>
+            </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-[var(--color-primary)] rounded-[8px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-[250px]"
+            >
+              <Chat className="w-4 h-4 shrink-0 text-[var(--color-primary)]" />
+              <span className="font-ibm-plex-regular text-[var(--color-primary)] text-[14px] tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }

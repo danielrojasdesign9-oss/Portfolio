@@ -63,6 +63,42 @@ interface ProjectsSectionProps {
   locale: Locale;
 }
 
+function ProjectCard({ project, locale, index }: { project: any; locale: Locale; index: number }) {
+  const title = getLocaleText(project.title, locale);
+  const categoryText = getLocaleText(project.category, locale);
+  const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug || String(index));
+
+  return (
+    <Link href={`/work/${project.slug}?lang=${locale}`} className="flex flex-col gap-2 items-start group">
+      <div className="aspect-[424/530] bg-white border border-[#b8b8b8] overflow-clip relative rounded-[6px] w-full">
+        {img ? (
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center font-display font-black text-4xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
+            {title.slice(0, 2)}
+          </div>
+        )}
+      </div>
+      <div className="flex items-start justify-between pt-3 w-full">
+        <span className="font-display font-bold text-[18px] text-black tracking-[-0.45px] leading-[28px]">{title}</span>
+        <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[2.2px] leading-[11px] mt-1" style={{ fontVariationSettings: '"wdth" 100' }}>{String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <div className="flex items-center justify-between w-full">
+        <span className="font-ibm-plex-regular text-[#333] text-[12px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{categoryText}</span>
+        {project.year && (
+          <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[2.2px] leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{project.year}</span>
+        )}
+      </div>
+    </Link>
+  );
+}
+
 function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale: Locale; reducedMotion: boolean }) {
   return (
     <motion.div
@@ -70,65 +106,30 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
       initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-14"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-6"
     >
-      {filtered.map((project: any, i: number) => {
-        const title = getLocaleText(project.title, locale);
-        const categoryText = getLocaleText(project.category, locale);
-        const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug || String(i));
-        return (
-          <motion.div
-            key={project._id || `${project.slug}-${i}`}
-            data-project-slug={project.slug}
-            initial={reducedMotion ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
-          >
-            <Link href={`/work/${project.slug}?lang=${locale}`} className="group block">
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-sunken)] border border-[var(--color-border-subtle)] mb-5">
-                {img ? (
-                  <Image
-                    src={img}
-                    alt={title}
-                    fill
-                    priority={i < 4}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center font-display font-black text-4xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
-                    {title.slice(0, 2)}
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-[var(--color-midnight)]/0 group-hover:bg-[var(--color-midnight)]/20 transition-colors duration-500" />
-              </div>
-              <div className="flex justify-between items-start gap-4">
-                <h3 className="font-display font-bold text-lg tracking-tight text-[var(--color-text-primary)]">{title}</h3>
-                <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)] pt-1">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
-              <div className="flex justify-between items-center mt-2">
-                <p className="text-[12px] text-[var(--color-text-secondary)]">{categoryText}</p>
-                <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year || ""}</span>
-              </div>
-            </Link>
-          </motion.div>
-        );
-      })}
+      {filtered.map((project: any, i: number) => (
+        <motion.div
+          key={project._id || `${project.slug}-${i}`}
+          data-project-slug={project.slug}
+          initial={reducedMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
+        >
+          <ProjectCard project={project} locale={locale} index={i} />
+        </motion.div>
+      ))}
     </motion.div>
   );
 }
 
 function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarouselIndex, handleCarouselPrev, handleCarouselNext, carouselRef }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; setCarouselIndex: (i: number) => void; handleCarouselPrev: () => void; handleCarouselNext: () => void; carouselRef: React.RefObject<HTMLDivElement | null> }) {
-  // Native non-passive wheel listener: vertical page scroll is blocked ONLY when
-  // the pointer is over the carousel AND the scroll is primarily vertical.
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
       const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-      if (!isVertical) return; // Allow horizontal scroll (trackpad swipe, shift+wheel)
+      if (!isVertical) return;
       e.preventDefault();
       el.scrollBy({ left: e.deltaY >= 0 ? 320 : -320, behavior: reducedMotion ? "auto" : "smooth" });
     };
@@ -146,57 +147,20 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
     >
       <div
         ref={carouselRef}
-        className="flex gap-6 overflow-x-auto overflow-y-hidden overscroll-none snap-x snap-mandatory pb-4"
+        className="flex gap-8 overflow-x-auto overflow-y-hidden overscroll-none snap-x snap-mandatory pb-4"
       >
-        {filtered.map((project: any, i: number) => {
-          const title = getLocaleText(project.title, locale);
-          const categoryText = getLocaleText(project.category, locale);
-          const img = resolveProjectImage(project.imageUrl, project.slug) || getPexelsFallback(project.slug || String(i));
-          return (
-            <motion.div
-              key={project._id || `${project.slug}-${i}`}
-              initial={reducedMotion ? false : { opacity: 0, x: 32 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
+        {filtered.map((project: any, i: number) => (
+          <motion.div
+            key={project._id || `${project.slug}-${i}`}
+            initial={reducedMotion ? false : { opacity: 0, x: 32 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
             data-project-slug={project.slug}
-            className="flex-shrink-0 snap-center w-full sm:max-w-[520px] lg:max-w-[640px]"
+            className="flex-shrink-0 snap-center w-72"
           >
-              <Link href={`/work/${project.slug}?lang=${locale}`} className="group block h-full">
-                <div className="relative aspect-[4/5] overflow-hidden rounded-[6px] bg-[var(--color-bg-sunken)] border border-[var(--color-border-subtle)] mb-6">
-                  {img ? (
-                    <Image
-                      src={img}
-                      alt={title}
-                      fill
-                      priority={i < 2}
-                      sizes="(max-width: 640px) 100vw, 640px"
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center font-display font-black text-4xl uppercase text-[var(--color-text-tertiary)] tracking-tighter">
-                      {title.slice(0, 2)}
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-[var(--color-midnight)]/0 group-hover:bg-[var(--color-midnight)]/20 transition-colors duration-500" />
-                </div>
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-black tracking-[0.4em] text-[var(--color-primary)]">
-                      {String(i + 1).padStart(2, "0")} / {String(filtered.length).padStart(2, "0")}
-                    </span>
-                    <span className="text-[11px] font-bold tracking-widest text-[var(--color-text-tertiary)]">{project.year}</span>
-                  </div>
-                  <h3 className="font-display text-2xl md:text-3xl font-black tracking-tight text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors">{title}</h3>
-                  <p className="text-[13px] text-[var(--color-text-secondary)]">{categoryText}</p>
-                  <div className="inline-flex items-center gap-2 mt-2 text-[12px] font-bold uppercase tracking-[0.15em] text-[var(--color-primary)]">
-                    {locale === "es" ? "Ver caso" : locale === "jp" ? "ケースを見る" : "View case"}
-                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
+            <ProjectCard project={project} locale={locale} index={i} />
+          </motion.div>
+        ))}
       </div>
 
       {!reducedMotion && filtered.length > 1 && (
@@ -291,7 +255,6 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
     return projects.filter((p: any) => normalizeCategory(getLocaleText(p.category, locale)) === category);
   }, [projects, category, locale]);
 
-  // Keep dots in sync with manual scroll (wheel, drag, snap)
   useEffect(() => {
     const el = carouselRef.current;
     if (!el) return;
@@ -343,9 +306,15 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   }, [carouselIndex, reducedMotion, filtered.length]);
 
   const labels = {
-    en: { all: "All projects", grid: "Grid", carousel: "Carousel", result: "projects" },
-    es: { all: "Todos", grid: "Grilla", carousel: "Carrusel", result: "proyectos" },
-    jp: { all: "すべて", grid: "グリッド", carousel: "カルーセル", result: "件" },
+    en: { all: "All projects", grid: "GRID", carousel: "CAROUSEL", filterBy: "Filter by:", result: "projects" },
+    es: { all: "Todos", grid: "GRID", carousel: "CARRUSEL", filterBy: "Filtrar por:", result: "proyectos" },
+    jp: { all: "すべて", grid: "グリッド", carousel: "カルーセル", filterBy: "フィルター:", result: "件" },
+  }[locale as Locale];
+
+  const filterLabels = {
+    en: { all: "All projects", "AI Systems": "AI Systems", Fintech: "Fintech", Product: "Product", "E-commerce": "E-commerce", Telemedicine: "Telemedicine", GovTech: "GovTech", "Tax Information Reporting": "Tax Information Reporting" },
+    es: { all: "Todos", "AI Systems": "Sistemas AI", Fintech: "Fintech", Product: "Producto", "E-commerce": "E-commerce", Telemedicine: "Telemedicina", GovTech: "GovTech", "Tax Information Reporting": "Reporte de información fiscal" },
+    jp: { all: "すべて", "AI Systems": "AIシステム", Fintech: "フィンテック", Product: "プロダクト", "E-commerce": "Eコマース", Telemedicine: "遠隔医療", GovTech: "ガブテック", "Tax Information Reporting": "税務情報報告" },
   }[locale as Locale];
 
   const renderView = () => {
@@ -369,61 +338,64 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   };
 
   return (
-    <div>
-      <div className="mb-14 space-y-7">
-        <div className="border-b border-[var(--color-border-subtle)] pb-8" role="tablist" aria-label="Filter projects">
+    <section id="projects">
+      <div className="max-w-[1400px] mx-auto px-8 pt-10 pb-8">
+        {/* Section header row */}
+        <div className="flex gap-4 items-end justify-between mb-6">
+          <div className="flex flex-col gap-[15px]">
+            <div className="font-ibm-plex-bold font-bold text-[#333] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>Selected work</div>
+            <h2 className="font-display font-black text-black" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "63.36px" }}>Projects</h2>
+            <p className="font-ibm-plex-regular text-[#333] text-[18px] leading-[28px]" style={{ fontVariationSettings: '"wdth" 100' }}>Case studies across product, systems, and AI-assisted delivery.</p>
+          </div>
+
+          {/* View mode toggle */}
+          <div className="bg-white border border-[#222] rounded-[12px] flex gap-1 items-center p-[5px] shrink-0">
+            <button
+              onClick={() => setView("grid")}
+              className={`rounded-[12px] flex gap-2 items-center px-4 py-2 transition-colors ${view === "grid" ? "bg-black text-white" : "text-black"}`}
+            >
+              <Grid size={16} />
+              <span className={`font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "grid" ? "text-white" : "text-black"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.grid}</span>
+            </button>
+            <button
+              onClick={() => setView("carousel")}
+              className={`rounded-full flex gap-2 items-center px-4 py-2 transition-colors ${view === "carousel" ? "bg-black text-white" : "text-black"}`}
+            >
+              <CarouselHorizontal size={16} />
+              <span className={`font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "carousel" ? "text-white" : "text-black"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.carousel}</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div className="border-t border-[rgba(0,0,0,0.2)] pt-10 flex flex-wrap gap-x-2 gap-y-3 items-center mb-6">
+          <span className="font-ibm-plex-regular text-[#333] text-[18px] leading-[28px] mr-2" style={{ fontVariationSettings: '"wdth" 100' }}>{labels.filterBy}</span>
           <button
-            role="tab"
-            aria-selected={category === "all"}
             onClick={() => setCategory("all")}
-            className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === "all" ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]"}`}
+            className={`border rounded-full h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === "all" ? "bg-black border-black text-white" : "border-[#222] bg-transparent text-[#333]"} `}
           >
-            {labels.all}
+            <span className="font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels.all}</span>
           </button>
           {categories.map((c) => (
             <button
               key={c}
-              role="tab"
-              aria-selected={category === c}
               onClick={() => setCategory(c)}
-              className={`px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full border transition-colors ${category === c ? "bg-[var(--color-primary)] text-[var(--color-text-inverse)] border-[var(--color-primary)]" : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:border-[var(--color-primary)]"}`}
+              className={`border rounded-full h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === c ? "bg-black border-black text-white" : "border-[#222] bg-transparent text-[#333]"} `}
             >
-              {c}
+              <span className="font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels[c as keyof typeof filterLabels] || c}</span>
             </button>
           ))}
         </div>
 
-        <div className="flex justify-start pt-1 border-b border-[var(--color-border-subtle)] pb-8">
-          <div className="inline-flex items-center gap-1 p-1 rounded-full border border-[var(--color-border-strong)] bg-[var(--color-bg-elevated)]" role="group" aria-label="View mode">
-            <button
-              onClick={() => setView("grid")}
-              aria-pressed={view === "grid"}
-              title={labels.grid}
-              aria-label={labels.grid}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "grid" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
-            >
-              <Grid size={16} />
-              {labels.grid}
-            </button>
-            <button
-              onClick={() => setView("carousel")}
-              aria-pressed={view === "carousel"}
-              title={labels.carousel}
-              aria-label={labels.carousel}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-colors ${view === "carousel" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"}`}
-            >
-              <CarouselHorizontal size={16} />
-              {labels.carousel}
-            </button>
-          </div>
+        {/* Project cards */}
+        <div className="pt-6">
+          <AnimatePresence mode="wait">{renderView()}</AnimatePresence>
+
+          {filtered.length === 0 && (
+            <p className="py-16 text-center text-[var(--color-text-tertiary)]">{labels.result} — 0</p>
+          )}
         </div>
       </div>
-
-      <AnimatePresence mode="wait">{renderView()}</AnimatePresence>
-
-      {filtered.length === 0 && (
-        <p className="py-16 text-center text-[var(--color-text-tertiary)]">{labels.result} — 0</p>
-      )}
-    </div>
+    </section>
   );
 }

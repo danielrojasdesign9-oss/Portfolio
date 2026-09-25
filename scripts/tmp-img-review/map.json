@@ -1,0 +1,1467 @@
+{
+  "used": [
+    {
+      "assetId": "image-017d0a13cef7cb6dff22234b65d0bb846b7b0bef-1056x230-png",
+      "originalFilename": "Wireframes (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/017d0a13cef7cb6dff22234b65d0bb846b7b0bef-1056x230.png",
+      "size": 55391,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "assetId": "image-17a1d1570ef782f40579011683ad72159fa63df6-1096x394-png",
+      "originalFilename": "image 697.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/17a1d1570ef782f40579011683ad72159fa63df6-1096x394.png",
+      "size": 101297,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Certificate activation with ClaveUnica"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-1ceb9ea84f25f5d46e4bbddf87098394aa3a8ad0-1096x661-png",
+      "originalFilename": "New Forms (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/1ceb9ea84f25f5d46e4bbddf87098394aa3a8ad0-1096x661.png",
+      "size": 370322,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Conditional from line 4 to move to line 6"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-23c05fb3cb4a2a97603246ae3c980f3dbfdb8080-1096x789-png",
+      "originalFilename": "Dupli Import (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/23c05fb3cb4a2a97603246ae3c980f3dbfdb8080-1096x789.png",
+      "size": 221767,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Import of information"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-2ca8f42a5ff864982782fb2a08e7222c36cdc663-1000x1200-png",
+      "originalFilename": "SmLMr9dGH3KGax9nehzNKcIbjtI.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/2ca8f42a5ff864982782fb2a08e7222c36cdc663-1000x1200.png",
+      "size": 73244,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Common errors"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-2e6fb1c17eaa88dc80887757ee9d1c21a9a30afb-1096x902-png",
+      "originalFilename": "mPTvLfOkLTNcou6mMnXgr9BBo.pngVMF.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/2e6fb1c17eaa88dc80887757ee9d1c21a9a30afb-1096x902.png",
+      "size": 281306,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Delivery Settings tab: select authentication, items to share, forms, and users who will be part of this group to send the email."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-391a7b1934edddfb50ae4120d9ed8efa38875f10-1096x433-png",
+      "originalFilename": "image 701.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/391a7b1934edddfb50ae4120d9ed8efa38875f10-1096x433.png",
+      "size": 122096,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Signature completed successfully"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-3f379f71aa9ac111448dbc78d9e24583115852ad-1096x459-png",
+      "originalFilename": "1cW4c7nHfD0f7iGutabnP7dfJo.pngVMF.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/3f379f71aa9ac111448dbc78d9e24583115852ad-1096x459.png",
+      "size": 287717,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Email Templates tab: You can create one general template and/or several specific templates to organise the format of your emails."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-409e6635abac50cd98601c13fc36408d7794e17f-1096x257-png",
+      "originalFilename": "image 700.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/409e6635abac50cd98601c13fc36408d7794e17f-1096x257.png",
+      "size": 69359,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Signer flow: process, identity validation, sign document"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-40add75fe046e2d599c615852303066fdea834b7-1056x396-png",
+      "originalFilename": "Results (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/40add75fe046e2d599c615852303066fdea834b7-1056x396.png",
+      "size": 510252,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Young people understand simple banking processes, such as loans or credit if they are aligned with their goals "
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-43afc5d711092e0bddf2c4596b73054340904e6a-1096x780-png",
+      "originalFilename": "Paidprepares (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/43afc5d711092e0bddf2c4596b73054340904e6a-1096x780.png",
+      "size": 188954,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Paid preparer format"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-453ea255fb6cf7639daa3251e0f6f0f492847a4c-1056x379-png",
+      "originalFilename": "Results (3).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/453ea255fb6cf7639daa3251e0f6f0f492847a4c-1056x379.png",
+      "size": 502831,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Managing goals through gamification and programmed savings using highly visual guides makes parts of banking processes much easier to facilitate"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-4b286f9f5cee61344d092b6ebd171a024b6cfb85-1096x544-png",
+      "originalFilename": "image 695.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/4b286f9f5cee61344d092b6ebd171a024b6cfb85-1096x544.png",
+      "size": 169242,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Signer: document pending signature email"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-56482d2997364d06aed4edf1b583d6f837fa1d1a-1096x258-png",
+      "originalFilename": "image 698.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/56482d2997364d06aed4edf1b583d6f837fa1d1a-1096x258.png",
+      "size": 74930,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Security questions, email registration and validation"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-5eaa519b2566ae545086d62093cff43f69c9fc10-1000x1200-png",
+      "originalFilename": "XMzqsQegDRlUAji8tFAEIJByRI.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/5eaa519b2566ae545086d62093cff43f69c9fc10-1000x1200.png",
+      "size": 67312,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Validation by questions and email\nQuestions that the state has and link the email address that will be subject to the electronic certificate."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-619432cc213e46b267b6ba73b5cb7a2613e6a9d2-1096x382-png",
+      "originalFilename": "image 699.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/619432cc213e46b267b6ba73b5cb7a2613e6a9d2-1096x382.png",
+      "size": 93446,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Validation success and certificate activation"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-63d65a81cca5c5a146bff8ce12491b2f3bcbacfd-1000x1400-png",
+      "originalFilename": "TJeRMYjMTFXEppFy7LI8JJL6g.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/63d65a81cca5c5a146bff8ce12491b2f3bcbacfd-1000x1400.png",
+      "size": 3509,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "OTP e-mail"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-654f730911492606bfa324c8af6fd87e1ed6d7b5-1096x1202-png",
+      "originalFilename": "Compass (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/654f730911492606bfa324c8af6fd87e1ed6d7b5-1096x1202.png",
+      "size": 604623,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Information based on what I click on the map"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-6d88718b38093bf2c5f15a18b273f5452256f1f7-1176x368-png",
+      "originalFilename": "image 87.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/6d88718b38093bf2c5f15a18b273f5452256f1f7-1176x368.png",
+      "size": 83800,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "assetId": "image-7a7021e00d3959f0c4064627db1cc02b9032b657-1128x521-png",
+      "originalFilename": "Usability testing result 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/7a7021e00d3959f0c4064627db1cc02b9032b657-1128x521.png",
+      "size": 311793,
+      "used": [
+        {
+          "slug": "linklight-assertive-communication",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Validation of the interaction between young people and parents"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-7df1473dfcc1968702a33756ec94f5e68ac7ab6e-1177x812-png",
+      "originalFilename": "Frame 1029 → Frame 469594.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/7df1473dfcc1968702a33756ec94f5e68ac7ab6e-1177x812.png",
+      "size": 32426,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Team detail with innovation culture radar charts"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-87a69cb0740f093d590778ff77aa1f3684b001cc-1000x1400-png",
+      "originalFilename": "ciTPl8Yx2Z6oXBOljveOa3G98o.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/87a69cb0740f093d590778ff77aa1f3684b001cc-1000x1400.png",
+      "size": 3234,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Questions/Answer"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-8c6ddfad098a82cda8d62b78df6ddd6ae05c8dc6-1000x1400-png",
+      "originalFilename": "NJ50FuaFzirxnE0cJ2tRlZBKSXQ.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8c6ddfad098a82cda8d62b78df6ddd6ae05c8dc6-1000x1400.png",
+      "size": 3818,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "E-mail Invitation to sign → Document viewer\nInitial identity validation to ensure that the document cannot be opened by a robot using the user's credentials."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-8ca3f594b5566d6a2fb6bef8905645de7d0ea76f-1176x368-png",
+      "originalFilename": "1Xt2BAMN5iHJE3diMXQZkGrnHNY.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8ca3f594b5566d6a2fb6bef8905645de7d0ea76f-1176x368.png",
+      "size": 110573,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Team detail with innovation culture radar charts"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-8d1336ef5a75762e437cc8ffa17032c88642c92f-1096x650-png",
+      "originalFilename": "Custom roles (3).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8d1336ef5a75762e437cc8ffa17032c88642c92f-1096x650.png",
+      "size": 144899,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Display of roles and their attributes, along with a changelog"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-8ea13f35c1cb95b7a2d116e96b02d7fb95e9d17f-1096x780-png",
+      "originalFilename": "Paidprepares (3).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8ea13f35c1cb95b7a2d116e96b02d7fb95e9d17f-1096x780.png",
+      "size": 255635,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "After adding the information from the paid preparer"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-906ca11936a5f642e15d041f0fb9ee680e840ef9-1000x1400-png",
+      "originalFilename": "E4VxVZFL96Vf6f2iPTF997nCqc.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/906ca11936a5f642e15d041f0fb9ee680e840ef9-1000x1400.png",
+      "size": 7375,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Password related to the certificate vault "
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-90d7a030b764cae72fac366dd96b961d82667e7d-1096x650-png",
+      "originalFilename": "Custom roles (4).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/90d7a030b764cae72fac366dd96b961d82667e7d-1096x650.png",
+      "size": 210736,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "This is the trigger for editing from the management page. Editing shares the same page as role creation, except that the values are already there. "
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-910f681a853364521d2dfb2b4720c21aa41535b1-1176x368-png",
+      "originalFilename": "image 86.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/910f681a853364521d2dfb2b4720c21aa41535b1-1176x368.png",
+      "size": 41079,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Determining factors: Optimize data collection times + Display results in real time + Evidence of individual, team and organizational progress + Report changes to leadership for decision making + Clearly visualize opportunities to improve the innovation culture "
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-9bf628e90e707dca67ecc00e4ccd3fb674cdd1aa-361x772-png",
+      "originalFilename": "Results (6).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/9bf628e90e707dca67ecc00e4ccd3fb674cdd1aa-361x772.png",
+      "size": 31504,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Transfer flow: choose Paycool friend or phone number"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-9c0582d0d9e0ff797d3f30ae655d6cb7a842b688-800x327-png",
+      "originalFilename": "New Forms (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/9c0582d0d9e0ff797d3f30ae655d6cb7a842b688-800x327.png",
+      "size": 131969,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Original format of the forms : https://www.irs.gov/pub/irs-pdf/f940.pdf"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-a60ab3e845a3dcde45a2eb702bdd5b1465829085-1096x650-png",
+      "originalFilename": "Custom roles (5).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/a60ab3e845a3dcde45a2eb702bdd5b1465829085-1096x650.png",
+      "size": 152449,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "To remove a role, the biggest challenge was reassigning users enrolled in that role. The modal presented was created to confirm the role change before deleting."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-a66820b8c813845c3e4700b38ef048f9945bbcb4-1128x635-png",
+      "originalFilename": "Frame 469563.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/a66820b8c813845c3e4700b38ef048f9945bbcb4-1128x635.png",
+      "size": 197810,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Microcredit offer screen"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-abaea869c6c2fe56dbcb89d5b05a161f944fa202-361x772-png",
+      "originalFilename": "Results (4).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/abaea869c6c2fe56dbcb89d5b05a161f944fa202-361x772.png",
+      "size": 37904,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Microcredit offer after high effort: $250.000 in 3 installments"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b0e95dd294982b178ad37b56b195f1728e4c4a0f-1056x1716-png",
+      "originalFilename": "Wireframes (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b0e95dd294982b178ad37b56b195f1728e4c4a0f-1056x1716.png",
+      "size": 2135944,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Metrics, task and recommendations report"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b193c8e50efc0964c306838bb2af4b443617ae8c-361x772-png",
+      "originalFilename": "Results (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b193c8e50efc0964c306838bb2af4b443617ae8c-361x772.png",
+      "size": 26590,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "The screens display, from left to right, features such as microloans, goal tracking, payments, and transfers."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b2a0428a6f69c1de0f3252ba9bae9afc97887889-1096x780-png",
+      "originalFilename": "Dupli Import (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b2a0428a6f69c1de0f3252ba9bae9afc97887889-1096x780.png",
+      "size": 198080,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Actions with duplicate data"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b35dc417652107d9f0feb4fc58a395b88a14f43b-1000x1400-png",
+      "originalFilename": "tZ6rlT7beXJPOgoRwHCHKb8Z8.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b35dc417652107d9f0feb4fc58a395b88a14f43b-1000x1400.png",
+      "size": 4354,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Authentication via ClaveUnica\nClaveÚnica: This is a digital identity used to access the Chilean government's online services. In this case, we must use it to ensure that the procedure is legal."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b3ea11ffcdfd6e0c22534b8b66dffe617f85b4cc-1096x1198-png",
+      "originalFilename": "Compass (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b3ea11ffcdfd6e0c22534b8b66dffe617f85b4cc-1096x1198.png",
+      "size": 652754,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Sub-tabs of the site sections"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b57fb27357130e7c6a79b3d0cf44e4b50e73c4bd-1954x1128-png",
+      "originalFilename": "Frame 469559.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b57fb27357130e7c6a79b3d0cf44e4b50e73c4bd-1954x1128.png",
+      "size": 2176694,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Usability testing session photos and affinity board"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b6afb3077131b490344d46ebcd37b39fdf70f679-640x400-png",
+      "originalFilename": "Frame 469607.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b6afb3077131b490344d46ebcd37b39fdf70f679-640x400.png",
+      "size": 106439,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Innovation leaders from partner companies"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-b99c0ee4846268740533c5b60047a2e9c3fad20c-1000x1201-png",
+      "originalFilename": "kqk6EZyGDVemBN8MngYvcSHBQY.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b99c0ee4846268740533c5b60047a2e9c3fad20c-1000x1201.png",
+      "size": 44840,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "OTP mobile"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-be5068d426770892c88430c51e7c61e76f302281-1096x710-png",
+      "originalFilename": "image 9.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/be5068d426770892c88430c51e7c61e76f302281-1096x710.png",
+      "size": 316657,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Verification error and recovery states"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-c0beb4193d15fc53303f86da732ad7e132b9dc79-1096x780-png",
+      "originalFilename": "Paidprepares (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/c0beb4193d15fc53303f86da732ad7e132b9dc79-1096x780.png",
+      "size": 265510,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Add Paid Preparer section "
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-c388afcece8eb771b44c0bd304020c1a97e3e4fa-1208x589-png",
+      "originalFilename": "image 13105.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/c388afcece8eb771b44c0bd304020c1a97e3e4fa-1208x589.png",
+      "size": 239866,
+      "used": [
+        {
+          "slug": "silin-government-tax-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Silin ecosystem: electric power, DIAN, toll, fintech"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-cefff9c9f93090853e30e82182a5f477eef11d30-6720x4480-jpg",
+      "originalFilename": "pexels-cottonbro-8088451.jpg",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/cefff9c9f93090853e30e82182a5f477eef11d30-6720x4480.jpg",
+      "size": 1407613,
+      "used": [
+        {
+          "slug": "linklight-assertive-communication",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Sometimes, we need a tool to express what we can't say for oursaelves.  Linklight gives us that voice."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-d3a2973b5982deb927cdc2185e1955cbcd2a76f4-613x366-png",
+      "originalFilename": "Frame 469610-1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/d3a2973b5982deb927cdc2185e1955cbcd2a76f4-613x366.png",
+      "size": 153285,
+      "used": [
+        {
+          "slug": "silin-government-tax-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": null
+        }
+      ]
+    },
+    {
+      "assetId": "image-d4b1cb9d6ecec487758d4115ca5f93b32621acc5-1096x221-png",
+      "originalFilename": "yHoo7JlSG4xN7X70lotv1xeF8A.pngVMF.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/d4b1cb9d6ecec487758d4115ca5f93b32621acc5-1096x221.png",
+      "size": 74308,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Viewing sent emails, the service that the customer sees ends with this view or the ability to forward emails."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-dbec1c11b545818d100e58f501348493d81ba1ec-1000x1400-png",
+      "originalFilename": "eBSSoRq5b8BG0msU4Gg2jrDTJXI.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/dbec1c11b545818d100e58f501348493d81ba1ec-1000x1400.png",
+      "size": 2740,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "NFC"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-dec252c5a46b269a8050a9ad7c9aec1b991731e4-1096x650-png",
+      "originalFilename": "Custom roles (1).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/dec252c5a46b269a8050a9ad7c9aec1b991731e4-1096x650.png",
+      "size": 276975,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Role Management page"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-e2c7c05e9da4ecb20e6eb268914fe4771d10e0db-1096x392-png",
+      "originalFilename": "image 13094.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e2c7c05e9da4ecb20e6eb268914fe4771d10e0db-1096x392.png",
+      "size": 116677,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Conditional to add information from Schedule B"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-e65a3905556f9acd82594aff18311ccbc7bdf5d8-1176x368-png",
+      "originalFilename": "image 84.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e65a3905556f9acd82594aff18311ccbc7bdf5d8-1176x368.png",
+      "size": 70038,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Pillars of the culture of innovation: Performance; Resources and the Company, Values; Creativity, Education, and the Will to Innovate; and Relationships; Company, Team, and Communication"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-e8b630349221abc67ccf59483eae1bcb60410e59-1096x446-png",
+      "originalFilename": "eQp496v2qhmOyA3PPd6ZkwAQ.pngVMF.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e8b630349221abc67ccf59483eae1bcb60410e59-1096x446.png",
+      "size": 70900,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Addition of checkbox at the end of VMF"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-ea1099d0c0b69c3b2904695b37fd7b50b6c24962-1000x1200-png",
+      "originalFilename": "1fc0CbQvdDadhnzss7fYdPlwPFY.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ea1099d0c0b69c3b2904695b37fd7b50b6c24962-1000x1200.png",
+      "size": 57189,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "System recognises that there is no electronic signature\nIn the case of Chile, an electronic certificate was required in order to sign the documents. The user is redirected to a landing page to obtain this certificate."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-ec1e7b95df33e25a5f9fce43922c6e5faff10337-1000x1400-png",
+      "originalFilename": "S0peVT2AHXA4aFnhXp4FUXKNt0I.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ec1e7b95df33e25a5f9fce43922c6e5faff10337-1000x1400.png",
+      "size": 2386,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Facial"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-ef94a2ad7246c52a07903ad7d6b0165b2493f144-1000x1200-png",
+      "originalFilename": "WYJkJsEFfMfmNckHHNyUwIKA.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ef94a2ad7246c52a07903ad7d6b0165b2493f144-1000x1200.png",
+      "size": 76193,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Footprint"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-f25822041cdc9611c86dd6eec458e840f691323f-1096x309-png",
+      "originalFilename": "vqT8zkZQZaidEgxhGU0JcP6rw9A.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/f25822041cdc9611c86dd6eec458e840f691323f-1096x309.png",
+      "size": 234538,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Signing of the document\nWe return to the document viewer and the pop-up for obtaining an electronic signature now says \"sign\". We perform a final identity validation and enter the vault password."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-f2586c5f15f18c949a4b4a3fd7d655f109c7dff6-1111x835-png",
+      "originalFilename": "General innu 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/f2586c5f15f18c949a4b4a3fd7d655f109c7dff6-1111x835.png",
+      "size": 776456,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "C. Brooke Dobni: Measuring innovation culture: debugging with four case studies\nJens-Uwe Meyer: Strengthening innovation capacity through different types of \ninnovation cultures\nManuel T. Koller: Measuring innovation culture: debugging with four case studies"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-f3d9acc377778ce6a07c976f93f5e6e2aef7e776-1000x1201-png",
+      "originalFilename": "INNU.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/f3d9acc377778ce6a07c976f93f5e6e2aef7e776-1000x1201.png",
+      "size": 616889,
+      "used": [
+        {
+          "slug": "innu-ux-redesign-roadside-assistance",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Validation strategy - User testing"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-fb1c8b2508c43f8da7454920bcc958c466fe5661-1096x780-png",
+      "originalFilename": "Custom roles (2).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/fb1c8b2508c43f8da7454920bcc958c466fe5661-1096x780.png",
+      "size": 270536,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "When creating a new role with custom permissions or functions, there are existing templates that can be used as a basis."
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-fdd42edb224766b7b4c6ee9c1986f0f08a6a4326-1256x975-png",
+      "originalFilename": "Wireframes (3).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/fdd42edb224766b7b4c6ee9c1986f0f08a6a4326-1256x975.png",
+      "size": 302154,
+      "used": [
+        {
+          "slug": "paycool-banking-gamification",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Screenshoots from the user testing"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-fdf22c83691046bf611c0a2bdc6d5be66b5367f5-1096x1025-png",
+      "originalFilename": "XL6OszQedJ3kc1YAGRuH2ljrlp0.pngVMF.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/fdf22c83691046bf611c0a2bdc6d5be66b5367f5-1096x1025.png",
+      "size": 283075,
+      "used": [
+        {
+          "slug": "tir-tax-information-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "ViewMyForms Email Templates"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-ff2b8ef0d719a9e40e0400f4b439e4d8bc3e82f6-1000x1200-png",
+      "originalFilename": "ahVYlOGVmRQtilp8rIMzHACkLwg.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ff2b8ef0d719a9e40e0400f4b439e4d8bc3e82f6-1000x1200.png",
+      "size": 68744,
+      "used": [
+        {
+          "slug": "e-signer-app-documentos-firmas-digitales",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "DNI"
+          }
+        }
+      ]
+    },
+    {
+      "assetId": "image-ff5a186e6d897fe297593bb5fbe9dd2ab32f77ee-623x378-png",
+      "originalFilename": "Frame 469610.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ff5a186e6d897fe297593bb5fbe9dd2ab32f77ee-623x378.png",
+      "size": 95145,
+      "used": [
+        {
+          "slug": "silin-government-tax-reporting",
+          "role": "gallery",
+          "slideKey": null,
+          "imgKey": null,
+          "caption": {
+            "en": "Current status regarding tax coverage and locations."
+          }
+        }
+      ]
+    }
+  ],
+  "unused": [
+    {
+      "assetId": "image-02c7c0a1ef1ab414bda290cf8c90e49b74713ae4-866x1600-jpg",
+      "originalFilename": "WhatsApp Image 2025-09-15 at 2.51.22 AM.jpeg",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/02c7c0a1ef1ab414bda290cf8c90e49b74713ae4-866x1600.jpg",
+      "size": 310618,
+      "used": []
+    },
+    {
+      "assetId": "image-063b507c5a1ddb371a0cf5ad918ee93063362764-1096x372-png",
+      "originalFilename": "image 702.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/063b507c5a1ddb371a0cf5ad918ee93063362764-1096x372.png",
+      "size": 97176,
+      "used": []
+    },
+    {
+      "assetId": "image-078dd7e489dfc2768450e4178b5cdd3d6fdf8f7b-97x97-png",
+      "originalFilename": "Icons-3.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/078dd7e489dfc2768450e4178b5cdd3d6fdf8f7b-97x97.png",
+      "size": 2423,
+      "used": []
+    },
+    {
+      "assetId": "image-0b5b3d8ffa56d5fc611220f3cccfd8693cf76bfd-1468x772-png",
+      "originalFilename": "Frame 633635.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/0b5b3d8ffa56d5fc611220f3cccfd8693cf76bfd-1468x772.png",
+      "size": 109653,
+      "used": []
+    },
+    {
+      "assetId": "image-0f08735bbe3f6efeb9b4486c190c3a5bd2708330-72x73-png",
+      "originalFilename": "utap.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/0f08735bbe3f6efeb9b4486c190c3a5bd2708330-72x73.png",
+      "size": 8410,
+      "used": []
+    },
+    {
+      "assetId": "image-164ba9563ae8e9ec3ebc6412238ba695085fefe1-1000x1400-png",
+      "originalFilename": "TeleMed.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/164ba9563ae8e9ec3ebc6412238ba695085fefe1-1000x1400.png",
+      "size": 104852,
+      "used": []
+    },
+    {
+      "assetId": "image-1917773e9e3812937947adec52ba1006f94a7313-800x635-png",
+      "originalFilename": "image 5.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/1917773e9e3812937947adec52ba1006f94a7313-800x635.png",
+      "size": 238964,
+      "used": []
+    },
+    {
+      "assetId": "image-21aec036cd7088237f886e36e941d9dff5d1e61c-207x269-png",
+      "originalFilename": "Group 469482.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/21aec036cd7088237f886e36e941d9dff5d1e61c-207x269.png",
+      "size": 15279,
+      "used": []
+    },
+    {
+      "assetId": "image-21d38965b247ebdc3d3d67eb7cbc09b265557a46-330x411-png",
+      "originalFilename": "Group 1052.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/21d38965b247ebdc3d3d67eb7cbc09b265557a46-330x411.png",
+      "size": 107263,
+      "used": []
+    },
+    {
+      "assetId": "image-22f8fc641602e70af236bcf89cac402469d91359-1000x1400-png",
+      "originalFilename": "TIR.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/22f8fc641602e70af236bcf89cac402469d91359-1000x1400.png",
+      "size": 231119,
+      "used": []
+    },
+    {
+      "assetId": "image-2594bf7d4c15e5aec5a66d2c483317279857f4ff-1772x398-png",
+      "originalFilename": "Frame 633636.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/2594bf7d4c15e5aec5a66d2c483317279857f4ff-1772x398.png",
+      "size": 26904,
+      "used": []
+    },
+    {
+      "assetId": "image-2ca5651161a7e48f447be495709e7ffbca75b458-1176x369-png",
+      "originalFilename": "mSSIxGttluvbWXFqOKkZcEQdGps.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/2ca5651161a7e48f447be495709e7ffbca75b458-1176x369.png",
+      "size": 260973,
+      "used": []
+    },
+    {
+      "assetId": "image-2f3247c88cfb65d62f881267acb5018132b0fec0-1000x658-png",
+      "originalFilename": "TIR.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/2f3247c88cfb65d62f881267acb5018132b0fec0-1000x658.png",
+      "size": 148459,
+      "used": []
+    },
+    {
+      "assetId": "image-3b8298dcb11e5471af81d2b220e01ef6b7708846-97x97-png",
+      "originalFilename": "Icons.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/3b8298dcb11e5471af81d2b220e01ef6b7708846-97x97.png",
+      "size": 2511,
+      "used": []
+    },
+    {
+      "assetId": "image-3c8b8897fe39b3f7ebaaa0c63f412dec48ddf2f0-1772x1021-png",
+      "originalFilename": "image 13117.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/3c8b8897fe39b3f7ebaaa0c63f412dec48ddf2f0-1772x1021.png",
+      "size": 141135,
+      "used": []
+    },
+    {
+      "assetId": "image-3e7469695f9725c59e7fbc92773d06526b72aeb8-97x97-png",
+      "originalFilename": "2.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/3e7469695f9725c59e7fbc92773d06526b72aeb8-97x97.png",
+      "size": 1929,
+      "used": []
+    },
+    {
+      "assetId": "image-3eaee15a065cd90e9c57a456cba84d1881a14c1e-97x97-png",
+      "originalFilename": "Icons-2.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/3eaee15a065cd90e9c57a456cba84d1881a14c1e-97x97.png",
+      "size": 2207,
+      "used": []
+    },
+    {
+      "assetId": "image-44eee86aaaca84863ec471ceba36efabf4cd5ae9-1096x392-png",
+      "originalFilename": "Hs3SajKloVLExunjvIjxVwv28lY.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/44eee86aaaca84863ec471ceba36efabf4cd5ae9-1096x392.png",
+      "size": 140649,
+      "used": []
+    },
+    {
+      "assetId": "image-535430950223cfaf9a37f32346dc880fcad0e971-1000x659-png",
+      "originalFilename": "INNU 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/535430950223cfaf9a37f32346dc880fcad0e971-1000x659.png",
+      "size": 477330,
+      "used": []
+    },
+    {
+      "assetId": "image-57f807d5ad2f284dbee218446c21f93b6629a8de-800x1276-png",
+      "originalFilename": "4rtkBWGBrDRrs8jnRAeGqTIsa2I.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/57f807d5ad2f284dbee218446c21f93b6629a8de-800x1276.png",
+      "size": 537582,
+      "used": []
+    },
+    {
+      "assetId": "image-5c34abda6cf1eed1f913d5d670958eac9665ff02-97x97-png",
+      "originalFilename": "2222.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/5c34abda6cf1eed1f913d5d670958eac9665ff02-97x97.png",
+      "size": 2386,
+      "used": []
+    },
+    {
+      "assetId": "image-5f0e7a660084b975173a7b00175a180bc7a6291c-1000x1400-png",
+      "originalFilename": "Silin.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/5f0e7a660084b975173a7b00175a180bc7a6291c-1000x1400.png",
+      "size": 262285,
+      "used": []
+    },
+    {
+      "assetId": "image-60fa49498cbfd1da4ebf2b745e2fdf155b49a7b8-72x73-png",
+      "originalFilename": "acw.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/60fa49498cbfd1da4ebf2b745e2fdf155b49a7b8-72x73.png",
+      "size": 4404,
+      "used": []
+    },
+    {
+      "assetId": "image-6a2a3861cbe5118f31236ccb1eb42e2865f6e08d-782x242-png",
+      "originalFilename": "Frame 633637.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/6a2a3861cbe5118f31236ccb1eb42e2865f6e08d-782x242.png",
+      "size": 213569,
+      "used": []
+    },
+    {
+      "assetId": "image-6eb6757c2052e3de026b2f60b5e6f655cc6c5226-1000x658-png",
+      "originalFilename": "Paycool 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/6eb6757c2052e3de026b2f60b5e6f655cc6c5226-1000x658.png",
+      "size": 150769,
+      "used": []
+    },
+    {
+      "assetId": "image-6ff4290c42a55526c8372b5d34b3a981c1ee212c-1000x1400-png",
+      "originalFilename": "INNU.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/6ff4290c42a55526c8372b5d34b3a981c1ee212c-1000x1400.png",
+      "size": 711774,
+      "used": []
+    },
+    {
+      "assetId": "image-71b4140211c39c01a6c47c430896b12041739da0-1000x1400-png",
+      "originalFilename": "Igo.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/71b4140211c39c01a6c47c430896b12041739da0-1000x1400.png",
+      "size": 315463,
+      "used": []
+    },
+    {
+      "assetId": "image-76883148712011bccc49055be77ec7566d9e8b51-465x629-png",
+      "originalFilename": "div.framer-t4uber.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/76883148712011bccc49055be77ec7566d9e8b51-465x629.png",
+      "size": 103592,
+      "used": []
+    },
+    {
+      "assetId": "image-7abe74e3151058fcc764efb9a87b8abb42029a83-1000x658-png",
+      "originalFilename": "Linklight 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/7abe74e3151058fcc764efb9a87b8abb42029a83-1000x658.png",
+      "size": 168928,
+      "used": []
+    },
+    {
+      "assetId": "image-7f3902b0f89524fd79be455b4ef7522e0b6e8fbe-800x641-png",
+      "originalFilename": "image 6.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/7f3902b0f89524fd79be455b4ef7522e0b6e8fbe-800x641.png",
+      "size": 212450,
+      "used": []
+    },
+    {
+      "assetId": "image-80c9d304d13a635aa5c23ccacc49c6e27f2917f5-480x612-png",
+      "originalFilename": "SILIN APP2 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/80c9d304d13a635aa5c23ccacc49c6e27f2917f5-480x612.png",
+      "size": 70645,
+      "used": []
+    },
+    {
+      "assetId": "image-825cfad155d413b04271473f5fec6b8cc17967ad-299x256-png",
+      "originalFilename": "Group 469481.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/825cfad155d413b04271473f5fec6b8cc17967ad-299x256.png",
+      "size": 21076,
+      "used": []
+    },
+    {
+      "assetId": "image-8aff915bdb23dc46ecc50ad539e879dbbb277afe-1000x658-png",
+      "originalFilename": "Silin 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8aff915bdb23dc46ecc50ad539e879dbbb277afe-1000x658.png",
+      "size": 175808,
+      "used": []
+    },
+    {
+      "assetId": "image-8de10a0095a85d315b57c68f8079867b4cb3bbd7-1000x1400-png",
+      "originalFilename": "Linklight.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/8de10a0095a85d315b57c68f8079867b4cb3bbd7-1000x1400.png",
+      "size": 254112,
+      "used": []
+    },
+    {
+      "assetId": "image-930f5511297db5e1c2025f7de0d1dd7bb6c670b0-1096x1693-png",
+      "originalFilename": "div.framer-1nug171.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/930f5511297db5e1c2025f7de0d1dd7bb6c670b0-1096x1693.png",
+      "size": 539375,
+      "used": []
+    },
+    {
+      "assetId": "image-9cceadbc22362563b75366bd8943ab40e2dfcdb5-1000x1400-png",
+      "originalFilename": "DTCpng.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/9cceadbc22362563b75366bd8943ab40e2dfcdb5-1000x1400.png",
+      "size": 118520,
+      "used": []
+    },
+    {
+      "assetId": "image-a27cbd5eed709443a00b45a92a8a50f69bf94416-800x510-png",
+      "originalFilename": "image 8.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/a27cbd5eed709443a00b45a92a8a50f69bf94416-800x510.png",
+      "size": 236863,
+      "used": []
+    },
+    {
+      "assetId": "image-b6b86a5856529e6b9bfe7083e9cce32fe2b8dfa8-1176x368-png",
+      "originalFilename": "Hxrg3F5Kd8wv3oDhwqCs4HcnLg.png.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/b6b86a5856529e6b9bfe7083e9cce32fe2b8dfa8-1176x368.png",
+      "size": 102268,
+      "used": []
+    },
+    {
+      "assetId": "image-ba2d533ef9c7d69a28bc221de3f2d2d1f246318e-72x73-png",
+      "originalFilename": "igo.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ba2d533ef9c7d69a28bc221de3f2d2d1f246318e-72x73.png",
+      "size": 2352,
+      "used": []
+    },
+    {
+      "assetId": "image-bf8ef3523617a8cbd3c3077dad7c19ea93a396f1-1000x1400-png",
+      "originalFilename": "Paycool.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/bf8ef3523617a8cbd3c3077dad7c19ea93a396f1-1000x1400.png",
+      "size": 168142,
+      "used": []
+    },
+    {
+      "assetId": "image-cdd83512ccf56ecef8fc6a72189f2adef3a7c493-792x560-png",
+      "originalFilename": "image 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/cdd83512ccf56ecef8fc6a72189f2adef3a7c493-792x560.png",
+      "size": 266920,
+      "used": []
+    },
+    {
+      "assetId": "image-ce23db9362813b77a4137ab184cda565ca7cb4b2-1000x658-png",
+      "originalFilename": "Igo 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ce23db9362813b77a4137ab184cda565ca7cb4b2-1000x658.png",
+      "size": 151707,
+      "used": []
+    },
+    {
+      "assetId": "image-d0d65d99e3f183bee655b5e607a5672ccf9b54fc-1000x1400-png",
+      "originalFilename": "Signer.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/d0d65d99e3f183bee655b5e607a5672ccf9b54fc-1000x1400.png",
+      "size": 213383,
+      "used": []
+    },
+    {
+      "assetId": "image-d6f92b7df1c00e82a17e58fd5dbc382583bfbf6c-72x73-png",
+      "originalFilename": "jikko.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/d6f92b7df1c00e82a17e58fd5dbc382583bfbf6c-72x73.png",
+      "size": 3329,
+      "used": []
+    },
+    {
+      "assetId": "image-d8402c9666ad47c0d2110aef38335c8d75c1d8e6-1000x658-png",
+      "originalFilename": "Signer 1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/d8402c9666ad47c0d2110aef38335c8d75c1d8e6-1000x658.png",
+      "size": 189099,
+      "used": []
+    },
+    {
+      "assetId": "image-dd0e4d29ea554bc1dc55e0fe38d5b13e3ed5c22b-1096x870-png",
+      "originalFilename": "image 3.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/dd0e4d29ea554bc1dc55e0fe38d5b13e3ed5c22b-1096x870.png",
+      "size": 286521,
+      "used": []
+    },
+    {
+      "assetId": "image-df44994c312cdc6bc609a747cb74f00a57a5af1b-1128x481-png",
+      "originalFilename": "Paycool 13.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/df44994c312cdc6bc609a747cb74f00a57a5af1b-1128x481.png",
+      "size": 68728,
+      "used": []
+    },
+    {
+      "assetId": "image-e1261cf78a1d1bb3809ce1ab00dcb5b67f82e337-1024x1536-jpg",
+      "originalFilename": "WhatsApp Image 2026-09-08 at 1.16.16 AM.jpeg",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e1261cf78a1d1bb3809ce1ab00dcb5b67f82e337-1024x1536.jpg",
+      "size": 90739,
+      "used": []
+    },
+    {
+      "assetId": "image-e49b449ae1d2eb91fff464a30cf3955335c749e1-72x73-png",
+      "originalFilename": "sovos.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e49b449ae1d2eb91fff464a30cf3955335c749e1-72x73.png",
+      "size": 2807,
+      "used": []
+    },
+    {
+      "assetId": "image-e6c45408fa2aed8e86742aa11c82a01782b26586-800x842-png",
+      "originalFilename": "image 7.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/e6c45408fa2aed8e86742aa11c82a01782b26586-800x842.png",
+      "size": 193169,
+      "used": []
+    },
+    {
+      "assetId": "image-eb3bc5f02f2ef29ee5e5f9af8eb84b9f44182d4e-97x97-png",
+      "originalFilename": "222.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/eb3bc5f02f2ef29ee5e5f9af8eb84b9f44182d4e-97x97.png",
+      "size": 1962,
+      "used": []
+    },
+    {
+      "assetId": "image-ec9cb37fe95244aa1b56b23a6c00141bc0403464-361x772-png",
+      "originalFilename": "Results (5).png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/ec9cb37fe95244aa1b56b23a6c00141bc0403464-361x772.png",
+      "size": 19307,
+      "used": []
+    },
+    {
+      "assetId": "image-f0ce56dc82fdb0d7cc840fc8ba1459a736603f1c-97x98-png",
+      "originalFilename": "Icons-1.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/f0ce56dc82fdb0d7cc840fc8ba1459a736603f1c-97x98.png",
+      "size": 2599,
+      "used": []
+    },
+    {
+      "assetId": "image-f15a8ef6e47e5bf6dc6e0f0b60d0f0425a68acb0-1000x1400-png",
+      "originalFilename": "Igo.png",
+      "url": "https://cdn.sanity.io/images/n0k6o0ax/production/f15a8ef6e47e5bf6dc6e0f0b60d0f0425a68acb0-1000x1400.png",
+      "size": 142281,
+      "used": []
+    }
+  ],
+  "multi": []
+}

@@ -90,3 +90,10 @@
   --tw-prose-th-borders: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
   --tw-prose-td-borders: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
 }
+
+/* Keep every interactive button within the portfolio's compact radius scale. */
+button,
+[role="button"],
+.cds--btn {
+  border-radius: min(var(--radius-md), 8px) !important;
+}
