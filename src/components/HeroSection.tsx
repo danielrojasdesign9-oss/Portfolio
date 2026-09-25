@@ -55,19 +55,19 @@ export default function HeroSection({
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex gap-20 md:gap-16 items-start"
+          className="flex flex-col md:flex-row gap-10 md:gap-16 items-start"
         >
           {/* Left: photo + social links */}
-          <motion.div variants={item} className="flex flex-col justify-between shrink-0" style={{ width: "min(700px, 45%)" }}>
-            <div className="relative overflow-hidden rounded-[8px]" style={{ height: "515px" }}>
+          <motion.div variants={item} className="flex flex-col justify-between shrink-0 w-full md:w-1/2 max-w-[480px]">
+            <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none rounded-[8px] overflow-hidden">
               {profileImageUrl ? (
                 <Image
                   src={profileImageUrl}
                   alt={fullName}
                   fill
-                  className="absolute"
-                  style={{ height: "150%", left: "4.24%", top: "-25.09%", width: "95.76%", maxWidth: "none", objectFit: "cover" }}
+                  className="object-cover object-center"
                   priority
+                  sizes="(max-width: 768px) 100vw, 480px"
                 />
               ) : (
                 <div className="w-full h-full bg-[var(--color-bg-elevated)] flex items-center justify-center">
@@ -78,13 +78,12 @@ export default function HeroSection({
 
             <motion.div
               variants={item}
-              className="flex flex-wrap gap-x-10 items-center justify-end mt-6"
+              className="flex flex-wrap gap-x-6 gap-y-3 mt-6 justify-center md:justify-end"
             >
               <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
                 Connect
               </span>
-
-              <div className="flex gap-10 items-center">
+              <div className="flex flex-wrap gap-6 items-center justify-center md:justify-end">
                 {contactLinks.map((link) => (
                   <a
                     key={link.label}
@@ -102,38 +101,27 @@ export default function HeroSection({
           </motion.div>
 
           {/* Right: headline + description + CTAs */}
-          <motion.div variants={item} className="flex flex-col gap-10 flex-1 min-w-0">
-            <motion.div variants={item} className="flex flex-col gap-10">
-              <h1 className="font-display font-black text-black" style={{ fontSize: "76px", letterSpacing: "-3.8px", lineHeight: "69.92px" }}>
-                {headline.split(" ").map((word, i) => (
-                  <span key={i}>{word}</span>
-                )).reduce((acc, word, i) => {
-                  if (i === 0) return [word];
-                  const last = acc[acc.length - 1];
-                  if (typeof last === "string" && last.endsWith("<br />")) {
-                    acc[acc.length - 1] = last + " " + word;
-                  } else {
-                    acc.push(<br key={`br-${i}`} />, word);
-                  }
-                  return acc;
-                }, [] as React.ReactNode[])}
+          <motion.div variants={item} className="flex flex-col gap-10 flex-1 min-w-0 w-full">
+            <motion.div variants={item} className="flex flex-col gap-6">
+              <h1 className="font-display font-black text-black text-balance" style={{ fontSize: "clamp(48px, 8vw, 76px)", letterSpacing: "-0.05em", lineHeight: "0.92" }}>
+                {headline}
               </h1>
-              <p className="font-ibm-plex-medium font-medium text-[#333]" style={{ fontSize: "20px", lineHeight: "33px", maxWidth: "576px", fontVariationSettings: '"wdth" 100' }}>
+              <p className="font-ibm-plex-medium font-medium text-[#333] max-w-[576px]" style={{ fontSize: "clamp(18px, 2.5vw, 20px)", lineHeight: "1.65", fontVariationSettings: '"wdth" 100' }}>
                 {description}
               </p>
             </motion.div>
 
-            <motion.div variants={item} className="flex gap-4 items-start">
+            <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 items-start">
               <a
                 href={`/?lang=${locale}#contact`}
-                className="relative bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-4 pr-[63px] py-[14px] shrink-0"
+                className="relative bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
                 <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
                 <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />
               </a>
               <a
                 href={`/about?lang=${locale}`}
-                className="relative bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-4 pr-[63px] py-[14px] shrink-0"
+                className="relative bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
                 <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
                 <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />

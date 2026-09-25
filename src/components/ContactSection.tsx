@@ -50,7 +50,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex gap-20 items-end flex-wrap"
+        className="flex gap-20 items-start flex-wrap"
       >
         {/* Left */}
         <div className="flex flex-col gap-[23px] shrink-0" style={{ width: "min(448px, 100%)" }}>
