@@ -62,18 +62,7 @@ export default async function Home({
         githubUrl={githubUrl}
       />
 
-      <section id="projects" className="px-4 md:px-8 py-24 max-w-[1400px] mx-auto scroll-mt-[var(--header-height)]">
-        <div className="mb-14 max-w-3xl">
-          <p className="text-xl font-medium text-[var(--color-text-secondary)] mb-4">
-            {workCopy.kicker}
-          </p>
-          <h2 className="font-display text-5xl md:text-7xl font-black tracking-tighter leading-[0.88] mb-4">
-            {workCopy.title}
-          </h2>
-          <p className="text-lg text-[var(--color-text-secondary)]">{workCopy.body}</p>
-        </div>
-        <ProjectsSection projects={projects} locale={locale} />
-      </section>
+      <ProjectsSection projects={projects} locale={locale} />
 
       <ContactSection locale={locale} profile={profile} />
       <Footer locale={locale} />
