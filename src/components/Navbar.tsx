@@ -42,16 +42,14 @@ export default function Navbar() {
     setIsSettingsOpen(false);
   };
 
-  // Desktop nav items - all visible
+  // Desktop nav items - Home and Resources hidden
   const navItemsDesktopLeft = [
-    { href: `/?lang=${currentLocale}`, label: t.home, key: "home" },
     { href: `/?lang=${currentLocale}#projects`, label: t.work, key: "work" },
     { href: `/about?lang=${currentLocale}`, label: t.about, key: "about" },
   ];
 
   const navItemsDesktopRight = [
     { href: `/lab?lang=${currentLocale}`, label: t.lab, key: "lab" },
-    { href: `/recursos?lang=${currentLocale}`, label: t.resources, key: "resources" },
     { href: `/?lang=${currentLocale}#contact`, label: t.contact, key: "contact" },
   ];
 
