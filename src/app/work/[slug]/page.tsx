@@ -247,7 +247,7 @@ export default async function ProjectLayout({
               )}
 
               {/* Pagination - Sequential Navigation */}
-              <footer className="pt-24 border-t border-[var(--color-border-subtle)]">
+              <footer className="pt-24 border-t border-[var(--color-border-subtle)] flex flex-col items-stretch gap-8">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-8">
                   <div className="flex items-center gap-4 text-center md:text-left w-full md:w-auto">
                     <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-primary)]">

@@ -154,7 +154,7 @@ export default async function AboutPage({
                   href={profile.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 bg-[var(--color-primary)] hover:opacity-90 transition-opacity rounded-[12px] px-5 py-3 text-sm font-medium text-white w-full sm:w-auto justify-center sm:justify-start"
+                  className="inline-flex items-center gap-3 bg-[var(--color-primary)] hover:opacity-90 transition-opacity rounded-[var(--radius-lg)] px-5 py-3 text-sm font-medium text-white w-full sm:w-auto justify-center sm:justify-start"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download CV</span>

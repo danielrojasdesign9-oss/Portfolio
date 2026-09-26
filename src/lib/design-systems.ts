@@ -108,7 +108,7 @@ export const designSystems: Record<string, DesignSystem> = {
       "--color-primary": "#7C3AED",
       "--color-primary-hover": "#6D28D9",
       "--color-primary-light": "#EDE9FE",
-      "--color-secondary": "#C6F135",
+      "--color-secondary": "#101210",
       "--color-accent": "#F472B6",
       "--color-bg-dark": "#101210",
       "--font-heading": "var(--font-sg), 'Space Grotesk', system-ui, sans-serif",

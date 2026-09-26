@@ -117,14 +117,14 @@ export default function HeroSection({
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 items-start">
               <a
                 href={`/?lang=${locale}#contact`}
-                className="relative bg-[#393939] border border-transparent rounded-[12px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
+                className="relative bg-[var(--color-secondary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
                 <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
                 <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
               </a>
               <a
                 href={`/about?lang=${locale}`}
-                className="relative bg-[var(--color-primary)] border border-transparent rounded-[12px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
+                className="relative bg-[var(--color-primary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
                 <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
                 <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
