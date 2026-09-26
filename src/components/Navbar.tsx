@@ -196,7 +196,7 @@ export default function Navbar() {
             </Link>
 
             {/* Right section: desktop settings + mobile hamburger (on RIGHT) */}
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 w-full md:w-auto justify-end md:justify-start">
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
