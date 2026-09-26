@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, type CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { LabCanvas, LabVariant, LabControls, LabSpec, GraduationButton } from "@/components/lab";
+import LabBackLink from "@/components/LabBackLink";
 
 const hoverVariants = {
   "lift-glow": {
@@ -426,6 +427,7 @@ export function ProjectCard() {
 
   return (
     <div className="lab-page">
+      <LabBackLink />
       <div className="lab-page__header">
         <h1 className="lab-page__title">Card Micro-interactions</h1>
         <p className="lab-page__desc">

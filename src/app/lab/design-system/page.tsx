@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
+import LabBackLink from "@/components/LabBackLink";
 import Footer from "@/components/Footer";
 import { designSystems } from "@/lib/design-systems";
 
@@ -33,6 +34,7 @@ function DesignSystemDocs() {
       <Navbar />
       <div className="max-w-[1400px] mx-auto px-4 md:px-8 pt-32 pb-24 space-y-24">
         <header className="max-w-3xl">
+          <LabBackLink />
           <span className="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-[0.12em] rounded-full bg-[var(--color-primary)] text-[var(--color-text-inverse)] mb-6">
             Lab
           </span>

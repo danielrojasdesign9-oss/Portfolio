@@ -94,17 +94,32 @@
 /* IBM Plex utilities portadas del Figma — ya no se usan: el home usa la
    tipografía del Design System activo (--font-body / --font-heading). */
 
-/* Keep every interactive button within the portfolio's radius scale. */
+/* Keep every interactive button on the active design system's radius scale. */
 button,
 [role="button"],
 .cds--btn {
-  border-radius: 12px !important;
+  border-radius: var(--radius-lg, 12px) !important;
 }
-/* Filter chips: 8px por diseño (no aplica la unidad de 12px de botones). */
+/* Filter chips: un paso abajo en la escala del DS activo. */
 button.filter-chip {
-  border-radius: 8px !important;
+  border-radius: var(--radius-md, 8px) !important;
 }
 /* Pagination dots del carousel: se quedan circulares. */
 button.carousel-dot {
   border-radius: 9999px !important;
 }
+
+/* === AAA: +4px en todos los tamaños de cuerpo === */
+[data-aaa="true"] .text-\[9px\] { font-size: 13px !important; }
+[data-aaa="true"] .text-\[10px\] { font-size: 14px !important; }
+[data-aaa="true"] .text-\[11px\] { font-size: 15px !important; }
+[data-aaa="true"] .text-\[12px\] { font-size: 16px !important; }
+[data-aaa="true"] .text-\[13px\] { font-size: 17px !important; }
+[data-aaa="true"] .text-\[14px\] { font-size: 18px !important; }
+[data-aaa="true"] .text-\[16px\] { font-size: 20px !important; }
+[data-aaa="true"] .text-\[18px\] { font-size: 22px !important; }
+[data-aaa="true"] .text-\[20px\] { font-size: 24px !important; }
+[data-aaa="true"] .text-xs { font-size: 16px !important; line-height: 1.5 !important; }
+[data-aaa="true"] .text-sm { font-size: 18px !important; line-height: 1.5 !important; }
+[data-aaa="true"] .text-base { font-size: 20px !important; line-height: 1.5 !important; }
+[data-aaa="true"] .text-lg { font-size: 22px !important; line-height: 1.5 !important; }

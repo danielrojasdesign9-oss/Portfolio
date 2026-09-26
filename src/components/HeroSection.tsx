@@ -52,17 +52,17 @@ export default function HeroSection({
   };
 
   return (
-    <section className="relative flex items-start justify-center px-4 md:px-8 pt-[calc(var(--header-height)+1.5rem)] pb-8 md:pb-12">
+    <section className="relative flex items-center justify-center px-4 md:px-8 pt-[calc(var(--header-height)+1.5rem)] pb-8 md:pb-12">
       <div className="w-full max-w-[1400px] mx-auto">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
-          className="flex flex-col md:flex-row gap-10 md:gap-16 items-start"
+          className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
         >
           {/* Left: photo + social links */}
-          <motion.div variants={item} className="flex flex-col justify-between shrink-0 w-full md:w-1/2 max-w-[480px]">
-            <div className="relative aspect-square max-w-[480px] mx-auto md:max-w-none rounded-[8px] overflow-hidden">
+          <motion.div variants={item} className="flex flex-col gap-6 shrink-0 w-full md:w-1/2 max-w-[480px]">
+            <div className="relative w-full aspect-square max-w-[480px] md:max-w-none rounded-[8px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
               {profileImageUrl ? (
                 <Image
                   src={profileImageUrl}
@@ -81,12 +81,12 @@ export default function HeroSection({
 
             <motion.div
               variants={item}
-              className="flex flex-wrap gap-x-6 gap-y-3 mt-6 justify-center md:justify-end"
+              className="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start"
             >
               <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
                 Connect
               </span>
-              <div className="flex flex-wrap gap-6 items-center justify-center md:justify-end">
+              <div className="flex flex-wrap gap-6 items-center justify-center md:justify-start">
                 {contactLinks.map((link) => (
                   <a
                     key={link.label}

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { LabCanvas, LabVariant, LabControls, LabSpec, GraduationButton } from "@/components/lab";
+import LabBackLink from "@/components/LabBackLink";
 
 const revealVariants = {
   "fade-up": {
@@ -380,6 +381,7 @@ export function ProjectGrid({ projects }) {
 
   return (
     <div className="lab-page">
+      <LabBackLink />
       <div className="lab-page__header">
         <h1 className="lab-page__title">Scroll-Reveal Stagger</h1>
         <p className="lab-page__desc">

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Grid, CarouselHorizontal, ArrowRight, ChevronLeft, ChevronRight } from "@carbon/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -123,20 +123,7 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
   );
 }
 
-function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarouselIndex, handleCarouselPrev, handleCarouselNext, carouselRef }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; setCarouselIndex: (i: number) => void; handleCarouselPrev: () => void; handleCarouselNext: () => void; carouselRef: React.RefObject<HTMLDivElement | null> }) {
-  useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    const onWheel = (e: WheelEvent) => {
-      const isVertical = Math.abs(e.deltaY) > Math.abs(e.deltaX);
-      if (!isVertical) return;
-      e.preventDefault();
-      el.scrollBy({ left: e.deltaY >= 0 ? 320 : -320, behavior: reducedMotion ? "auto" : "smooth" });
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, [carouselRef, reducedMotion]);
-
+function CarouselView({ filtered, locale, reducedMotion, carouselIndex, handleCarouselPrev, handleCarouselNext }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; handleCarouselPrev: () => void; handleCarouselNext: () => void }) {
   return (
     <motion.div
       key="carousel"
@@ -145,22 +132,27 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
       className="relative"
     >
-      <div
-        ref={carouselRef}
-        className="flex gap-8 overflow-x-auto overflow-y-hidden overscroll-none snap-x snap-mandatory pb-4"
-      >
-        {filtered.map((project: any, i: number) => (
-          <motion.div
-            key={project._id || `${project.slug}-${i}`}
-            initial={reducedMotion ? false : { opacity: 0, x: 32 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
-            data-project-slug={project.slug}
-            className="flex-shrink-0 snap-center w-72"
-          >
-            <ProjectCard project={project} locale={locale} index={i} />
-          </motion.div>
-        ))}
+      <div className="overflow-hidden pb-4">
+        <div
+          className="flex gap-8 transition-transform duration-500 ease-out"
+          style={{
+            transform: `translateX(-${carouselIndex * 320}px)`,
+            transitionDuration: reducedMotion ? "0ms" : undefined,
+          }}
+        >
+          {filtered.map((project: any, i: number) => (
+            <motion.div
+              key={project._id || `${project.slug}-${i}`}
+              initial={reducedMotion ? false : { opacity: 0, x: 32 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: reducedMotion ? 0 : 0.45, delay: reducedMotion ? 0 : Math.min(i * 0.05, 0.4) }}
+              data-project-slug={project.slug}
+              className="flex-shrink-0 w-72"
+            >
+              <ProjectCard project={project} locale={locale} index={i} />
+            </motion.div>
+          ))}
+        </div>
       </div>
 
       {!reducedMotion && filtered.length > 1 && (
@@ -183,18 +175,6 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
           </button>
         </>
       )}
-
-      <div className="mt-10 flex items-center justify-start gap-2 pb-2">
-        {filtered.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCarouselIndex(i)}
-            aria-label={`Go to project ${i + 1}`}
-            aria-current={i === carouselIndex}
-            className={`carousel-dot h-2 rounded-full transition-all ${i === carouselIndex ? "bg-[var(--color-primary)] w-6" : "w-2 bg-[var(--color-text-tertiary)] hover:bg-[var(--color-text-secondary)]"}`}
-          />
-        ))}
-      </div>
     </motion.div>
   );
 }
@@ -206,7 +186,6 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   const [category, setCategory] = useState<string>("all");
   const [mounted, setMounted] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const reducedMotion = useReducedMotion() ?? false;
 
   useEffect(() => {
@@ -256,35 +235,6 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
   }, [projects, category, locale]);
 
   useEffect(() => {
-    const el = carouselRef.current;
-    if (!el) return;
-    let frame = 0;
-    const onScroll = () => {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => {
-        const children = Array.from(el.children) as HTMLElement[];
-        if (!children.length) return;
-        const scrollLeft = el.scrollLeft;
-        let best = 0;
-        let bestDist = Infinity;
-        children.forEach((child, i) => {
-          const dist = Math.abs(child.offsetLeft - scrollLeft);
-          if (dist < bestDist) {
-            bestDist = dist;
-            best = i;
-          }
-        });
-        setCarouselIndex((prev) => (prev === best ? prev : best));
-      });
-    };
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(frame);
-      el.removeEventListener("scroll", onScroll);
-    };
-  }, [filtered.length]);
-
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (view !== "carousel" || reducedMotion) return;
       if (e.key === "ArrowRight") handleCarouselNext();
@@ -293,17 +243,6 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [view, reducedMotion, projects.length, category]);
-
-  useEffect(() => {
-    const container = carouselRef.current;
-    if (!container) return;
-    const child = container.children[carouselIndex] as HTMLElement | undefined;
-    if (!child) return;
-    container.scrollTo({
-      left: child.offsetLeft,
-      behavior: reducedMotion ? "auto" : "smooth",
-    });
-  }, [carouselIndex, reducedMotion, filtered.length]);
 
   const labels = {
     en: { all: "All projects", grid: "GRID", carousel: "CAROUSEL", filterBy: "Filter by:", result: "projects" },
@@ -328,10 +267,8 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
             locale={locale}
             reducedMotion={reducedMotion}
             carouselIndex={carouselIndex}
-            setCarouselIndex={setCarouselIndex}
             handleCarouselPrev={handleCarouselPrev}
             handleCarouselNext={handleCarouselNext}
-            carouselRef={carouselRef}
           />
         );
     }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { LabCanvas, LabVariant, LabControls, LabSpec, GraduationButton } from "@/components/lab";
+import LabBackLink from "@/components/LabBackLink";
 
 const variants = {
   "spring-stagger": {
@@ -338,6 +339,7 @@ export function Hero() {
 
   return (
     <div className="lab-page">
+      <LabBackLink />
       <div className="lab-page__header">
         <h1 className="lab-page__title">Hero Entrance Choreography</h1>
         <p className="lab-page__desc">

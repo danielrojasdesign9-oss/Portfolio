@@ -53,9 +53,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype", of: "of" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo", of: "de" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ", of: "/" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype", openProto: "Open prototype", of: "of" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo", openProto: "Abrir prototipo", of: "de" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ", openProto: "プロトタイプを開く", of: "/" }
   }[locale];
 
   const projectsMeta: Record<string, any> = {
@@ -175,38 +175,33 @@ export default async function ProjectLayout({
                 </div>
               )}
 
-              {/* 5. Live Site (preferred) or Figma Embed */}
-              {project.liveUrl ? (
+              {/* 5. Live Site link + Figma Embed (link always visible) */}
+              {(project.liveUrl || project.figmaEmbedUrl) && (
                 <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
                   <div className="flex items-center gap-4">
                     <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.prototype}</span>
                     <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
                   </div>
                   <a
-                    href={project.liveUrl}
+                    href={project.liveUrl || project.figmaEmbedUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between gap-6 rounded-[12px] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-6 py-5 hover:border-[var(--color-primary)] transition-colors"
                   >
-                    <span className="font-medium text-[var(--color-text-primary)]">Visit live site</span>
+                    <span className="font-medium text-[var(--color-text-primary)]">{project.liveUrl ? "Visit live site" : t.openProto}</span>
                     <ArrowUpRight className="size-5 text-[var(--color-text-link)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
+                  {project.figmaEmbedUrl && (
+                    <div className="relative aspect-video rounded-[8px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
+                      <iframe
+                        src={project.figmaEmbedUrl}
+                        className="absolute inset-0 w-full h-full"
+                        allowFullScreen
+                      />
+                    </div>
+                  )}
                 </div>
-              ) : project.figmaEmbedUrl ? (
-                <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
-                  <div className="flex items-center gap-4">
-                    <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.prototype}</span>
-                    <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
-                  </div>
-                  <div className="relative aspect-video rounded-[8px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
-                    <iframe
-                      src={project.figmaEmbedUrl}
-                      className="absolute inset-0 w-full h-full"
-                      allowFullScreen
-                    />
-                  </div>
-                </div>
-              ) : null}
+              )}
 
               {/* 6. Dynamic Gallery */}
               {project.gallery && project.gallery.length > 0 && (
@@ -261,24 +256,27 @@ export default async function ProjectLayout({
                   </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-8 md:gap-12 justify-between">
+                <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center items-center">
                   {project.prevProject && (
                     <CarbonLinkButton
                       href={`/work/${project.prevProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full md:w-1/2 min-w-0 text-left whitespace-nowrap overflow-hidden"
+                      className="min-w-0 max-w-full md:max-w-[45%] text-center whitespace-nowrap overflow-hidden"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.prev}</span>
                       <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.prevProject.title, locale)}</span>
                     </CarbonLinkButton>
+                  )}
+                  {project.prevProject && project.nextProject && (
+                    <span aria-hidden className="hidden md:block w-px h-10 bg-[var(--color-border-subtle)]" />
                   )}
                   {project.nextProject && (
                     <CarbonLinkButton
                       href={`/work/${project.nextProject.slug}?lang=${locale}`}
                       kind="ghost"
                       size="lg"
-                      className="w-full md:w-1/2 min-w-0 text-right whitespace-nowrap overflow-hidden"
+                      className="min-w-0 max-w-full md:max-w-[45%] text-center whitespace-nowrap overflow-hidden"
                     >
                       <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.next}</span>
                       <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.nextProject.title, locale)}</span>
