@@ -66,7 +66,7 @@ export default function Navbar() {
   const isActive = (href: string) => {
     const cleanHref = href.split("?")[0];
     if (cleanHref === "/") {
-      return pathname === "/" && !window.location.hash;
+      return pathname === "/" && (typeof window === "undefined" || !window.location.hash);
     }
     if (cleanHref === "/about") return pathname === "/about";
     if (cleanHref === "/lab") return pathname.startsWith("/lab");
@@ -175,7 +175,7 @@ export default function Navbar() {
                 <Link
                   key={item.key}
                   href={item.href}
-                  className={`relative py-[3px] px-0 font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
+                  className={`relative py-[3px] px-0 font-sans text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-normal"} hover:text-[var(--color-primary)]`}
                   style={{ fontVariationSettings: '"wdth" 100' }}
                 >
                   {item.label}
@@ -189,7 +189,7 @@ export default function Navbar() {
             {/* Center name */}
             <Link
               href={`/?lang=${currentLocale}`}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-ibm-plex-bold font-bold text-[16px] text-black tracking-[1.28px] uppercase leading-none"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-bold text-[16px] text-black tracking-[1.28px] uppercase leading-none"
               style={{ fontVariationSettings: '"wdth" 100' }}
             >
               Daniel Rojas
@@ -203,7 +203,7 @@ export default function Navbar() {
                   <Link
                     key={item.key}
                     href={item.href}
-                    className={`font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
+                    className={`font-sans text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-normal"} hover:text-[var(--color-primary)]`}
                     style={{ fontVariationSettings: '"wdth" 100' }}
                   >
                     {item.label}
@@ -214,7 +214,7 @@ export default function Navbar() {
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
-                  className="bg-[#f0f0f0] border border-[#666] flex items-center justify-center size-10 rounded-full"
+                  className="bg-[#f0f0f0] border border-[#666] text-black flex items-center justify-center size-10 rounded-full"
                   onClick={handleSettingsClick}
                   aria-label={t.settings}
                   aria-expanded={isSettingsOpen}
@@ -237,7 +237,7 @@ export default function Navbar() {
                       <div className="flex flex-col gap-5">
                         {/* Theme */}
                         <div>
-                          <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
+                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
                           <div className="flex gap-2">
                             <button
                               className={`flex items-center justify-center w-9 h-9 rounded-full border transition-colors ${theme === "light" ? "bg-black border-black text-white" : "bg-[#f0f0f0] border-[#666] text-black"} `}
@@ -270,7 +270,7 @@ export default function Navbar() {
 
                         {/* Language */}
                         <div>
-                          <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
+                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
                           <div className="flex gap-2 flex-wrap">
                             {languages.map((l) => (
                               <button
@@ -280,7 +280,7 @@ export default function Navbar() {
                                 aria-label={l.label}
                                 aria-pressed={currentLocale === l.code}
                               >
-                                <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{l.label}</span>
+                                <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{l.label}</span>
                               </button>
                             ))}
                           </div>
@@ -290,7 +290,7 @@ export default function Navbar() {
 
                         {/* Accessibility */}
                         <div>
-                          <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
+                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
                           <div className="flex gap-2">
                             <button
                               className={`flex items-center justify-center px-4 py-[6px] rounded-full ${aaaLevel === "AA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}
@@ -298,7 +298,7 @@ export default function Navbar() {
                               aria-label="Contrast: AA"
                               aria-pressed={aaaLevel === "AA"}
                             >
-                              <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AA</span>
+                              <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AA</span>
                             </button>
                             <button
                               className={`flex items-center justify-center px-4 py-[6px] rounded-full ${aaaLevel === "AAA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}
@@ -306,7 +306,7 @@ export default function Navbar() {
                               aria-label="Contrast: AAA"
                               aria-pressed={aaaLevel === "AAA"}
                             >
-                              <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AAA</span>
+                              <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AAA</span>
                             </button>
                           </div>
                         </div>
@@ -318,7 +318,7 @@ export default function Navbar() {
 
               {/* Mobile menu toggle - explicitly on the right */}
               <button
-                className="md:hidden bg-[#f0f0f0] border border-[#666] flex items-center justify-center size-10 rounded-full ml-auto"
+                className="md:hidden bg-[#f0f0f0] border border-[#666] text-black flex items-center justify-center size-10 rounded-full ml-auto"
                 onClick={handleMenuClick}
                 aria-label={isMobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileOpen}
@@ -356,14 +356,14 @@ export default function Navbar() {
           <div className="flex items-center justify-between p-4 border-b border-[#b8b8b8]">
             <Link
               href={`/?lang=${currentLocale}`}
-              className="font-ibm-plex-bold font-bold text-[20px] text-black tracking-[1.6px] uppercase"
+              className="font-display font-bold text-[20px] text-black tracking-[1.6px] uppercase"
               style={{ fontVariationSettings: '"wdth" 100' }}
               onClick={() => setIsMobileOpen(false)}
             >
               Daniel Rojas
             </Link>
             <button
-              className="p-2"
+              className="p-2 text-black"
               onClick={() => setIsMobileOpen(false)}
               aria-label="Close menu"
             >
@@ -376,7 +376,7 @@ export default function Navbar() {
               <Link
                 key={item.key}
                 href={item.href}
-                className={`flex items-center py-4 px-5 rounded-[8px] font-ibm-plex text-[14px] text-black tracking-[1.12px] uppercase transition-colors ${isActive(item.href) ? "bg-black text-white font-bold" : "text-black hover:bg-[#f0f0f0] font-regular"} `}
+                className={`flex items-center py-4 px-5 rounded-[8px] font-sans text-[14px] text-black tracking-[1.12px] uppercase transition-colors ${isActive(item.href) ? "bg-black text-white font-bold" : "text-black hover:bg-[#f0f0f0] font-normal"} `}
                 style={{ fontVariationSettings: '"wdth" 100' }}
                 onClick={() => setIsMobileOpen(false)}
               >
@@ -387,7 +387,7 @@ export default function Navbar() {
             <div className="pt-4 border-t border-[#b8b8b8] space-y-4">
               {/* Theme */}
               <div>
-                <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
+                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
                 <div className="flex gap-2">
                   <button
                     className={`flex-1 flex items-center justify-center py-2 rounded-full border transition-colors ${theme === "light" ? "bg-black border-black text-white" : "bg-[#f0f0f0] border-[#666] text-black"} `}
@@ -420,7 +420,7 @@ export default function Navbar() {
 
               {/* Language */}
               <div>
-                <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
+                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
                 <div className="flex flex-col gap-2">
                   {languages.map((l) => (
                     <button
@@ -430,7 +430,7 @@ export default function Navbar() {
                       aria-label={l.label}
                       aria-pressed={currentLocale === l.code}
                     >
-                      <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{l.label}</span>
+                      <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{l.label}</span>
                     </button>
                   ))}
                 </div>
@@ -440,7 +440,7 @@ export default function Navbar() {
 
               {/* Accessibility */}
               <div>
-                <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
+                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
                 <div className="flex gap-2">
                   <button
                     className={`flex-1 flex items-center justify-center px-4 py-[10px] rounded-[8px] ${aaaLevel === "AA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}
@@ -448,7 +448,7 @@ export default function Navbar() {
                     aria-label="Contrast: AA"
                     aria-pressed={aaaLevel === "AA"}
                   >
-                    <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AA</span>
+                    <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AA</span>
                   </button>
                   <button
                     className={`flex-1 flex items-center justify-center px-4 py-[10px] rounded-[8px] ${aaaLevel === "AAA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}
@@ -456,7 +456,7 @@ export default function Navbar() {
                     aria-label="Contrast: AAA"
                     aria-pressed={aaaLevel === "AAA"}
                   >
-                    <span className="font-ibm-plex-medium font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AAA</span>
+                    <span className="font-medium text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>AAA</span>
                   </button>
                 </div>
               </div>

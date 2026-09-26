@@ -11,7 +11,7 @@ import {
   StructuredListRow,
   StructuredListCell,
 } from "@carbon/react";
-import { Email, LogoLinkedin, LogoGithub } from "@carbon/icons-react";
+import { Email, LogoLinkedin, LogoGithub, Download } from "@carbon/icons-react";
 import Footer from "@/components/Footer";
 
 export const revalidate = 60;
@@ -149,6 +149,17 @@ export default async function AboutPage({
                 <LogoGithub className="w-5 h-5" />
                 <span className="text-sm font-medium">GitHub</span>
               </a>
+              {profile?.resumeUrl && (
+                <a
+                  href={profile.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-[var(--color-primary)] hover:opacity-90 transition-opacity rounded-[12px] px-5 py-3 text-sm font-medium text-white w-full sm:w-auto justify-center sm:justify-start"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Download CV</span>
+                </a>
+              )}
             </div>
           </div>
 

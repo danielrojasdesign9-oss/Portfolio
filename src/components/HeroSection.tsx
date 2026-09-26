@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { Email, LogoLinkedin, LogoGithub, ArrowRight } from "@carbon/icons-react";
+import { Email, LogoLinkedin, LogoGithub, ArrowRight, Download } from "@carbon/icons-react";
 import type { Locale } from "@/lib/utils-locale";
 
 interface HeroSectionProps {
@@ -14,15 +14,10 @@ interface HeroSectionProps {
   email: string;
   linkedinUrl: string;
   githubUrl: string;
+  resumeUrl?: string | null;
 }
 
 const ease = [0.22, 1, 0.36, 1] as const;
-
-const contactLinks = [
-  { href: `mailto:danielrojasdesign9@gmail.com`, icon: Email, label: "Email" },
-  { href: "https://www.linkedin.com/in/danielrojas010/", icon: LogoLinkedin, label: "LinkedIn", external: true },
-  { href: "https://github.com/danielrojasdesign", icon: LogoGithub, label: "GitHub", external: true },
-];
 
 export default function HeroSection({
   locale,
@@ -33,8 +28,16 @@ export default function HeroSection({
   email,
   linkedinUrl,
   githubUrl,
+  resumeUrl,
 }: HeroSectionProps) {
   const reduced = useReducedMotion();
+
+  const contactLinks = [
+    { href: `mailto:${email}`, icon: Email, label: "Email" },
+    { href: linkedinUrl, icon: LogoLinkedin, label: "LinkedIn", external: true },
+    { href: githubUrl, icon: LogoGithub, label: "GitHub", external: true },
+    ...(resumeUrl ? [{ href: resumeUrl, icon: Download, label: "Download CV", external: true }] : []),
+  ];
 
   const container = {
     hidden: {},
@@ -80,7 +83,7 @@ export default function HeroSection({
               variants={item}
               className="flex flex-wrap gap-x-6 gap-y-3 mt-6 justify-center md:justify-end"
             >
-              <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+              <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
                 Connect
               </span>
               <div className="flex flex-wrap gap-6 items-center justify-center md:justify-end">
@@ -92,8 +95,8 @@ export default function HeroSection({
                     rel={link.external ? "noopener noreferrer" : undefined}
                     className="flex gap-2 items-center"
                   >
-                    <link.icon className="w-5 h-5" />
-                    <span className="font-ibm-plex-medium font-medium text-[#333] text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{link.label}</span>
+                    <link.icon className="w-5 h-5 text-[var(--color-text-secondary)]" />
+                    <span className="font-medium text-[var(--color-text-secondary)] text-[14px] leading-[20px]" style={{ fontVariationSettings: '"wdth" 100' }}>{link.label}</span>
                   </a>
                 ))}
               </div>
@@ -103,10 +106,10 @@ export default function HeroSection({
           {/* Right: headline + description + CTAs */}
           <motion.div variants={item} className="flex flex-col gap-10 flex-1 min-w-0 w-full">
             <motion.div variants={item} className="flex flex-col gap-6">
-              <h1 className="font-display font-black text-black text-balance" style={{ fontSize: "clamp(48px, 8vw, 76px)", letterSpacing: "-0.05em", lineHeight: "0.92" }}>
+              <h1 className="font-display font-black text-[var(--color-text-primary)] text-balance" style={{ fontSize: "clamp(48px, 8vw, 76px)", letterSpacing: "-0.05em", lineHeight: "0.92" }}>
                 {headline}
               </h1>
-              <p className="font-ibm-plex-medium font-medium text-[#333] max-w-[576px]" style={{ fontSize: "clamp(18px, 2.5vw, 20px)", lineHeight: "1.65", fontVariationSettings: '"wdth" 100' }}>
+              <p className="font-medium text-[var(--color-text-secondary)] max-w-[576px]" style={{ fontSize: "clamp(18px, 2.5vw, 20px)", lineHeight: "1.65", fontVariationSettings: '"wdth" 100' }}>
                 {description}
               </p>
             </motion.div>
@@ -114,17 +117,17 @@ export default function HeroSection({
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 items-start">
               <a
                 href={`/?lang=${locale}#contact`}
-                className="relative bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
+                className="relative bg-[#393939] border border-transparent rounded-[12px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
-                <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
-                <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />
+                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
+                <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
               </a>
               <a
                 href={`/about?lang=${locale}`}
-                className="relative bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
+                className="relative bg-[var(--color-primary)] border border-transparent rounded-[12px] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
-                <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
-                <ArrowRight className="absolute right-4 size-4" style={{ top: "14.99px" }} />
+                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
+                <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
               </a>
             </motion.div>
           </motion.div>

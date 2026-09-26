@@ -137,6 +137,12 @@ export const projectType = defineType({
       type: 'url',
     }),
     defineField({
+      name: 'liveUrl',
+      title: 'Live Site URL',
+      description: 'URL del proyecto desplegado en producción (Vercel, etc.). Si existe, se muestra un botón "Visit live site" en lugar del embed de Figma.',
+      type: 'url',
+    }),
+    defineField({
       name: 'content',
       title: 'Project Core / Case Study',
       description: 'Detalle completo del proceso, retos y resultados.',

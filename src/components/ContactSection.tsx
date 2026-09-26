@@ -54,10 +54,10 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
       >
         {/* Left */}
         <div className="flex flex-col gap-[23px] shrink-0" style={{ width: "min(448px, 100%)" }}>
-          <p className="font-ibm-plex-medium font-medium text-[#333] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+          <p className="font-medium text-[var(--color-text-secondary)] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>
             {copy.kicker}
           </p>
-          <h2 className="font-display font-black text-black" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "64.8px" }}>
+          <h2 className="font-display font-black text-[var(--color-text-primary)]" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "64.8px" }}>
             {copy.title.split("\n").map((line, i) => (
               <React.Fragment key={i}>
                 {line}
@@ -69,36 +69,36 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
 
         {/* Right */}
         <div className="flex flex-col gap-6 items-start flex-1 min-w-0">
-          <p className="font-ibm-plex-regular text-[#333] text-[18px] leading-[29.7px]" style={{ fontVariationSettings: '"wdth" 100' }}>
+          <p className="font-normal text-[var(--color-text-secondary)] text-[18px] leading-[29.7px]" style={{ fontVariationSettings: '"wdth" 100' }}>
             {copy.body}
           </p>
-          <div className="flex gap-10 items-center flex-wrap">
+          <div className="flex gap-3 items-center flex-wrap">
             <a
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[var(--color-primary)] border border-transparent rounded-[8px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-[206px]"
+              className="bg-[var(--color-primary)] border border-transparent rounded-[12px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[206px]"
             >
-              <Email className="w-4 h-4 shrink-0" />
-              <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Email</span>
+              <Email className="w-4 h-4 shrink-0 text-white" />
+              <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Email</span>
             </a>
             <a
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#393939] border border-transparent rounded-[8px] min-h-[48px] flex items-center gap-4 pl-[15px] pr-16 py-[14px] w-[276px]"
+              className="bg-[#393939] border border-transparent rounded-[12px] min-h-[48px] flex items-center gap-4 pl-[15px] pr-16 py-[14px] w-full sm:w-[276px]"
             >
-              <LogoLinkedin className="w-4 h-4 shrink-0" />
-              <span className="font-ibm-plex-regular text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>LinkedIn</span>
+              <LogoLinkedin className="w-4 h-4 shrink-0 text-white" />
+              <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>LinkedIn</span>
             </a>
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[var(--color-primary)] rounded-[8px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-[250px]"
+              className="border border-[var(--color-primary)] rounded-[12px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[250px]"
             >
-              <Chat className="w-4 h-4 shrink-0 text-[var(--color-primary)]" />
-              <span className="font-ibm-plex-regular text-[var(--color-primary)] text-[14px] tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>WhatsApp</span>
+              <Chat className="w-4 h-4 shrink-0 text-[var(--color-text-link)]" />
+              <span className="text-[var(--color-text-link)] text-[14px] tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>WhatsApp</span>
             </a>
           </div>
         </div>

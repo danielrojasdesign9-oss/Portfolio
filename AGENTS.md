@@ -34,3 +34,34 @@ OpenCode es **la única fuente de verdad**: lee Figma, reparte a código y gener
 - Al tocar código o tokens relevantes a UI, regenerar specs (paso 4) para no desincronizar.
 - Push a `main`/deploy **solo con aprobación explícita** de Daniel.
 <!-- END:figma-sync -->
+
+<!-- BEGIN:agent-context-index -->
+# Contexto de agentes — índice
+
+`AGENTS.md` es el punto de entrada. Archivos hermanos en la raíz:
+
+- [`context.md`](context.md) — stack, estructura, convenciones y comandos.
+- [`memory.md`](memory.md) — estado actual, decisiones tomadas y pendientes.
+- [`skills.md`](skills.md) — skills instaladas y cuándo usarlas.
+
+> Nota: `agents.md` no existe como archivo aparte (en Windows `agents.md` y `AGENTS.md` son el mismo archivo). Este archivo cumple ese rol.
+
+## Reglas de colaboración
+
+1. **Revisión antes de commit**: todo cambio se presenta a Daniel para aprobación antes de `git add` / `git commit` / `git push`.
+2. **Push a `main` solo con aprobación explícita** (deploy automático en Vercel).
+3. **Respuestas en español.**
+4. Las imágenes/captions las gestiona Daniel en Figma/Sanity — no reemplazar.
+5. Sin `git add -A`; PowerShell sin `&&` ni heredoc (encadenar comandos por separado).
+
+## Subagentes disponibles (`.opencode/` / `~/.config/opencode/`)
+
+| Agente | Uso |
+|---|---|
+| `explore` | Búsqueda rápida en el codebase |
+| `code-reviewer` | Revisión de bugs, tipos, seguridad y performance (no modifica) |
+| `test-writer` | Tests con Playwright/Vitest |
+| `ui-designer` | Revisión UI (Carbon, Tailwind, WCAG) |
+| `storyteller` | Copy de case studies / hero |
+| `general` | Tareas multi-paso |
+<!-- END:agent-context-index -->

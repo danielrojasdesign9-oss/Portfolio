@@ -91,9 +91,20 @@
   --tw-prose-td-borders: var(--cds-border-subtle, var(--color-border-subtle, #e0e0e0));
 }
 
-/* Keep every interactive button within the portfolio's compact radius scale. */
+/* IBM Plex utilities portadas del Figma — ya no se usan: el home usa la
+   tipografía del Design System activo (--font-body / --font-heading). */
+
+/* Keep every interactive button within the portfolio's radius scale. */
 button,
 [role="button"],
 .cds--btn {
-  border-radius: min(var(--radius-md), 8px) !important;
+  border-radius: 12px !important;
+}
+/* Filter chips: 8px por diseño (no aplica la unidad de 12px de botones). */
+button.filter-chip {
+  border-radius: 8px !important;
+}
+/* Pagination dots del carousel: se quedan circulares. */
+button.carousel-dot {
+  border-radius: 9999px !important;
 }

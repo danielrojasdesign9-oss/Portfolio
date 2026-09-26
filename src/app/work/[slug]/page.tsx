@@ -4,7 +4,7 @@ import { client } from "@/sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { projectQuery, projectsQuery } from "@/sanity/lib/queries";
 import { PortableText } from "@portabletext/react";
-import { Rocket } from "@carbon/icons-react";
+import { Rocket, ArrowUpRight } from "@carbon/icons-react";
 import Navbar from "@/components/Navbar";
 import ProjectCover from "@/components/ProjectCover";
 import GalleryImage from "@/components/GalleryImage";
@@ -175,14 +175,30 @@ export default async function ProjectLayout({
                 </div>
               )}
 
-              {/* 5. Figma Embed */}
-              {project.figmaEmbedUrl && (
+              {/* 5. Live Site (preferred) or Figma Embed */}
+              {project.liveUrl ? (
                 <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
                   <div className="flex items-center gap-4">
                     <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.prototype}</span>
                     <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
                   </div>
-                  <div className="relative aspect-video rounded-[6px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-between gap-6 rounded-[12px] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-6 py-5 hover:border-[var(--color-primary)] transition-colors"
+                  >
+                    <span className="font-medium text-[var(--color-text-primary)]">Visit live site</span>
+                    <ArrowUpRight className="size-5 text-[var(--color-text-link)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                </div>
+              ) : project.figmaEmbedUrl ? (
+                <div className="space-y-6 pt-10 md:pt-12 border-t border-[var(--color-border-subtle)]">
+                  <div className="flex items-center gap-4">
+                    <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{t.prototype}</span>
+                    <div className="h-px flex-1 bg-[var(--color-border-subtle)]" />
+                  </div>
+                  <div className="relative aspect-video rounded-[8px] overflow-hidden border border-[var(--color-border-subtle)] bg-[var(--color-bg-elevated)]">
                     <iframe
                       src={project.figmaEmbedUrl}
                       className="absolute inset-0 w-full h-full"
@@ -190,7 +206,7 @@ export default async function ProjectLayout({
                     />
                   </div>
                 </div>
-              )}
+              ) : null}
 
               {/* 6. Dynamic Gallery */}
               {project.gallery && project.gallery.length > 0 && (

@@ -70,7 +70,7 @@ function ProjectCard({ project, locale, index }: { project: any; locale: Locale;
 
   return (
     <Link href={`/work/${project.slug}?lang=${locale}`} className="flex flex-col gap-2 items-start group">
-      <div className="aspect-[424/530] bg-white border border-[#b8b8b8] overflow-clip relative rounded-[6px] w-full">
+      <div className="aspect-[424/530] bg-[var(--color-bg-elevated)] border border-[var(--color-border)] overflow-clip relative rounded-[8px] w-full">
         {img ? (
           <Image
             src={img}
@@ -86,13 +86,13 @@ function ProjectCard({ project, locale, index }: { project: any; locale: Locale;
         )}
       </div>
       <div className="flex items-start justify-between pt-3 w-full">
-        <span className="font-display font-bold text-[18px] text-black tracking-[-0.45px] leading-[28px]">{title}</span>
-        <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[2.2px] leading-[11px] mt-1" style={{ fontVariationSettings: '"wdth" 100' }}>{String(index + 1).padStart(2, "0")}</span>
+        <span className="font-display font-bold text-[18px] text-[var(--color-text-primary)] tracking-[-0.45px] leading-[28px]">{title}</span>
+        <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[2.2px] leading-[11px] mt-1" style={{ fontVariationSettings: '"wdth" 100' }}>{String(index + 1).padStart(2, "0")}</span>
       </div>
       <div className="flex items-center justify-between w-full">
-        <span className="font-ibm-plex-regular text-[#333] text-[12px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{categoryText}</span>
+        <span className="font-normal text-[var(--color-text-secondary)] text-[12px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{categoryText}</span>
         {project.year && (
-          <span className="font-ibm-plex-bold font-bold text-[#444] text-[11px] tracking-[2.2px] leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{project.year}</span>
+          <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[2.2px] leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{project.year}</span>
         )}
       </div>
     </Link>
@@ -168,7 +168,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
           <button
             onClick={handleCarouselPrev}
             disabled={carouselIndex === 0}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 lg:-translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-on-primary)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
             aria-label="Previous project"
           >
             <ChevronLeft size={24} />
@@ -176,7 +176,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
           <button
             onClick={handleCarouselNext}
             disabled={carouselIndex === filtered.length - 1}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-text-inverse)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 lg:translate-x-10 z-10 p-3 rounded-full bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] hover:text-[var(--color-on-primary)] hover:border-[var(--color-primary)] transition-all disabled:opacity-30 disabled:pointer-events-none"
             aria-label="Next project"
           >
             <ChevronRight size={24} />
@@ -191,7 +191,7 @@ function CarouselView({ filtered, locale, reducedMotion, carouselIndex, setCarou
             onClick={() => setCarouselIndex(i)}
             aria-label={`Go to project ${i + 1}`}
             aria-current={i === carouselIndex}
-            className={`h-2 rounded-full transition-all ${i === carouselIndex ? "bg-[var(--color-primary)] w-6" : "w-2 bg-[var(--color-text-tertiary)] hover:bg-[var(--color-text-secondary)]"}`}
+            className={`carousel-dot h-2 rounded-full transition-all ${i === carouselIndex ? "bg-[var(--color-primary)] w-6" : "w-2 bg-[var(--color-text-tertiary)] hover:bg-[var(--color-text-secondary)]"}`}
           />
         ))}
       </div>
@@ -343,46 +343,46 @@ export default function ProjectsSection({ projects, locale }: ProjectsSectionPro
         {/* Section header row */}
         <div className="flex flex-col md:flex-row gap-4 md:items-end md:justify-between mb-6">
           <div className="flex flex-col gap-[15px]">
-            <div className="font-ibm-plex-bold font-bold text-[#333] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>Selected work</div>
-            <h2 className="font-display font-black text-black" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "63.36px" }}>Projects</h2>
-            <p className="font-ibm-plex-regular text-[#333] text-[18px] leading-[28px]" style={{ fontVariationSettings: '"wdth" 100' }}>Case studies across product, systems, and AI-assisted delivery.</p>
+            <div className="font-bold text-[var(--color-text-secondary)] text-[20px] leading-[33px]" style={{ fontVariationSettings: '"wdth" 100' }}>Selected work</div>
+            <h2 className="font-display font-black text-[var(--color-text-primary)]" style={{ fontSize: "72px", letterSpacing: "-3.6px", lineHeight: "63.36px" }}>Projects</h2>
+            <p className="font-normal text-[var(--color-text-secondary)] text-[18px] leading-[28px]" style={{ fontVariationSettings: '"wdth" 100' }}>Case studies across product, systems, and AI-assisted delivery.</p>
           </div>
 
           {/* View mode toggle - below text on mobile, beside on desktop */}
-          <div className="bg-white border border-[#222] rounded-[12px] flex gap-1 items-center p-[5px] shrink-0 w-full md:w-auto">
+          <div className="bg-[var(--color-bg-elevated)] border border-[var(--color-border-strong)] rounded-[12px] flex gap-1 items-center p-[5px] shrink-0 w-full md:w-auto">
             <button
               onClick={() => setView("grid")}
-              className={`rounded-[12px] flex gap-2 items-center px-4 py-2 transition-colors ${view === "grid" ? "bg-black text-white" : "text-black"}`}
+              className={`rounded-[12px] flex gap-2 items-center px-4 py-2 transition-colors ${view === "grid" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-primary)]"}`}
             >
               <Grid size={16} />
-              <span className={`font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "grid" ? "text-white" : "text-black"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.grid}</span>
+              <span className={`font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "grid" ? "text-[var(--color-bg)]" : "text-[var(--color-text-primary)]"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.grid}</span>
             </button>
             <button
               onClick={() => setView("carousel")}
-              className={`rounded-full flex gap-2 items-center px-4 py-2 transition-colors ${view === "carousel" ? "bg-black text-white" : "text-black"}`}
+              className={`rounded-full flex gap-2 items-center px-4 py-2 transition-colors ${view === "carousel" ? "bg-[var(--color-text-primary)] text-[var(--color-bg)]" : "text-[var(--color-text-primary)]"}`}
             >
               <CarouselHorizontal size={16} />
-              <span className={`font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "carousel" ? "text-white" : "text-black"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.carousel}</span>
+              <span className={`font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px] ${view === "carousel" ? "text-[var(--color-bg)]" : "text-[var(--color-text-primary)]"}`} style={{ fontVariationSettings: '"wdth" 100' }}>{labels.carousel}</span>
             </button>
           </div>
         </div>
 
         {/* Filters */}
-        <div className="border-t border-[rgba(0,0,0,0.2)] pt-10 flex flex-wrap gap-x-2 gap-y-3 items-center mb-6">
-          <span className="font-ibm-plex-regular text-[#333] text-[18px] leading-[28px] mr-2" style={{ fontVariationSettings: '"wdth" 100' }}>{labels.filterBy}</span>
+        <div className="border-t border-[var(--color-border)] pt-10 flex flex-wrap gap-x-2 gap-y-3 items-center mb-6">
+          <span className="font-normal text-[var(--color-text-secondary)] text-[18px] leading-[28px] mr-2" style={{ fontVariationSettings: '"wdth" 100' }}>{labels.filterBy}</span>
           <button
             onClick={() => setCategory("all")}
-            className={`border rounded-full h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === "all" ? "bg-black border-black text-white" : "border-[#222] bg-transparent text-[#333]"} `}
+            className={`filter-chip border rounded-[8px] h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === "all" ? "bg-[var(--color-text-primary)] border-[var(--color-text-primary)] text-[var(--color-bg)]" : "border-[var(--color-border-strong)] bg-transparent text-[var(--color-text-secondary)]"} `}
           >
-            <span className="font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels.all}</span>
+            <span className="font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels.all}</span>
           </button>
           {categories.map((c) => (
             <button
               key={c}
               onClick={() => setCategory(c)}
-              className={`border rounded-full h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === c ? "bg-black border-black text-white" : "border-[#222] bg-transparent text-[#333]"} `}
+              className={`filter-chip border rounded-[8px] h-[29px] flex items-center justify-center px-4 py-2 transition-colors ${category === c ? "bg-[var(--color-text-primary)] border-[var(--color-text-primary)] text-[var(--color-bg)]" : "border-[var(--color-border-strong)] bg-transparent text-[var(--color-text-secondary)]"} `}
             >
-              <span className="font-ibm-plex-bold font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels[c as keyof typeof filterLabels] || c}</span>
+              <span className="font-bold text-[11px] tracking-[1.32px] uppercase leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{filterLabels[c as keyof typeof filterLabels] || c}</span>
             </button>
           ))}
         </div>

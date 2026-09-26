@@ -20,21 +20,13 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     public,
     year,
     client,
-    location,
     publishDate,
-    seoTitle,
-    seoDescription,
     introText,
     myRole,
-    myGoal,
     productVision,
     figmaEmbedUrl,
+    liveUrl,
     content,
-    technologies[] {
-      name,
-      category,
-      "imageUrl": logo.asset->url
-    },
     gallery[] {
       title,
       subtitle,
@@ -47,7 +39,6 @@ export const projectQuery = groq`*[_type == "project" && slug.current == $slug][
     },
     "mainImageUrl": mainImage.asset->url,
     "previewImageUrl": previewImage.asset->url,
-    "ogImageUrl": ogImage.asset->url,
     "nextProject": coalesce(
       *[_type == "project" && _createdAt > ^._createdAt] | order(_createdAt asc) [0],
       *[_type == "project"] | order(_createdAt asc) [0]

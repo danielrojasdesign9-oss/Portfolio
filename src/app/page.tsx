@@ -60,6 +60,7 @@ export default async function Home({
         email={email}
         linkedinUrl={linkedinUrl}
         githubUrl={githubUrl}
+        resumeUrl={profile?.resumeUrl}
       />
 
       <ProjectsSection projects={projects} locale={locale} />
