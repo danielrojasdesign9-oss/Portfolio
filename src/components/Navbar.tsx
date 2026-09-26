@@ -197,6 +197,20 @@ export default function Navbar() {
 
             {/* Right section: desktop settings + mobile hamburger (on RIGHT) */}
             <div className="flex items-center gap-5 w-full md:w-auto justify-end md:justify-start">
+              {/* Right nav - desktop */}
+              <nav className="hidden md:flex gap-5 items-center" aria-label="Secondary navigation">
+                {navItemsDesktopRight.map((item) => (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`font-ibm-plex text-[16px] text-black tracking-[1.28px] uppercase leading-none transition-colors ${isActive(item.href) ? "font-bold" : "font-regular"} hover:text-[var(--color-primary)]`}
+                    style={{ fontVariationSettings: '"wdth" 100' }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
