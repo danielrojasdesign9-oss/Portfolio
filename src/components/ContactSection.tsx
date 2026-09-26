@@ -31,16 +31,19 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
       kicker: "Let's work together",
       title: "Have a brief,\nnot a form.",
       body: "Write directly. I reply to email, LinkedIn, and WhatsApp — no empty inbox theater.",
+      emailBtn: "Email",
     },
     es: {
       kicker: "Trabajemos juntos",
       title: "Un brief,\nno un formulario.",
       body: "Escríbeme directo. Respondo por email, LinkedIn y WhatsApp — sin formularios vacíos.",
+      emailBtn: "Correo",
     },
     jp: {
       kicker: "一緒に働きましょう",
       title: "フォームではなく、\n直接どうぞ。",
       body: "メール、LinkedIn、WhatsAppで直接ご連絡ください。",
+      emailBtn: "メール",
     },
   }[locale];
 
@@ -77,16 +80,16 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
               href={`mailto:${email}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[var(--color-primary)] border border-transparent rounded-[12px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[206px]"
+              className="bg-[var(--color-primary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[206px]"
             >
               <Email className="w-4 h-4 shrink-0 text-white" />
-              <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Email</span>
+              <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{copy.emailBtn}</span>
             </a>
             <a
               href={linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#393939] border border-transparent rounded-[12px] min-h-[48px] flex items-center gap-4 pl-[15px] pr-16 py-[14px] w-full sm:w-[276px]"
+              className="bg-[var(--color-secondary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center gap-4 pl-[15px] pr-16 py-[14px] w-full sm:w-[276px]"
             >
               <LogoLinkedin className="w-4 h-4 shrink-0 text-white" />
               <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>LinkedIn</span>
@@ -95,7 +98,7 @@ export default function ContactSection({ locale, profile }: ContactSectionProps)
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[var(--color-primary)] rounded-[12px] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[250px]"
+              className="border border-[var(--color-primary)] rounded-[var(--radius-lg)] min-h-[48px] flex items-center gap-4 px-4 py-[15px] w-full sm:w-[250px]"
             >
               <Chat className="w-4 h-4 shrink-0 text-[var(--color-text-link)]" />
               <span className="text-[var(--color-text-link)] text-[14px] tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>WhatsApp</span>

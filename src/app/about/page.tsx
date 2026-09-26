@@ -48,6 +48,8 @@ export default async function AboutPage({
       philText: "I believe in design as a system of decisions, not just pixels. My approach integrates AI to empower human creativity and scale solutions that positively impact both business and users.",
       offClock: "Off the Clock",
       connect: "Connect",
+      downloadCv: "Download CV",
+      emailLabel: "Email",
     },
     es: {
       about: "Sobre mí",
@@ -59,6 +61,8 @@ export default async function AboutPage({
       philText: "Creo en el diseño como un sistema de decisiones, no solo píxeles. Mi enfoque integra la IA para potenciar la creatividad humana y escalar soluciones que impacten positivamente tanto al negocio como a los usuarios.",
       offClock: "Cuando no estoy en el trabajo",
       connect: "Conecta",
+      downloadCv: "Descargar CV",
+      emailLabel: "Correo",
     },
     jp: {
       about: "について",
@@ -70,6 +74,8 @@ export default async function AboutPage({
       philText: "デザインは単なるピクセルではなく、一連の意思決定のシステムであると信じています。私の手法はAIを統合し、人間の創造性を高め、ビジネスとユーザーの両方にポジティブな影響を与えるソリューションを拡大します。",
       offClock: "仕事以外の時間",
       connect: "つながる",
+      downloadCv: "CVをダウンロード",
+      emailLabel: "メール",
     },
   }[locale];
 
@@ -92,9 +98,9 @@ export default async function AboutPage({
           <div className="w-full lg:w-1/2 lg:sticky lg:top-24 flex-shrink-0">
             {/* Photo */}
             <div className="relative w-full aspect-square max-h-[60vh] rounded-[6px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] shadow-lg mb-8">
-              {profile?.profileImageUrl ? (
+              {(profile?.aboutImageUrl || profile?.profileImageUrl) ? (
                 <Image
-                  src={profile.profileImageUrl}
+                  src={profile.aboutImageUrl || profile.profileImageUrl}
                   alt={profile.fullName || "Daniel Rojas"}
                   fill
                   className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-700 ease-in-out"
@@ -129,7 +135,7 @@ export default async function AboutPage({
                 className="inline-flex items-center gap-2 text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors"
               >
                 <Email className="w-5 h-5" />
-                <span className="text-sm font-medium">Email</span>
+                <span className="text-sm font-medium">{t.emailLabel}</span>
               </a>
               <a
                 href={linkedinUrl}
@@ -157,7 +163,7 @@ export default async function AboutPage({
                   className="inline-flex items-center gap-3 bg-[var(--color-primary)] hover:opacity-90 transition-opacity rounded-[var(--radius-lg)] px-5 py-3 text-sm font-medium text-white w-full sm:w-auto justify-center sm:justify-start"
                 >
                   <Download className="w-4 h-4" />
-                  <span>Download CV</span>
+                  <span>{t.downloadCv}</span>
                 </a>
               )}
             </div>

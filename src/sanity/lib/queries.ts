@@ -74,6 +74,7 @@ export const profileQuery = groq`*[_type == "profile"][0] {
       "iconUrl": icon.asset->url
     },
     "resumeUrl": resumeUrl.asset->url,
+    "aboutImageUrl": aboutImage.asset->url,
     "profileImageUrl": coalesce(
       profileImage.asset->url,
       photo.asset->url,

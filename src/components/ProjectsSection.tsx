@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Grid, CarouselHorizontal, ArrowRight, ChevronLeft, ChevronRight } from "@carbon/icons-react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -124,9 +124,43 @@ function GridView({ filtered, locale, reducedMotion }: { filtered: any[]; locale
 }
 
 function CarouselView({ filtered, locale, reducedMotion, carouselIndex, handleCarouselPrev, handleCarouselNext }: { filtered: any[]; locale: Locale; reducedMotion: boolean; carouselIndex: number; handleCarouselPrev: () => void; handleCarouselNext: () => void }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    let startX = 0;
+    let startY = 0;
+    let active = false;
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      active = true;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      if (!active) return;
+      active = false;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - startX;
+      const dy = t.clientY - startY;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) handleCarouselNext();
+        else handleCarouselPrev();
+      }
+    };
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [handleCarouselPrev, handleCarouselNext]);
+
   return (
     <motion.div
       key="carousel"
+      ref={wrapRef}
       initial={false}
       animate={{ opacity: 1 }}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}

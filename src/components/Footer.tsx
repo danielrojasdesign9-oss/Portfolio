@@ -30,12 +30,12 @@ function FooterContent({ locale }: FooterProps) {
 
   return (
     <footer className="border-t border-[#b8b8b8] py-10">
-      <div className="max-w-[1400px] mx-auto px-8 flex items-center gap-12 flex-wrap">
+      <div className="max-w-[1400px] mx-auto px-8 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-12 flex-wrap">
         <p
-          className="text-[var(--color-text-tertiary)] text-[11px] tracking-[4.4px] leading-[16.5px] uppercase flex-1 min-w-[200px]"
+          className="text-[var(--color-text-tertiary)] text-[11px] tracking-[4.4px] leading-[16.5px] uppercase md:flex-1 min-w-[200px]"
           style={{ fontVariationSettings: '"wdth" 100' }}
         >
-          © 2024 2026 ALL RIGHTS RESERVED
+          {locale === "es" ? "© 2024 2026 Todos los derechos reservados" : locale === "jp" ? "© 2024 2026 All rights reserved" : "© 2024 2026 ALL RIGHTS RESERVED"}
         </p>
 
         <div className="flex gap-6 items-center flex-wrap">

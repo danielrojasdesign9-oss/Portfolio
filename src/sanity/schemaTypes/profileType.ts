@@ -63,6 +63,13 @@ export const profileType = defineType({
       options: { hotspot: true }
     }),
     defineField({
+      name: 'aboutImage',
+      type: 'image',
+      title: 'Foto del About (opcional)',
+      description: 'Imagen propia de la página About. Si está vacía se usa la Foto de Perfil.',
+      options: { hotspot: true }
+    }),
+    defineField({
       name: 'hobbies',
       title: 'Hobbies / Actividades Extracurriculares',
       description: 'Lo que haces cuando no estás en el trabajo.',

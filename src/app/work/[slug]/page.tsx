@@ -53,9 +53,9 @@ export default async function ProjectLayout({
   const content = getLocaleContent(project.content, locale);
 
   const t = {
-    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype", openProto: "Open prototype", of: "of" },
-    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo", openProto: "Abrir prototipo", of: "de" },
-    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ", openProto: "プロトタイプを開く", of: "/" }
+    en: { back: "BACK", next: "Next", prev: "Prev", vision: "Product Vision", problem: "The Problem", prototype: "Interactive Prototype", openProto: "Open prototype", visitLive: "Visit live site", client: "Client", role: "Role", year: "Year", of: "of" },
+    es: { back: "VOLVER", next: "Siguiente", prev: "Anterior", vision: "Visión de Producto", problem: "El Problema", prototype: "Prototipo Interactivo", openProto: "Abrir prototipo", visitLive: "Visitar sitio", client: "Cliente", role: "Rol", year: "Año", of: "de" },
+    jp: { back: "戻る", next: "次へ", prev: "前へ", vision: "プロダクトビジョン", problem: "課題", prototype: "インタラクティブなプロトタイプ", openProto: "プロトタイプを開く", visitLive: "サイトを見る", client: "クライアント", role: "役割", year: "年", of: "/" }
   }[locale];
 
   const projectsMeta: Record<string, any> = {
@@ -89,19 +89,19 @@ export default async function ProjectLayout({
             <div className="grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-4 w-full md:w-auto">
               {project.client && (
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Client</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">{t.client}</span>
                   <p className="text-lg font-bold">{project.client}</p>
                 </div>
               )}
               {myRole && (
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Role</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">{t.role}</span>
                   <p className="text-lg font-bold">{myRole}</p>
                 </div>
               )}
               {project.year && (
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">Year</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">{t.year}</span>
                   <p className="text-lg font-bold">{project.year}</p>
                 </div>
               )}
@@ -188,7 +188,7 @@ export default async function ProjectLayout({
                     rel="noopener noreferrer"
                     className="group flex items-center justify-between gap-6 rounded-[12px] border border-[var(--color-border)] bg-[var(--color-bg-elevated)] px-6 py-5 hover:border-[var(--color-primary)] transition-colors"
                   >
-                    <span className="font-medium text-[var(--color-text-primary)]">{project.liveUrl ? "Visit live site" : t.openProto}</span>
+                    <span className="font-medium text-[var(--color-text-primary)]">{project.liveUrl ? t.visitLive : t.openProto}</span>
                     <ArrowUpRight className="size-5 text-[var(--color-text-link)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </a>
                   {project.figmaEmbedUrl && (
@@ -264,8 +264,10 @@ export default async function ProjectLayout({
                       size="lg"
                       className="min-w-0 max-w-full md:max-w-[45%] text-center whitespace-nowrap overflow-hidden"
                     >
-                      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.prev}</span>
-                      <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.prevProject.title, locale)}</span>
+                      <span className="flex items-baseline gap-2 min-w-0 max-w-full justify-center">
+                        <span className="font-display text-lg font-black uppercase tracking-[0.1em] text-[var(--color-text-tertiary)] shrink-0">{t.prev}</span>
+                        <span className="font-display text-lg font-black tracking-tight text-[var(--color-text-link)] truncate">{getLocaleText(project.prevProject.title, locale)}</span>
+                      </span>
                     </CarbonLinkButton>
                   )}
                   {project.prevProject && project.nextProject && (
@@ -278,8 +280,10 @@ export default async function ProjectLayout({
                       size="lg"
                       className="min-w-0 max-w-full md:max-w-[45%] text-center whitespace-nowrap overflow-hidden"
                     >
-                      <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-text-tertiary)] block mb-1">{t.next}</span>
-                      <span className="font-display text-lg font-black tracking-tight block truncate">{getLocaleText(project.nextProject.title, locale)}</span>
+                      <span className="flex items-baseline gap-2 min-w-0 max-w-full justify-center">
+                        <span className="font-display text-lg font-black uppercase tracking-[0.1em] text-[var(--color-text-tertiary)] shrink-0">{t.next}</span>
+                        <span className="font-display text-lg font-black tracking-tight text-[var(--color-text-link)] truncate">{getLocaleText(project.nextProject.title, locale)}</span>
+                      </span>
                     </CarbonLinkButton>
                   )}
                 </div>

@@ -32,11 +32,17 @@ export default function HeroSection({
 }: HeroSectionProps) {
   const reduced = useReducedMotion();
 
+  const copy = {
+    en: { connect: "Connect", downloadCv: "Download CV", letsTalk: "Let's Talk", aboutMe: "About Me" },
+    es: { connect: "Conecta", downloadCv: "Descargar CV", letsTalk: "Hablemos", aboutMe: "Sobre mí" },
+    jp: { connect: "つながる", downloadCv: "CVをダウンロード", letsTalk: "連絡する", aboutMe: "私について" },
+  }[locale];
+
   const contactLinks = [
-    { href: `mailto:${email}`, icon: Email, label: "Email" },
+    { href: `mailto:${email}`, icon: Email, label: locale === "es" ? "Correo" : locale === "jp" ? "メール" : "Email" },
     { href: linkedinUrl, icon: LogoLinkedin, label: "LinkedIn", external: true },
     { href: githubUrl, icon: LogoGithub, label: "GitHub", external: true },
-    ...(resumeUrl ? [{ href: resumeUrl, icon: Download, label: "Download CV", external: true }] : []),
+    ...(resumeUrl ? [{ href: resumeUrl, icon: Download, label: copy.downloadCv, external: true }] : []),
   ];
 
   const container = {
@@ -61,8 +67,8 @@ export default function HeroSection({
           className="flex flex-col md:flex-row gap-10 md:gap-16 items-center"
         >
           {/* Left: photo + social links */}
-          <motion.div variants={item} className="flex flex-col gap-6 shrink-0 w-full md:w-1/2 max-w-[480px]">
-            <div className="relative w-full aspect-square max-w-[480px] md:max-w-none rounded-[8px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
+          <motion.div variants={item} className="flex flex-col gap-6 shrink-0 w-full md:w-1/2 max-w-[420px]">
+            <div className="relative w-full aspect-square max-w-[420px] md:max-w-none rounded-[8px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)]">
               {profileImageUrl ? (
                 <Image
                   src={profileImageUrl}
@@ -70,7 +76,7 @@ export default function HeroSection({
                   fill
                   className="object-cover object-center"
                   priority
-                  sizes="(max-width: 768px) 100vw, 480px"
+                  sizes="(max-width: 768px) 100vw, 420px"
                 />
               ) : (
                 <div className="w-full h-full bg-[var(--color-bg-elevated)] flex items-center justify-center">
@@ -84,7 +90,7 @@ export default function HeroSection({
               className="flex flex-wrap gap-x-6 gap-y-3 justify-center md:justify-start"
             >
               <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[1.65px] uppercase leading-[16.5px]" style={{ fontVariationSettings: '"wdth" 100' }}>
-                Connect
+                {copy.connect}
               </span>
               <div className="flex flex-wrap gap-6 items-center justify-center md:justify-start">
                 {contactLinks.map((link) => (
@@ -119,14 +125,14 @@ export default function HeroSection({
                 href={`/?lang=${locale}#contact`}
                 className="relative bg-[var(--color-secondary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
-                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>Let&apos;s Talk</span>
+                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{copy.letsTalk}</span>
                 <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
               </a>
               <a
                 href={`/about?lang=${locale}`}
                 className="relative bg-[var(--color-primary)] border border-transparent rounded-[var(--radius-lg)] min-h-[48px] flex items-center pl-6 pr-12 py-[14px] shrink-0 w-full sm:w-auto text-center"
               >
-                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>About Me</span>
+                <span className="text-[14px] text-white tracking-[0.16px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{copy.aboutMe}</span>
                 <ArrowRight className="absolute right-4 size-4 text-white" style={{ top: "14.99px" }} />
               </a>
             </motion.div>
