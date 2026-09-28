@@ -13,11 +13,43 @@ interface GalleryImageProps {
 export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
   const [isOpen, setIsOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+
+  const close = () => {
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
 
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+        const focusables = dialog.querySelectorAll<HTMLElement>(
+          'a[href], button, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        const active = document.activeElement as HTMLElement | null;
+        const inside = active ? dialog.contains(active) : false;
+        if (e.shiftKey) {
+          if (!inside || active === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else if (!inside || active === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     };
     document.addEventListener('keydown', handler);
     document.body.style.overflow = 'hidden';
@@ -31,12 +63,14 @@ export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
   return (
     <>
       <div
+        ref={triggerRef}
         className="space-y-4 group cursor-zoom-in"
         onClick={() => setIsOpen(true)}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setIsOpen(true); }}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(true); } }}
         role="button"
         tabIndex={0}
         aria-label={`Open fullscreen: ${alt}`}
+        aria-expanded={isOpen}
       >
         {/* Contenedor optimizado: sin padding y con altura adaptable para reducir bordes blancos */}
         <div className="relative w-full aspect-[16/9] md:aspect-video rounded-[8px] overflow-hidden border border-[var(--color-text-primary)]/5 shadow-lg bg-[var(--color-bg-elevated)]">
@@ -57,7 +91,7 @@ export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
         
         {caption && (
           <div className="border-l-2 border-[var(--color-text-primary)]/5 pl-4 max-w-2xl py-1">
-            <p className="text-[13px] font-medium text-[var(--color-text-primary)]/50 leading-relaxed italic whitespace-pre-line">{caption}</p>
+            <p className="text-[13px] font-medium text-[var(--color-text-primary)]/70 leading-relaxed italic whitespace-pre-line">{caption}</p>
           </div>
         )}
       </div>
@@ -65,16 +99,17 @@ export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
       {/* Lightbox Modal con renderizado de alta calidad */}
       {isOpen && (
         <div
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-label={alt}
           className="fixed inset-0 z-[999] bg-[var(--color-bg-elevated)]/98 backdrop-blur-xl flex items-center justify-center p-2 md:p-10 animate-in fade-in zoom-in-95 duration-300"
-          onClick={() => setIsOpen(false)}
+          onClick={close}
         >
           <button
             ref={closeRef}
             className="absolute top-6 right-6 p-2 hover:bg-[var(--color-text-primary)]/5 rounded-full transition-colors z-50"
-            onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
+            onClick={(e) => { e.stopPropagation(); close(); }}
             aria-label="Close fullscreen"
           >
             <X className="w-6 h-6 text-[var(--color-text-primary)]/40" />
@@ -93,7 +128,7 @@ export default function GalleryImage({ src, alt, caption }: GalleryImageProps) {
               />
             </div>
             {caption && (
-               <p className="mt-4 text-[var(--color-text-primary)]/30 font-black uppercase tracking-[0.3em] text-[9px] bg-[var(--color-text-primary)]/[0.02] px-4 py-2 rounded-full">
+               <p className="mt-4 text-[var(--color-text-primary)]/70 font-black uppercase tracking-[0.3em] text-[9px] bg-[var(--color-text-primary)]/[0.02] px-4 py-2 rounded-full">
                   {caption}
                </p>
             )}

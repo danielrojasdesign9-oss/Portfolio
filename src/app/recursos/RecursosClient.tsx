@@ -14,9 +14,9 @@ import { aiToolNames } from "@/lib/utils-recursos";
 const CATEGORIES = ["all", "research", "designops", "producto", "liderazgo"] as const;
 
 const aiColors: Record<string, string> = {
-  claude: "#977669",
-  chatgpt: "#10a37f",
-  gemini: "#4285f4",
+  claude: "#8a6f63",
+  chatgpt: "#0b7a5f",
+  gemini: "#1967d2",
 };
 
 interface RecursosClientProps {
@@ -61,9 +61,9 @@ function ResourceCard({ resource, t, locale }: { resource: Resource; t: Record<s
 
           {/* Title */}
           <div className="flex-1 space-y-2">
-            <h3 className="font-display text-xl font-black tracking-tighter leading-tight text-[var(--color-text-primary)]">
+            <h2 className="font-display text-xl font-black tracking-tighter leading-tight text-[var(--color-text-primary)]">
               {resource.title}
-            </h3>
+            </h2>
             <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
               {resource.description}
             </p>
@@ -97,7 +97,7 @@ function ResourceCard({ resource, t, locale }: { resource: Resource; t: Record<s
                     style={{ backgroundColor: aiColors[ai] || "#8a968d" }}
                     title={aiNames[ai] || ai}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 inline-block" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 inline-block" aria-hidden="true" />
                     {aiNames[ai]?.split(" ")[0] || ai}
                   </span>
                 ))}
@@ -177,7 +177,7 @@ export default function RecursosClient({ t, locale }: RecursosClientProps) {
               {t[cat] || cat}
               <span
                 className={`text-[9px] font-black ${
-                  activeCategory === cat ? "text-white/70" : "text-[var(--color-text-tertiary)]"
+                  activeCategory === cat ? "text-white" : "text-[var(--color-text-tertiary)]"
                 }`}
               >
                 {counts[cat]}

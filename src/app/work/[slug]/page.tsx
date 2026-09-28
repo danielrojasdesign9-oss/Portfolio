@@ -149,10 +149,10 @@ export default async function ProjectLayout({
               {/* 3. Product Vision */}
               {productVision && (
                 <div className="py-6 border-y border-[var(--color-border-subtle)] space-y-3">
-                  <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-text-tertiary)] flex items-center gap-3">
+                  <h2 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--color-text-tertiary)] flex items-center gap-3">
                     <Rocket style={{ color: meta.accent }} />
                     {t.vision}
-                  </h4>
+                  </h2>
                   <p className="text-xl md:text-2xl font-semibold tracking-tight italic leading-tight">
                     {productVision}
                   </p>
@@ -221,7 +221,7 @@ export default async function ProjectLayout({
                             <div className="space-y-4 border-b border-[var(--color-border-subtle)] pb-5">
                               <div className="space-y-3">
                                 {sTitle && <span className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] rounded-full border border-[var(--color-border-strong)] text-[var(--color-text-secondary)]">{sTitle}</span>}
-                                {sSubtitle && <h4 className="text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed">{sSubtitle}</h4>}
+                                {sSubtitle && <h3 className="text-xl font-medium text-[var(--color-text-secondary)] leading-relaxed">{sSubtitle}</h3>}
                               </div>
                               {sDesc && <p className="text-base font-medium text-[var(--color-text-secondary)] leading-relaxed italic max-w-2xl whitespace-pre-line">{sDesc}</p>}
                             </div>

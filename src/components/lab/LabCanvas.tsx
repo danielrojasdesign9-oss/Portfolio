@@ -53,7 +53,7 @@ export function LabVariant({
       transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
     >
       <div className="lab-variant__header">
-        <h3 className="lab-variant__title">{title}</h3>
+        <h2 className="lab-variant__title">{title}</h2>
         {isActive && <span className="lab-variant__badge">ACTIVE</span>}
       </div>
       {description && <p className="lab-variant__desc">{description}</p>}

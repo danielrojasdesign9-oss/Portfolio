@@ -89,10 +89,10 @@ function ProjectCard({ project, locale, index }: { project: any; locale: Locale;
         <span className="font-display font-bold text-[18px] text-[var(--color-text-primary)] tracking-[-0.45px] leading-[28px]">{title}</span>
         <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[2.2px] leading-[11px] mt-1" style={{ fontVariationSettings: '"wdth" 100' }}>{String(index + 1).padStart(2, "0")}</span>
       </div>
-      <div className="flex items-center justify-between w-full">
-        <span className="font-normal text-[var(--color-text-secondary)] text-[12px] leading-[18px]" style={{ fontVariationSettings: '"wdth" 100' }}>{categoryText}</span>
+      <div className="flex items-center justify-between gap-4 w-full">
+        <span className="font-normal text-[var(--color-text-secondary)] text-[12px] leading-[18px] min-w-0" style={{ fontVariationSettings: '"wdth" 100' }}>{categoryText}</span>
         {project.year && (
-          <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[2.2px] leading-[11px]" style={{ fontVariationSettings: '"wdth" 100' }}>{project.year}</span>
+          <span className="font-bold text-[var(--color-text-tertiary)] text-[11px] tracking-[2.2px] leading-[11px] shrink-0 whitespace-nowrap" style={{ fontVariationSettings: '"wdth" 100' }}>{project.year}</span>
         )}
       </div>
     </Link>

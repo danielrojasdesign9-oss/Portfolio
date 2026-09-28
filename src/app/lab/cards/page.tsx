@@ -426,7 +426,7 @@ export function ProjectCard() {
 }`;
 
   return (
-    <div className="lab-page">
+    <main id="main-content" className="lab-page">
       <LabBackLink />
       <div className="lab-page__header">
         <h1 className="lab-page__title">Card Micro-interactions</h1>
@@ -545,7 +545,7 @@ export function ProjectCard() {
           gap: var(--space-6);
         }
       `}</style>
-    </div>
+    </main>
   );
 }
 

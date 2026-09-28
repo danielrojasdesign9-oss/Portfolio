@@ -58,8 +58,8 @@ export default function HeroSection({
   };
 
   return (
-    <section className="relative flex items-center justify-center px-4 md:px-8 pt-[calc(var(--header-height)+1.5rem)] pb-8 md:pb-12">
-      <div className="w-full max-w-[1400px] mx-auto">
+    <section className="relative flex items-center justify-center pt-[calc(var(--header-height)+1.5rem)] pb-8 md:pb-12">
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8">
         <motion.div
           variants={container}
           initial="hidden"

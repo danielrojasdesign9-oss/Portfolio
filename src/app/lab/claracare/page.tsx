@@ -18,7 +18,7 @@ function ClaraLabContent(){
         <button onClick={()=>{setArs([...ars,qs[q]]); setQ(Math.min(q+1,qs.length-1))}} className="mt-4 bg-[var(--color-text-primary)] text-white rounded-full px-6 py-2">Sí</button>
         <button onClick={()=>setQ(Math.min(q+1,qs.length-1))} className="ml-2 border border-[var(--color-border-subtle)] rounded-full px-6 py-2">No / No estoy seguro</button>
       </div>}
-      <p className="text-sm text-[var(--color-text-primary)]/50 mt-4">Reglas transparentes v1, IA solo resume. <a href="/work/claracare" className="underline">Ver case</a></p>
+      <p className="text-sm text-[var(--color-text-primary)]/70 mt-4">Reglas transparentes v1, IA solo resume. <a href="/work/claracare" className="underline">Ver case</a></p>
     </div>
     <Footer locale="en" />
   </main>

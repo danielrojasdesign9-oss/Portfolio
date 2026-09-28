@@ -34,7 +34,7 @@
     /* Text Scale (Light) - AA compliant */
     --color-text-primary: var(--color-onyx);
     --color-text-secondary: #333333;
-    --color-text-tertiary: #444444;
+    --color-text-tertiary: #333333;
     --color-text-inverse: #FFFFFF;
     --color-text-link: var(--color-indigo);
     --color-text-link-hover: var(--color-midnight);
@@ -198,7 +198,7 @@
     --color-bg-sunken: #F0F0F0;
     --color-text-primary: var(--color-onyx);
     --color-text-secondary: #333333;
-    --color-text-tertiary: #444444;
+    --color-text-tertiary: #333333;
     --color-text-inverse: #FFFFFF;
     --color-text-link: var(--color-indigo);
     --color-text-link-hover: var(--color-midnight);
@@ -228,7 +228,7 @@
   [data-aaa="true"] {
     --color-text-primary: var(--color-text-primary-aaa);
     --color-text-secondary: var(--color-text-secondary-aaa);
-    --color-text-tertiary: #333333;
+    --color-text-tertiary: #1A1A1A;
     --color-border: var(--color-border-aaa);
     --color-border-subtle: #B8B8B8;
     --color-border-strong: #222222;

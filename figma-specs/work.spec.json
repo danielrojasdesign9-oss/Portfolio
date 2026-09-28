@@ -32,49 +32,49 @@
     { "type": "frame", "name": "proj-1", "x": 32, "y": 580, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-1-cover", "x": 32, "y": 580, "width": 326, "height": 408, "radius": 6, "placeholder": "#D0E2FF", "src": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80" },
     { "type": "text", "name": "proj-1-title", "x": 32, "y": 1012, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "TIR — Tax Intelligence" },
-    { "type": "text", "name": "proj-1-num", "x": 298, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "01" },
+    { "type": "text", "name": "proj-1-num", "x": 298, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "01" },
     { "type": "text", "name": "proj-1-cat", "x": 32, "y": 1044, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "AI Systems" },
 
     { "type": "frame", "name": "proj-2", "x": 382, "y": 580, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-2-cover", "x": 382, "y": 580, "width": 326, "height": 408, "radius": 6, "placeholder": "#F4F4F4", "src": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&q=80" },
     { "type": "text", "name": "proj-2-title", "x": 382, "y": 1012, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "E-Signer — Digital Signatures" },
-    { "type": "text", "name": "proj-2-num", "x": 648, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "02" },
+    { "type": "text", "name": "proj-2-num", "x": 648, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "02" },
     { "type": "text", "name": "proj-2-cat", "x": 382, "y": 1044, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "Product" },
 
     { "type": "frame", "name": "proj-3", "x": 732, "y": 580, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-3-cover", "x": 732, "y": 580, "width": 326, "height": 408, "radius": 6, "placeholder": "#E8E0F0" },
     { "type": "text", "name": "proj-3-title", "x": 732, "y": 1012, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Silin — AI Assistant" },
-    { "type": "text", "name": "proj-3-num", "x": 998, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "03" },
+    { "type": "text", "name": "proj-3-num", "x": 998, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "03" },
     { "type": "text", "name": "proj-3-cat", "x": 732, "y": 1044, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "AI Systems" },
 
     { "type": "frame", "name": "proj-4", "x": 1082, "y": 580, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-4-cover", "x": 1082, "y": 580, "width": 326, "height": 408, "radius": 6, "placeholder": "#FFFFFF" },
     { "type": "text", "name": "proj-4-title", "x": 1082, "y": 1012, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Linklight — Omnichannel" },
-    { "type": "text", "name": "proj-4-num", "x": 1348, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "04" },
+    { "type": "text", "name": "proj-4-num", "x": 1348, "y": 1012, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "04" },
     { "type": "text", "name": "proj-4-cat", "x": 1082, "y": 1044, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "E-commerce" },
 
     { "type": "frame", "name": "proj-5", "x": 32, "y": 1112, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-5-cover", "x": 32, "y": 1112, "width": 326, "height": 408, "radius": 6, "placeholder": "#F4F4F4" },
     { "type": "text", "name": "proj-5-title", "x": 32, "y": 1544, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Innu — White-label Banking" },
-    { "type": "text", "name": "proj-5-num", "x": 298, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "05" },
+    { "type": "text", "name": "proj-5-num", "x": 298, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "05" },
     { "type": "text", "name": "proj-5-cat", "x": 32, "y": 1576, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "Fintech" },
 
     { "type": "frame", "name": "proj-6", "x": 382, "y": 1112, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-6-cover", "x": 382, "y": 1112, "width": 326, "height": 408, "radius": 6, "placeholder": "#D0E2FF" },
     { "type": "text", "name": "proj-6-title", "x": 382, "y": 1544, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Paycool — Retail Banking" },
-    { "type": "text", "name": "proj-6-num", "x": 648, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "06" },
+    { "type": "text", "name": "proj-6-num", "x": 648, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "06" },
     { "type": "text", "name": "proj-6-cat", "x": 382, "y": 1576, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "Fintech" },
 
     { "type": "frame", "name": "proj-7", "x": 732, "y": 1112, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-7-cover", "x": 732, "y": 1112, "width": 326, "height": 408, "radius": 6, "placeholder": "#F4F4F4" },
     { "type": "text", "name": "proj-7-title", "x": 732, "y": 1544, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Telemed — Care at home" },
-    { "type": "text", "name": "proj-7-num", "x": 998, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "07" },
+    { "type": "text", "name": "proj-7-num", "x": 998, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "07" },
     { "type": "text", "name": "proj-7-cat", "x": 732, "y": 1576, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "Telemedicine" },
 
     { "type": "frame", "name": "proj-8", "x": 1082, "y": 1112, "width": 326, "height": 510 },
     { "type": "image", "name": "proj-8-cover", "x": 1082, "y": 1112, "width": 326, "height": 408, "radius": 6, "placeholder": "#E8E0F0" },
     { "type": "text", "name": "proj-8-title", "x": 1082, "y": 1544, "width": 280, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 16, "fill": "#161616", "content": "Fashion DTC — Textile Reviews" },
-    { "type": "text", "name": "proj-8-num", "x": 1348, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#444444", "content": "08" },
+    { "type": "text", "name": "proj-8-num", "x": 1348, "y": 1544, "width": 60, "fontFamily": "Space Grotesk", "fontWeight": 700, "fontSize": 11, "textAlignHorizontal": "RIGHT", "fill": "#333333", "content": "08" },
     { "type": "text", "name": "proj-8-cat", "x": 1082, "y": 1576, "fontFamily": "IBM Plex Sans", "fontWeight": 400, "fontSize": 12, "fill": "#333333", "content": "Fashion E-commerce" }
   ]
 }

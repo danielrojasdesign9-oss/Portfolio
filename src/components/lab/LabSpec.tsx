@@ -26,12 +26,12 @@ export function LabSpec({ specs, className = "" }: LabSpecProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
-      <h4 className="lab-spec__title">Motion Spec</h4>
+      <h3 className="lab-spec__title">Motion Spec</h3>
       <div className="lab-spec__grid">
         {specs.map((spec) => (
           <div key={spec.name} className="lab-spec__card">
             <div className="lab-spec__card-header">
-              <h5 className="lab-spec__card-title">{spec.name}</h5>
+              <h4 className="lab-spec__card-title">{spec.name}</h4>
               <button
                 className="lab-spec__copy"
                 onClick={() => navigator.clipboard.writeText(spec.code)}

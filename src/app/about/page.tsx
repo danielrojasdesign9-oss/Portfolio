@@ -97,7 +97,7 @@ export default async function AboutPage({
           {/* COL 1 — Left sticky: Photo + Name + Role + Contact */}
           <div className="w-full lg:w-1/2 lg:sticky lg:top-24 flex-shrink-0">
             {/* Photo */}
-            <div className="relative w-full aspect-square max-h-[60vh] rounded-[6px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] shadow-lg mb-8">
+            <div className="relative w-full aspect-square max-h-[60vh] lg:max-h-[max(220px,calc(100vh_-_470px))] rounded-[6px] overflow-hidden bg-[var(--color-bg-elevated)] border border-[var(--color-border-subtle)] shadow-lg mb-8">
               {(profile?.aboutImageUrl || profile?.profileImageUrl) ? (
                 <Image
                   src={profile.aboutImageUrl || profile.profileImageUrl}
@@ -120,7 +120,7 @@ export default async function AboutPage({
 
             {/* Role */}
             {roleText && (
-              <p className="text-base font-medium text-[var(--color-text-secondary)] leading-relaxed border-l-4 border-[var(--color-primary)] pl-4 mb-8 max-w-sm">
+              <p className="text-base font-medium text-[var(--color-text-secondary)] leading-relaxed border-l-4 border-[var(--color-primary)] pl-4 mb-8 max-w-none xl:whitespace-nowrap">
                 {roleText}
               </p>
             )}

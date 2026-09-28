@@ -68,9 +68,9 @@ function HeroDemo({ variantKey, reducedMotion }: { variantKey: VariantKey; reduc
         <motion.span className="hero-demo__tag" variants={variant} custom={0}>
           Product Designer
         </motion.span>
-        <motion.h1 className="hero-demo__headline" variants={variant} custom={0}>
+        <motion.p className="hero-demo__headline" variants={variant} custom={0}>
           I make human experiences feel memorable, intuitive, and visually striking.
-        </motion.h1>
+        </motion.p>
         <motion.p className="hero-demo__desc" variants={variant} custom={0}>
           Building AI-driven ecosystems that scale. Focus on the why: human-centric strategy.
         </motion.p>
@@ -322,9 +322,9 @@ export function Hero() {
       <motion.div className="hero-photo" variants={heroVariants} />
       <motion.div className="hero-content" variants={heroVariants}>
         <motion.span className="hero-tag" variants={heroVariants}>Product Designer</motion.span>
-        <motion.h1 className="hero-headline" variants={heroVariants}>
+        <motion.p className="hero-headline" variants={heroVariants}>
           I make human experiences feel memorable, intuitive, and visually striking.
-        </motion.h1>
+        </motion.p>
         <motion.p className="hero-desc" variants={heroVariants}>
           Building AI-driven ecosystems that scale.
         </motion.p>
@@ -338,7 +338,7 @@ export function Hero() {
 }`;
 
   return (
-    <div className="lab-page">
+    <main id="main-content" className="lab-page">
       <LabBackLink />
       <div className="lab-page__header">
         <h1 className="lab-page__title">Hero Entrance Choreography</h1>
@@ -491,7 +491,7 @@ export function Hero() {
           gap: var(--space-6);
         }
       `}</style>
-    </div>
+    </main>
   );
 }
 

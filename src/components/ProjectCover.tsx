@@ -73,7 +73,7 @@ export default function ProjectCover({ title, category, year }: ProjectCoverProp
         transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
         className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
       >
-        <span className="text-[9px] font-black uppercase tracking-widest text-[var(--color-text-primary)]/30">Scroll</span>
+        <span className="text-[9px] font-black uppercase tracking-widest text-[var(--color-text-primary)]/70">Scroll</span>
         <div className="w-px h-16 bg-[var(--color-text-primary)]" />
       </motion.div>
     </section>

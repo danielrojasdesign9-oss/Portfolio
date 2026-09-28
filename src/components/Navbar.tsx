@@ -16,6 +16,7 @@ export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const settingsRef = useRef<HTMLDivElement>(null);
+  const settingsButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
   const previousActiveElement = useRef<HTMLElement | null>(null);
 
@@ -97,16 +98,34 @@ export default function Navbar() {
         setIsSettingsOpen(false);
       }
     };
-    const handleKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsSettingsOpen(false);
-    };
     document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKey);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKey);
     };
   }, []);
+
+  // Settings popover: Escape closes and returns focus to the trigger; focus leaving closes it
+  useEffect(() => {
+    if (!isSettingsOpen) return;
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsSettingsOpen(false);
+        settingsButtonRef.current?.focus();
+      }
+    };
+    const handleFocusOut = (event: FocusEvent) => {
+      const next = event.relatedTarget as Node | null;
+      if (next && !settingsRef.current?.contains(next)) {
+        setIsSettingsOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    settingsRef.current?.addEventListener("focusout", handleFocusOut);
+    return () => {
+      document.removeEventListener("keydown", handleKey);
+      settingsRef.current?.removeEventListener("focusout", handleFocusOut);
+    };
+  }, [isSettingsOpen]);
 
   // Mobile drawer focus trap
   useEffect(() => {
@@ -214,6 +233,7 @@ export default function Navbar() {
               {/* Desktop Settings Popover */}
               <div className="hidden md:block relative" ref={settingsRef}>
                 <button
+                  ref={settingsButtonRef}
                   className="bg-[#f0f0f0] border border-[#666] text-black flex items-center justify-center size-10 rounded-full"
                   onClick={handleSettingsClick}
                   aria-label={t.settings}
@@ -237,7 +257,7 @@ export default function Navbar() {
                       <div className="flex flex-col gap-5">
                         {/* Theme */}
                         <div>
-                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
+                          <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
                           <div className="flex gap-2">
                             <button
                               className={`flex items-center justify-center w-9 h-9 rounded-full border transition-colors ${theme === "light" ? "bg-black border-black text-white" : "bg-[#f0f0f0] border-[#666] text-black"} `}
@@ -270,7 +290,7 @@ export default function Navbar() {
 
                         {/* Language */}
                         <div>
-                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
+                          <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
                           <div className="flex gap-2 flex-wrap">
                             {languages.map((l) => (
                               <button
@@ -290,7 +310,7 @@ export default function Navbar() {
 
                         {/* Accessibility */}
                         <div>
-                          <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
+                          <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
                           <div className="flex gap-2">
                             <button
                               className={`flex items-center justify-center px-4 py-[6px] rounded-full ${aaaLevel === "AA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}
@@ -351,6 +371,7 @@ export default function Navbar() {
         animate={{ x: isMobileOpen ? 0 : "100%" }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
         aria-label="Mobile navigation"
+        inert={!isMobileOpen}
       >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-4 border-b border-[#b8b8b8]">
@@ -387,7 +408,7 @@ export default function Navbar() {
             <div className="pt-4 border-t border-[#b8b8b8] space-y-4">
               {/* Theme */}
               <div>
-                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
+                <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Theme</span>
                 <div className="flex gap-2">
                   <button
                     className={`flex-1 flex items-center justify-center py-2 rounded-full border transition-colors ${theme === "light" ? "bg-black border-black text-white" : "bg-[#f0f0f0] border-[#666] text-black"} `}
@@ -420,7 +441,7 @@ export default function Navbar() {
 
               {/* Language */}
               <div>
-                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
+                <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Language</span>
                 <div className="flex flex-col gap-2">
                   {languages.map((l) => (
                     <button
@@ -440,7 +461,7 @@ export default function Navbar() {
 
               {/* Accessibility */}
               <div>
-                <span className="font-bold text-[#444] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
+                <span className="font-bold text-[#333] text-[11px] tracking-[1.28px] uppercase leading-none block mb-3" style={{ fontVariationSettings: '"wdth" 100' }}>Contrast</span>
                 <div className="flex gap-2">
                   <button
                     className={`flex-1 flex items-center justify-center px-4 py-[10px] rounded-[8px] ${aaaLevel === "AA" ? "bg-black text-white" : "bg-[#f0f0f0] border border-[#666] text-[#111]"} `}

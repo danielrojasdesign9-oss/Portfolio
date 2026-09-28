@@ -48,7 +48,7 @@ export function LabControls({
       style={{ overflow: "hidden" }}
     >
       <div className="lab-controls__header">
-        <h4 className="lab-controls__title">Controls</h4>
+        <h3 className="lab-controls__title">Controls</h3>
         <button
           className="lab-controls__toggle"
           onClick={() => setIsExpanded(!isExpanded)}
@@ -232,7 +232,7 @@ export function LabControls({
         .lab-controls__value {
           font-family: var(--font-mono);
           font-size: var(--text-xs);
-          color: var(--color-primary);
+          color: #0043ce;
           background: var(--color-primary-light);
           padding: var(--space-1) var(--space-2);
           border-radius: var(--radius-sm);
